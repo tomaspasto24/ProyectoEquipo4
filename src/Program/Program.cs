@@ -7,5 +7,8 @@ namespace Bot
     /// </summary>
     public static class Program
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }
