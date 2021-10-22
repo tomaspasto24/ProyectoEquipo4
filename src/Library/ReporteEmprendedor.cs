@@ -2,7 +2,7 @@ using System;
 
 namespace Bot
 {
-    public class ReporteEmprendedor
+    public class ReporteEmprendedor : IReporte
     {
         public String OtorgarReporte()
         {

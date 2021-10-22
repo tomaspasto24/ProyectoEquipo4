@@ -1,4 +1,4 @@
-
+using System.Linq;
 namespace Bot
 {
     public class Utils
