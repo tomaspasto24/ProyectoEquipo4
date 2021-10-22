@@ -4,32 +4,48 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:ClassLibrary.Train">
+        <member name="T:Bot.ReporteEmpresa">
+             <summary>
+            clase ReporteEmpresa que implementa la interfaz de IReporte
+             </summary>
+        </member>
+        <member name="F:Bot.ReporteEmpresa.reporte">
             <summary>
-            Esta clase representa un tren muy básico.
+            atributo de la clase 
             </summary>
         </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
+        <member name="M:Bot.ReporteEmpresa.#ctor(System.String)">
             <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
+            constructor de la clase
             </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
+            <param name="data"></param>
         </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
+        <member name="M:Bot.ReporteEmpresa.OtorgarReporte">
             <summary>
-            Enciende las máquinas del tren.
+            método de la clase ReporteEmpresa
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
+            <returns></returns>
         </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
+        <member name="T:Bot.Usuario">
             <summary>
-            Detiene las máquinas del tren.
+            clase que representa al Usuario en el sistema
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
+        </member>
+        <member name="M:Bot.Usuario.#ctor(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            se registra al usuario
+            </summary>
+            <param name="ci"></param>
+            <param name="nombre"></param>
+            <param name="direccion"></param>
+            <param name="telefono"></param>
+        </member>
+        <member name="M:Bot.Utils.IdIsValid(System.String)">
+            <summary>
+            Valida un número de cédula de identidad; el número puede tener o no puntos y el guión pero debe tener el dígito verificador
+            </summary>
+            <param name="id">El número de cédula</param>
+            <returns>Retorna true si el número de cédula es válido y false en caso que sea invalido.</returns>
         </member>
     </members>
 </doc>

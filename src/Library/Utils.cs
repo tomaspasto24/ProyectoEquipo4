@@ -1,4 +1,5 @@
 using System.Linq;
+using System;
 namespace Bot
 {
     public class Utils
@@ -52,6 +53,10 @@ namespace Bot
             }
 
             return true;
+        }
+        public void ComprobarCi(string ci)
+        {
+            Console.WriteLine(IdIsValid(ci));
         }
     }
 }

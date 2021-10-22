@@ -10,7 +10,7 @@ namespace Bot
         public string Ci { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
 
         /// <summary>
         /// se registra al usuario
@@ -19,7 +19,7 @@ namespace Bot
         /// <param name="nombre"></param>
         /// <param name="direccion"></param>
         /// <param name="telefono"></param>
-        public Usuario(string ci, string nombre, string direccion, int telefono)
+        public Usuario(string ci, string nombre, string direccion, string telefono)
         {
             if (Utils.IdIsValid(ci))
             {
@@ -30,9 +30,6 @@ namespace Bot
             this.Direccion = direccion;
             this.Telefono = telefono;
         }
-
-
-
     }
 }
 
