@@ -10,7 +10,15 @@ namespace Bot
         private int cantidad;
         private int precio;
         private List<string> palabrasClave = new List<string>();
-        private List<string> habilitaciones = new List<string>();
+        private List<string> listaHabilitaciones = new List<string>();
+
+        public string Nombre
+        {
+            get
+            {
+                return this.nombre;
+            }
+        }
 
         public Material(string nombre, int cantidad, int precio)
         {
@@ -50,20 +58,20 @@ namespace Bot
 
         public void AgregarHabilitacion(string habilitacion)
         {
-            habilitaciones.Add(habilitacion);
+            listaHabilitaciones.Add(habilitacion);
         }
 
         public bool EliminarHabilitacion(int indiceHabilitacion)
         {
-            return habilitaciones.Remove(palabrasClave[indiceHabilitacion]);
+            return listaHabilitaciones.Remove(palabrasClave[indiceHabilitacion]);
         }
 
-        public string DevolverHabilitaciones()
+        public string DevolverListaHabilitaciones()
         {
             StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
             int contador = 0;
 
-            foreach(string palabra in this.habilitaciones)
+            foreach(string palabra in this.listaHabilitaciones)
             {
                 resultado.Append($"{++contador}- {palabra} \n");
             }
