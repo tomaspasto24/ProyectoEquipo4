@@ -7,5 +7,10 @@ namespace Bot
     /// </summary>
     public static class Program
     {
+        public static void Main()
+        {
+            ConsoleBot consoleBot = new ConsoleBot();
+            consoleBot.StartCommunication();
+        }
     }
 }
