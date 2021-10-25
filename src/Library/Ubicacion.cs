@@ -17,3 +17,4 @@ namespace Bot
             this.departamento = departamento;
         }
     }
+}
