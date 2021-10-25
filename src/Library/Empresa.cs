@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Bot
 {
-    public class Empresa
+    public class Company
     {
+        //Hacer metodo para publicar Publicación. y guardarlo en lista 
+        private static List<Company> empresasRegistradas = new List<Company>();
         private static int contadorEmpresas = 0;
         private string nombre;
         private string rubro;
@@ -21,23 +23,34 @@ namespace Bot
             }
         }
 
-        public Empresa(string nombre, string rubro, Ubicacion ubicacion, string contacto)
+        public Company(string nombre, string rubro, Ubicacion ubicacion, string contacto)
         {
             this.nombre = nombre;
             this.rubro = rubro;
             this.ubicacion = ubicacion;
             this.contacto = contacto;
+            contadorEmpresas++;
         }
 
         public string DevolverContacto()                    
         {
-            StringBuilder resultado = new StringBuilder("Materiales: \n");
+            StringBuilder resultado = new StringBuilder("Contacto: \n");
 
             resultado.Append($"Empresa: {this.nombre} \n");
             resultado.Append($"Rubro: {this.rubro} \n");
             resultado.Append($"Contacto: {this.contacto} \n");
 
             return resultado.ToString();
+        }
+        
+        public void RegistrarEmpresa()
+        {
+            empresasRegistradas.Add(this);
+        }
+
+        public void BorrarEmpresa()
+        {
+            empresasRegistradas.Remove(this);
         }
     }
 }

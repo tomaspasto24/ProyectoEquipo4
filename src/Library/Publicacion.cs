@@ -13,18 +13,20 @@ namespace Bot
         private List<Material> listaMateriales = new List<Material>();
         private DateTime fecha;
         private Ubicacion ubicacion;
-        private string nombreEmpresa;
+        private Company Company;
+        private bool IsClosed;
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa y ubicacion.
         /// </summary>
         /// <param name="nombreEmpresa">Nombre de la empresa</param>
         /// <param name="ubicacion">Ubicación de la empresa</param>
-        public Publicacion(string nombreEmpresa, Ubicacion ubicacion)
+        public Publicacion(Company Company, Ubicacion ubicacion)
         {
-            this.nombreEmpresa = nombreEmpresa;
+            this.Company = Company;
             this.fecha = DateTime.Now;
             this.ubicacion = ubicacion;
+            this.IsClosed = false;
         }
 
         /// <summary>
@@ -62,6 +64,11 @@ namespace Bot
                 resultado.Append($"{++contador}- {material.Nombre} \n");
             }
             return resultado.ToString();
+        }
+
+        public void BorrarPublicacion()
+        {
+            this.IsClosed = true;
         }
     }
 }

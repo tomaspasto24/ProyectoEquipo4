@@ -1,20 +1,32 @@
+using LocationApi;
 using System;
-using System.Collections.Generic;
 
 namespace Bot
 {
     public class Ubicacion
     {
-        //En un futuro usar Geolocalización.
-        private string zona;
-        private string departamento;
-        private string direccion;
+        private string city;
+        private string departament;
+        private string address;
+        private Location location;  
 
-        public Ubicacion(string direccion, string zona, string departamento)
+        public Ubicacion(string address, string city, string departament)
         {
-            this.direccion = direccion;
-            this.zona = zona;
-            this.departamento = departamento;
+            EstablishLocation(this.address, this.city, this.departament);
+            if(location.Found)
+            {
+                this.city = city;
+                this.departament = departament;
+                this.address = address;
+            }
+            else Console.WriteLine("Error con Ubicacion");
         }
+
+        private async void EstablishLocation(string address, string city, string departament)
+        {
+            LocationApiClient client = new LocationApiClient();
+            location = await client.GetLocation(address);
+        }
+
     }
 }
