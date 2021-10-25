@@ -15,7 +15,7 @@ namespace Bot
         /// <param name="direccion"></param>
         /// <param name="telefono"></param>
         /// <returns></returns>
-        public Administrador(string ci, string nombre, string direccion, string telefono) : base(ci, nombre, direccion, telefono)
+        public Administrador(string ci, string nombre, string direccion, string telefono, string password) : base(ci, nombre, direccion, telefono, password)
         {
         }
         /// <summary>

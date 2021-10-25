@@ -33,6 +33,14 @@ namespace Bot
             this.Telefono = telefono;
             this.Password = password;
         }
+        public void cambiarNombre(string nuevoNombre)
+        {
+            this.Nombre = nuevoNombre;
+        }
+        public void cambiarPassword(string newPassword)
+        {
+            this.Password = newPassword;
+        }
     }
 }
 
