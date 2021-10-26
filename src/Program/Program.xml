@@ -9,5 +9,10 @@
             Programa de consola de demostración.
             </summary>
         </member>
+        <member name="M:Bot.Program.Main">
+            <summary>
+            Programa principal que inicia el bot en consola.
+            </summary>
+        </member>
     </members>
 </doc>

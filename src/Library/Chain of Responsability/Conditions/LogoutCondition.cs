@@ -3,7 +3,7 @@ namespace Bot
     /// <summary>
     /// 
     /// </summary>
-    public class NoCommandCondition : ICondition
+    public class LogoutCondition : ICondition
     {
         /// <summary>
         /// 
@@ -12,7 +12,7 @@ namespace Bot
         /// <returns></returns>
         public bool VerifyCondition(Message condition)
         {
-            return true;
+            return condition.Text == "/cerrarsesion";
         }
     }
 }
