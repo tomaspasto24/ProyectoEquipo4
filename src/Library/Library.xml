@@ -4,6 +4,27 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:Bot.Administrador">
+            <summary>
+            clase que representa al administrador en el sistema y hereda de usuario
+            </summary>
+        </member>
+        <member name="M:Bot.Administrador.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario 
+            </summary>
+            <param name="ci"></param>
+            <param name="nombre"></param>
+            <param name="direccion"></param>
+            <param name="telefono"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.Administrador.GenerarInvitacion">
+            <summary>
+            metodo para generar invitación
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bot.ReporteEmpresa">
              <summary>
             clase ReporteEmpresa que implementa la interfaz de IReporte
@@ -31,7 +52,7 @@
             clase que representa al Usuario en el sistema
             </summary>
         </member>
-        <member name="M:Bot.Usuario.#ctor(System.String,System.String,System.String,System.Int32)">
+        <member name="M:Bot.Usuario.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             se registra al usuario
             </summary>
@@ -39,6 +60,7 @@
             <param name="nombre"></param>
             <param name="direccion"></param>
             <param name="telefono"></param>
+            <param name="password"></param>
         </member>
         <member name="M:Bot.Utils.IdIsValid(System.String)">
             <summary>

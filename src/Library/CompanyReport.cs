@@ -5,7 +5,7 @@ namespace Bot
     /// <summary>
     ///clase ReporteEmpresa que implementa la interfaz de IReporte
     /// </summary>
-    public class ReporteEmpresa : IReporte
+    public class ReporteEmpresa : IReport
     {
         /// <summary>
         /// atributo de la clase 
@@ -24,7 +24,7 @@ namespace Bot
         /// método de la clase ReporteEmpresa
         /// </summary>
         /// <returns></returns>
-        public String OtorgarReporte()
+        public String GiveReport()
         {
             return "";
         }

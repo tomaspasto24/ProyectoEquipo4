@@ -5,24 +5,26 @@ namespace Bot
     /// <summary>
     /// clase que representa al administrador en el sistema y hereda de usuario
     /// </summary>
-    public class Administrador : Usuario
+    public class Admin : User
     {
         /// <summary>
         /// constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario 
+        /// 
         /// </summary>
         /// <param name="ci"></param>
-        /// <param name="nombre"></param>
-        /// <param name="direccion"></param>
-        /// <param name="telefono"></param>
+        /// <param name="name"></param>
+        /// <param name="location"></param>
+        /// <param name="telephone"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        public Administrador(string ci, string nombre, string direccion, string telefono, string password) : base(ci, nombre, direccion, telefono, password)
+        public Admin(string ci, string name, string location, string telephone, string password) : base(ci, name, location, telephone, password)
         {
         }
         /// <summary>
         /// metodo para generar invitación
         /// </summary>
         /// <returns></returns>
-        public string GenerarInvitacion()  //puede retornar una url o lo que sea 
+        public string GenerateInvitation()  //puede retornar una url o lo que sea 
 
         {
             return "";
