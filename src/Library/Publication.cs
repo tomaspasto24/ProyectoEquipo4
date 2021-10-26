@@ -8,11 +8,11 @@ namespace Bot
     /// Cada objeto de la clase Publicación, administrado por un objeto Empresa, es el conjunto de items
     /// que la aplicación muestra a los emprendedores.
     /// </summary>
-    public class Publicacion
+    public class Publication
     {
-        private List<Material> listaMateriales = new List<Material>();
-        private DateTime fecha;
-        private Ubicacion ubicacion;
+        private List<Material> listMaterials = new List<Material>();
+        private DateTime date;
+        private GeoLocation location;
         private Company Company;
         private bool IsClosed;
 
@@ -20,12 +20,12 @@ namespace Bot
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa y ubicacion.
         /// </summary>
         /// <param name="nombreEmpresa">Nombre de la empresa</param>
-        /// <param name="ubicacion">Ubicación de la empresa</param>
-        public Publicacion(Company Company, Ubicacion ubicacion)
+        /// <param name="location">Ubicación de la empresa</param>
+        public Publication(Company Company, GeoLocation location)
         {
             this.Company = Company;
-            this.fecha = DateTime.Now;
-            this.ubicacion = ubicacion;
+            this.date = DateTime.Now;
+            this.location = location;
             this.IsClosed = false;
         }
 
@@ -33,9 +33,9 @@ namespace Bot
         /// Método que agrega a material a la publicación.
         /// </summary>
         /// <param name="material">Objeto Material</param>
-        public void AgregarMaterial(Material material)
+        public void AddMaterial(Material material)
         {
-            listaMateriales.Add(material);
+            listMaterials.Add(material);
         } 
 
         /// <summary>
@@ -45,9 +45,9 @@ namespace Bot
         /// <param name="indiceMaterial">Indice del Material que se quiera eliminar.
         /// Se obtiene con la función DevolverListaMateriales.</param>
         /// <returns></returns>
-        public bool EliminarMaterial(int indiceMaterial)
+        public bool DeleteMaterial(int indiceMaterial)
         {
-            return listaMateriales.Remove(listaMateriales[indiceMaterial]);
+            return listMaterials.Remove(listMaterials[indiceMaterial]);
         }
 
         /// <summary>
@@ -59,14 +59,14 @@ namespace Bot
             StringBuilder resultado = new StringBuilder("Materiales: \n");
             int contador = 0;
 
-            foreach(Material material in this.listaMateriales)
+            foreach(Material material in this.listMaterials)
             {
                 resultado.Append($"{++contador}- {material.Nombre} \n");
             }
             return resultado.ToString();
         }
 
-        public void BorrarPublicacion()
+        public void DeletePublication()
         {
             this.IsClosed = true;
         }
