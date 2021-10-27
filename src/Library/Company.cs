@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Bot
 {
+    /// <summary>
+    /// Clase que se encarga de representar una Empresa.
+    /// </summary>
     public class Company
     {
         //Hacer metodo para publicar Publicación. y guardarlo en lista 
