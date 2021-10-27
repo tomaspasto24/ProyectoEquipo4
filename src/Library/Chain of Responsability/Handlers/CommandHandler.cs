@@ -16,11 +16,11 @@ namespace Bot
         /// 
         /// </summary>
         /// <param name="request"></param>
-        protected override void handleRequest(Message request)
+        protected override void HandleRequest(Message request)
         {
-            Commands commands = new Commands();
-            UserRelated userData = new SessionRelated().ReturnInfo(request.UserId);
-            userData.Channel.SendMessage($"{commands.ReturnCommands(request.UserId)}");
+            Command commands = new Command();
+            UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
+            userData.Channel.SendMessage(request.UserId, $"Estos son todos los comandos: \n{commands.ReturnCommands(request.UserId)}");
         }
     }
 }

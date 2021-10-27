@@ -1,16 +1,28 @@
 namespace Bot
 {
+
     /// <summary>
     /// Bot concreto de consola que hereda de AbstractBot
     /// </summary>
     public class ConsoleBot : AbstractBot
     {
-
+        private static ConsoleBot instance;
+        public static ConsoleBot Instance
+        {
+            get
+            {
+                if (instance == null) 
+                {
+                    instance = new ConsoleBot();
+                }
+                return instance;
+            }
+        }
         /// <summary>
         /// Constructor de ConsoleBot que utiliza el constructor de AbstractBot
         /// </summary>
         /// <returns></returns>
-        public ConsoleBot() : base(){}
+        private ConsoleBot() : base() { }
 
         /// <summary>
         /// Manda un mensaje, en este caso, por consola.
@@ -36,9 +48,11 @@ namespace Bot
                 {
                     break;
                 }
+                ChangeChannel("Consola", this);
                 Message message = new Message("Consola", text);
                 HandleMessage(message);
             }
+
         }
     }
 }

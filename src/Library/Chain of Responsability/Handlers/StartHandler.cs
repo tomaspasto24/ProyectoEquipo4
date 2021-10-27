@@ -17,13 +17,13 @@ namespace Bot
         /// 
         /// </summary>
         /// <param name="request"></param>
-        protected override void handleRequest(Message request)
+        protected override void HandleRequest(Message request)
         {
-            Commands commands = new Commands();
-            UserRelated userData = new SessionRelated().ReturnInfo(request.UserId);
-            userData.Channel.SendMessage("¡Bienvenido al bot del equipo 4!");
-            userData.Channel.SendMessage("¿Qué desea hacer?:\n" + commands.ReturnCommands("Consola"));
-            userData.Channel.SendMessage("Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe Comandos");
+            Command commands = new Command();
+            UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
+            userData.Channel.SendMessage(request.UserId, "¡Bienvenido al bot del equipo 4!");
+            userData.Channel.SendMessage(request.UserId, "¿Qué desea hacer?:\n" + commands.ReturnCommands("Consola"));
+            userData.Channel.SendMessage(request.UserId, "Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe Comandos");
         }
     }
 }

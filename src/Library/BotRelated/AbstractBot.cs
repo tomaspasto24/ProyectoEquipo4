@@ -5,7 +5,8 @@ namespace Bot
     /// </summary>
     public abstract class AbstractBot : IBot
     {
-
+        private AbstractHandler handler;
+        
         /// <summary>
         /// Constructor de la clase AbstractBot
         /// </summary>
@@ -18,6 +19,14 @@ namespace Bot
         /// Metodo publico y abstracto para comenzar la comunicacion entre el usuario y el canal y el bot o la consola.
         /// </summary>
         public abstract void StartCommunication();
+
+        /// <summary>
+        /// Metodo publico y abstracto para setear el canal de comunicacion entre el usuario y el bot.
+        /// </summary>
+        public void ChangeChannel(string id, IBot channel)
+        {
+            SessionRelated.Instance.SetChatChannel(id, channel);
+        }
 
         /// <summary>
         /// Metodo para enviar el mensaje por el canal donde se esta comunicando
@@ -34,7 +43,5 @@ namespace Bot
         {
             handler.Handler(text);
         }
-
-        private AbstractHandler handler;
     }
 }

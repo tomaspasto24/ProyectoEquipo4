@@ -5,15 +5,14 @@ namespace Bot
     /// <summary>
     /// Programa de consola de demostración.
     /// </summary>
-    public static class Program
+    public class Program
     {
         /// <summary>
         /// Programa principal que inicia la comunicacion con los bots.
         /// </summary>
-        public static void Main()
+        static void Main(string[] args)
         {
-            ConsoleBot consoleBot = new ConsoleBot();
-            consoleBot.StartCommunication();
+            ConsoleBot.Instance.StartCommunication();
         }
     }
 }

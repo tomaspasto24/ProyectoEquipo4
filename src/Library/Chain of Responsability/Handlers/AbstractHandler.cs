@@ -35,7 +35,7 @@ namespace Bot
             if (this.Condition.VerifyCondition(request))
             {
                 // Delegar al handler
-                this.handleRequest(request);
+                this.HandleRequest(request);
                 return;
             }
             if (this.Succesor != null)
@@ -59,6 +59,6 @@ namespace Bot
         /// 
         /// </summary>
         /// <param name="request"></param>
-        protected abstract void handleRequest(Message request);
+        protected abstract void HandleRequest(Message request);
     }
 }

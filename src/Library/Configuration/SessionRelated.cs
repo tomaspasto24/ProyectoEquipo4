@@ -10,13 +10,26 @@ namespace Bot
         public static List<User> AllUsers;
         public static Dictionary<string, UserRelated> DiccUserRelated;
 
+        private static SessionRelated instance;
+        public static SessionRelated Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SessionRelated();
+                }
+                return instance;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
-        public SessionRelated()
+        private SessionRelated()
         {
-            this.AllUsers = new List<User>();
-            this.DiccUserRelated = new Dictionary<string, UserRelated>();
+            AllUsers = new List<User>();
+            DiccUserRelated = new Dictionary<string, UserRelated>();
         }
 
         /// <summary>
@@ -30,7 +43,7 @@ namespace Bot
             {
                 return;
             }
-            User newUser = new User(username, password);
+            AllUsers.Add(new User(username, password));
         }
 
         /// <summary>
@@ -39,7 +52,7 @@ namespace Bot
         /// <param name="user"></param>
         public void DeleteUser(User user)
         {
-            AllUsers.Remove(username);
+            AllUsers.Remove(user);
         }
 
         /// <summary>
@@ -51,12 +64,17 @@ namespace Bot
         {
             foreach (User user in AllUsers)
             {
-                if (user.username == username)
+                if (user.Username == username)
                 {
                     return true;
                 }
             }
             return false;
+        }
+
+        public void SetChatChannel(string id, IBot channel)
+        {
+            ReturnInfo(id).Channel = channel;
         }
 
         /// <summary>
@@ -72,11 +90,8 @@ namespace Bot
             {
                 return info;
             }
-            else
-            {
-                info = new UserRelated();
-                DiccUserRelated.Add(id, info);
-            }
+            info = new UserRelated();
+            DiccUserRelated.Add(id, info);
             return info;
         }
     }

@@ -12,7 +12,7 @@ namespace Bot
         /// <summary>
         /// Constructor de la clase Command. Asigna a la lista de comandos, los comandos basicos que puede tener un usuario.
         /// </summary>
-        public Commands()
+        public Command()
         {
             this.CommandsList = new List<string>()
             {

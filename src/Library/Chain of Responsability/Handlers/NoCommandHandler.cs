@@ -16,14 +16,14 @@ namespace Bot
         /// 
         /// </summary>
         /// <param name="request"></param>
-        protected override void handleRequest(Message request)
+        protected override void HandleRequest(Message request)
         {
-            Commands commands = new Commands();
+            Command commands = new Command();
             if (!(commands.CommandsList.Contains(request.Text)))
             {
-                UserRelated userData = new SessionRelated().ReturnInfo(request.UserId);
-                userData.Channel.SendMessage("Disculpa pero no te entiendo! :(");
-                userData.Channel.SendMessage("Intenta escribir \"/comandos\" para verificar los comandos");
+                UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
+                userData.Channel.SendMessage(request.UserId, "Disculpa pero no te entiendo! :(");
+                userData.Channel.SendMessage(request.UserId, "Intenta escribir \"/comandos\" para verificar los comandos");
             }
         }
     }
