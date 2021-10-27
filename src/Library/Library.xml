@@ -4,22 +4,24 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:Bot.Administrador">
+        <member name="T:Bot.Admin">
             <summary>
             clase que representa al administrador en el sistema y hereda de usuario
             </summary>
         </member>
-        <member name="M:Bot.Administrador.#ctor(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Bot.Admin.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario 
+            
             </summary>
             <param name="ci"></param>
-            <param name="nombre"></param>
-            <param name="direccion"></param>
-            <param name="telefono"></param>
+            <param name="name"></param>
+            <param name="location"></param>
+            <param name="telephone"></param>
+            <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:Bot.Administrador.GenerarInvitacion">
+        <member name="M:Bot.Admin.GenerateInvitation">
             <summary>
             metodo para generar invitación
             </summary>
@@ -41,26 +43,39 @@
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:Bot.ReporteEmpresa.OtorgarReporte">
+        <member name="M:Bot.ReporteEmpresa.GiveReport">
             <summary>
             método de la clase ReporteEmpresa
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Bot.Usuario">
+        <member name="T:Bot.User">
             <summary>
             clase que representa al Usuario en el sistema
             </summary>
         </member>
-        <member name="M:Bot.Usuario.#ctor(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Bot.User.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             se registra al usuario
+            
             </summary>
             <param name="ci"></param>
-            <param name="nombre"></param>
-            <param name="direccion"></param>
-            <param name="telefono"></param>
+            <param name="name"></param>
+            <param name="location"></param>
+            <param name="telephone"></param>
             <param name="password"></param>
+        </member>
+        <member name="M:Bot.User.ChangeName(System.String)">
+            <summary>
+            metodo para cambiar nombre
+            </summary>
+            <param name="newName"></param>
+        </member>
+        <member name="M:Bot.User.ChangePassword(System.String)">
+            <summary>
+            metodo para cambiar contraseña
+            </summary>
+            <param name="newPassword"></param>
         </member>
         <member name="M:Bot.Utils.IdIsValid(System.String)">
             <summary>

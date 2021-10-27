@@ -12,6 +12,10 @@ namespace Bot
         {
             Utils u = new Utils();
             u.ComprobarCi("54332615");
+
+            CodeGenerator generator = new CodeGenerator();
+            generator.Generator();
         }
+
     }
 }

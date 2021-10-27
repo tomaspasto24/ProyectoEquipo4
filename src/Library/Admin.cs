@@ -8,18 +8,33 @@ namespace Bot
     public class Admin : User
     {
         /// <summary>
-        /// constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario 
-        /// 
+        /// constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
         /// </summary>
-        /// <param name="ci"></param>
-        /// <param name="name"></param>
-        /// <param name="location"></param>
-        /// <param name="telephone"></param>
+        /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public Admin(string ci, string name, string location, string telephone, string password) : base(ci, name, location, telephone, password)
+
+        public Admin(string username, string password) : base(username, password)
         {
         }
+
+        public void Generator()
+        {
+            string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var Charsarr = new char[8];
+            var random = new Random();
+
+            for (int i = 0; i < Charsarr.Length; i++)
+            {
+                Charsarr[i] = characters[random.Next(characters.Length)];
+            }
+
+            var resultString = new String(Charsarr);
+            Console.WriteLine(resultString);
+        }
+
+
+
         /// <summary>
         /// metodo para generar invitación
         /// </summary>

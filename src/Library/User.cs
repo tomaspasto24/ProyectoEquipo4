@@ -7,37 +7,34 @@ namespace Bot
     /// </summary>
     public class User
     {
-        public string Ci { get; set; }
-        public string Name { get; set; }
-        public string Location { get; set; }
-        public string Telephone { get; set; }
+
+        public string Username { get; set; }
+
         public string Password { get; set; }
 
         /// <summary>
         /// se registra al usuario
-        /// 
         /// </summary>
-        /// <param name="ci"></param>
-        /// <param name="name"></param>
-        /// <param name="location"></param>
-        /// <param name="telephone"></param>
+        /// <param name="username"></param>
         /// <param name="password"></param>
-        public User(string ci, string name, string location, string telephone, string password)
+
+        public User(string username, string password)
         {
-            if (Utils.IdIsValid(ci))
-            {
-                this.Ci = ci;
-            }
-            this.Ci = ci;
-            this.Name = name;
-            this.Location = location;
-            this.Telephone = telephone;
+            this.Username = username;
             this.Password = password;
         }
-        public void ChangeName(string newName)
+        /// <summary>
+        /// metodo para cambiar nombre
+        /// </summary>
+        /// <param name="newName"></param>
+        public void ChangeUsername(string newName)
         {
-            this.Name = newName;
+            this.Username = newName;
         }
+        /// <summary>
+        /// metodo para cambiar contraseña
+        /// </summary>
+        /// <param name="newPassword"></param>
         public void ChangePassword(string newPassword)
         {
             this.Password = newPassword;
