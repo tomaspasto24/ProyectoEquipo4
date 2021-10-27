@@ -13,7 +13,7 @@ namespace Bot
         private string item; //rubro (español)
         private GeoLocation location;
         private string contact;
-        private List<Usuario> setUsers = new List<Usuario>(); //conjunto usuarios
+        private List<User> setUsers = new List<User>(); //conjunto usuarios
 
         /// <summary>
         /// Contador estático que representa el número de Empresas creadas.
@@ -72,6 +72,25 @@ namespace Bot
         public void DeleteCompany()
         {
             registeredCompanies.Remove(this);
+        }
+
+        /// <summary>
+        /// Método que se encarga de agregar usuario al conjunto usuarios de la clase Empresa.
+        /// </summary>
+        /// <param name="user">Clase Usuario.</param>
+        public void AddUser(User user)
+        {
+            setUsers.Add(user);
+        }
+
+        /// <summary>
+        /// Método que se encarga de eliminar un uusario del conjunto usuarios de la clase Empresa.
+        /// </summary>
+        /// <param name="user">Clase Usuario.</param>
+        /// <returns></returns>
+        public bool DeleteUser(User user)
+        {
+            return setUsers.Remove(user);
         }
     }
 }
