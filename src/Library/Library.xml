@@ -4,32 +4,429 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:ClassLibrary.Train">
+        <member name="T:Bot.AbstractBot">
             <summary>
-            Esta clase representa un tren muy básico.
+            Bot abstracto del cual heredarán los bots concretos.
             </summary>
         </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
+        <member name="M:Bot.AbstractBot.#ctor">
             <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
+            Constructor de la clase AbstractBot
             </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
         </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
+        <member name="M:Bot.AbstractBot.StartCommunication">
             <summary>
-            Enciende las máquinas del tren.
+            Metodo publico y abstracto para comenzar la comunicacion entre el usuario y el canal y el bot o la consola.
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
         </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
+        <member name="M:Bot.AbstractBot.ChangeChannel(System.String,Bot.IBot)">
             <summary>
-            Detiene las máquinas del tren.
+            Metodo publico y abstracto para setear el canal de comunicacion entre el usuario y el bot.
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
+        </member>
+        <member name="M:Bot.AbstractBot.SendMessage(System.String,System.String)">
+            <summary>
+            Metodo para enviar el mensaje por el canal donde se esta comunicando
+            </summary>
+            <param name="id">id del usuario con el que dialoga el bot</param>
+            <param name="text">mensaje que se quiere enviar al usuario</param>
+        </member>
+        <member name="M:Bot.AbstractBot.HandleMessage(Bot.Message)">
+            <summary>
+            Metodo para delegar el mensaje recibido.
+            </summary>
+            <param name="text">text es el mensaje recibido, de tipo Message. Ademas del mensaje contiene el User Id del usuario</param>
+        </member>
+        <member name="T:Bot.ConsoleBot">
+            <summary>
+            Bot concreto de consola que hereda de AbstractBot
+            </summary>
+        </member>
+        <member name="M:Bot.ConsoleBot.#ctor">
+            <summary>
+            Constructor de ConsoleBot que utiliza el constructor de AbstractBot
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.ConsoleBot.SendMessage(System.String,System.String)">
+            <summary>
+            Manda un mensaje, en este caso, por consola.
+            </summary>
+            <param name="id">Id del usuario con el que dialoga el bot</param>
+            <param name="text">Mensaje que se quiere enviar al usuario</param>
+        </member>
+        <member name="M:Bot.ConsoleBot.StartCommunication">
+            <summary>
+            Metodo StartCommunication, publico que hace override del metodo declarado en AbstractBot
+            Es el metodo que da comienzo a la conversacion entre el usuario y el bot concreto o consola.
+            </summary>
+        </member>
+        <member name="T:Bot.IBot">
+            <summary>
+            Interfaz IBot que contiene los metodos escenciales para los Bots.
+            </summary>
+        </member>
+        <member name="M:Bot.IBot.StartCommunication">
+            <summary>
+            StartCommunication es el metodo que se encarga de comenzar la charla entre el usuario y el bot concreto o consola.
+            </summary>
+        </member>
+        <member name="M:Bot.IBot.SendMessage(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:Bot.IBot.HandleMessage(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="T:Bot.CommandCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.CommandCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.ICondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.ICondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.LoginCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.LoginCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.LogoutCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.LogoutCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.NoCommandCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.NoCommandCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.RegisterCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.RegisterCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.StartCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.StartCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.AbstractHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.AbstractHandler.#ctor(Bot.ICondition)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+        </member>
+        <member name="P:Bot.AbstractHandler.Succesor">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Bot.AbstractHandler.Condition">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Bot.AbstractHandler.Handler(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="M:Bot.AbstractHandler.AddSuccesor(Bot.AbstractHandler)">
+            <summary>
+            
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Bot.AbstractHandler.HandleRequest(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.CommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.CommandHandler.#ctor(Bot.CommandCondition)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.CommandHandler.HandleRequest(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.LoginHandler">
+            <summary>
+            Handler que se encarga del Login del usuario
+            </summary>
+        </member>
+        <member name="M:Bot.LoginHandler.#ctor(Bot.LoginCondition)">
+            <summary>
+            Constructor de LoginHandler
+            </summary>
+            <param name="condition">LoginCondition para asignarlo al handler de la clase</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.LoginHandler.HandleRequest(Bot.Message)">
+            <summary>
+            HandleRequest 
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.LogoutHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.LogoutHandler.#ctor(Bot.LogoutCondition)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.LogoutHandler.HandleRequest(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.NoCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.NoCommandHandler.#ctor(Bot.NoCommandCondition)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.NoCommandHandler.HandleRequest(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.RegisterHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.RegisterHandler.#ctor(Bot.RegisterCondition)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.RegisterHandler.HandleRequest(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.StartHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.StartHandler.#ctor(Bot.StartCondition)">
+            <summary>
+            
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.StartHandler.HandleRequest(Bot.Message)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.Command">
+            <summary>
+            Clase Command que 
+            </summary>
+        </member>
+        <member name="M:Bot.Command.#ctor">
+            <summary>
+            Constructor de la clase Command. Asigna a la lista de comandos, los comandos basicos que puede tener un usuario.
+            </summary>
+        </member>
+        <member name="M:Bot.Command.ReturnCommands(System.String)">
+            <summary>
+            Metodo para retornar la lista de comandos segun que usuario la pida.
+            </summary>
+            <param name="userId">Id del usuario que pide la lista de comandos</param>
+            <returns>Lista de comandos</returns>
+        </member>
+        <member name="M:Bot.Command.ExistingCommand(System.String)">
+            <summary>
+            Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
+            </summary>
+            <param name="command"></param>
+            <returns>Si la lista contiene el comando buscado</returns>
+        </member>
+        <member name="T:Bot.SessionRelated">
+            <summary>
+            Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
+            </summary>
+        </member>
+        <member name="M:Bot.SessionRelated.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bot.SessionRelated.AddNewUser(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:Bot.SessionRelated.DeleteUser(Bot.User)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:Bot.SessionRelated.UsernameExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.SessionRelated.ReturnInfo(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.Setup">
+            <summary>
+            Clase Setup que contiene el setup de los handlers y sus sucesores, y además, sus respectivas conditions.
+            </summary>
+        </member>
+        <member name="M:Bot.Setup.HandlerSetup">
+            <summary>
+            Método publico para hacer la configuración de los handlers y conditions.
+            </summary>
+            <returns>Retorna el primer handler de la cadena de la cadena de handlers.</returns>
+        </member>
+        <member name="T:Bot.Message">
+            <summary>
+            Clase Message que guarda el mensaje enviado por el usuario y además, su id.
+            </summary>
+        </member>
+        <member name="M:Bot.Message.#ctor(System.String,System.String)">
+            <summary>
+            Constructor de la clase Message
+            </summary>
+            <param name="id">Id del usuario que envía el mensaje</param>
+            <param name="message">Contenido del mensaje</param>
+        </member>
+        <member name="T:Bot.User">
+            <summary>
+            clase que representa al Usuario en el sistema
+            </summary>
+        </member>
+        <member name="M:Bot.User.#ctor(System.String,System.String)">
+            <summary>
+            se registra al usuario
+            </summary>
+            <param name="name"></param>
+            <param name="password"></param>
+        </member>
+        <member name="T:Bot.State">
+            <summary>
+            Tipo enumerado que define el estado de la conversacion con el bot.
+            </summary>
+        </member>
+        <member name="T:Bot.UserRelated">
+            <summary>
+            Clase UserRelated que contiene informacion acerca del usuario.
+            </summary>
+        </member>
+        <member name="M:Bot.UserRelated.#ctor">
+            <summary>
+            Constructor de la clase UserRelated.
+            </summary>
         </member>
     </members>
 </doc>
