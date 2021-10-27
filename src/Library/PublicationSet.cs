@@ -12,6 +12,19 @@ namespace Bot
         private static List<Publication> listPublications;
 
         /// <summary>
+        /// Get público que retorna la lista de publicaciones, esto para que la clase Búsqueda pueda 
+        /// manipular eficientemente las Publicaciones.
+        /// </summary>
+        /// <value></value>
+        public static List<Publication> ListPublications
+        {
+            get
+            {
+                return listPublications;
+            }
+        }
+
+        /// <summary>
         /// Método que agrega una publicación a la lista publicaciones, toma como parámetro 
         /// todos los datos para poder crear una instancia de Publicación dentro del método,
         /// cumpliendo así con el Creator Pattern.
