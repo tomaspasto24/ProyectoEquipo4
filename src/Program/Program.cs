@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Bot
 {
     /// <summary>
@@ -14,5 +15,6 @@ namespace Bot
         {
             ConsoleBot.Instance.StartCommunication();
         }
+
     }
 }
