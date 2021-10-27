@@ -10,23 +10,39 @@ namespace Bot
     /// </summary>
     public class Publication
     {
+        private string title;
         private List<Material> listMaterials = new List<Material>();
         private DateTime date;
         private GeoLocation location;
         private Company Company;
         private bool IsClosed;
+        
+        /// <summary>
+        /// Titulo que representa la publicación. Más que nada para poder retornar una lista
+        /// identificando por título.
+        /// </summary>
+        /// <value>string</value>
+        public string Title
+        {
+            get
+            {
+                return this.title;
+            }
+        }
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa y ubicacion.
         /// </summary>
         /// <param name="nombreEmpresa">Nombre de la empresa</param>
         /// <param name="location">Ubicación de la empresa</param>
-        public Publication(Company Company, GeoLocation location)
+        public Publication(String title, Company Company, GeoLocation location, Material material)
         {
+            this.title = title;
             this.Company = Company;
             this.date = DateTime.Now;
             this.location = location;
             this.IsClosed = false;
+            AddMaterial(material);
         }
 
         /// <summary>

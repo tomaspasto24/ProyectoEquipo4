@@ -4,29 +4,55 @@ using System.Text;
 
 namespace Bot
 {
-    public class ConjuntoPublicaciones
+    /// <summary>
+    /// Conjunto de Publicaciones, clase estática que administra la lista de publicaciones en general.
+    /// </summary>
+    public static class PublicationSet
     {
-        private List<Publicacion> listaPublicaciones;
+        private static List<Publication> listPublications;
 
-        public void AgregarPublicacion(Publicacion publicacion)
+        /// <summary>
+        /// Método que agrega una publicación a la lista publicaciones, toma como parámetro 
+        /// todos los datos para poder crear una instancia de Publicación dentro del método,
+        /// cumpliendo así con el Creator Pattern.
+        /// </summary>
+        /// <param name="title">String Título.</param>
+        /// <param name="company">Clase Empresa.</param>
+        /// <param name="location">Clase Ubicación.</param>
+        /// <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
+        public static void AddPublication(string title, Company company, GeoLocation location, Material material)
         {
-            listaPublicaciones.Add(publicacion);
+            Publication publication = new Publication(title, company, location, material);
+            listPublications.Add(publication);
         } 
 
-        public bool EliminarPublicacion(int indicePublicacion)
+        /// <summary>
+        /// Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
+        /// haber visto el método ReturnListPublications para poder saber su índice. Retorna 
+        /// <c>True</c> en caso de que se haya eliminado con éxito, en caso contrario <c>Fasle</c>.
+        /// </summary>
+        /// <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
+        /// <returns></returns>
+        public static bool DeletePublications(int indicePublicacion)
         {
-            return listaPublicaciones.Remove(listaPublicaciones[indicePublicacion]);
+            return listPublications.Remove(listPublications[indicePublicacion]);
         }
 
-        public string DevolverListaMateriales()
+        /// <summary>
+        /// Método que retorna la lista completa de Publicaciones en un string con sus respectivos
+        /// índices.
+        /// </summary>
+        /// <returns>String con el nombre de la Publicación y sus indices.</returns>
+        public static string ReturnListPublications()
         {
             StringBuilder resultado = new StringBuilder("Publicaciones: \n");
             int contador = 0;
 
-            foreach(Publicacion publicacion in this.listaPublicaciones)
+            foreach(Publication publication in listPublications)
             {
-                resultado.Append($"{++contador}- {publicacion} \n");
+                resultado.Append($"{++contador}- {publication.Title} \n");
             }
             return resultado.ToString();
         }
     }
+}
