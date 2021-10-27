@@ -18,7 +18,7 @@ namespace Bot
         {
         }
 
-        public void Generator()
+        public void CodeGenerator()
         {
             string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var Charsarr = new char[8];
