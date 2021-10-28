@@ -37,6 +37,7 @@ namespace Bot
         {
             Publication publication = new Publication(title, company, location, material);
             listPublications.Add(publication);
+            company.AddOwnPublication(publication);
         } 
 
         /// <summary>

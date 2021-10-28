@@ -13,10 +13,11 @@ namespace Bot
         private static List<Company> registeredCompanies = new List<Company>(); 
         private static int counterCompanies = 0; // contadorEmpresas
         private string name;
-        private string item; //rubro (español)
+        private string item; //rubro 
         private GeoLocation location;
         private string contact;
         private List<User> setUsers = new List<User>(); //conjunto usuarios
+        private List<Publication> listOwnPublications = new List<Publication>(); //conjunto publicaciones propias de la empresa
 
         /// <summary>
         /// Contador estático que representa el número de Empresas creadas.
@@ -29,6 +30,7 @@ namespace Bot
                 return counterCompanies;
             }
         }
+
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
         /// contador de empresas estático.
@@ -83,7 +85,7 @@ namespace Bot
         /// <param name="user">Clase Usuario.</param>
         public void AddUser(User user)
         {
-            setUsers.Add(user);
+            this.setUsers.Add(user);
         }
 
         /// <summary>
@@ -93,7 +95,25 @@ namespace Bot
         /// <returns></returns>
         public bool DeleteUser(User user)
         {
-            return setUsers.Remove(user);
+            return this.setUsers.Remove(user);
+        }
+
+        /// <summary>
+        /// Método que se encarga de agregar una publicación propia de la empresa.
+        /// </summary>
+        /// <param name="publication">Publication</param>
+        public void AddOwnPublication(Publication publication)
+        {
+            this.listOwnPublications.Add(publication);
+        }
+
+        /// <summary>
+        /// Método que se encarga de retornar la lista de publicaciones propia de la clase Empresa.
+        /// </summary>
+        /// <returns>List Publication </returns>
+        public List<Publication> GetListOwnPublications()
+        {
+            return this.listOwnPublications;
         }
     }
 }
