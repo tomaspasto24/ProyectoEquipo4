@@ -4,6 +4,25 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:Bot.Admin">
+            <summary>
+            clase que representa al administrador en el sistema y hereda de usuario
+            </summary>
+        </member>
+        <member name="M:Bot.Admin.#ctor(System.String,System.String)">
+            <summary>
+            constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.Admin.GenerateInvitation">
+            <summary>
+            metodo para generar invitación
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bot.AbstractBot">
             <summary>
             Bot abstracto del cual heredarán los bots concretos.
@@ -94,7 +113,6 @@
             
             </summary>
             <param name="condition"></param>
->>>>>>> 7d90a4fa4f31a5f67a0a8cb19a33076a9183f701
             <returns></returns>
         </member>
         <member name="T:Bot.ICondition">
@@ -318,6 +336,78 @@
             </summary>
             <param name="request"></param>
         </member>
+        <member name="T:Bot.Company">
+            <summary>
+            Clase que se encarga de representar una Empresa.
+            </summary>
+        </member>
+        <member name="P:Bot.Company.CounterCompanies">
+            <summary>
+            Contador estático que representa el número de Empresas creadas.
+            </summary>
+            <value>Entero.</value>
+        </member>
+        <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
+            <summary>
+            Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
+            contador de empresas estático.
+            </summary>
+            <param name="nombre">Nombre de la Empresa.</param>
+            <param name="rubro">Rubro de la Empresa.</param>
+            <param name="location">Ubicación establecida de la Empresa.</param>
+            <param name="contacto">Contacto (Teléfono) de la Empresa.</param>
+        </member>
+        <member name="M:Bot.Company.ReturnContact">
+            <summary>
+            Devuelve los datos básicos de la empresa (nombre, rubro y contacto).
+            </summary>
+            <returns>String conteniendo los datos de la Empresa.</returns>
+        </member>
+        <member name="M:Bot.Company.RegisterCompany">
+            <summary>
+            Método que registra (agrega) una Empresa a la lista estática de Empresas.
+            </summary>
+        </member>
+        <member name="M:Bot.Company.DeleteCompany">
+            <summary>
+            Método que elimina la Empresa de la lista estática de Empresas.
+            </summary>
+        </member>
+        <member name="M:Bot.Company.AddUser(Bot.User)">
+            <summary>
+            Método que se encarga de agregar usuario al conjunto usuarios de la clase Empresa.
+            </summary>
+            <param name="user">Clase Usuario.</param>
+        </member>
+        <member name="M:Bot.Company.DeleteUser(Bot.User)">
+            <summary>
+            Método que se encarga de eliminar un uusario del conjunto usuarios de la clase Empresa.
+            </summary>
+            <param name="user">Clase Usuario.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.ReporteEmpresa">
+             <summary>
+            clase ReporteEmpresa que implementa la interfaz de IReporte
+             </summary>
+        </member>
+        <member name="F:Bot.ReporteEmpresa.reporte">
+            <summary>
+            atributo de la clase 
+            </summary>
+        </member>
+        <member name="M:Bot.ReporteEmpresa.#ctor(System.String)">
+            <summary>
+            constructor de la clase
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Bot.ReporteEmpresa.GiveReport">
+            <summary>
+            método de la clase ReporteEmpresa
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bot.Command">
             <summary>
             Clase Command que 
@@ -390,6 +480,67 @@
             </summary>
             <returns>Retorna el primer handler de la cadena de la cadena de handlers.</returns>
         </member>
+        <member name="T:Bot.GeoLocation">
+            <summary>
+            Clase que depende de la API Location de la UCU.
+            </summary>
+        </member>
+        <member name="P:Bot.GeoLocation.City">
+            <summary>
+            Ciudad ingresada como parámetro no obligatorio para crear instancia Location.
+            </summary>
+            <value>String que representa ciudad.</value>
+        </member>
+        <member name="P:Bot.GeoLocation.Departament">
+            <summary>
+            Departamento ingresado como parámetro no obligatorio para instancia Location.
+            </summary>
+            <value>String que representa el departamento.</value>  
+        </member>
+        <member name="P:Bot.GeoLocation.Address">
+            <summary>
+            Dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Bot.GeoLocation.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor de la clase Geolocation, llama a un método privado asincrono y después se valida la propiedad Found.
+            <c>True</c> se asignan los parámetros ingresados a los atributos city, departament y address respectivamente.
+            </summary>
+            <param name="address">Dirección.</param>
+            <param name="city">Ciudad.</param>
+            <param name="departament">Departamento.</param>
+        </member>
+        <member name="M:Bot.GeoLocation.CalculateDistance(Bot.GeoLocation)">
+            <summary>
+            Calcula y retorna la distancia en kilometros entre la propia instancia de clase y la ingresada como parámetro.
+            </summary>
+            <param name="secondLocation">Segunda clase a calcular distancia.</param>
+            <returns>Distancia de tipo Task double.</returns>
+        </member>
+        <member name="M:Bot.GeoLocation.CalculateDuration(Bot.GeoLocation)">
+            <summary>
+            Calcula y retorna la duración entre la propia instancia de clase y la ingresada como parámetro.
+            </summary>
+            <param name="secondLocation">Segunda clase a calcular duración.</param>
+            <returns>Duración de tipo Task double.</returns>
+        </member>
+        <member name="M:Bot.GeoLocation.GetLocation">
+            <summary>
+            Retorna el propio objeto Location y descarga el mapa con la ubicación correspondiente.
+            </summary>
+            <returns>Objeto mismo.</returns>
+        </member>
+        <member name="M:Bot.Material.EliminarPalabraClave(System.Int32)">
+            <summary>
+            El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
+            lo elimina y retorna True. De lo contrario solamente retorna False.
+            </summary>
+            <param name="indicePalabraClave">Indice de la palabra clave que se quiera eliminar.
+            Se obtiene con la función DevolverPalabrasClave.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bot.Message">
             <summary>
             Clase Message que guarda el mensaje enviado por el usuario y además, su id.
@@ -402,6 +553,86 @@
             <param name="id">Id del usuario que envía el mensaje</param>
             <param name="message">Contenido del mensaje</param>
         </member>
+        <member name="T:Bot.Publication">
+            <summary>
+            Cada objeto de la clase Publicación, administrado por un objeto Empresa, es el conjunto de items
+            que la aplicación muestra a los emprendedores.
+            </summary>
+        </member>
+        <member name="P:Bot.Publication.Title">
+            <summary>
+            Titulo que representa la publicación. Más que nada para poder retornar una lista
+            identificando por título.
+            </summary>
+            <value>string</value>
+        </member>
+        <member name="M:Bot.Publication.#ctor(System.String,Bot.Company,Bot.GeoLocation,Bot.Material)">
+            <summary>
+            Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa y ubicacion.
+            </summary>
+            <param name="nombreEmpresa">Nombre de la empresa</param>
+            <param name="location">Ubicación de la empresa</param>
+        </member>
+        <member name="M:Bot.Publication.AddMaterial(Bot.Material)">
+            <summary>
+            Método que agrega a material a la publicación.
+            </summary>
+            <param name="material">Objeto Material</param>
+        </member>
+        <member name="M:Bot.Publication.DeleteMaterial(System.Int32)">
+            <summary>
+            El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
+            lo elimina y retorna True. De lo contrario solamente retorna False.
+            </summary>
+            <param name="indiceMaterial">Indice del Material que se quiera eliminar.
+            Se obtiene con la función DevolverListaMateriales.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.Publication.DevolverListaMateriales">
+            <summary>
+            Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
+            </summary>
+            <returns>String con todo los materiales enumerados</returns>
+        </member>
+        <member name="T:Bot.PublicationSet">
+            <summary>
+            Conjunto de Publicaciones, clase estática que administra la lista de publicaciones en general.
+            </summary>
+        </member>
+        <member name="P:Bot.PublicationSet.ListPublications">
+            <summary>
+            Get público que retorna la lista de publicaciones, esto para que la clase Búsqueda pueda 
+            manipular eficientemente las Publicaciones.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Bot.PublicationSet.AddPublication(System.String,Bot.Company,Bot.GeoLocation,Bot.Material)">
+            <summary>
+            Método que agrega una publicación a la lista publicaciones, toma como parámetro 
+            todos los datos para poder crear una instancia de Publicación dentro del método,
+            cumpliendo así con el Creator Pattern.
+            </summary>
+            <param name="title">String Título.</param>
+            <param name="company">Clase Empresa.</param>
+            <param name="location">Clase Ubicación.</param>
+            <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
+        </member>
+        <member name="M:Bot.PublicationSet.DeletePublications(System.Int32)">
+            <summary>
+            Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
+            haber visto el método ReturnListPublications para poder saber su índice. Retorna 
+            <c>True</c> en caso de que se haya eliminado con éxito, en caso contrario <c>Fasle</c>.
+            </summary>
+            <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.PublicationSet.ReturnListPublications">
+            <summary>
+            Método que retorna la lista completa de Publicaciones en un string con sus respectivos
+            índices.
+            </summary>
+            <returns>String con el nombre de la Publicación y sus indices.</returns>
+        </member>
         <member name="T:Bot.User">
             <summary>
             clase que representa al Usuario en el sistema
@@ -411,33 +642,10 @@
             <summary>
             se registra al usuario
             </summary>
-<<<<<<< HEAD
-            <param name="username"></param>
-            <param name="password"></param>
-        </member>
-        <member name="M:Bot.User.ChangeUsername(System.String)">
-=======
-            <param name="name"></param>
-            <param name="password"></param>
-        </member>
-        <member name="T:Bot.State">
->>>>>>> 7d90a4fa4f31a5f67a0a8cb19a33076a9183f701
-            <summary>
-            Tipo enumerado que define el estado de la conversacion con el bot.
-            </summary>
-        </member>
-        <member name="T:Bot.UserRelated">
-            <summary>
-            Clase UserRelated que contiene informacion acerca del usuario.
-            </summary>
-        </member>
-<<<<<<< HEAD
-=======
         <member name="M:Bot.UserRelated.#ctor">
             <summary>
             Constructor de la clase UserRelated.
             </summary>
         </member>
->>>>>>> 7d90a4fa4f31a5f67a0a8cb19a33076a9183f701
     </members>
 </doc>
