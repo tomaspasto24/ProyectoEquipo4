@@ -46,8 +46,6 @@ namespace Bot
             Console.WriteLine(resultString);
         }
 
-
-
         /// <summary>
         /// metodo para generar invitación
         /// </summary>
@@ -79,4 +77,3 @@ namespace Bot
         }
     }
 }
-

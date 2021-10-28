@@ -52,7 +52,6 @@ namespace Bot
                 Message message = new Message("Consola", text);
                 HandleMessage(message);
             }
-
         }
     }
 }

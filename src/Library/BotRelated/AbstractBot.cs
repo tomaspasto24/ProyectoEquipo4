@@ -3,7 +3,7 @@ namespace Bot
     /// <summary>
     /// Bot abstracto del cual heredarán los bots concretos.
     /// </summary>
-    public abstract class AbstractBot : IBot
+    public abstract class AbstractBot
     {
         private AbstractHandler handler;
         
@@ -23,7 +23,7 @@ namespace Bot
         /// <summary>
         /// Metodo publico y abstracto para setear el canal de comunicacion entre el usuario y el bot.
         /// </summary>
-        public void ChangeChannel(string id, IBot channel)
+        public void ChangeChannel(string id, AbstractBot channel)
         {
             SessionRelated.Instance.SetChatChannel(id, channel);
         }
