@@ -46,10 +46,22 @@ namespace Bot
         /// <c>True</c> en caso de que se haya eliminado con éxito, en caso contrario <c>Fasle</c>.
         /// </summary>
         /// <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
-        /// <returns></returns>
+        /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
+        /// contrario.</returns>
         public static bool DeletePublications(int indicePublicacion)
         {
             return listPublications.Remove(listPublications[indicePublicacion]);
+        }
+        
+        /// <summary>
+        /// Elimina una Publicación de la lista publicaciones.
+        /// </summary>
+        /// <param name="publication">Publication</param>
+        /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
+        /// contrario.</returns>
+        public static bool DeletePublications(Publication publication)
+        {
+            return listPublications.Remove(publication);
         }
 
         /// <summary>
