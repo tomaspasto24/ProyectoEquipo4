@@ -57,6 +57,26 @@ namespace Bot
         {
             return "";
         }
+
+        public static List<string> globalRatingsList = new List<string>();
+
+        /// <summary>
+        /// metodo para añadir las habilitaciones globales
+        /// </summary>
+        /// <param name="rating"></param>
+        public void AddRatings(string rating)
+        {
+            globalRatingsList.Add(rating);
+        }
+
+        /// <summary>
+        /// metodo para eliminar habilitaciones globales
+        /// </summary>
+        /// <param name="rating"></param>
+        public void DelateRatings(string rating)
+        {
+            globalRatingsList.Remove(rating);
+        }
     }
 }
 
