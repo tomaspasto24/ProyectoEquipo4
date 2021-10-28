@@ -20,6 +20,12 @@ namespace Bot
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        string RecieveMessage();
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="text"></param>
         void HandleMessage(Message text);
     }

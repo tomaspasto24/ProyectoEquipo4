@@ -34,6 +34,11 @@ namespace Bot
             System.Console.WriteLine(text);
         }
 
+        public override string RecieveMessage()
+        {
+            return System.Console.ReadLine();
+        }
+
         /// <summary>
         /// Metodo StartCommunication, publico que hace override del metodo declarado en AbstractBot
         /// Es el metodo que da comienzo a la conversacion entre el usuario y el bot concreto o consola.
@@ -43,7 +48,7 @@ namespace Bot
             this.SendMessage("Consola", "Bienvenido al bot de consola! Puedes usar \"exit\" para terminar la conversacion.");
             while (true)
             {
-                string text = System.Console.ReadLine().ToString().ToLower();
+                string text = this.RecieveMessage().ToString().ToLower();
                 if (text == "exit")
                 {
                     break;
