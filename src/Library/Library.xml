@@ -642,31 +642,6 @@
             <summary>
             se registra al usuario
             </summary>
-            <param name="username"></param>
-            <param name="password"></param>
-        </member>
-        <member name="M:Bot.User.ChangeUsername(System.String)">
-            <summary>
-            metodo para cambiar nombre
-            </summary>
-            <param name="newName"></param>
-        </member>
-        <member name="M:Bot.User.ChangePassword(System.String)">
-            <summary>
-            metodo para cambiar contraseña
-            </summary>
-            <param name="newPassword"></param>
-        </member>
-        <member name="T:Bot.State">
-            <summary>
-            Tipo enumerado que define el estado de la conversacion con el bot.
-            </summary>
-        </member>
-        <member name="T:Bot.UserRelated">
-            <summary>
-            Clase UserRelated que contiene informacion acerca del usuario.
-            </summary>
-        </member>
         <member name="M:Bot.UserRelated.#ctor">
             <summary>
             Constructor de la clase UserRelated.

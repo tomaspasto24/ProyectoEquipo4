@@ -14,6 +14,8 @@ namespace Bot
         static void Main(string[] args)
         {
             ConsoleBot.Instance.StartCommunication();
+
+            Admin.CodeGenerator();
         }
 
     }
