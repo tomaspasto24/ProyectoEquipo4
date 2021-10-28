@@ -82,16 +82,16 @@ namespace Bot
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public UserRelated ReturnInfo(string id)
+        public UserRelated ReturnInfo(string token)
         {
             UserRelated info;
             // TryGetValue: Intenta devolver en info, el valor que tiene asignado la key id.
-            if (DiccUserRelated.TryGetValue(id, out info))
+            if (DiccUserRelated.TryGetValue(token, out info))
             {
                 return info;
             }
             info = new UserRelated();
-            DiccUserRelated.Add(id, info);
+            DiccUserRelated.Add(token, info);
             return info;
         }
     }
