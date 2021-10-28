@@ -9,15 +9,11 @@
             clase que representa al administrador en el sistema y hereda de usuario
             </summary>
         </member>
-        <member name="M:Bot.Admin.#ctor(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Bot.Admin.#ctor(System.String,System.String)">
             <summary>
-            constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario 
-            
+            constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
             </summary>
-            <param name="ci"></param>
-            <param name="name"></param>
-            <param name="location"></param>
-            <param name="telephone"></param>
+            <param name="username"></param>
             <param name="password"></param>
             <returns></returns>
         </member>
@@ -54,18 +50,14 @@
             clase que representa al Usuario en el sistema
             </summary>
         </member>
-        <member name="M:Bot.User.#ctor(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Bot.User.#ctor(System.String,System.String)">
             <summary>
             se registra al usuario
-            
             </summary>
-            <param name="ci"></param>
-            <param name="name"></param>
-            <param name="location"></param>
-            <param name="telephone"></param>
+            <param name="username"></param>
             <param name="password"></param>
         </member>
-        <member name="M:Bot.User.ChangeName(System.String)">
+        <member name="M:Bot.User.ChangeUsername(System.String)">
             <summary>
             metodo para cambiar nombre
             </summary>
@@ -76,13 +68,6 @@
             metodo para cambiar contraseña
             </summary>
             <param name="newPassword"></param>
-        </member>
-        <member name="M:Bot.Utils.IdIsValid(System.String)">
-            <summary>
-            Valida un número de cédula de identidad; el número puede tener o no puntos y el guión pero debe tener el dígito verificador
-            </summary>
-            <param name="id">El número de cédula</param>
-            <returns>Retorna true si el número de cédula es válido y false en caso que sea invalido.</returns>
         </member>
     </members>
 </doc>

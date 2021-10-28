@@ -1,6 +1,7 @@
 ﻿using System;
 
 
+
 namespace Bot
 {
     /// <summary>
@@ -10,7 +11,8 @@ namespace Bot
     {
         static void Main(string[] args)
         {
-
+            CodeGenerator generator = new CodeGenerator();
+            generator.CodeGenerator();
         }
 
     }

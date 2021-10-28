@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace Bot
 {
 
@@ -30,6 +31,16 @@ namespace Bot
             }
 
             var resultString = new String(Charsarr);
+            List<string> CodeList = new List<string>();
+
+            if (CodeList.Contains(resultString))
+            {
+                random = new Random();
+            }
+            else
+            {
+                CodeList.Add(resultString);
+            }
             Console.WriteLine(resultString);
         }
 
