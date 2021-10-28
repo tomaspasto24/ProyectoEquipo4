@@ -77,7 +77,7 @@ namespace Bot
 
             foreach(Material material in this.listMaterials)
             {
-                resultado.Append($"{++contador}- {material.Nombre} \n");
+                resultado.Append($"{++contador}- {material.Name} \n");
             }
             return resultado.ToString();
         }
