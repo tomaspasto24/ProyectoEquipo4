@@ -9,14 +9,6 @@
             Bot abstracto del cual heredarán los bots concretos.
             </summary>
         </member>
-<<<<<<< HEAD
-        <member name="M:Bot.Admin.#ctor(System.String,System.String)">
-            <summary>
-            constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
-            </summary>
-            <param name="username"></param>
-            <param name="password"></param>
-=======
         <member name="M:Bot.AbstractBot.#ctor">
             <summary>
             Constructor de la clase AbstractBot

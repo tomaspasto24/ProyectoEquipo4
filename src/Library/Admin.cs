@@ -18,8 +18,10 @@ namespace Bot
         public Admin(string username, string password) : base(username, password)
         {
         }
-
-        public void CodeGenerator()
+        /// <summary>
+        /// metodo estatico para poder acceder a el desde otra clase
+        /// </summary>
+        public static void CodeGenerator()
         {
             string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var Charsarr = new char[8];

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+/*
 namespace Bot
 {
     public class ReporteEmprendedor : IReport
@@ -19,4 +19,4 @@ namespace Bot
             return ReportList;
         }
     }
-}
+}*/

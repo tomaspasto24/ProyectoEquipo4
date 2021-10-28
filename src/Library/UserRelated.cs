@@ -1,4 +1,4 @@
-/*namespace Bot
+namespace Bot
 {
     /// <summary>
     /// Tipo enumerado que define el estado de la conversacion con el bot.
@@ -30,4 +30,4 @@
             this.User = null;
         }
     }
-}*/
+}
