@@ -12,6 +12,8 @@ namespace Bot
     {
         private string title;
         private List<Material> listMaterials = new List<Material>();
+        private List<string> listRatings = new List<string>(); // Lista Habilitaciones
+
         private DateTime date;
         private GeoLocation location;
         private Company Company;
@@ -70,7 +72,7 @@ namespace Bot
         /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
         /// </summary>
         /// <returns>String con todo los materiales enumerados</returns>
-        public string DevolverListaMateriales()
+        public string ReturnListMaterials()
         {
             StringBuilder resultado = new StringBuilder("Materiales: \n");
             int contador = 0;
@@ -85,6 +87,48 @@ namespace Bot
         public void DeletePublication()
         {
             this.IsClosed = true;
+        }
+
+        /// <summary>
+        /// Agrega una habilitación a la lista de Habilitaciones de la clase Material.
+        /// </summary>
+        /// <param name="habilitacion">String</param>
+        public void AddRating(string habilitacion)
+        {
+            if(Admin.globalRatingsList.Contains(habilitacion))
+            {
+                listRatings.Add(habilitacion);
+            }
+            else
+            {
+                System.Console.WriteLine("No se encuentra en la lista global de habilitaciones.");
+            }
+        }
+
+        /// <summary>
+        /// Elimina una habilitación de la lista de Habilitaciones de la clase Material.
+        /// </summary>
+        /// <param name="indiceHabilitacion">Índice de la Habilitación</param>
+        /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
+        public bool DeleteRating(int indiceHabilitacion)
+        {
+            return listRatings.Remove(listRatings[indiceHabilitacion]);
+        }
+
+        /// <summary>
+        /// Retorna la lista de Habilitaciones que tiene el material.s
+        /// </summary>
+        /// <returns>String</returns>
+        public string ReturnListRatings()
+        {
+            StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
+            int contador = 0;
+
+            foreach(string palabra in this.listRatings)
+            {
+                resultado.Append($"{++contador}- {palabra} \n");
+            }
+            return resultado.ToString();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Bot
         private int quantity;
         private int price;
         private List<string> keyWords = new List<string>(); // Palabras clave
-        private List<string> listRatings = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
         /// Devuelve Atributo nombre del la clase Material.
@@ -70,41 +69,6 @@ namespace Bot
             int contador = 0;
 
             foreach(string palabra in this.keyWords)
-            {
-                resultado.Append($"{++contador}- {palabra} \n");
-            }
-            return resultado.ToString();
-        }
-
-        /// <summary>
-        /// Agrega una habilitación a la lista de Habilitaciones de la clase Material.
-        /// </summary>
-        /// <param name="habilitacion">String</param>
-        public void AddRating(string habilitacion)
-        {
-            listRatings.Add(habilitacion);
-        }
-
-        /// <summary>
-        /// Elimina una habilitación de la lista de Habilitaciones de la clase Material.
-        /// </summary>
-        /// <param name="indiceHabilitacion">Índice de la Habilitación</param>
-        /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
-        public bool DeleteRating(int indiceHabilitacion)
-        {
-            return listRatings.Remove(keyWords[indiceHabilitacion]);
-        }
-
-        /// <summary>
-        /// Retorna la lista de Habilitaciones que tiene el material.s
-        /// </summary>
-        /// <returns>String</returns>
-        public string ReturnListRatings()
-        {
-            StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
-            int contador = 0;
-
-            foreach(string palabra in this.listRatings)
             {
                 resultado.Append($"{++contador}- {palabra} \n");
             }
