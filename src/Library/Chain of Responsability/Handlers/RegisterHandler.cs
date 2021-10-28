@@ -19,7 +19,15 @@ namespace Bot
         protected override void HandleRequest(Message request)
         {
             UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
-            userData.Channel.SendMessage(request.UserId, "¿Deseas registrarte como emprendedor o como un usuario de empresa? 1 / 2");
+            userData.Channel.SendMessage(request.UserId, "Inserta tu token de usuario empresa: ");
+            if (SessionRelated.DiccUserRelated.ContainsKey(request.Text))
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Bot
     {
         public static List<User> AllUsers;
         public static Dictionary<string, UserRelated> DiccUserRelated;
-
+        public static Dictionary<string, string> DiccUserTokens;
         private static SessionRelated instance;
         public static SessionRelated Instance
         {
@@ -30,6 +30,7 @@ namespace Bot
         {
             AllUsers = new List<User>();
             DiccUserRelated = new Dictionary<string, UserRelated>();
+            DiccUserTokens = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Bot
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public bool UsernameExists(string username)
+        public static bool UsernameExists(string username)
         {
             foreach (User user in AllUsers)
             {
@@ -72,7 +73,7 @@ namespace Bot
             return false;
         }
 
-        public void SetChatChannel(string id, IBot channel)
+        public void SetChatChannel(string id, AbstractBot channel)
         {
             ReturnInfo(id).Channel = channel;
         }
@@ -82,16 +83,16 @@ namespace Bot
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public UserRelated ReturnInfo(string token)
+        public UserRelated ReturnInfo(string id)
         {
             UserRelated info;
             // TryGetValue: Intenta devolver en info, el valor que tiene asignado la key id.
-            if (DiccUserRelated.TryGetValue(token, out info))
+            if (DiccUserRelated.TryGetValue(id, out info))
             {
                 return info;
             }
             info = new UserRelated();
-            DiccUserRelated.Add(token, info);
+            DiccUserRelated.Add(id, info);
             return info;
         }
     }

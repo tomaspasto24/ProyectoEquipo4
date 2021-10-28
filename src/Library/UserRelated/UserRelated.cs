@@ -16,8 +16,7 @@ namespace Bot
     public class UserRelated
     {
         public State State { get; set; }
-
-        public IBot Channel { get; set; }
+        public AbstractBot Channel { get; set; }
         public User User { get; set; }
 
         /// <summary>
