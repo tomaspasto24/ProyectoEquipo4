@@ -12,10 +12,13 @@ namespace Bot
     {
         private string title;
         private List<Material> listMaterials = new List<Material>();
+        private List<string> listRatings = new List<string>(); // Lista Habilitaciones
+
         private DateTime date;
         private GeoLocation location;
-        private Company Company;
-        private bool IsClosed;
+        private Company company;
+        private User interestedPerson;
+        private bool IsClosed = false;
         
         /// <summary>
         /// Titulo que representa la publicación. Más que nada para poder retornar una lista
@@ -38,10 +41,9 @@ namespace Bot
         public Publication(String title, Company Company, GeoLocation location, Material material)
         {
             this.title = title;
-            this.Company = Company;
+            this.company = Company;
             this.date = DateTime.Now;
             this.location = location;
-            this.IsClosed = false;
             AddMaterial(material);
         }
 
@@ -70,21 +72,71 @@ namespace Bot
         /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
         /// </summary>
         /// <returns>String con todo los materiales enumerados</returns>
-        public string DevolverListaMateriales()
+        public string ReturnListMaterials()
         {
             StringBuilder resultado = new StringBuilder("Materiales: \n");
             int contador = 0;
 
             foreach(Material material in this.listMaterials)
             {
-                resultado.Append($"{++contador}- {material.Nombre} \n");
+                resultado.Append($"{++contador}- {material.Name} \n");
             }
             return resultado.ToString();
         }
 
-        public void DeletePublication()
+        /// <summary>
+        /// Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
+        /// llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
+        /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
+        /// </summary>
+        /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
+        public User ClosePublication()
         {
             this.IsClosed = true;
+            PublicationSet.DeletePublications(this);
+            return interestedPerson;
+        }
+
+        /// <summary>
+        /// Agrega una habilitación a la lista de Habilitaciones de la clase Material.
+        /// </summary>
+        /// <param name="habilitacion">String</param>
+        public void AddRating(string habilitacion)
+        {
+            if(Admin.globalRatingsList.Contains(habilitacion))
+            {
+                listRatings.Add(habilitacion);
+            }
+            else
+            {
+                System.Console.WriteLine("No se encuentra en la lista global de habilitaciones.");
+            }
+        }
+
+        /// <summary>
+        /// Elimina una habilitación de la lista de Habilitaciones de la clase Material.
+        /// </summary>
+        /// <param name="indiceHabilitacion">Índice de la Habilitación</param>
+        /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
+        public bool DeleteRating(int indiceHabilitacion)
+        {
+            return listRatings.Remove(listRatings[indiceHabilitacion]);
+        }
+
+        /// <summary>
+        /// Retorna la lista de Habilitaciones que tiene el material.s
+        /// </summary>
+        /// <returns>String</returns>
+        public string ReturnListRatings()
+        {
+            StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
+            int contador = 0;
+
+            foreach(string palabra in this.listRatings)
+            {
+                resultado.Append($"{++contador}- {palabra} \n");
+            }
+            return resultado.ToString();
         }
     }
 }
