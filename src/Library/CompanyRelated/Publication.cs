@@ -16,8 +16,9 @@ namespace Bot
 
         private DateTime date;
         private GeoLocation location;
-        private Company Company;
-        private bool IsClosed;
+        private Company company;
+        private User interestedPerson;
+        private bool IsClosed = false;
         
         /// <summary>
         /// Titulo que representa la publicación. Más que nada para poder retornar una lista
@@ -40,10 +41,9 @@ namespace Bot
         public Publication(String title, Company Company, GeoLocation location, Material material)
         {
             this.title = title;
-            this.Company = Company;
+            this.company = Company;
             this.date = DateTime.Now;
             this.location = location;
-            this.IsClosed = false;
             AddMaterial(material);
         }
 
@@ -84,9 +84,17 @@ namespace Bot
             return resultado.ToString();
         }
 
-        public void DeletePublication()
+        /// <summary>
+        /// Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
+        /// llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
+        /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
+        /// </summary>
+        /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
+        public User ClosePublication()
         {
             this.IsClosed = true;
+            PublicationSet.DeletePublications(this);
+            return interestedPerson;
         }
 
         /// <summary>
