@@ -7,9 +7,15 @@ namespace Bot
     /// </summary>
     public class User
     {
-
+        /// <summary>
+        /// nombre del usuario
+        /// </summary>
+        /// <value></value>
         public string Username { get; set; }
-
+        /// <summary>
+        /// contraseña del usuario
+        /// </summary>
+        /// <value></value>
         public string Password { get; set; }
 
         /// <summary>
@@ -38,6 +44,10 @@ namespace Bot
         public void ChangePassword(string newPassword)
         {
             this.Password = newPassword;
+        }
+        public string SaveInterestedPerson()
+        {
+            return ClosePublication.interestedPerson;
         }
     }
 }
