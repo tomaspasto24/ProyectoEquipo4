@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 
 namespace Bot
 {
-    public class Entrepreneur: User
+    public class RoleEntrepreneur: Role
     {
-        private static List<Entrepreneur> entrepreneurs = new List<Entrepreneur>();
         private static int entrepreneurAccountant = 0;
-        private string name;
         private GeoLocation location;
-        public string heading;
+        public string heading; //rubro
         private List<string> certification;
         private List<string> specializations;
         /// <summary>
@@ -24,10 +22,12 @@ namespace Bot
         /// <param name="geolocation"></param>
         /// <param name="certification"></param>
         /// <param name="specializations"></param>
-        public Entrepreneur(string heading, GeoLocation geolocation, string certification, string specializations, string username, string password) : base(username, password)
+        public RoleEntrepreneur(string heading, GeoLocation geolocation, string certification, string specialization) : base()
         {
-            this.location = location;
+            this.location = geolocation;
             this.heading = heading;
+            AddCertification(certification);
+            AddSpecialization(specialization);
             entrepreneurAccountant++;
         }
         /// <summary>
@@ -46,29 +46,14 @@ namespace Bot
         {
             this.specializations.Add(specializations);
         }
-        /// <summary>
-        /// Método para elimienar a un emprendedor de la lista de emprendedores
-        /// </summary>
-        /// <param name="entrepreneur"></param>
-        public void DeleateEntrepreneur(Entrepreneur entrepreneur)
-        {
-            entrepreneurs.Remove(entrepreneur);
-        }
-        /// <summary>
-        /// Método para registrar a un emprendedor, agregándolo a la lista de emprendedores registrados
-        /// </summary>
-        /// <param name="entrepreneur"></param>
-        public void RegisterEntrepreneur(Entrepreneur entrepreneur)
-        {
-            entrepreneurs.Add(entrepreneur);
-        }
+
         /// <summary>
         /// Método para obtener el reporte del emprendedor 
         /// </summary>
         /// <returns></returns>
         public string GetReport()
         {
-            return ($"Nombre: {name}....");
+            return ($"Nombre: ....");
         }
         public static int EntrepreneurAccountant
         {
