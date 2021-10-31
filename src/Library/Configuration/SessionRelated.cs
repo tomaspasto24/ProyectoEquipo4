@@ -44,7 +44,7 @@ namespace Bot
             {
                 return;
             }
-            AllUsers.Add(new User(name, id, role));
+            AllUsers.Add(new User(name, id));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Bot
         {
             foreach (User user in AllUsers)
             {
-                if (user.name == username)
+                if (user.Name == username)
                 {
                     return true;
                 }

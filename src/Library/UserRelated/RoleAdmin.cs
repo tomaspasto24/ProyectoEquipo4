@@ -7,7 +7,7 @@ namespace Bot
         public static List<string> globalRatingsList = new List<string>();
         public static Dictionary<string, Company> invitations = new Dictionary<string, Company>();
 
-        public RoleAdmin()
+        public RoleAdmin(String name, int id) : base(name, id)
         {
         }
         public static string CodeGeneratortoUserCompany(Company company)

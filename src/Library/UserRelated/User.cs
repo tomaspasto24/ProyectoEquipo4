@@ -7,9 +7,9 @@ namespace Bot
     /// </summary>
     public class User
     {
-        public string name {private set; get;}
+        private string name;
         private int id;
-        public Role role {private set; get;}
+
 
         /// <summary>
         /// Propiedad para tener get público el atributo id.
@@ -23,18 +23,25 @@ namespace Bot
             }
         }
 
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+        }
+
         /// <summary>
         /// Método constructor de la clase User que se encarga de asignar los atributos
         /// id y role que usará la clase.
         /// </summary>
         /// <param name="id">Id</param>
-        /// <param name="role">Rol</param>
         /// <param name="name">Nombre</param>
-        public User(string name, int id, Role role)
+        public User(string name, int id)
         {
             this.name = name;
             this.id = id;
-            this.role = role;
+
         }
     }
 }
