@@ -344,7 +344,41 @@
             <param name="user">Clase Usuario.</param>
             <returns></returns>
         </member>
-        <member name="M:Bot.Material.EliminarPalabraClave(System.Int32)">
+        <member name="M:Bot.Company.AddOwnPublication(Bot.Publication)">
+            <summary>
+            Método que se encarga de agregar una publicación propia de la empresa.
+            </summary>
+            <param name="publication">Publication</param>
+        </member>
+        <member name="M:Bot.Company.GetListOwnPublications">
+            <summary>
+            Método que se encarga de retornar la lista de publicaciones propia de la clase Empresa.
+            </summary>
+            <returns>List Publication </returns>
+        </member>
+        <member name="P:Bot.Material.Name">
+            <summary>
+            Devuelve Atributo nombre del la clase Material.
+            </summary>
+            <value>String</value>
+        </member>
+        <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Constructor de la clase Material que se encarga de asignar valores a los 
+            atributos name, quantity y price. Construye el Material. En caso de no tener 
+            precio, se asigna 0 a su atributo.
+            </summary>
+            <param name="nombre">String nombre.</param>
+            <param name="cantidad">Int cantidad</param>
+            <param name="precio">Int precio</param>
+        </member>
+        <member name="M:Bot.Material.AddKeyWord(System.String)">
+            <summary>
+            Agrega una palabra clave a la lista de palabras clave
+            </summary>
+            <param name="palabraClave"></param>
+        </member>
+        <member name="M:Bot.Material.DeleteKeyWord(System.Int32)">
             <summary>
             El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
             lo elimina y retorna True. De lo contrario solamente retorna False.
@@ -352,6 +386,12 @@
             <param name="indicePalabraClave">Indice de la palabra clave que se quiera eliminar.
             Se obtiene con la función DevolverPalabrasClave.</param>
             <returns></returns>
+        </member>
+        <member name="M:Bot.Material.ReturnKeyWords">
+            <summary>
+            Método que devuelve todas las Palabras Clave que contiene el Material.
+            </summary>
+            <returns>String</returns>
         </member>
         <member name="T:Bot.Publication">
             <summary>
@@ -388,11 +428,38 @@
             Se obtiene con la función DevolverListaMateriales.</param>
             <returns></returns>
         </member>
-        <member name="M:Bot.Publication.DevolverListaMateriales">
+        <member name="M:Bot.Publication.ReturnListMaterials">
             <summary>
             Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
             </summary>
             <returns>String con todo los materiales enumerados</returns>
+        </member>
+        <member name="M:Bot.Publication.ClosePublication">
+            <summary>
+            Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
+            llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
+            de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
+            </summary>
+            <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
+        </member>
+        <member name="M:Bot.Publication.AddRating(System.String)">
+            <summary>
+            Agrega una habilitación a la lista de Habilitaciones de la clase Material.
+            </summary>
+            <param name="habilitacion">String</param>
+        </member>
+        <member name="M:Bot.Publication.DeleteRating(System.Int32)">
+            <summary>
+            Elimina una habilitación de la lista de Habilitaciones de la clase Material.
+            </summary>
+            <param name="indiceHabilitacion">Índice de la Habilitación</param>
+            <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
+        </member>
+        <member name="M:Bot.Publication.ReturnListRatings">
+            <summary>
+            Retorna la lista de Habilitaciones que tiene el material.s
+            </summary>
+            <returns>String</returns>
         </member>
         <member name="T:Bot.PublicationSet">
             <summary>
@@ -424,7 +491,16 @@
             <c>True</c> en caso de que se haya eliminado con éxito, en caso contrario <c>Fasle</c>.
             </summary>
             <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
-            <returns></returns>
+            <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.PublicationSet.DeletePublications(Bot.Publication)">
+            <summary>
+            Elimina una Publicación de la lista publicaciones.
+            </summary>
+            <param name="publication">Publication</param>
+            <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
+            contrario.</returns>
         </member>
         <member name="M:Bot.PublicationSet.ReturnListPublications">
             <summary>
@@ -604,11 +680,28 @@
             <param name="password"></param>
             <returns></returns>
         </member>
+        <member name="M:Bot.Admin.CodeGenerator">
+            <summary>
+            metodo estatico para poder acceder a el desde otra clase
+            </summary>
+        </member>
         <member name="M:Bot.Admin.GenerateInvitation">
             <summary>
             metodo para generar invitación
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Bot.Admin.AddRatings(System.String)">
+            <summary>
+            metodo para añadir las habilitaciones globales
+            </summary>
+            <param name="rating"></param>
+        </member>
+        <member name="M:Bot.Admin.DelateRatings(System.String)">
+            <summary>
+            metodo para eliminar habilitaciones globales
+            </summary>
+            <param name="rating"></param>
         </member>
         <member name="T:Bot.User">
             <summary>
@@ -619,6 +712,31 @@
             <summary>
             se registra al usuario
             </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:Bot.User.ChangeUsername(System.String)">
+            <summary>
+            metodo para cambiar nombre
+            </summary>
+            <param name="newName"></param>
+        </member>
+        <member name="M:Bot.User.ChangePassword(System.String)">
+            <summary>
+            metodo para cambiar contraseña
+            </summary>
+            <param name="newPassword"></param>
+        </member>
+        <member name="T:Bot.State">
+            <summary>
+            Tipo enumerado que define el estado de la conversacion con el bot.
+            </summary>
+        </member>
+        <member name="T:Bot.UserRelated">
+            <summary>
+            Clase UserRelated que contiene informacion acerca del usuario.
+            </summary>
+        </member>
         <member name="M:Bot.UserRelated.#ctor">
             <summary>
             Constructor de la clase UserRelated.
