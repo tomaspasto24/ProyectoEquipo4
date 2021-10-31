@@ -38,13 +38,13 @@ namespace Bot
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        public void AddNewUser(string username, string password)
+        public void AddNewUser(string name, int id, Role role)
         {
-            if (UsernameExists(username))
+            if (UsernameExists(name))
             {
                 return;
             }
-            AllUsers.Add(new User(username, password));
+            AllUsers.Add(new User(name, id, role));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Bot
         {
             foreach (User user in AllUsers)
             {
-                if (user.Username == username)
+                if (user.name == username)
                 {
                     return true;
                 }

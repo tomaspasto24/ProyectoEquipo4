@@ -13,9 +13,11 @@ namespace Bot
         /// </summary>
         static void Main(string[] args)
         {
-            ConsoleBot.Instance.StartCommunication();
+            ConsoleBot.Instance.StartCommunication(); // iniciar comunicación
 
-            Admin.CodeGenerator();
+            Role role = new RoleAdmin();
+
+            User Admin = new User("Prueba", 2002, role);
         }
 
     }

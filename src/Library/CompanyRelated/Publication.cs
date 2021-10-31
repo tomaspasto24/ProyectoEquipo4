@@ -17,7 +17,7 @@ namespace Bot
         private DateTime date;
         private GeoLocation location;
         private Company company;
-        private User interestedPerson;
+        public RoleEntrepreneur interestedPerson {get; private set;} // Hay que ver como guardar la persona interesada
         private bool IsClosed = false;
         
         /// <summary>
@@ -30,6 +30,14 @@ namespace Bot
             get
             {
                 return this.title;
+            }
+        }
+
+        public DateTime Date
+        {
+            get
+            {
+                return this.date;
             }
         }
 
@@ -90,10 +98,12 @@ namespace Bot
         /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
         /// </summary>
         /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
-        public User ClosePublication()
+        public RoleEntrepreneur ClosePublication()
         {
             this.IsClosed = true;
             PublicationSet.DeletePublications(this);
+            this.company.AddListHistorialPublications(this);
+            this.interestedPerson.SaveHistorialPublication(this);
             return interestedPerson;
         }
 
@@ -103,7 +113,7 @@ namespace Bot
         /// <param name="habilitacion">String</param>
         public void AddRating(string habilitacion)
         {
-            if(Admin.globalRatingsList.Contains(habilitacion))
+            if(RoleAdmin.globalRatingsList.Contains(habilitacion))
             {
                 listRatings.Add(habilitacion);
             }
