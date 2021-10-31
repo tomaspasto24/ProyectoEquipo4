@@ -3,51 +3,45 @@ namespace Bot
 {
 
     /// <summary>
-    /// clase que representa al Usuario en el sistema
+    /// Clase encargada de representar al usuario (componiendo id y role).
     /// </summary>
     public class User
     {
-        /// <summary>
-        /// nombre del usuario
-        /// </summary>
-        /// <value></value>
-        public string Username { get; set; }
-        /// <summary>
-        /// contraseña del usuario
-        /// </summary>
-        /// <value></value>
-        public string Password { get; set; }
+        private string name;
+        private int id;
+
 
         /// <summary>
-        /// se registra al usuario
+        /// Propiedad para tener get público el atributo id.
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <value>int</value>
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+        }
 
-        public User(string username, string password)
+        public string Name
         {
-            this.Username = username;
-            this.Password = password;
+            get
+            {
+                return this.name;
+            }
         }
+
         /// <summary>
-        /// metodo para cambiar nombre
+        /// Método constructor de la clase User que se encarga de asignar los atributos
+        /// id y role que usará la clase.
         /// </summary>
-        /// <param name="newName"></param>
-        public void ChangeUsername(string newName)
+        /// <param name="id">Id</param>
+        /// <param name="name">Nombre</param>
+        public User(string name, int id)
         {
-            this.Username = newName;
-        }
-        /// <summary>
-        /// metodo para cambiar contraseña
-        /// </summary>
-        /// <param name="newPassword"></param>
-        public void ChangePassword(string newPassword)
-        {
-            this.Password = newPassword;
-        }
-        public string SaveInterestedPerson()
-        {
-            return ClosePublication.interestedPerson;
+            this.name = name;
+            this.id = id;
+
         }
     }
 }

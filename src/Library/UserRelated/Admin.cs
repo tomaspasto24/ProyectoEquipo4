@@ -6,7 +6,7 @@ namespace Bot
     /// <summary>
     /// clase que representa al administrador en el sistema y hereda de usuario
     /// </summary>
-    public class Admin : User
+    public class Admin : Role
     {
         /// <summary>
         /// constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
@@ -15,7 +15,7 @@ namespace Bot
         /// <param name="password"></param>
         /// <returns></returns>
 
-        public Admin(string username, string password) : base(username, password)
+        public Admin(string name, int id) : base(name, id)
         {
         }
         /// <summary>
