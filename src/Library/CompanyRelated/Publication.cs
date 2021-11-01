@@ -15,11 +15,12 @@ namespace Bot
         private List<string> listRatings = new List<string>(); // Lista Habilitaciones
 
         private DateTime date;
+        private DateTime closedDate;
         private GeoLocation location;
         private Company company;
-        public RoleEntrepreneur interestedPerson {get; private set;} // Hay que ver como guardar la persona interesada
-        private bool IsClosed = false;
-        
+        public RoleEntrepreneur interestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
+        private bool isClosed = false;
+
         /// <summary>
         /// Titulo que representa la publicación. Más que nada para poder retornar una lista
         /// identificando por título.
@@ -33,11 +34,34 @@ namespace Bot
             }
         }
 
+        public Company Company
+        {
+            get
+            {
+                return this.company;
+            }
+        }
+
         public DateTime Date
         {
             get
             {
                 return this.date;
+            }
+        }
+        public DateTime ClosedDate
+        {
+            get
+            {
+                return this.closedDate;
+            }
+        }
+
+        public Boolean IsClosed
+        {
+            get
+            {
+                return this.isClosed;
             }
         }
 
@@ -51,6 +75,7 @@ namespace Bot
             this.title = title;
             this.company = Company;
             this.date = DateTime.Now;
+            this.closedDate = DateTime.MinValue;
             this.location = location;
             AddMaterial(material);
         }
@@ -62,7 +87,7 @@ namespace Bot
         public void AddMaterial(Material material)
         {
             listMaterials.Add(material);
-        } 
+        }
 
         /// <summary>
         /// El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
@@ -85,7 +110,7 @@ namespace Bot
             StringBuilder resultado = new StringBuilder("Materiales: \n");
             int contador = 0;
 
-            foreach(Material material in this.listMaterials)
+            foreach (Material material in this.listMaterials)
             {
                 resultado.Append($"{++contador}- {material.Name} \n");
             }
@@ -100,7 +125,8 @@ namespace Bot
         /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
         public RoleEntrepreneur ClosePublication()
         {
-            this.IsClosed = true;
+            this.isClosed = true;
+            this.closedDate = DateTime.Now;
             PublicationSet.DeletePublications(this);
             this.company.AddListHistorialPublications(this);
             this.interestedPerson.SaveHistorialPublication(this);
@@ -113,7 +139,9 @@ namespace Bot
         /// <param name="habilitacion">String</param>
         public void AddRating(string habilitacion)
         {
-            if(RoleAdmin.globalRatingsList.Contains(habilitacion))
+
+            if (RoleAdmin.globalRatingsList.Contains(habilitacion))
+
             {
                 listRatings.Add(habilitacion);
             }
@@ -142,7 +170,7 @@ namespace Bot
             StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
             int contador = 0;
 
-            foreach(string palabra in this.listRatings)
+            foreach (string palabra in this.listRatings)
             {
                 resultado.Append($"{++contador}- {palabra} \n");
             }

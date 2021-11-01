@@ -5,7 +5,8 @@ namespace Bot
     public class RoleAdmin : Role
     {
         public static List<string> globalRatingsList = new List<string>();
-        public RoleAdmin()
+
+        public RoleAdmin(String name, int id) : base(name, id)
         {
         }
         public static string CodeGeneratortoUserCompany(Company company)

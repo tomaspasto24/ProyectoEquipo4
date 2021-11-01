@@ -6,7 +6,7 @@ namespace Bot
     {
         public Company company { private set; get; }
 
-        public RoleUserCompany(Company company)
+        public RoleUserCompany(Company company, string name, int id) : base(name, id)
         {
             this.company = company;
         }

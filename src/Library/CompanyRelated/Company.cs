@@ -10,7 +10,7 @@ namespace Bot
     public class Company
     {
         //Hacer metodo para publicar Publicación. y guardarlo en lista 
-        private static List<Company> registeredCompanies = new List<Company>(); 
+        private static List<Company> registeredCompanies = new List<Company>();
         private static int counterCompanies = 0; // contadorEmpresas
         private string name;
         private string item; //rubro 
@@ -26,9 +26,17 @@ namespace Bot
         /// <value>Entero.</value>
         public static int CounterCompanies
         {
-            get 
+            get
             {
                 return counterCompanies;
+            }
+        }
+
+        public String Name
+        {
+            get
+            {
+                return name;
             }
         }
 
@@ -53,7 +61,7 @@ namespace Bot
         /// Devuelve los datos básicos de la empresa (nombre, rubro y contacto).
         /// </summary>
         /// <returns>String conteniendo los datos de la Empresa.</returns>
-        public string ReturnContact()                    
+        public string ReturnContact()
         {
             StringBuilder resultado = new StringBuilder("Contacto: \n");
 
@@ -63,7 +71,7 @@ namespace Bot
 
             return resultado.ToString();
         }
-        
+
         /// <summary>
         /// Método que registra (agrega) una Empresa a la lista estática de Empresas.
         /// </summary>
