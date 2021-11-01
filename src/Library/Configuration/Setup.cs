@@ -13,15 +13,11 @@ namespace Bot
         {
             AbstractHandler start = new StartHandler(new StartCondition());
             AbstractHandler register = new RegisterHandler(new RegisterCondition());
-            AbstractHandler login = new LoginHandler(new LoginCondition());
-            AbstractHandler logout = new LogoutHandler(new LogoutCondition());
             AbstractHandler commandList = new CommandHandler(new CommandCondition());
             AbstractHandler noCommand = new NoCommandHandler(new NoCommandCondition());
 
             start.Succesor = register;
-            register.Succesor = login;
-            login.Succesor = logout;
-            logout.Succesor = commandList;
+            register.Succesor = commandList;
             commandList.Succesor = noCommand;
             
             return start;

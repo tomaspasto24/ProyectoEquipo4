@@ -20,10 +20,9 @@ namespace Bot
         {
             UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
             userData.Channel.SendMessage(request.UserId, "Inserta tu token de usuario empresa: ");
-            if (SessionRelated.DiccUserRelated.ContainsKey(request.Text))
+            if (SessionRelated.DiccUserTokens.ContainsKey(request.Text))
             {
                 userData.Channel.SendMessage(request.UserId, "Token verificado, ahora eres un usuario empresa! :)");
-                
             }
             else
             {
