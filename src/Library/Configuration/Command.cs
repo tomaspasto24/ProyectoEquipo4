@@ -7,7 +7,8 @@ namespace Bot
     /// </summary>
     public class Command
     {
-        public List<string> CommandsList {get; set;}
+        public List<string> CommandsList { get; set; }
+
 
         /// <summary>
         /// Constructor de la clase Command. Asigna a la lista de comandos, los comandos basicos que puede tener un usuario.
@@ -18,9 +19,64 @@ namespace Bot
             {
                 "/comandos",
                 "/registro",
-                "/iniciarsesion",
-                "/cerrarsesion",
+                "/hola",
+                "/chau",
+                "/adios",
+                "exit",
+                "/busqueda",
+                "/reporte",
+                "/contacto",
+                "/publicar",
+                "/generartoken",
+                "/infoemprendedor"
             };
+        }
+
+        public List<string> EntrepreneurList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/registro",
+                "/hola",
+                "/chau",
+                "/adios",
+                "exit",
+                "/busqueda",
+                "/reporte",
+                "/contacto",
+                "/infoemprendedor"
+            };
+            return list;
+        }
+
+        public List<string> CompanyUserList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/hola",
+                "/chau",
+                "/adios",
+                "exit",
+                "/reporte",
+                "/publicar"
+            };
+            return list;
+        }
+
+        public List<string> AdminList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/hola",
+                "/chau",
+                "/adios",
+                "exit",
+                "/generartoken"
+            };
+            return list;
         }
 
         /// <summary>
@@ -31,26 +87,31 @@ namespace Bot
         public string ReturnCommands(string userId)
         {
             string commandList = string.Empty;
-            foreach (string command in this.CommandsList)
+            UserRelated userRelated = SessionRelated.Instance.ReturnInfo(userId);
+            if (userRelated.User.Role is RoleEntrepreneur)
             {
-                commandList = commandList + command + "\n";
+                foreach (string command in EntrepreneurList())
+                {
+                    commandList = commandList + "\n";
+                }
             }
-            // if (!registrado)
-            // {
-
-            // }
-            // else if (!logeado)
-            // {
-
-            // }
-            // else
-            // {
-
-            // }
-            // commandList va a ser igual a una string que cambia segun el estado actual del usuario (sin registro, sin logeo, logeado etc)
+            else if (userRelated.User.Role is RoleUserCompany)
+            {
+                foreach (string command in CompanyUserList())
+                {
+                    commandList = commandList + "\n";
+                }
+            }
+            else
+            {
+                foreach (string command in AdminList())
+                {
+                    commandList = commandList + "\n";
+                }
+            }
             return commandList;
         }
-        
+
         /// <summary>
         /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
         /// </summary>

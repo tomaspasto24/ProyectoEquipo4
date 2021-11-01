@@ -9,7 +9,7 @@ namespace Bot
     {
         private string name;
         private int id;
-
+        public Role Role {set; get;}
 
         /// <summary>
         /// Propiedad para tener get público el atributo id.
@@ -40,11 +40,11 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="name">Nombre</param>
-        public User(string name, int id)
+        public User(string name, int id, Role role)
         {
             this.name = name;
             this.id = id;
-
+            this.Role = role;
         }
     }
 }

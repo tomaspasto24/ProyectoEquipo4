@@ -66,10 +66,12 @@ namespace Bot
         }
 
         /// <summary>
-        /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa y ubicacion.
+        /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
         /// </summary>
-        /// <param name="nombreEmpresa">Nombre de la empresa</param>
-        /// <param name="location">Ubicación de la empresa</param>
+        /// <param name="title"></param>
+        /// <param name="Company"></param>
+        /// <param name="location"></param>
+        /// <param name="material"></param>
         public Publication(String title, Company Company, GeoLocation location, Material material)
         {
             this.title = title;
@@ -129,7 +131,7 @@ namespace Bot
             this.closedDate = DateTime.Now;
             PublicationSet.DeletePublications(this);
             this.company.AddListHistorialPublications(this);
-            this.interestedPerson.SaveHistorialPublication(this);
+            // this.interestedPerson.SaveHistorialPublication(this);
             return interestedPerson;
         }
 

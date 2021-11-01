@@ -5,24 +5,32 @@ using System.Text;
 
 namespace Bot
 {
+    /// <summary>
+    /// clase reporte emprendedor que hereda de la interfaz iReport
+    /// </summary>
     public class EntrepreneurReport : IReport
     {
-        public List<Publication> publications { get; set; }
-
-        public EntrepreneurReport(List<Publication> publications)
+        private RoleEntrepreneur emprendedor;
+        /// <summary>
+        /// constructor de la clase emprendedor
+        /// </summary>
+        /// <param name="emprendedor"></param>
+        public EntrepreneurReport(RoleEntrepreneur emprendedor)
         {
-            this.publications = publications;
+            this.emprendedor = emprendedor;
         }
-
-        public String GiveReport(String entrepreneurName)
+        /// <summary>
+        /// metodo para entregar el reporte del emprendedor
+        /// </summary>
+        /// <returns></returns>
+        public String GiveReport()
         {
-            StringBuilder report = new StringBuilder("Materiales consumidos en los ultimos 30 dias por el emprendedor: " + entrepreneurName);
+            StringBuilder report = new StringBuilder("Materiales consumidos en los ultimos 30 dias por el emprendedor: ");
             int contador = 0;
 
-            foreach (Publication publication in this.publications)
+            foreach (Publication publication in this.emprendedor.ListHistorialPublications)
             {
-                if (Equals(publication.interestedPerson.Name, entrepreneurName)
-                && publication.ClosedDate >= DateTime.Now.AddDays(-30)
+                if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)
                 {
                     report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");

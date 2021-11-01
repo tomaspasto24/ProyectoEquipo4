@@ -1,14 +1,18 @@
 using System;
 namespace Bot
 {
-    public abstract class Role : User
+    public abstract class Role
     {
+        private string name;
+        private int id;
+
         /// <summary>
         /// cambiar name e id que recibe base
         /// </summary>
-        public Role(String name, int id) : base(name, id)
+        public Role(String name, int id)
         {
-            throw new NotImplementedException();
+            this.name = name;
+            this.id = id;
         }
     }
 }

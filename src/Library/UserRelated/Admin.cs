@@ -55,8 +55,12 @@ namespace Bot
         {
             return "";
         }
-
-        public static List<string> globalRatingsList = new List<string>();
+        /// <summary>
+        /// lista que contiene las habilitaciones globales
+        /// </summary>
+        /// <typeparam name="String"></typeparam>
+        /// <returns></returns>
+        public static List<String> globalRatingsList = new List<String>();
 
         /// <summary>
         /// metodo para añadir las habilitaciones globales

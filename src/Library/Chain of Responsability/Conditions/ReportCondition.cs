@@ -3,7 +3,7 @@ namespace Bot
     /// <summary>
     /// 
     /// </summary>
-    public class LoginCondition : ICondition
+    public class ReportCondition : ICondition
     {
         /// <summary>
         /// 
@@ -12,7 +12,7 @@ namespace Bot
         /// <returns></returns>
         public bool VerifyCondition(Message condition)
         {
-            return condition.Text == "/iniciarsesion";
+            return condition.Text == "/reporte";
         }
     }
 }

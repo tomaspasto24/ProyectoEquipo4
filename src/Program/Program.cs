@@ -17,7 +17,7 @@ namespace Bot
 
             Role role = new RoleAdmin("Admin", 1234);
 
-            User Admin = new User("Prueba", 2002);
+            User Admin = new User("Prueba", 2002, role);
         }
 
     }
