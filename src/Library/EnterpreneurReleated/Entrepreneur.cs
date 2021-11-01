@@ -78,13 +78,12 @@ namespace Bot
             }
         }
         /// <summary>
-        /// Método para buscar por materiasles o por ubicación
+        /// Método para buscar por materiales o por ubicación
         /// </summary>
         /// <returns></returns>
-        public List<Publication> SearchingMaterials()
+        public List<Publication> SearchingMaterials(string wordToSearch)
         {
-            List<Publication> publicationsFound = new List<Publication>();
-            return publicationsFound;
+            return Search(wordToSearch);
         }
     }
 }
