@@ -2,14 +2,28 @@ using System;
 using System.Collections.Generic;
 namespace Bot
 {
+    /// <summary>
+    /// clase RoleAdmin que hereda de la clase Role
+    /// </summary>
     public class RoleAdmin : Role
     {
         public static List<string> globalRatingsList = new List<string>();
         public static Dictionary<string, Company> invitations = new Dictionary<string, Company>();
 
+        /// <summary>
+        /// constructor de la clase RoleAdmin
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RoleAdmin(String name, int id) : base(name, id)
         {
         }
+        /// <summary>
+        /// metodo estatico para generar una string alfanumerica la cual sera usada como una invitación
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
         public static string CodeGeneratortoUserCompany(Company company)
         {
             string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -36,12 +50,18 @@ namespace Bot
             invitations.Add(resultString, company);
             return resultString;
         }
-
+        /// <summary>
+        /// metodo para agregar las habilitaciones a la lista "globalRatingsList" 
+        /// </summary>
+        /// <param name="rating"></param>
         public void AddRating(string rating)
         {
             globalRatingsList.Add(rating);
         }
-
+        /// <summary>
+        /// metodo para eliminar las habilitaciones a la lista "globalRatingsList" 
+        /// </summary>
+        /// <param name="rating"></param>
         public void DeleteRating(string rating)
         {
             globalRatingsList.Remove(rating);

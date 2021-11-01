@@ -11,8 +11,8 @@ namespace Bot
         /// <summary>
         /// constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
 
         public Admin(string name, int id) : base(name, id)
