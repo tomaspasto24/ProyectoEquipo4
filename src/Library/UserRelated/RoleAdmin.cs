@@ -5,8 +5,7 @@ namespace Bot
     public class RoleAdmin : Role
     {
         public static List<string> globalRatingsList = new List<string>();
-        public static Dictionary<string, Company> invitations = new Dictionary<string, Company>();
-
+        
         public RoleAdmin(String name, int id) : base(name, id)
         {
         }
@@ -32,8 +31,7 @@ namespace Bot
             {
                 CodeList.Add(resultString);
             }
-
-            invitations.Add(resultString, company);
+            SessionRelated.DiccUserTokens.Add(resultString, company);
             return resultString;
         }
 
