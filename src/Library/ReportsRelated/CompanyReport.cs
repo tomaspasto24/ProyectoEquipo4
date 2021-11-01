@@ -14,30 +14,29 @@ namespace Bot
         /// <summary>
         /// atributo de la clase 
         /// </summary>
-        public List<Publication> publications;  //arraylist con la data para generar el reporte 
+        private Company company;  //arraylist con la data para generar el reporte 
 
         /// <summary>
         /// constructor de la clase
         /// </summary>
         /// <param name="publications"></param>
-        public CompanyReport(List<Publication> publications)
+        public CompanyReport(Company company)
         {
-            this.publications = publications;
+            this.company = company;
             //Publication.Title + Publication.Date //comparo esta fecha con la de un mes atras;
         }
         /// <summary>
         /// método de la clase ReporteEmpresa
         /// </summary>
         /// <returns></returns>
-        public String GiveReport(String companyName)
+        public String GiveReport()
         {
-            StringBuilder report = new StringBuilder("Publicaciones cerradas de los ultimos 30 dias de la empresa: " + companyName);
+            StringBuilder report = new StringBuilder("Publicaciones cerradas de los ultimos 30 dias de la empresa: " + company.Name);
             int contador = 0;
 
-            foreach (Publication publication in this.publications)
+            foreach (Publication publication in this.company.GetListHistorialPublications())
             {
-                if (Equals(publication.Company.Name, companyName)
-                && publication.ClosedDate >= DateTime.Now.AddDays(-30)
+                if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)
                 {
                     report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");
