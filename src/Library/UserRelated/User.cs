@@ -3,41 +3,45 @@ namespace Bot
 {
 
     /// <summary>
-    /// clase que representa al Usuario en el sistema
+    /// Clase encargada de representar al usuario (componiendo id y role).
     /// </summary>
     public class User
     {
-
-        public string Username { get; set; }
-
-        public string Password { get; set; }
+        private string name;
+        private int id;
+        public Role Role {set; get;}
 
         /// <summary>
-        /// se registra al usuario
+        /// Propiedad para tener get público el atributo id.
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-
-        public User(string username, string password)
+        /// <value>int</value>
+        public int Id
         {
-            this.Username = username;
-            this.Password = password;
+            get
+            {
+                return this.id;
+            }
         }
-        /// <summary>
-        /// metodo para cambiar nombre
-        /// </summary>
-        /// <param name="newName"></param>
-        public void ChangeUsername(string newName)
+
+        public string Name
         {
-            this.Username = newName;
+            get
+            {
+                return this.name;
+            }
         }
+
         /// <summary>
-        /// metodo para cambiar contraseña
+        /// Método constructor de la clase User que se encarga de asignar los atributos
+        /// id y role que usará la clase.
         /// </summary>
-        /// <param name="newPassword"></param>
-        public void ChangePassword(string newPassword)
+        /// <param name="id">Id</param>
+        /// <param name="name">Nombre</param>
+        public User(string name, int id, Role role)
         {
-            this.Password = newPassword;
+            this.name = name;
+            this.id = id;
+            this.Role = role;
         }
     }
 }

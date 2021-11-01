@@ -9,7 +9,7 @@ namespace Bot
     {
         public static List<User> AllUsers;
         public static Dictionary<string, UserRelated> DiccUserRelated;
-        public static Dictionary<string, string> DiccUserTokens;
+        public static Dictionary<string, Company> DiccUserTokens;
         private static SessionRelated instance;
         public static SessionRelated Instance
         {
@@ -30,7 +30,7 @@ namespace Bot
         {
             AllUsers = new List<User>();
             DiccUserRelated = new Dictionary<string, UserRelated>();
-            DiccUserTokens = new Dictionary<string, string>();
+            DiccUserTokens = new Dictionary<string, Company>();
         }
 
         /// <summary>
@@ -38,13 +38,13 @@ namespace Bot
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        public void AddNewUser(string username, string password)
+        public void AddNewUser(string name, int id, Role role)
         {
-            if (UsernameExists(username))
+            if (UsernameExists(name))
             {
                 return;
             }
-            AllUsers.Add(new User(username, password));
+            AllUsers.Add(new User(name, id, role));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Bot
         {
             foreach (User user in AllUsers)
             {
-                if (user.Username == username)
+                if (user.Name == username)
                 {
                     return true;
                 }

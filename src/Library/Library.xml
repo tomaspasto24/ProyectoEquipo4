@@ -133,6 +133,18 @@
             <param name="condition"></param>
             <returns></returns>
         </member>
+        <member name="T:Bot.RegisterUserCompanyCondition">
+            <summary>
+            Clase RegisterUserCompanyCondition que se encarga de servir como condición del RegisterUserCompanyHandler.
+            </summary>
+        </member>
+        <member name="M:Bot.RegisterUserCompanyCondition.VerifyCondition(Bot.Message)">
+            <summary>
+            Condición servida a RegisterUserCompanyHandler.
+            </summary>
+            <param name="condition">Clase Message</param>
+            <returns><c>True</c> en caso de que el comando sea el ingresado, <c>False</c> en caso contrario.</returns>
+        </member>
         <member name="T:Bot.StartCondition">
             <summary>
             
@@ -273,6 +285,25 @@
         <member name="M:Bot.RegisterHandler.HandleRequest(Bot.Message)">
             <summary>
             
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="T:Bot.RegisterUserCompanyHandler">
+            <summary>
+            Handler que se encarga de solicitar el código generado de invitación para registrar el usuario
+            Empresa.
+            </summary>
+        </member>
+        <member name="M:Bot.RegisterUserCompanyHandler.#ctor(Bot.RegisterUserCompanyCondition)">
+            <summary>
+            Constructor de RegisterUserCompanyHandler.
+            </summary>
+            <param name="condition">RegisterUserCompanyCondition para asignarlo al handler de la clase.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.RegisterUserCompanyHandler.HandleRequest(Bot.Message)">
+            <summary>
+            HandleRequest 
             </summary>
             <param name="request"></param>
         </member>
@@ -543,7 +574,7 @@
             
             </summary>
         </member>
-        <member name="M:Bot.SessionRelated.AddNewUser(System.String,System.String)">
+        <member name="M:Bot.SessionRelated.AddNewUser(System.String,System.Int32,Bot.Role)">
             <summary>
             
             </summary>
@@ -715,27 +746,48 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Bot.Admin">
+        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation,System.String,System.String)">
             <summary>
-            clase que representa al administrador en el sistema y hereda de usuario
-            </summary>
-        </member>
-        <member name="M:Bot.Admin.#ctor(System.String,System.String)">
-            <summary>
-            constructor de la clase administador, el "base" se utiliza para inicializar el constructor de la clase usuario
+            Constructor de la clase Entrepreneur, setea los valores de los parámetros 
+            y suma un valor al contador de emprendedores estático
             </summary>
             <param name="username"></param>
             <param name="password"></param>
+            <param name="heading"></param>
+            <param name="geolocation"></param>
+            <param name="certification"></param>
+            <param name="specializations"></param>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.AddCertification(System.String)">
+            <summary>
+            Método para agregarle certificaciones al emprendedor
+            </summary>
+            <param name="certification"></param>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
+            <summary>
+            Método para agregarle espcializaciones al empresario
+            </summary>
+            <param name="specializations"></param>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.GetReport">
+            <summary>
+            Método para obtener el reporte del emprendedor 
+            </summary>
             <returns></returns>
         </member>
+<<<<<<< HEAD
         <member name="M:Bot.Admin.CodeGenerator">
             <summary>
             metodo estatico para poder acceder a el desde otra clase
             </summary>
         </member>
         <member name="M:Bot.Admin.GenerateInvitation">
+=======
+        <member name="M:Bot.RoleEntrepreneur.SearchingMaterials">
+>>>>>>> master
             <summary>
-            metodo para generar invitación
+            Método para buscar por materiasles o por ubicación
             </summary>
             <returns></returns>
         </member>
@@ -753,13 +805,29 @@
         </member>
         <member name="T:Bot.User">
             <summary>
-            clase que representa al Usuario en el sistema
+            Clase encargada de representar al usuario (componiendo id y role).
             </summary>
         </member>
-        <member name="M:Bot.User.#ctor(System.String,System.String)">
+        <member name="P:Bot.User.Id">
             <summary>
-            se registra al usuario
+            Propiedad para tener get público el atributo id.
             </summary>
+            <value>int</value>
+        </member>
+        <member name="M:Bot.User.#ctor(System.String,System.Int32,Bot.Role)">
+            <summary>
+            Método constructor de la clase User que se encarga de asignar los atributos
+            id y role que usará la clase.
+            </summary>
+            <param name="id">Id</param>
+            <param name="role">Rol</param>
+            <param name="name">Nombre</param>
+        </member>
+        <member name="T:Bot.State">
+            <summary>
+            Tipo enumerado que define el estado de la conversacion con el bot.
+            </summary>
+<<<<<<< HEAD
             <param name="username"></param>
             <param name="password"></param>
         </member>
@@ -779,6 +847,8 @@
             <summary>
             Tipo enumerado que define el estado de la conversacion con el bot.
             </summary>
+=======
+>>>>>>> master
         </member>
         <member name="T:Bot.UserRelated">
             <summary>
