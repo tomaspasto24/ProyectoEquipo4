@@ -40,11 +40,11 @@ namespace Bot
         /// </summary>
         public override void StartCommunication()
         {
-            this.SendMessage("Consola", "Bienvenido al bot de consola! Puedes usar \"exit\" o \"chau\" o \"adios\" para terminar la conversacion.");
+            this.SendMessage("Consola", "Bienvenido al bot de consola! Puedes usar \"exit\" para terminar la conversacion.");
             while (true)
             {
                 string text = System.Console.ReadLine().ToString().ToLower();
-                if (text == "exit" || text == "adios" || text == "chau")
+                if (text == "exit")
                 {
                     break;
                 }
