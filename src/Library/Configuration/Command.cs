@@ -27,7 +27,7 @@ namespace Bot
                 "/reporte",
                 "/contacto",
                 "/publicar",
-                "/generartoken",
+                "/invitarempresa",
                 "/infoemprendedor"
             };
         }
@@ -74,7 +74,7 @@ namespace Bot
                 "/chau",
                 "/adios",
                 "exit",
-                "/generartoken"
+                "/invitarempresa"
             };
             return list;
         }
