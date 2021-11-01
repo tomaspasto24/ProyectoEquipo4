@@ -42,7 +42,6 @@ namespace Bot
             this.name = name;
             this.id = id;
             this.Role = role;
-            SessionRelated.Instance.AddNewUser(this.name, this.id, this.Role);
         }
     }
 }
