@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Bot
 {
-    public class RoleEntrepreneur: Role
+    public class RoleEntrepreneur : Role
     {
         private static int entrepreneurAccountant = 0;
         private GeoLocation location;
@@ -22,7 +22,7 @@ namespace Bot
         /// <param name="geolocation"></param>
         /// <param name="certification"></param>
         /// <param name="specializations"></param>
-        public RoleEntrepreneur(string heading, GeoLocation geolocation, string certification, string specialization) : base()
+        public RoleEntrepreneur(string name, int id, string heading, GeoLocation geolocation, string certification, string specialization) : base(name, id)
         {
             this.location = geolocation;
             this.heading = heading;
@@ -57,7 +57,7 @@ namespace Bot
         }
         public static int EntrepreneurAccountant
         {
-            get 
+            get
             {
                 return entrepreneurAccountant;
             }

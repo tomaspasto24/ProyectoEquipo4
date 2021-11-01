@@ -15,7 +15,7 @@ namespace Bot
         {
             ConsoleBot.Instance.StartCommunication(); // iniciar comunicación
 
-            Role role = new RoleAdmin();
+            Role role = new RoleAdmin("Admin", 1234);
 
             User Admin = new User("Prueba", 2002, role);
         }

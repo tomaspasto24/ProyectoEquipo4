@@ -65,7 +65,7 @@ namespace Bot
         {
             foreach (User user in AllUsers)
             {
-                if (user.name == username)
+                if (user.Name == username)
                 {
                     return true;
                 }
