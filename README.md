@@ -15,6 +15,7 @@ Esta vez si utilizamos el Readme! :grin:
 - Youtube
 - GitHub
 - Stackoverflow
+- GeeksforGeeks
 
 **4. Comentarios sobre el trabajo en el proyecto:**
 - Como ya mencionamos, el enfoque que tiene el bot nos gustó, incluso tanto, que tratamos de hacer la adaptación con Telegram antes de tiempo y tal vez nos generó una complicación mas que una ayuda, pero pudimos superarlo sin problemas. :muscle:
