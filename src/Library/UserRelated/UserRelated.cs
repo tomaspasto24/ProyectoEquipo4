@@ -1,5 +1,10 @@
 namespace Bot
 {
+    /*
+    Patrones y principios:
+    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    */
     /// <summary>
     /// Clase UserRelated que contiene informacion acerca del usuario.
     /// </summary>

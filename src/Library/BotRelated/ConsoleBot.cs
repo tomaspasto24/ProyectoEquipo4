@@ -1,7 +1,14 @@
 using System;
 namespace Bot
 {
-
+    /*
+    Patrones y principios:
+    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    Cumple con Polymorphism porque usa los métodos polimórficos StartCommunication.
+    Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
+    un acceso global a esta instancia.
+    */
     /// <summary>
     /// Bot concreto de consola que hereda de AbstractBot
     /// </summary>
@@ -12,7 +19,7 @@ namespace Bot
         {
             get
             {
-                if (instance == null) 
+                if (instance == null)
                 {
                     instance = new ConsoleBot();
                 }
