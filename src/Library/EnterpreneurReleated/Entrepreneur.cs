@@ -10,17 +10,8 @@ namespace Bot
         private static int entrepreneurAccountant = 0;
         private GeoLocation location;
         public string heading; //rubro
-        private List<Publication> listHistorialPublications = new List<Publication>();
         private List<string> certification;
         private List<string> specializations;
-
-        public List<Publication> ListHistorialPublications
-        {
-            get
-            {
-                return this.listHistorialPublications;
-            }
-        }
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
         /// y suma un valor al contador de emprendedores estático
@@ -79,19 +70,6 @@ namespace Bot
         {
             return Search(wordToSearch);
         }
-
-        public RoleEntrepreneur SaveHistorialPublication(Publication publication)
-        {
-            return 
-        }
-
-        /// <summary>
-        /// Método público que guarda las Publicaciones adquiridas por el emprendedor.
-        /// </summary>
-        /// <param name="publication">Publicación cerrada.</param>
-        public void SaveHistorialPublication(Publication publication)
-        {
-            listHistorialPublications.Add(publication);
-        }
+        //VER A QUÉ SEARCH LLAMAR SEGUN SI ES POR UBICACION O POR MATERIAL
     }
 }
