@@ -1,21 +1,21 @@
 namespace Bot
 {
     /// <summary>
-    /// 
+    /// Handler para mostrar un mensaje en caso de que no se ejecute ninguno de los handlers anteriores.
+    /// Es el ultimo handler de la cadena
     /// </summary>
     public class NoCommandHandler : AbstractHandler
     {
         /// <summary>
-        /// 
+        /// Constructor de la clase NoCommandHandler
         /// </summary>
-        /// <param name="condition"></param>
-        /// <returns></returns>
+        /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         public NoCommandHandler(NoCommandCondition condition) : base(condition) { }
 
         /// <summary>
-        /// 
+        /// Metodo que se encarga de atender el handler.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
         protected override void HandleRequest(Message request)
         {
             Command commands = new Command();

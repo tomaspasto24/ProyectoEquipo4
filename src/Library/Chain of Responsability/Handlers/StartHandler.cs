@@ -1,22 +1,20 @@
 namespace Bot
 {
     /// <summary>
-    /// 
+    /// Handler para saludar al usuario
     /// </summary>
     public class StartHandler : AbstractHandler
     {
         /// <summary>
-        /// 
+        /// Constructor de la clase StartHandler
         /// </summary>
-        /// <param name="condition"></param>
-        /// <returns></returns>
-
+        /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         public StartHandler(StartCondition condition) : base(condition) {}
 
         /// <summary>
-        /// 
+        /// Metodo que se encarga de atender el handler.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
         protected override void HandleRequest(Message request)
         {
             Command commands = new Command();

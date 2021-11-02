@@ -15,7 +15,14 @@ namespace Bot
             this.UserId = id;
             this.Text = message;
         }
+        /// <summary>
+        /// Id del usuario que esta charlando
+        /// </summary>
         public string UserId {get; set;}
+
+        /// <summary>
+        /// Mensaje del usuario
+        /// </summary>
         public string Text {get; set;}
     }
 }
