@@ -70,5 +70,10 @@ namespace Bot
         {
             return Search(wordToSearch);
         }
+
+        public RoleEntrepreneur SaveHistorialPublication(Publication publication)
+        {
+            return 
+        }
     }
 }

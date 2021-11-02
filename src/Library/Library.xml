@@ -776,16 +776,12 @@
             </summary>
             <returns></returns>
         </member>
-<<<<<<< HEAD
         <member name="M:Bot.Admin.CodeGenerator">
             <summary>
             metodo estatico para poder acceder a el desde otra clase
             </summary>
         </member>
         <member name="M:Bot.Admin.GenerateInvitation">
-=======
-        <member name="M:Bot.RoleEntrepreneur.SearchingMaterials">
->>>>>>> master
             <summary>
             Método para buscar por materiasles o por ubicación
             </summary>
@@ -827,7 +823,6 @@
             <summary>
             Tipo enumerado que define el estado de la conversacion con el bot.
             </summary>
-<<<<<<< HEAD
             <param name="username"></param>
             <param name="password"></param>
         </member>
@@ -847,8 +842,6 @@
             <summary>
             Tipo enumerado que define el estado de la conversacion con el bot.
             </summary>
-=======
->>>>>>> master
         </member>
         <member name="T:Bot.UserRelated">
             <summary>

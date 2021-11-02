@@ -63,16 +63,9 @@ namespace Bot
         /// Método que devuelve todas las Palabras Clave que contiene el Material.
         /// </summary>
         /// <returns>String</returns>
-        public string ReturnKeyWords() 
+        public List<string> ReturnKeyWords() 
         {
-            StringBuilder resultado = new StringBuilder("Palabras Clave: \n");
-            int contador = 0;
-
-            foreach(string palabra in this.keyWords)
-            {
-                resultado.Append($"{++contador}- {palabra} \n");
-            }
-            return resultado.ToString();
+            return keyWords;
         }
     }
 }
