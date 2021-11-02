@@ -12,7 +12,6 @@ namespace Bot
         /// </summary>
         protected AbstractBot()
         {
-            this.handler = Setup.HandlerSetup();
         }
 
         /// <summary>
@@ -23,7 +22,7 @@ namespace Bot
         /// <summary>
         /// Metodo publico y abstracto para setear el canal de comunicacion entre el usuario y el bot.
         /// </summary>
-        public void ChangeChannel(string id, AbstractBot channel)
+        public void ChangeChannel(int id, AbstractBot channel)
         {
             SessionRelated.Instance.SetChatChannel(id, channel);
         }
@@ -33,15 +32,6 @@ namespace Bot
         /// </summary>
         /// <param name="id">id del usuario con el que dialoga el bot</param>
         /// <param name="text">mensaje que se quiere enviar al usuario</param>
-        public abstract void SendMessage(string id, string text);
-
-        /// <summary>
-        /// Metodo para delegar el mensaje recibido.
-        /// </summary>
-        /// <param name="text">text es el mensaje recibido, de tipo Message. Ademas del mensaje contiene el User Id del usuario</param>
-        public void HandleMessage(Message text)
-        {
-            handler.Handler(text);
-        }
+        public abstract void SendMessage(int id, string text);
     }
 }

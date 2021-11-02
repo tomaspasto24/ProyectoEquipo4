@@ -63,67 +63,67 @@
         </member>
         <member name="T:Bot.CommandCondition">
             <summary>
-            
+            Condición que deberá ser cumplida para que el CommandHandler se ejecute.
             </summary>
         </member>
         <member name="M:Bot.CommandCondition.VerifyCondition(Bot.Message)">
             <summary>
-            
+            Valida si el mensaje recibido fue el comando /comandos.
             </summary>
-            <param name="condition"></param>
-            <returns></returns>
+            <param name="condition">Mensaje que contiene el texto y el id del usuario</param>
+            <returns>True o false dependiendo si el texto es igual o no</returns>
         </member>
         <member name="T:Bot.ICondition">
             <summary>
-            
+            Condición que deberá ser cumplida para que el handler se ejecute.
             </summary>
         </member>
         <member name="M:Bot.ICondition.VerifyCondition(Bot.Message)">
             <summary>
-            
+            Valida si el mensaje recibido fue el comando esperado por la condicion.
             </summary>
-            <param name="condition"></param>
-            <returns></returns>
+            <param name="condition">Mensaje que contiene el texto y el id del usuario</param>
+            <returns>True o false dependiendo si el texto es igual o no</returns>
         </member>
         <member name="T:Bot.NoCommandCondition">
             <summary>
-            
+            Condición que deberá ser cumplida para que el NoCommandHandler se ejecute.
             </summary>
         </member>
         <member name="M:Bot.NoCommandCondition.VerifyCondition(Bot.Message)">
             <summary>
-            
+            Siempre valida la condicion, de esta forma siempre se ejecuta el ultimo handler de la cadena.
             </summary>
-            <param name="condition"></param>
-            <returns></returns>
+            <param name="condition">Mensaje que contiene el texto y el id del usuario.</param>
+            <returns>True porque debe estar siempre activo al ser el ultimo de la cadena.</returns>
         </member>
         <member name="T:Bot.RegisterCondition">
             <summary>
-            
+            Condición que deberá ser cumplida para que el RegisterHandler se ejecute.
             </summary>
         </member>
         <member name="M:Bot.RegisterCondition.VerifyCondition(Bot.Message)">
             <summary>
-            
+            Valida si el mensaje recibido fue el comando /registro.
             </summary>
-            <param name="condition"></param>
-            <returns></returns>
+            <param name="condition">Mensaje que contiene el texto y el id del usuario</param>
+            <returns>True o false dependiendo si el texto es igual o no</returns>
         </member>
         <member name="T:Bot.StartCondition">
             <summary>
-            
+            Condición que deberá ser cumplida para que el StartHandler se ejecute.
             </summary>
         </member>
         <member name="M:Bot.StartCondition.VerifyCondition(Bot.Message)">
             <summary>
-            
+            Valida si el mensaje recibido fue el comando /hola
             </summary>
-            <param name="condition"></param>
-            <returns></returns>
+            <param name="condition">Mensaje que contiene el texto y el id del usuario.</param>
+            <returns>True porque debe estar siempre activo al ser el ultimo de la cadena.</returns>
         </member>
         <member name="T:Bot.AbstractHandler">
             <summary>
-            
+            Clase abstracta para los distintos bots.
             </summary>
         </member>
         <member name="M:Bot.AbstractHandler.#ctor(Bot.ICondition)">
@@ -146,15 +146,15 @@
         </member>
         <member name="M:Bot.AbstractHandler.Handler(Bot.Message)">
             <summary>
-            
+            Metodo para manejar las peticiones. Si se cumple la condicion, se ejecuta el handler asociado. Sino lo delega a su sucesor.
             </summary>
-            <param name="request"></param>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
         </member>
         <member name="M:Bot.AbstractHandler.AddSuccesor(Bot.AbstractHandler)">
             <summary>
-            
+            Metodo para agregar un sucesor
             </summary>
-            <param name="handler"></param>
+            <param name="handler">Sucesor del handler actual</param>
         </member>
         <member name="M:Bot.AbstractHandler.HandleRequest(Bot.Message)">
             <summary>
@@ -701,6 +701,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bot.RoleEntrepreneur.SaveHistorialPublication(Bot.Publication)">
+            <summary>
+            Método público que guarda las Publicaciones adquiridas por el emprendedor.
+            </summary>
+            <param name="publication">Publicación cerrada.</param>
         </member>
         <member name="T:Bot.User">
             <summary>

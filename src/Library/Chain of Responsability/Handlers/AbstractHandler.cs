@@ -1,64 +1,78 @@
+using System;
+using System.Linq;
+
 namespace Bot
 {
     /// <summary>
-    /// 
+    /// Clase abstracta para los distintos bots.
     /// </summary>
-    public abstract class AbstractHandler
+    public abstract class AbstractHandler : IHandler
     {
         /// <summary>
-        /// 
+        /// Constructor de la clase AbstractHandlers
         /// </summary>
-        /// <param name="condition"></param>
-        public AbstractHandler(ICondition condition)
+        /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        public AbstractHandler(AbstractHandler succesor)
         {
-            this.Condition = condition;
+            this.Succesor = succesor;
         }
 
         /// <summary>
-        /// 
+        /// Handler sucesor
         /// </summary>
         /// <value></value>
-        public AbstractHandler Succesor { get; set; }
+        public IHandler Succesor { get; set; }
 
         /// <summary>
-        /// 
+        /// Este método debe ser sobreescrito por las clases sucesores. La clase sucesora procesa el mensaje y retorna
+        /// true o no lo procesa y retorna false.
         /// </summary>
-        /// <value></value>
-        public ICondition Condition { get; set; }
+        /// <param name="message">El mensaje a procesar.</param>
+        /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        protected abstract bool InternalHandle(Message message, out string response);
 
         /// <summary>
-        /// 
+        /// Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
+        /// entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
         /// </summary>
-        /// <param name="request"></param>
-        public void Handler(Message request)
+        protected virtual void InternalCancel()
         {
-            if (this.Condition.VerifyCondition(request))
+            // Intencionalmente en blanco.
+        }
+
+        /// <summary>
+        /// Metodo para manejar las peticiones. Si se cumple la condicion, se ejecuta el handler asociado. Sino lo delega a su sucesor.
+        /// </summary>
+        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+        public IHandler Handle(Message request, out string response)
+        {
+            if (this.InternalHandle(request, out response))
             {
-                // Delegar al handler
-                this.HandleRequest(request);
-                return;
+                return this;
             }
+            else if (this.Succesor != null)
+            {
+                return this.Succesor.Handle(request, out response);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que
+        /// procesan varios mensajes cambiando de estado entre mensajes deben sobreescribir este método para volver al
+        /// estado inicial.
+        /// </summary>
+        public virtual void Cancel()
+        {
+            this.InternalCancel();
             if (this.Succesor != null)
             {
-                // Delegar al siguiente handler
-                this.Succesor.Handler(request);
+                this.Succesor.Cancel();
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="handler"></param>
-        public void AddSuccesor(AbstractHandler handler)
-        {
-            // Agregar el sucesor
-            this.Succesor = handler;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="request"></param>
-        protected abstract void HandleRequest(Message request);
     }
 }
