@@ -133,7 +133,7 @@ namespace Bot
         {
             this.isClosed = true;
             this.closedDate = DateTime.Now;
-            PublicationSet.DeletePublications(this);
+            PublicationSet.DeletePublication(this);
             this.company.AddListHistorialPublications(this);
             // this.interestedPerson.SaveHistorialPublication(this);
             return interestedPerson;

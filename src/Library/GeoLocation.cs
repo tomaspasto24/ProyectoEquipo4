@@ -59,18 +59,14 @@ namespace Bot
         public GeoLocation(string address, string city, string departament)
         {
             EstablishLocation(address, city, departament);
-            if(location.Found)
-            {
-                this.city = city;
-                this.departament = departament;
-                this.address = address;
-            }
-            else Console.WriteLine("Error en la Ubicación");
+            this.city = city;
+            this.departament = departament;
+            this.address = address;
         }
 
         private async void EstablishLocation(string address, string city, string departament)
         {
-            location = await client.GetLocation(address);
+            this.location = await client.GetLocation(address);
         }
 
         /// <summary>

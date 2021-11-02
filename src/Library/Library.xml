@@ -85,30 +85,6 @@
             <param name="condition"></param>
             <returns></returns>
         </member>
-        <member name="T:Bot.LoginCondition">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bot.LoginCondition.VerifyCondition(Bot.Message)">
-            <summary>
-            
-            </summary>
-            <param name="condition"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Bot.LogoutCondition">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bot.LogoutCondition.VerifyCondition(Bot.Message)">
-            <summary>
-            
-            </summary>
-            <param name="condition"></param>
-            <returns></returns>
-        </member>
         <member name="T:Bot.NoCommandCondition">
             <summary>
             
@@ -132,18 +108,6 @@
             </summary>
             <param name="condition"></param>
             <returns></returns>
-        </member>
-        <member name="T:Bot.RegisterUserCompanyCondition">
-            <summary>
-            Clase RegisterUserCompanyCondition que se encarga de servir como condición del RegisterUserCompanyHandler.
-            </summary>
-        </member>
-        <member name="M:Bot.RegisterUserCompanyCondition.VerifyCondition(Bot.Message)">
-            <summary>
-            Condición servida a RegisterUserCompanyHandler.
-            </summary>
-            <param name="condition">Clase Message</param>
-            <returns><c>True</c> en caso de que el comando sea el ingresado, <c>False</c> en caso contrario.</returns>
         </member>
         <member name="T:Bot.StartCondition">
             <summary>
@@ -216,42 +180,6 @@
             </summary>
             <param name="request"></param>
         </member>
-        <member name="T:Bot.LoginHandler">
-            <summary>
-            Handler que se encarga del Login del usuario
-            </summary>
-        </member>
-        <member name="M:Bot.LoginHandler.#ctor(Bot.LoginCondition)">
-            <summary>
-            Constructor de LoginHandler
-            </summary>
-            <param name="condition">LoginCondition para asignarlo al handler de la clase</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.LoginHandler.HandleRequest(Bot.Message)">
-            <summary>
-            HandleRequest 
-            </summary>
-            <param name="request"></param>
-        </member>
-        <member name="T:Bot.LogoutHandler">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bot.LogoutHandler.#ctor(Bot.LogoutCondition)">
-            <summary>
-            
-            </summary>
-            <param name="condition"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.LogoutHandler.HandleRequest(Bot.Message)">
-            <summary>
-            
-            </summary>
-            <param name="request"></param>
-        </member>
         <member name="T:Bot.NoCommandHandler">
             <summary>
             
@@ -285,25 +213,6 @@
         <member name="M:Bot.RegisterHandler.HandleRequest(Bot.Message)">
             <summary>
             
-            </summary>
-            <param name="request"></param>
-        </member>
-        <member name="T:Bot.RegisterUserCompanyHandler">
-            <summary>
-            Handler que se encarga de solicitar el código generado de invitación para registrar el usuario
-            Empresa.
-            </summary>
-        </member>
-        <member name="M:Bot.RegisterUserCompanyHandler.#ctor(Bot.RegisterUserCompanyCondition)">
-            <summary>
-            Constructor de RegisterUserCompanyHandler.
-            </summary>
-            <param name="condition">RegisterUserCompanyCondition para asignarlo al handler de la clase.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.RegisterUserCompanyHandler.HandleRequest(Bot.Message)">
-            <summary>
-            HandleRequest 
             </summary>
             <param name="request"></param>
         </member>
@@ -515,7 +424,7 @@
             <param name="location">Clase Ubicación.</param>
             <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
         </member>
-        <member name="M:Bot.PublicationSet.DeletePublications(System.Int32)">
+        <member name="M:Bot.PublicationSet.DeletePublication(System.Int32)">
             <summary>
             Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
             haber visto el método ReturnListPublications para poder saber su índice. Retorna 
@@ -525,7 +434,7 @@
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
             contrario.</returns>
         </member>
-        <member name="M:Bot.PublicationSet.DeletePublications(Bot.Publication)">
+        <member name="M:Bot.PublicationSet.DeletePublication(Bot.Publication)">
             <summary>
             Elimina una Publicación de la lista publicaciones.
             </summary>
@@ -676,29 +585,34 @@
             <param name="id">Id del usuario que envía el mensaje</param>
             <param name="message">Contenido del mensaje</param>
         </member>
-        <member name="T:Bot.ReporteEmpresa">
+        <member name="T:Bot.CompanyReport">
              <summary>
             clase ReporteEmpresa que implementa la interfaz de IReporte
              </summary>
         </member>
-        <member name="F:Bot.ReporteEmpresa.reporte">
+        <member name="F:Bot.CompanyReport.company">
             <summary>
             atributo de la clase 
             </summary>
         </member>
-        <member name="M:Bot.ReporteEmpresa.#ctor(System.String)">
+        <member name="M:Bot.CompanyReport.#ctor(Bot.Company)">
             <summary>
             constructor de la clase
             </summary>
-            <param name="data"></param>
+            <param name="publications"></param>
         </member>
-        <member name="M:Bot.ReporteEmpresa.GiveReport">
+        <member name="M:Bot.CompanyReport.GiveReport">
             <summary>
             método de la clase ReporteEmpresa
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation,System.String,System.String)">
+        <member name="M:Bot.Role.#ctor(System.String,System.Int32)">
+            <summary>
+            cambiar name e id que recibe base
+            </summary>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,System.Int32,System.String,Bot.GeoLocation,System.String,System.String)">
             <summary>
             Constructor de la clase Entrepreneur, setea los valores de los parámetros 
             y suma un valor al contador de emprendedores estático
@@ -734,6 +648,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bot.RoleEntrepreneur.SaveHistorialPublication(Bot.Publication)">
+            <summary>
+            Método público que guarda las Publicaciones adquiridas por el emprendedor.
+            </summary>
+            <param name="publication">Publicación cerrada.</param>
+        </member>
         <member name="T:Bot.User">
             <summary>
             Clase encargada de representar al usuario (componiendo id y role).
@@ -751,7 +671,6 @@
             id y role que usará la clase.
             </summary>
             <param name="id">Id</param>
-            <param name="role">Rol</param>
             <param name="name">Nombre</param>
         </member>
         <member name="T:Bot.State">
