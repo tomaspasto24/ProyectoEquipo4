@@ -11,8 +11,8 @@ namespace Bot
         private GeoLocation location;
         public string heading; //rubro
         private List<Publication> listHistorialPublications = new List<Publication>();
-        private List<string> certification;
-        private List<string> specializations;
+        private List<string> certification = new List<string>();
+        private List<string> specializations = new List<string>();
 
         public List<Publication> ListHistorialPublications
         {
@@ -35,8 +35,8 @@ namespace Bot
         {
             this.location = geolocation;
             this.heading = heading;
-            AddCertification(certification);
-            AddSpecialization(specialization);
+            this.AddCertification(certification);
+            this.AddSpecialization(specialization);
             entrepreneurAccountant++;
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace Bot
         /// <param name="certification"></param>
         public void AddCertification(string certification)
         {
-            this.certification.Add(certification);
+            if (certification != null) this.certification.Add(certification);
         }
         /// <summary>
         /// Método para agregarle espcializaciones al empresario
@@ -53,7 +53,7 @@ namespace Bot
         /// <param name="specializations"></param>
         public void AddSpecialization(string specializations)
         {
-            this.specializations.Add(specializations);
+            if (specializations != null) this.specializations.Add(specializations);
         }
 
         /// <summary>
@@ -88,6 +88,19 @@ namespace Bot
         public void SaveHistorialPublication(Publication publication)
         {
             listHistorialPublications.Add(publication);
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
+        /// como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo
+        /// el contacto de la empresa dueña de la publicación.
+        /// </summary>
+        /// <param name="publication"></param>
+        public string AskContactToPublication(Publication publication)
+        {
+            this.SaveHistorialPublication(publication);
+            publication.SetInterestedPerson(this);
+            return publication.Company.ReturnContact();
         }
     }
 }

@@ -1,6 +1,7 @@
-using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace BotTests
 {
@@ -24,11 +25,18 @@ namespace BotTests
             Publication publicationToCompare;
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
+            publicationToCompare.AddRating("Habilitación de Prueba");
+            publicationToCompare.AddRating("Habilitación de Prueba1");
+            publicationToCompare.AddRating("Habilitación de Prueba2");
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
 
+            Assert.That(publicationToCompare.Title == "PublicationTest");
+            Assert.That(publicationToCompare.Date is DateTime);
+            
             Assert.IsNotNull(publicationToCompare);
-            Assert.Contains(publicationToCompare, PublicationSet.ListPublications);
-            Assert.AreEqual(publicationToCompare, PublicationSet.ListPublications[0]);
+            Assert.IsNotNull(PublicationSet.listPublications);
+            Assert.That(publicationToCompare.ReturnListRatings() is not null);
+            Assert.That(publicationToCompare.DeleteMaterial(0));
         }
 
         [Test]
@@ -41,13 +49,36 @@ namespace BotTests
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
-            PublicationSet.ListPublications[0].AddMaterial(material1);
-            PublicationSet.ListPublications[0].AddMaterial(material2);
-            PublicationSet.ListPublications[0].AddMaterial(material3);
+            PublicationSet.listPublications[0].AddMaterial(material1);
+            PublicationSet.listPublications[0].AddMaterial(material2);
+            PublicationSet.listPublications[0].AddMaterial(material3);
 
-            Assert.Contains(material1, PublicationSet.ListPublications);
-            Assert.Contains(material2, PublicationSet.ListPublications);
-            Assert.Contains(material3, PublicationSet.ListPublications);
+            Assert.IsNotEmpty(PublicationSet.listPublications[0].ReturnListMaterials());
+        }
+
+        [Test]
+        public void TestPublicationClosed()
+        {
+            Publication publicationToCompare;
+            publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
+
+            Assert.IsNull(publicationToCompare.ClosePublication());
+            Assert.IsTrue(publicationToCompare.IsClosed);     
+            Assert.That(publicationToCompare.ClosedDate is DateTime);                  
+        }
+
+        [Test]
+        public void TestPublicationClosedWithInterestedPerson()
+        {
+            Publication publicationToCompare;
+            publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
+            RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", 20, "Prueba", location, "Prueba", "Prueba");
+
+            entrepreneur.AskContactToPublication(publicationToCompare);
+            Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
+
+            Assert.IsNotNull(publicationToCompare.interestedPerson);
+            Assert.That(entrepreneur.ListHistorialPublications.Contains(publicationToCompare));    
         }
     }
 }
