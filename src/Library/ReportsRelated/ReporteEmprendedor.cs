@@ -7,22 +7,21 @@ namespace Bot
 {
     public class EntrepreneurReport : IReport
     {
-        public List<Publication> publications { get; set; }
+        private RoleEntrepreneur emprendedor;
 
-        public EntrepreneurReport(List<Publication> publications)
+        public EntrepreneurReport(RoleEntrepreneur emprendedor)
         {
-            this.publications = publications;
+            this.emprendedor = emprendedor;
         }
 
-        public String GiveReport(String entrepreneurName)
+        public String GiveReport()
         {
-            StringBuilder report = new StringBuilder("Materiales consumidos en los ultimos 30 dias por el emprendedor: " + entrepreneurName);
+            StringBuilder report = new StringBuilder("Materiales consumidos en los ultimos 30 dias por el emprendedor: ");
             int contador = 0;
 
-            foreach (Publication publication in this.publications)
+            foreach (Publication publication in this.emprendedor.ListHistorialPublications)
             {
-                if (Equals(publication.interestedPerson.Name, entrepreneurName)
-                && publication.ClosedDate >= DateTime.Now.AddDays(-30)
+                if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)
                 {
                     report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");

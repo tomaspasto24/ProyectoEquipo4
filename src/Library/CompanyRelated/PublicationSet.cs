@@ -35,9 +35,12 @@ namespace Bot
         /// <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
         public static void AddPublication(string title, Company company, GeoLocation location, Material material)
         {
-            Publication publication = new Publication(title, company, location, material);
-            listPublications.Add(publication);
-            company.AddOwnPublication(publication);
+            if(company != null)
+            {
+                Publication publication = new Publication(title, company, location, material);
+                listPublications.Add(publication);
+                company.AddOwnPublication(publication);
+            }
         } 
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace Bot
         /// <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
         /// contrario.</returns>
-        public static bool DeletePublications(int indicePublicacion)
+        public static bool DeletePublication(int indicePublicacion)
         {
             return listPublications.Remove(listPublications[indicePublicacion]);
         }
@@ -59,7 +62,7 @@ namespace Bot
         /// <param name="publication">Publication</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
         /// contrario.</returns>
-        public static bool DeletePublications(Publication publication)
+        public static bool DeletePublication(Publication publication)
         {
             return listPublications.Remove(publication);
         }

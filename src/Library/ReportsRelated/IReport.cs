@@ -4,7 +4,7 @@ namespace Bot
 {
     public interface IReport
     {
-        public String GiveReport(string data);
+        public String GiveReport();
     }
 
 }
