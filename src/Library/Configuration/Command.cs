@@ -22,8 +22,6 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/busqueda",
                 "/reporte",
@@ -45,8 +43,6 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/busqueda",
                 "/reporte",
@@ -66,8 +62,6 @@ namespace Bot
             {
                 "/comandos",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/reporte",
                 "/publicar"
@@ -85,8 +79,6 @@ namespace Bot
             {
                 "/comandos",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/generartoken"
             };
@@ -106,21 +98,21 @@ namespace Bot
             {
                 foreach (string command in EntrepreneurList())
                 {
-                    commandList = commandList + "\n";
+                    commandList = commandList + command + "\n";
                 }
             }
             else if (userRelated.User.Role is RoleUserCompany)
             {
                 foreach (string command in CompanyUserList())
                 {
-                    commandList = commandList + "\n";
+                    commandList = commandList + command +"\n";
                 }
             }
             else
             {
                 foreach (string command in AdminList())
                 {
-                    commandList = commandList + "\n";
+                    commandList = commandList + command + "\n";
                 }
             }
             return commandList;
