@@ -1,7 +1,7 @@
 namespace Bot
 {
     /// <summary>
-    /// Handler que se encarga del registro de un usuario empreas
+    /// Handler que se encarga del registro de un usuario
     /// </summary>
     public class RegisterHandler : AbstractHandler
     {
@@ -9,7 +9,7 @@ namespace Bot
         /// Constructor de la clase RegisterHandler
         /// </summary>
         /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public RegisterHandler(RegisterCondition condition) : base(condition) { }
+        public RegisterHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.

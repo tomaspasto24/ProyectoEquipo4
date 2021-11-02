@@ -10,7 +10,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario que envía el mensaje</param>
         /// <param name="message">Contenido del mensaje</param>
-        public Message(string id, string message)
+        public Message(int id, string message)
         {
             this.UserId = id;
             this.Text = message;
@@ -18,7 +18,7 @@ namespace Bot
         /// <summary>
         /// Id del usuario que esta charlando
         /// </summary>
-        public string UserId {get; set;}
+        public int UserId {get; set;}
 
         /// <summary>
         /// Mensaje del usuario

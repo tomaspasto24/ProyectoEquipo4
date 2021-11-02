@@ -15,7 +15,7 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene la id que se relaciona con un usuario
         /// </summary>
-        public static Dictionary<string, UserRelated> DiccUserRelated;
+        public static Dictionary<int, UserRelated> DiccUserRelated;
 
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
@@ -41,7 +41,7 @@ namespace Bot
         private SessionRelated()
         {
             AllUsers = new List<User>();
-            DiccUserRelated = new Dictionary<string, UserRelated>();
+            DiccUserRelated = new Dictionary<int, UserRelated>();
             DiccUserTokens = new Dictionary<string, Company>();
         }
 
@@ -91,7 +91,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">id del usuario</param>
         /// <param name="channel">Canal que se va a usar</param>
-        public void SetChatChannel(string id, AbstractBot channel)
+        public void SetChatChannel(int id, AbstractBot channel)
         {
             ReturnInfo(id).Channel = channel;
         }
@@ -101,7 +101,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario</param>
         /// <returns>La informacion del usuario</returns>
-        public UserRelated ReturnInfo(string id)
+        public UserRelated ReturnInfo(int id)
         {
             UserRelated info;
             // TryGetValue: Intenta devolver en info, el valor que tiene asignado la key id.

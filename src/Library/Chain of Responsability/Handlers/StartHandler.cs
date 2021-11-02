@@ -9,7 +9,7 @@ namespace Bot
         /// Constructor de la clase StartHandler
         /// </summary>
         /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public StartHandler(StartCondition condition) : base(condition) {}
+        public StartHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
@@ -20,7 +20,7 @@ namespace Bot
             Command commands = new Command();
             UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
             userData.Channel.SendMessage(request.UserId, "¡Bienvenido al bot del equipo 4!");
-            userData.Channel.SendMessage(request.UserId, "¿Qué desea hacer?:\n" + commands.ReturnCommands("Consola"));
+            userData.Channel.SendMessage(request.UserId, "¿Qué desea hacer?:\n" + commands.ReturnCommands(123));
             userData.Channel.SendMessage(request.UserId, "Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe Comandos");
         }
     }

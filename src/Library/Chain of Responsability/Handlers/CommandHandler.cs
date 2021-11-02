@@ -9,7 +9,7 @@ namespace Bot
         /// Constructor de la clase CommandHandler
         /// </summary>
         /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public CommandHandler(CommandCondition condition) : base(condition) { }
+        public CommandHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.

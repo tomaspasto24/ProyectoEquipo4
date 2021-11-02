@@ -1,47 +1,66 @@
+using System;
+using System.Linq;
+
 namespace Bot
 {
     /// <summary>
     /// Clase abstracta para los distintos bots.
     /// </summary>
-    public abstract class AbstractHandler
+    public abstract class AbstractHandler : IHandler
     {
         /// <summary>
         /// Constructor de la clase AbstractHandlers
         /// </summary>
         /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public AbstractHandler(ICondition condition)
+        public AbstractHandler(AbstractHandler succesor)
         {
-            this.Condition = condition;
+            this.Succesor = succesor;
         }
 
         /// <summary>
         /// Handler sucesor
         /// </summary>
         /// <value></value>
-        public AbstractHandler Succesor { get; set; }
+        public IHandler Succesor { get; set; }
 
         /// <summary>
-        /// Condicion que se tiene que cumplir para que se ejecute el handler
+        /// Este método debe ser sobreescrito por las clases sucesores. La clase sucesora procesa el mensaje y retorna
+        /// true o no lo procesa y retorna false.
         /// </summary>
-        /// <value></value>
-        public ICondition Condition { get; set; }
+        /// <param name="message">El mensaje a procesar.</param>
+        /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        protected virtual bool InternalHandle(Message message, out string response)
+        {
+            throw new InvalidOperationException("Este método debe ser sobrescrito");
+        }
+
+        /// <summary>
+        /// Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
+        /// entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
+        /// </summary>
+        protected virtual void InternalCancel()
+        {
+            // Intencionalmente en blanco.
+        }
 
         /// <summary>
         /// Metodo para manejar las peticiones. Si se cumple la condicion, se ejecuta el handler asociado. Sino lo delega a su sucesor.
         /// </summary>
         /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-        public void Handler(Message request)
+        public IHandler Handle(Message request, out string response)
         {
-            if (this.Condition.VerifyCondition(request))
+            if (this.InternalHandle(request, out response))
             {
-                // Ejecuta el handler
-                this.HandleRequest(request);
-                return;
+                return this;
             }
-            if (this.Succesor != null)
+            else if (this.Succesor != null)
             {
-                // Delegar al siguiente handler
-                this.Succesor.Handler(request);
+                return this.Succesor.Handle(request, out response);
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -54,11 +73,25 @@ namespace Bot
             // Agregar el sucesor
             this.Succesor = handler;
         }
-        
+
         /// <summary>
         /// Metodo que se encarga de atender el handler.
         /// </summary>
         /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
         protected abstract void HandleRequest(Message request);
+
+        /// <summary>
+        /// Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que
+        /// procesan varios mensajes cambiando de estado entre mensajes deben sobreescribir este método para volver al
+        /// estado inicial.
+        /// </summary>
+        public virtual void Cancel()
+        {
+            this.InternalCancel();
+            if (this.Succesor != null)
+            {
+                this.Succesor.Cancel();
+            }
+        }
     }
 }

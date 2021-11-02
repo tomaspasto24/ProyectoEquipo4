@@ -10,7 +10,7 @@ namespace Bot
         /// Constructor de la clase NoCommandHandler
         /// </summary>
         /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public NoCommandHandler(NoCommandCondition condition) : base(condition) { }
+        public NoCommandHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.

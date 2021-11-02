@@ -98,7 +98,7 @@ namespace Bot
         /// </summary>
         /// <param name="userId">Id del usuario que pide la lista de comandos</param>
         /// <returns>Lista de comandos</returns>
-        public string ReturnCommands(string userId)
+        public string ReturnCommands(int userId)
         {
             string commandList = string.Empty;
             UserRelated userRelated = SessionRelated.Instance.ReturnInfo(userId);
