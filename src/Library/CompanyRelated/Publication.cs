@@ -78,6 +78,7 @@ namespace Bot
             this.closedDate = DateTime.MinValue;
             this.location = location;
             AddMaterial(material);
+            this.interestedPerson = null;
         }
 
         /// <summary>
@@ -121,9 +122,13 @@ namespace Bot
             this.isClosed = true;
             this.closedDate = DateTime.Now;
             PublicationSet.DeletePublication(this);
-            this.company.AddListHistorialPublications(this);
-            this.interestedPerson.SaveHistorialPublication(this);
-            return interestedPerson;
+            if(interestedPerson != null)
+            {
+                this.company.AddListHistorialPublications(this);
+                this.interestedPerson.SaveHistorialPublication(this);
+                return interestedPerson;
+            }
+            else return null;
         }
 
         /// <summary>
@@ -168,6 +173,16 @@ namespace Bot
                 resultado.Append($"{++contador}- {palabra} \n");
             }
             return resultado.ToString();
+        }
+
+        /// <summary>
+        /// Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
+        /// Debe ser llamado por el método AskContactToPublication de la clase RolEmprendedor.
+        /// </summary>
+        /// <param name="interestedPerson">InterestedPerson</param>
+        public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
+        {
+            this.interestedPerson = interestedPerson;
         }
     }
 }
