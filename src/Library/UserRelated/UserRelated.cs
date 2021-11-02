@@ -35,5 +35,17 @@ namespace Bot
             RoleUserCompany newRole = new RoleUserCompany(company, this.User.Name, this.User.Id);
             this.User.Role = newRole;
         }
+
+        public void ChangerRoleToAdmin()
+        {
+            RoleAdmin newRole = new RoleAdmin(this.User.Name, this.User.Id);
+            this.User.Role = newRole;
+        }
+
+        public void ChangeRoleToEntrepreneur(string heading, GeoLocation location, string certification, string specialization)
+        {
+            RoleEntrepreneur newRole = new RoleEntrepreneur(this.User.Name, this.User.Id, heading, location, certification, specialization);
+            this.User.Role = newRole;
+        }
     }
 }
