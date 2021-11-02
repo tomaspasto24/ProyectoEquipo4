@@ -109,7 +109,7 @@ namespace Bot
             {
                 return info;
             }
-            info = new UserRelated();
+            info = UserRelated.Instance;
             DiccUserRelated.Add(id, info);
             return info;
         }

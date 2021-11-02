@@ -8,10 +8,23 @@ namespace Bot
         public AbstractBot Channel { get; set; }
         public User User { get; set; }
 
+        private static UserRelated instance;
+        public static UserRelated Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new UserRelated();
+                }
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Constructor de la clase UserRelated.
         /// </summary>
-        public UserRelated()
+        private UserRelated()
         {
             this.Channel = null;
             this.User = null;
@@ -19,7 +32,7 @@ namespace Bot
 
         public void ChangeRoleToUserCompany(Company company)
         {
-            RoleUserCompany newRole = new RoleUserCompany(company, User.Name, User.Id);
+            RoleUserCompany newRole = new RoleUserCompany(company, this.User.Name, this.User.Id);
             this.User.Role = newRole;
         }
     }

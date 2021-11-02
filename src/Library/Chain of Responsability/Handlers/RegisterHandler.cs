@@ -17,6 +17,11 @@ namespace Bot
         }
 
         /// <summary>
+        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// </summary>
+        public RegisterData Data { get; private set; } = new RegisterData();
+
+        /// <summary>
         /// El estado del comando.
         /// </summary>
         public RegisterState State { get; private set; }
@@ -49,12 +54,14 @@ namespace Bot
                 if (SessionRelated.DiccUserTokens.ContainsKey(request.Text))
                 {
                     this.State = RegisterState.Start;
+                    this.Data.Token = request.Text;
                     userData.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }
                 else
                 {
+                    this.Data.Token = request.Text;
                     this.State = RegisterState.Start;
                     response = "Disculpa, no hemos encontrado ese token :(";
                     return true;
@@ -63,6 +70,14 @@ namespace Bot
 
             response = string.Empty;
             return false;
+        }
+
+        public class RegisterData
+        {
+            /// <summary>
+            /// El token que se ingresa en el estado ConfirmingToken
+            /// </summary>
+            public string Token { get; set; }
         }
     }
 }
