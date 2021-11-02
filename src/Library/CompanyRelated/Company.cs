@@ -9,7 +9,6 @@ namespace Bot
     /// </summary>
     public class Company
     {
-        //Hacer metodo para publicar Publicación. y guardarlo en lista 
         private static List<Company> registeredCompanies = new List<Company>();
         private static int counterCompanies = 0; // contadorEmpresas
         private string name;

@@ -7,8 +7,10 @@ namespace Bot
         private int id;
 
         /// <summary>
-        /// cambiar name e id que recibe base
+        /// constructor de la clase Role
         /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
         public Role(String name, int id)
         {
             this.name = name;

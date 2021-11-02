@@ -33,7 +33,7 @@ namespace Bot
                 if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)
                 {
-                    report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");
+                    report.Append($"{++contador} - {publication.Title} - {publication.ClosedDate} \n");
                     return "";
                 }
             }

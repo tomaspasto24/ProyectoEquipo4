@@ -55,6 +55,10 @@ namespace Bot
             {
                 return this.closedDate;
             }
+            set
+            {
+                this.ClosedDate = value;
+            }
         }
 
         public Boolean IsClosed
