@@ -20,7 +20,17 @@ namespace BotTests
             Publication publicationTest = new Publication("Madera de pino", LasAcacias, direccionLasAcacias, materialTest);
             publicationTest.ClosePublication();
 
-            Assert.AreEqual()
+            //Assert.AreEqual()
+            //podria hacer otra pero que se cierre anterior a 30 dias
+        }
+        public void EntrepreneurReportTest()
+        {
+            GeoLocation direccionLasAcacias = new GeoLocation("Camino Maldonado 2415", "Montevideo", "Montevideo");
+            Company LasAcacias = new Company("las acacias", "carpinteria", direccionLasAcacias, "094654315");
+            Material materialTest = new Material("Madera de pino", 500, 9000);
+            Publication publicationTest = new Publication("Madera de pino", LasAcacias, direccionLasAcacias, materialTest);
+            publicationTest.ClosePublication();
+
         }
 
     }

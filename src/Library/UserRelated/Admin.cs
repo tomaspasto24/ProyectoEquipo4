@@ -43,14 +43,13 @@ namespace Bot
             {
                 CodeList.Add(resultString);
             }
-            Console.WriteLine(resultString);
         }
 
         /// <summary>
         /// metodo para generar invitación
         /// </summary>
         /// <returns></returns>
-        public string GenerateInvitation()  //puede retornar una url o lo que sea 
+        public string GenerateInvitation()
 
         {
             return "";
