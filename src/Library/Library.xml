@@ -424,7 +424,7 @@
             <param name="location">Clase Ubicación.</param>
             <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
         </member>
-        <member name="M:Bot.PublicationSet.DeletePublications(System.Int32)">
+        <member name="M:Bot.PublicationSet.DeletePublication(System.Int32)">
             <summary>
             Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
             haber visto el método ReturnListPublications para poder saber su índice. Retorna 
@@ -434,7 +434,7 @@
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
             contrario.</returns>
         </member>
-        <member name="M:Bot.PublicationSet.DeletePublications(Bot.Publication)">
+        <member name="M:Bot.PublicationSet.DeletePublication(Bot.Publication)">
             <summary>
             Elimina una Publicación de la lista publicaciones.
             </summary>
@@ -520,6 +520,54 @@
             Método publico para hacer la configuración de los handlers y conditions.
             </summary>
             <returns>Retorna el primer handler de la cadena de la cadena de handlers.</returns>
+        </member>
+        <member name="M:Bot.Entrepreneur.#ctor(System.String,Bot.GeoLocation,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor de la clase Entrepreneur, setea los valores de los parámetros 
+            y suma un valor al contador de emprendedores estático
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="heading"></param>
+            <param name="geolocation"></param>
+            <param name="certification"></param>
+            <param name="specializations"></param>
+        </member>
+        <member name="M:Bot.Entrepreneur.AddCertification(System.String)">
+            <summary>
+            Método para agregarle certificaciones al emprendedor
+            </summary>
+            <param name="certification"></param>
+        </member>
+        <member name="M:Bot.Entrepreneur.AddSpecialization(System.String)">
+            <summary>
+            Método para agregarle espcializaciones al empresario
+            </summary>
+            <param name="specializations"></param>
+        </member>
+        <member name="M:Bot.Entrepreneur.DeleateEntrepreneur(Bot.Entrepreneur)">
+            <summary>
+            Método para elimienar a un emprendedor de la lista de emprendedores
+            </summary>
+            <param name="entrepreneur"></param>
+        </member>
+        <member name="M:Bot.Entrepreneur.RegisterEntrepreneur(Bot.Entrepreneur)">
+            <summary>
+            Método para registrar a un emprendedor, agregándolo a la lista de emprendedores registrados
+            </summary>
+            <param name="entrepreneur"></param>
+        </member>
+        <member name="M:Bot.Entrepreneur.GetReport">
+            <summary>
+            Método para obtener el reporte del emprendedor 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.Entrepreneur.SearchingMaterials">
+            <summary>
+            Método para buscar por materiasles o por ubicación
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bot.GeoLocation">
             <summary>
@@ -642,7 +690,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.SearchingMaterials">
+        <member name="M:Bot.Admin.CodeGenerator">
+            <summary>
+            metodo estatico para poder acceder a el desde otra clase
+            </summary>
+        </member>
+        <member name="M:Bot.Admin.GenerateInvitation">
             <summary>
             Método para buscar por materiasles o por ubicación
             </summary>
@@ -672,6 +725,25 @@
             </summary>
             <param name="id">Id</param>
             <param name="name">Nombre</param>
+        </member>
+        <member name="T:Bot.State">
+            <summary>
+            Tipo enumerado que define el estado de la conversacion con el bot.
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:Bot.User.ChangeUsername(System.String)">
+            <summary>
+            metodo para cambiar nombre
+            </summary>
+            <param name="newName"></param>
+        </member>
+        <member name="M:Bot.User.ChangePassword(System.String)">
+            <summary>
+            metodo para cambiar contraseña
+            </summary>
+            <param name="newPassword"></param>
         </member>
         <member name="T:Bot.State">
             <summary>

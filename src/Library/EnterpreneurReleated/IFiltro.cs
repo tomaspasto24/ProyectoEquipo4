@@ -7,6 +7,7 @@ namespace Library
 {
     public interface IFilter
     {
-        
+        String Filter(int opcion, String listToSearch);
+        //ponerle el tipo a ReturnListPublications dePublicationsSet
     }
 }

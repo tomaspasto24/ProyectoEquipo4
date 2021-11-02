@@ -105,16 +105,9 @@ namespace Bot
         /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
         /// </summary>
         /// <returns>String con todo los materiales enumerados</returns>
-        public string ReturnListMaterials()
+        public List<Material> ReturnListMaterials()
         {
-            StringBuilder resultado = new StringBuilder("Materiales: \n");
-            int contador = 0;
-
-            foreach (Material material in this.listMaterials)
-            {
-                resultado.Append($"{++contador}- {material.Name} \n");
-            }
-            return resultado.ToString();
+            return listMaterials;
         }
 
         /// <summary>
@@ -127,7 +120,7 @@ namespace Bot
         {
             this.isClosed = true;
             this.closedDate = DateTime.Now;
-            PublicationSet.DeletePublications(this);
+            PublicationSet.DeletePublication(this);
             this.company.AddListHistorialPublications(this);
             this.interestedPerson.SaveHistorialPublication(this);
             return interestedPerson;
