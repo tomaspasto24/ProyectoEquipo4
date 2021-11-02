@@ -15,11 +15,19 @@ namespace Bot
         /// Metodo que se encarga de atender el handler.
         /// </summary>
         /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-        protected override void HandleRequest(Message request)
+        protected override bool InternalHandle(Message request, out string response)
         {
             Command commands = new Command();
             UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
-            userData.Channel.SendMessage(request.UserId, $"Estos son todos los comandos: \n{commands.ReturnCommands(request.UserId)}");
+
+            if (request.Text.Equals("/comandos"))
+            {
+                response = $"Estos son todos los comandos: \n{commands.ReturnCommands(request.UserId)}";
+                return true;
+            }
+
+            response = string.Empty;
+            return false;
         }
     }
 }

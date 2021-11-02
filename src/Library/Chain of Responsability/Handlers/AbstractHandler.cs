@@ -30,10 +30,7 @@ namespace Bot
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected virtual bool InternalHandle(Message message, out string response)
-        {
-            throw new InvalidOperationException("Este método debe ser sobrescrito");
-        }
+        protected abstract bool InternalHandle(Message message, out string response);
 
         /// <summary>
         /// Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
@@ -63,22 +60,6 @@ namespace Bot
                 return null;
             }
         }
-
-        /// <summary>
-        /// Metodo para agregar un sucesor
-        /// </summary>
-        /// <param name="handler">Sucesor del handler actual</param>
-        public void AddSuccesor(AbstractHandler handler)
-        {
-            // Agregar el sucesor
-            this.Succesor = handler;
-        }
-
-        /// <summary>
-        /// Metodo que se encarga de atender el handler.
-        /// </summary>
-        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-        protected abstract void HandleRequest(Message request);
 
         /// <summary>
         /// Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que

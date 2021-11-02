@@ -12,7 +12,6 @@ namespace Bot
         /// </summary>
         protected AbstractBot()
         {
-            this.handler = Setup.HandlerSetup();
         }
 
         /// <summary>
@@ -34,14 +33,5 @@ namespace Bot
         /// <param name="id">id del usuario con el que dialoga el bot</param>
         /// <param name="text">mensaje que se quiere enviar al usuario</param>
         public abstract void SendMessage(int id, string text);
-
-        /// <summary>
-        /// Metodo para delegar el mensaje recibido.
-        /// </summary>
-        /// <param name="text">text es el mensaje recibido, de tipo Message. Ademas del mensaje contiene el User Id del usuario</param>
-        public void HandleMessage(Message text)
-        {
-            handler.Handle(text);
-        }
     }
 }

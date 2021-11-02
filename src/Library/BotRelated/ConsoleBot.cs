@@ -1,3 +1,4 @@
+using System;
 namespace Bot
 {
 
@@ -40,17 +41,36 @@ namespace Bot
         /// </summary>
         public override void StartCommunication()
         {
+            IHandler handler =
+                new StartHandler(
+                new RegisterHandler(
+                new CommandHandler(null)
+            ));
+
+            Message message = new Message(1111, string.Empty);
+            string response;
+
             this.SendMessage(123, "Bienvenido al bot de consola! Puedes usar \"exit\" para terminar la conversacion.");
             while (true)
             {
-                string text = System.Console.ReadLine().ToString().ToLower();
-                if (text == "exit")
+                message.Text = Console.ReadLine();
+                if (message.Text.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
                 {
+                    Console.WriteLine("Salimos");
                     break;
                 }
-                ChangeChannel(123, this);
-                Message message = new Message(123, text);
-                HandleMessage(message);
+
+                IHandler result = handler.Handle(message, out response);
+
+                if (result == null)
+                {
+                    Console.WriteLine("Disculpa no te entiendo :(");
+                    Console.WriteLine("Intenta escribir \"/comandos\" para verificar los comandos");
+                }
+                else
+                {
+                    Console.WriteLine(response);
+                }
             }
         }
     }

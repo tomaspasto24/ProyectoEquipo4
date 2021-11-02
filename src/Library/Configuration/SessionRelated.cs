@@ -113,5 +113,15 @@ namespace Bot
             DiccUserRelated.Add(id, info);
             return info;
         }
+
+        public Company ReturnCompany(string token)
+        {
+            Company company;
+            if (DiccUserTokens.TryGetValue(token, out company))
+            {
+                return company;
+            }
+            return null;
+        }
     }
 }
