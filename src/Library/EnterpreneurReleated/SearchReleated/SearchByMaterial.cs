@@ -11,33 +11,32 @@ namespace Bot
         {
             List<Publication> result = new List<Publication>();
 
-            List<Publication> listaPublicaciones = PublicationSet.ListPublications;
+            List<Publication> listPublications = PublicationSet.ListPublications;
             bool exit = false;
-                /// <summary>
-                /// Variable para salir de la publicación cuando en ella ya se encontró el material buscado
-                /// </summary>
-                bool exitPublication = false;
-                while (exitPublication)
+            /// <summary>
+            /// Variable para salir de la publicación cuando en ella ya se encontró el material buscado
+            /// </summary>
+            bool exitPublication = false;
+            foreach (Publication publication in listPublications)
+            {
+                while (!exitPublication)
                 {
-                    foreach (Publication publication in listaPublicaciones)
+                    /// <summary>
+                    /// Recorre cada material que hay la lista de materiales de una publicacion
+                    /// </summary>
+                    /// <param name="publication.ReturnListMaterials()"></param>
+                    /// <returns></returns>       
+                    foreach (Material material in publication.ReturnListMaterials())
                     {
-                        /// <summary>
-                        /// Recorre cada material que hay la lista de materiales de una publicacion
-                        /// </summary>
-                        /// <param name="publication.ReturnListMaterials()"></param>
-                        /// <returns></returns>       
-                        foreach (Material material in publication.ReturnListMaterials())
+                        if (material.ReturnKeyWords().Contains(wordToSearch))
                         {
-                            if (material.ReturnKeyWords().Contains(wordToSearch))
-                            {
-                                result.Add(publication);
-                                exit = true; 
-                            } 
-                        }                    
+                            result.Add(publication);
+                            exit = true; 
+                        } 
                     }
-                }
-            
-                return result;
+                }                    
+            }      
+            return result;
         }
     }
 }

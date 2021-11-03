@@ -53,6 +53,13 @@ namespace Bot
                 return this.company;
             }
         }
+        public GeoLocation Location
+        {
+            get
+            {
+                return this.location;
+            }
+        }
 
         /// <summary>
         /// Get público del atributo Date que devuelve la hora en la que se crea la clase Publicacación.

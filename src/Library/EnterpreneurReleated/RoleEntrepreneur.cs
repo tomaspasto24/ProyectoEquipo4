@@ -48,6 +48,10 @@ namespace Bot
                 this.certification.Add(certification);    
             }
         }
+        public List<string> ReturnCertification()
+        {
+            return this.certification;
+        }
 
         /// <summary>
         /// Método para agregarle espcializaciones al emprendedor
@@ -59,6 +63,11 @@ namespace Bot
             {
                 this.specializations.Add(specialization);
             }
+        }
+
+        public List<string> ReturnSpecialization()
+        {
+            return this.specializations;
         }
 
         /// <summary>
