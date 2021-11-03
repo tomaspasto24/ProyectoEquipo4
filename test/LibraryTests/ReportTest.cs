@@ -31,9 +31,10 @@ namespace BotTests
         /// </summary>
         public void CompanyReportClosedPublicationTest()
         {
-            publicationTest.ClosePublication(entrepreneur);
+            entrepreneur.ContactCompany(publicationTest);
+            publicationTest.ClosePublication();
             CompanyReport reporte = new CompanyReport(company);
-            String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias1- Madera de pino";
+            String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias";
 
             StringAssert.Contains(expected, reporte.GiveReport());
         }
@@ -54,7 +55,8 @@ namespace BotTests
         /// </summary>
         public void EntrepreneurReportClosedPublicationTest()
         {
-            publicationTest.ClosePublication(entrepreneur);
+            entrepreneur.ContactCompany(publicationTest);
+            publicationTest.ClosePublication();
             EntrepreneurReport reporte = new EntrepreneurReport(entrepreneur);
             String expected = "Materiales consumidos en los ultimos 30 dias por el emprendedor: emprendedor1 #1 - Madera de pino";
             StringAssert.Contains(expected, reporte.GiveReport());

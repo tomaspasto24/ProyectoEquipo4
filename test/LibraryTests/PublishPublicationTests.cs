@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 namespace BotTests
 {
+    /// <summary>
+    /// PublishPublicationTests se encarga de testear el funcionamiento de la 
+    /// funcionalidad de Publicar Publicación que en un futuro será implementada 
+    /// en el Bot de Telegram como /publicar.
+    /// </summary>
     public class PublishPublicationTests
     {
         GeoLocation location;
@@ -12,7 +17,10 @@ namespace BotTests
         Material initialMaterial;
         RoleEntrepreneur entrepreneur;
 
-
+        /// <summary>
+        /// Método que crea y asgina las instancias a los atributos location, companyTest, initialMaterial,
+        /// entrepreneurLocation, entrepreneur; que serán usados por los siguientes métodos. 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -24,6 +32,10 @@ namespace BotTests
 
         }
 
+        /// <summary>
+        /// Este test se encarga de crear una publicación simple y de comprobar que sus 
+        /// atributos no sean null.
+        /// </summary>
         [Test]
         public void TestSimplePublication()
         {
@@ -36,7 +48,6 @@ namespace BotTests
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
-            Assert.That(publicationToCompare.Date is DateTime);
 
             Assert.IsNotNull(publicationToCompare);
             Assert.IsNotNull(PublicationSet.ListPublications);
@@ -44,6 +55,10 @@ namespace BotTests
             Assert.That(publicationToCompare.DeleteMaterial(0));
         }
 
+        /// <summary>
+        /// Test que se encarga de comprobar la creación de una publicación y además de crear materiales
+        /// para comprobar que se agregan a la lista de materiales de la publicación.
+        /// </summary>
         [Test]
         public void TestPublishPublicationAndAddMaterials()
         {
@@ -61,6 +76,10 @@ namespace BotTests
             Assert.IsNotEmpty(PublicationSet.ListPublications[0].ReturnListMaterials());
         }
 
+        /// <summary>
+        /// Test que se encarga de comprobar el funcionamiento de la clase de cerrarse
+        /// a si misma.
+        /// </summary>
         [Test]
         public void TestPublicationClosed()
         {
@@ -69,9 +88,13 @@ namespace BotTests
 
             Assert.IsNull(publicationToCompare.ClosePublication());
             Assert.IsTrue(publicationToCompare.IsClosed);
-            Assert.That(publicationToCompare.ClosedDate is DateTime);
+            Assert.IsNotNull(publicationToCompare.ClosedDate);
         }
 
+        /// <summary>
+        /// Test que se encarga de comprobar el funcionamiento de la clase de cerrarse
+        /// a si misma y de setar y devolver a la persona interesada.
+        /// </summary>
         [Test]
         public void TestPublicationClosedWithInterestedPerson()
         {

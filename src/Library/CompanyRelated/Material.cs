@@ -12,11 +12,11 @@ namespace Bot
     {
         private string name;
         private int quantity;
-        private int price;
+        private double price;
         private List<string> keyWords = new List<string>(); // Palabras clave
 
         /// <summary>
-        /// Devuelve Atributo nombre del la clase Material.
+        /// Devuelve atributo nombre del la clase Material.
         /// </summary>
         /// <value>String</value>
         public string Name
@@ -24,6 +24,30 @@ namespace Bot
             get
             {
                 return this.name;
+            }
+        }
+
+        /// <summary>
+        /// Devuelve atributo cantidad del la clase Material.
+        /// </summary>
+        /// <value>Int</value>
+        public int Quantity
+        {
+            get
+            {
+                return this.quantity;
+            }
+        }
+
+        /// <summary>
+        /// Devuelve Atributo precio del la clase Material.
+        /// </summary>
+        /// <value>Int</value>
+        public double Price
+        {
+            get
+            {
+                return this.price;
             }
         }
 
@@ -60,7 +84,7 @@ namespace Bot
         /// <returns></returns>
         public bool DeleteKeyWord(int indicePalabraClave)
         {
-            return keyWords.Remove(keyWords[indicePalabraClave]);
+            return this.keyWords.Remove(keyWords[indicePalabraClave]);
         }
 
         /// <summary>
@@ -69,7 +93,7 @@ namespace Bot
         /// <returns>String</returns>
         public List<string> ReturnKeyWords() 
         {
-            return keyWords;
+            return this.keyWords;
         }
     }
 }
