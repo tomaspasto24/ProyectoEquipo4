@@ -3,7 +3,6 @@ using NUnit.Framework;
 using Bot;
 using System.Threading.Tasks;
 
-
 namespace BotTests
 {
     public class GeoLocationTests
@@ -11,7 +10,7 @@ namespace BotTests
         GeoLocation location;
         string address;
         string city;
-        string departament;   
+        string departament;
         [SetUp]
         public void SetUp()
         {

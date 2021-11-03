@@ -1,4 +1,4 @@
-namespace Bot
+/*namespace Bot
 {
     /// <summary>
     /// 
@@ -15,4 +15,4 @@ namespace Bot
             return condition.Text == "/reporte";
         }
     }
-}
+}*/
