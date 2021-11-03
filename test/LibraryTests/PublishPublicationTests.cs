@@ -67,7 +67,7 @@ namespace BotTests
             Publication publicationToCompare;
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
 
-            Assert.IsNull(publicationToCompare.ClosePublication(entrepreneur));
+            Assert.IsNull(publicationToCompare.ClosePublication());
             Assert.IsTrue(publicationToCompare.IsClosed);
             Assert.That(publicationToCompare.ClosedDate is DateTime);
         }
@@ -79,19 +79,11 @@ namespace BotTests
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
             RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", 20, "Prueba", location, "Prueba", "Prueba");
 
-<<<<<<< HEAD
             entrepreneur.ContactCompany(publicationToCompare);
             Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
 
             Assert.IsNotNull(publicationToCompare.interestedPerson);
             Assert.That(entrepreneur.listHistorialPublications.Contains(publicationToCompare));    
-=======
-            entrepreneur.AskContactToPublication(publicationToCompare);
-            Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication(entrepreneur));
-
-            Assert.IsNotNull(publicationToCompare.interestedPerson);
-            Assert.That(entrepreneur.ListHistorialPublications.Contains(publicationToCompare));
->>>>>>> master
         }
     }
 }
