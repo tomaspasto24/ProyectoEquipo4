@@ -1,9 +1,9 @@
-namespace Bot
+/*namespace Bot
 {
     /// <summary>
     /// 
     /// </summary>
-    public class RegisterCondition : ICondition
+    public class ReportCondition : ICondition
     {
         /// <summary>
         /// 
@@ -12,7 +12,7 @@ namespace Bot
         /// <returns></returns>
         public bool VerifyCondition(Message condition)
         {
-            return condition.Text == "/registro";
+            return condition.Text == "/reporte";
         }
     }
-}
+}*/
