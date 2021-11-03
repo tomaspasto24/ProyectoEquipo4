@@ -57,6 +57,7 @@ namespace Bot
             this.item = rubro;
             this.location = location;
             this.contact = contacto;
+            this.RegisterCompany();
             counterCompanies++;
         }
 
