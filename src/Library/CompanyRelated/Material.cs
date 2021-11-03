@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Bot
 {
+    /// <summary>
+    /// Clase Material que cumple con el patrón Expert ya que todos los calculos que hace, los realiza con
+    /// datos internos que solo la clase Material conoce.
+    /// </summary>
     public class Material
     {
         private string name;

@@ -18,6 +18,14 @@ namespace Bot
         private DateTime closedDate;
         private GeoLocation location;
         private Company company;
+
+        /// <summary>
+        /// Atributo público de la clase Publicación con set privado, quedando el get público.
+        /// Este atributo se setea cuando una clase Emprendedor ejecuta el método AskContactToPublication
+        /// sobre una publicación lo que acciona el método interno SetInterestedPerson seteando a la persona
+        /// interesada.
+        /// </summary>
+        /// <value>RoleEntrepreneur.</value>
         public RoleEntrepreneur interestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
         private bool isClosed = false;
 
@@ -34,6 +42,10 @@ namespace Bot
             }
         }
 
+        /// <summary>
+        /// Empresa dueña de la clase Publicación. Get público.
+        /// </summary>
+        /// <value>Empresa</value>
         public Company Company
         {
             get
@@ -42,6 +54,11 @@ namespace Bot
             }
         }
 
+        /// <summary>
+        /// Get público del atributo Date que devuelve la hora en la que se crea la clase Publicacación.
+        /// Es decir, cuando el constructor de la clase se ejecuta.
+        /// </summary>
+        /// <value>DateTime</value>
         public DateTime Date
         {
             get
@@ -49,6 +66,12 @@ namespace Bot
                 return this.date;
             }
         }
+
+        /// <summary>
+        /// Get público del atributo Date que devuelve la hora en la que se cierra la clase Publicacación.
+        /// Es decir, cuando el método ClosePublication es ejecutado.
+        /// </summary>
+        /// <value></value>
         public DateTime ClosedDate
         {
             get
@@ -57,6 +80,11 @@ namespace Bot
             }
         }
 
+        /// <summary>
+        /// Get público del atributo booleano IsClosed que representa el estado Abierto/Cerrado
+        /// de una Publicación.
+        /// </summary>
+        /// <value>Bool</value>
         public Boolean IsClosed
         {
             get
