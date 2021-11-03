@@ -27,7 +27,7 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public static Dictionary<string, Company> DiccUserTokens = new Dictionary<string, Company>();
+        public static Dictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         public static SessionRelated Instance

@@ -7,6 +7,11 @@ namespace Bot
     /// </summary>
     public class RoleAdmin : Role
     {
+        /// <summary>
+        /// se inicializa la lista globalRatingsList
+        /// </summary>
+        /// <typeparam name="string"></typeparam>
+        /// <returns></returns>
         public static List<string> globalRatingsList = new List<string>();
 
         public RoleAdmin(String name, int id) : base(name, id)

@@ -21,6 +21,9 @@ namespace BotTests
         }
 
         [Test]
+        /// <summary>
+        /// test del token para ver si tiene la cantidad de caracteres esperada
+        /// </summary>
         public void TokenLenghtTest()
         {
             String token = admin.GenerateToken(company);
@@ -28,6 +31,9 @@ namespace BotTests
         }
 
         [Test]
+        /// <summary>
+        /// test para agregar el token generado a la lista de globalRatingsList
+        /// </summary>
         public void TokenAddedTest()
         {
             String token = admin.GenerateToken(company);
