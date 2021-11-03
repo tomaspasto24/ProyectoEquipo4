@@ -2,15 +2,27 @@ using System;
 using NUnit.Framework;
 using Bot;
 using System.Threading.Tasks;
+using Nito.AsyncEx;
+using LocationApi;
+
 
 namespace BotTests
 {
+    /// <summary>
+    /// GeoLocationTests se encarga de testear los atributos y las funcionalidades de la clase
+    /// GeoLocation.
+    /// </summary>
     public class GeoLocationTests
     {
-        GeoLocation location;
-        string address;
-        string city;
-        string departament;
+        GeoLocation location {get; set;}
+        string address {get; set;}
+        string city {get; set;}
+        string departament {get; set;}
+
+        /// <summary>
+        /// Este método se encarga de inicializar los atributos address, city y departament.
+        /// Además de construir el objeto a testear location.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -20,14 +32,23 @@ namespace BotTests
 
             location = new GeoLocation(address, city, departament);
         }
+
+        /// <summary>
+        /// Test que se encarga de comprobar la instancia de la clase GeoLocation.
+        /// </summary>
         [Test]
         public void TestLocationInstance()
         {
-            // Assert.IsNotNull(location);
             Assert.IsNotNull(location.GetLocation());
+            Assert.IsNotNull(location.City);
+            Assert.IsNotNull(location.Departament);
+            Assert.IsNotNull(location.Address);
         }
 
-
+        /// <summary>
+        /// Test que se encarga de testear el calculo de duración que realiza 
+        /// el método CalculateDuration de la clase GeoLocation.
+        /// </summary>
         [Test]
         public void TestDuration()
         {
@@ -36,9 +57,12 @@ namespace BotTests
 
             Assert.That(duration is Task<double>);
             Assert.IsNotNull(duration);
-            System.Console.WriteLine(duration + "minutos");
         }
 
+        /// <summary>
+        /// Test que se encarga de testear el calculo de distancia que realiza 
+        /// el método CalculateDistance de la clase GeoLocation.
+        /// </summary>        
         [Test]
         public void TestDistance()
         {
@@ -47,7 +71,6 @@ namespace BotTests
 
             Assert.That(distance is Task<double>);
             Assert.IsNotNull(distance);
-            System.Console.WriteLine(distance + "metros");
         }
     }
 }
