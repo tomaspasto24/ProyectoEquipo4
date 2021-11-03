@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Bot
 {
-    public class SearchMaterial: ISearch
+    public class SearchByMaterial: ISearch
     {
         public List<Publication> Search(String wordToSearch)
         {

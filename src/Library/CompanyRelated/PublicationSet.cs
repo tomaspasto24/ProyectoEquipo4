@@ -20,9 +20,9 @@ namespace Bot
         public static List<Publication> ListPublications
         {
             get
-            {
-                return listPublications;
-            }
+                {
+                    return listPublications;
+                }
         }
 
         /// <summary>

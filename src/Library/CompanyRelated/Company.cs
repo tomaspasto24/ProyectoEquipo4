@@ -101,7 +101,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método que se encarga de eliminar un uusario del conjunto usuarios de la clase Empresa.
+        /// Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
         /// </summary>
         /// <param name="user">Clase Usuario.</param>
         /// <returns></returns>
