@@ -60,17 +60,6 @@ namespace Bot
                 return resultString;
             }
         }
-        /// <summary>
-        /// metodo para agregar las habilitaciones a la lista "globalRatingsList" 
-        /// </summary>
-        /// <param name="rating"></param>
-        /// 
-        /// 
-       /* public void AddRating(string rating)
-        {
-            globalRatingsList.Add(rating);
-        }*/
-
 
         /// <summary>
         /// metodo para eliminar las habilitaciones a la lista "globalRatingsList" 

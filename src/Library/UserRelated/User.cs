@@ -3,13 +3,13 @@ namespace Bot
 {
 
     /// <summary>
-    /// Clase encargada de representar al usuario (componiendo id y role).
+    /// Clase encargada de representar al usuario (componiendo id y role). Esta cumple con el patron SRP y Expert 
     /// </summary>
     public class User
     {
         private string name;
         private int id;
-        public Role Role {set; get;}
+        public Role Role { set; get; }
 
         /// <summary>
         /// Propiedad para tener get público el atributo id.
