@@ -39,7 +39,6 @@ namespace BotTests
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser("Seba", 123, role);
-            SessionRelated.DiccUserTokens.Add("IHaveAToken", company);
 
             message = new Message(usuario.Id, null);
             handler = new RegisterHandler(null);
@@ -85,6 +84,8 @@ namespace BotTests
         [Test]
         public void TestTokenFound()
         {
+            SessionRelated.DiccUserTokens.Add("IHaveAToken", company);
+            
             message.Text = "/registro";
             string response;
             handler.Handle(message, out response);
