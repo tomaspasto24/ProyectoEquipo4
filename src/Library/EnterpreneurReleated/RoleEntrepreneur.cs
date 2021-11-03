@@ -45,7 +45,7 @@ namespace Bot
         {
             if (certification != null)
             {
-                this.certification.Add(certification);    
+                this.certification.Add(certification);
             }
         }
         public List<string> ReturnCertification()
@@ -110,7 +110,7 @@ namespace Bot
         {
             this.listHistorialPublications.Add(publication);
         }
-        
+
         /// <summary>
         /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
         /// como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo
