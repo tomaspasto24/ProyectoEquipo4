@@ -9,6 +9,8 @@ namespace Bot
     {
         private static int entrepreneurAccountant = 0;
         private GeoLocation location;
+        private SearchByLocation searchByLocation;
+        private SearchByMaterial searchByMaterial;
         /// <summary>
         /// Rubro
         /// </summary>
@@ -83,23 +85,21 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método para buscar por materiales o por ubicación
+        /// Buscar publicaciones por material
         /// </summary>
         /// <returns></returns>
-        /*public List<Publication> SearchingMaterials(string wordToSearch)
+        public List<Publication> SearchingByMaterials(string wordToSearch)
         {
-            return Search(wordToSearch);  //VER A QUÉ SEARCH LLAMAR SEGUN SI ES POR UBICACION O POR MATERIAL
-        }*/
-
+            return this.searchByMaterial.Search(wordToSearch); 
+        }
         /// <summary>
-        /// 
+        /// Buscar publicaciones por ubicación
         /// </summary>
+        /// <param name="addresToSearch"></param>
         /// <returns></returns>
-        public List<Publication> ReturnListHistorialPublications()
+        public List<Publication> SearchingByLocation(string addresToSearch)
         {
-            {
-                return this.listHistorialPublications;
-            }
+            return this.searchByLocation.Search(addresToSearch);
         }
 
         /// <summary>
@@ -110,7 +110,14 @@ namespace Bot
         {
             this.listHistorialPublications.Add(publication);
         }
-        
+
+        public List<Publication> ReturnListHistorialPublications()
+        {
+            {
+                return this.listHistorialPublications;
+            }
+        }
+
         /// <summary>
         /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
         /// como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo

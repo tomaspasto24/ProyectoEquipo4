@@ -40,9 +40,3 @@ namespace Bot
         }
     }
 }
-//como usar el IFiltro para que Search no tenga q recibir una opcion
-//ni agregarle un if mayor que vea qué opcione es
-//buscar por material: opcion 1
-//buscar por ubicacion: opcion 2
-
-//hacer excepcion para cuando no se encuentra lo que se busca(?)
