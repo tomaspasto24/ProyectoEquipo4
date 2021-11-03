@@ -1,3 +1,4 @@
+using System;
 namespace Bot
 {
 
@@ -29,7 +30,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario con el que dialoga el bot</param>
         /// <param name="text">Mensaje que se quiere enviar al usuario</param>
-        public override void SendMessage(string id, string text)
+        public override void SendMessage(int id, string text)
         {
             System.Console.WriteLine(text);
         }
@@ -40,17 +41,36 @@ namespace Bot
         /// </summary>
         public override void StartCommunication()
         {
-            this.SendMessage("Consola", "Bienvenido al bot de consola! Puedes usar \"exit\" para terminar la conversacion.");
+            IHandler handler =
+                new StartHandler(
+                new RegisterHandler(
+                new CommandHandler(null)
+            ));
+
+            Message message = new Message(1111, string.Empty);
+            string response;
+
+            this.SendMessage(123, "Bienvenido al bot de consola! Puedes usar \"exit\" para terminar la conversacion.");
             while (true)
             {
-                string text = System.Console.ReadLine().ToString().ToLower();
-                if (text == "exit")
+                message.Text = Console.ReadLine();
+                if (message.Text.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
                 {
+                    Console.WriteLine("Salimos");
                     break;
                 }
-                ChangeChannel("Consola", this);
-                Message message = new Message("Consola", text);
-                HandleMessage(message);
+
+                IHandler result = handler.Handle(message, out response);
+
+                if (result == null)
+                {
+                    Console.WriteLine("Disculpa no te entiendo :(");
+                    Console.WriteLine("Intenta escribir \"/comandos\" para verificar los comandos");
+                }
+                else
+                {
+                    Console.WriteLine(response);
+                }
             }
         }
     }

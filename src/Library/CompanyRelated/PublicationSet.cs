@@ -9,6 +9,7 @@ namespace Bot
     /// </summary>
     public static class PublicationSet
     {
+
         private static List<Publication> listPublications = new List<Publication>();
 
         /// <summary>
@@ -16,13 +17,13 @@ namespace Bot
         /// manipular eficientemente las Publicaciones.
         /// </summary>
         /// <value></value>
-        public static List<Publication> ListPublications
-        {
-            get
-            {
-                return listPublications;
-            }
-        }
+        // public static List<Publication> ListPublications
+        // {
+        //     get
+        //     {
+        //         return listPublications;
+        //     }
+        // }
 
         /// <summary>
         /// Método que agrega una publicación a la lista publicaciones, toma como parámetro 

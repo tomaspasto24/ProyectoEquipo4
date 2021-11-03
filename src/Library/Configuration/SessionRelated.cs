@@ -7,9 +7,21 @@ namespace Bot
     /// </summary>
     public class SessionRelated
     {
+        /// <summary>
+        /// Lista de todos los usuarios
+        /// </summary>
         public static List<User> AllUsers;
-        public static Dictionary<string, UserRelated> DiccUserRelated;
+
+        /// <summary>
+        /// Diccionario que contiene la id que se relaciona con un usuario
+        /// </summary>
+        public static Dictionary<int, UserRelated> DiccUserRelated;
+
+        /// <summary>
+        /// Diccionario que contiene el token que se relaciona con la empresa
+        /// </summary>
         public static Dictionary<string, Company> DiccUserTokens;
+        
         private static SessionRelated instance;
         public static SessionRelated Instance
         {
@@ -24,23 +36,24 @@ namespace Bot
         }
 
         /// <summary>
-        /// 
+        /// Constructor de la clase SessionRelated
         /// </summary>
         private SessionRelated()
         {
             AllUsers = new List<User>();
-            DiccUserRelated = new Dictionary<string, UserRelated>();
+            DiccUserRelated = new Dictionary<int, UserRelated>();
             DiccUserTokens = new Dictionary<string, Company>();
         }
 
         /// <summary>
-        /// 
+        /// Metodo para agregar un nuevo usuario
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="name">Nombre del usuario</param>
+        /// <param name="id">Id del usuario</param>
+        /// <param name="role">Role del usuariro</param>
         public void AddNewUser(string name, int id, Role role)
         {
-            if (UsernameExists(name))
+            if (UsernameExists(id))
             {
                 return;
             }
@@ -48,24 +61,24 @@ namespace Bot
         }
 
         /// <summary>
-        /// 
+        /// Metodo para borrar un usuario
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">Usuaurio a borrar</param>
         public void DeleteUser(User user)
         {
             AllUsers.Remove(user);
         }
 
         /// <summary>
-        /// 
+        /// Metodo para verificar si existe un usuario
         /// </summary>
-        /// <param name="username"></param>
-        /// <returns></returns>
-        public static bool UsernameExists(string username)
+        /// <param name="id">Id del usuario a verificar</param>
+        /// <returns>true o false</returns>
+        public static bool UsernameExists(int id)
         {
             foreach (User user in AllUsers)
             {
-                if (user.Name == username)
+                if (user.Id == id)
                 {
                     return true;
                 }
@@ -73,17 +86,22 @@ namespace Bot
             return false;
         }
 
-        public void SetChatChannel(string id, AbstractBot channel)
+        /// <summary>
+        /// Metodo para cambiar el canal de comunicacion entre el bot y el usuario
+        /// </summary>
+        /// <param name="id">id del usuario</param>
+        /// <param name="channel">Canal que se va a usar</param>
+        public void SetChatChannel(int id, AbstractBot channel)
         {
             ReturnInfo(id).Channel = channel;
         }
 
         /// <summary>
-        /// 
+        /// Metodo para obtener la informacion relacionada a un usuario
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public UserRelated ReturnInfo(string id)
+        /// <param name="id">Id del usuario</param>
+        /// <returns>La informacion del usuario</returns>
+        public UserRelated ReturnInfo(int id)
         {
             UserRelated info;
             // TryGetValue: Intenta devolver en info, el valor que tiene asignado la key id.
@@ -91,9 +109,19 @@ namespace Bot
             {
                 return info;
             }
-            info = new UserRelated();
+            info = UserRelated.Instance;
             DiccUserRelated.Add(id, info);
             return info;
+        }
+
+        public Company ReturnCompany(string token)
+        {
+            Company company;
+            if (DiccUserTokens.TryGetValue(token, out company))
+            {
+                return company;
+            }
+            return null;
         }
     }
 }

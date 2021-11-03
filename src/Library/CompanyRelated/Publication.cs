@@ -80,6 +80,7 @@ namespace Bot
             this.closedDate = DateTime.MinValue;
             this.location = location;
             AddMaterial(material);
+            this.interestedPerson = null;
         }
 
         /// <summary>
@@ -107,16 +108,9 @@ namespace Bot
         /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
         /// </summary>
         /// <returns>String con todo los materiales enumerados</returns>
-        public string ReturnListMaterials()
+        public List<Material> ReturnListMaterials()
         {
-            StringBuilder resultado = new StringBuilder("Materiales: \n");
-            int contador = 0;
-
-            foreach (Material material in this.listMaterials)
-            {
-                resultado.Append($"{++contador}- {material.Name} \n");
-            }
-            return resultado.ToString();
+            return listMaterials;
         }
 
         /// <summary>
@@ -131,9 +125,14 @@ namespace Bot
             this.closedDate = DateTime.Now;
             this.interestedPerson = interestedPerson;
             PublicationSet.DeletePublication(this);
-            this.company.AddListHistorialPublications(this);
-            this.interestedPerson.SaveHistorialPublication(this);
-            return this;
+            if(interestedPerson != null)
+            {
+                this.company.AddListHistorialPublications(this);
+                this.interestedPerson.SaveHistorialPublication(this);
+                return this;
+            }
+            else return null;
+
         }
 
         /// <summary>
@@ -178,6 +177,16 @@ namespace Bot
                 resultado.Append($"{++contador}- {palabra} \n");
             }
             return resultado.ToString();
+        }
+
+        /// <summary>
+        /// Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
+        /// Debe ser llamado por el método AskContactToPublication de la clase RolEmprendedor.
+        /// </summary>
+        /// <param name="interestedPerson">InterestedPerson</param>
+        public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
+        {
+            this.interestedPerson = interestedPerson;
         }
     }
 }

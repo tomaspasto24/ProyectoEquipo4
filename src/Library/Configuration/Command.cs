@@ -3,15 +3,17 @@ using System.Collections.Generic;
 namespace Bot
 {
     /// <summary>
-    /// Clase Command que 
+    /// Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
     /// </summary>
     public class Command
     {
+        /// <summary>
+        /// Lista de comandos
+        /// </summary>
         public List<string> CommandsList { get; set; }
 
-
         /// <summary>
-        /// Constructor de la clase Command. Asigna a la lista de comandos, los comandos basicos que puede tener un usuario.
+        /// Constructor de la clase Command. Asigna a la lista de comandos, todos los comandos disponibles.
         /// </summary>
         public Command()
         {
@@ -20,8 +22,6 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/busqueda",
                 "/reporte",
@@ -32,6 +32,10 @@ namespace Bot
             };
         }
 
+        /// <summary>
+        /// Metodo que retorna una lista de comandos para el emprendedor
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
         public List<string> EntrepreneurList()
         {
             List<string> list = new List<string>()
@@ -39,8 +43,6 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/busqueda",
                 "/reporte",
@@ -50,14 +52,16 @@ namespace Bot
             return list;
         }
 
+        /// <summary>
+        /// Metodo que retorna una lista de comandos para el usuario empresa
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
         public List<string> CompanyUserList()
         {
             List<string> list = new List<string>()
             {
                 "/comandos",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/reporte",
                 "/publicar"
@@ -65,14 +69,16 @@ namespace Bot
             return list;
         }
 
+        /// <summary>
+        /// Metodo que retorna una lista de comnados para el admin
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
         public List<string> AdminList()
         {
             List<string> list = new List<string>()
             {
                 "/comandos",
                 "/hola",
-                "/chau",
-                "/adios",
                 "exit",
                 "/generartoken"
             };
@@ -84,7 +90,7 @@ namespace Bot
         /// </summary>
         /// <param name="userId">Id del usuario que pide la lista de comandos</param>
         /// <returns>Lista de comandos</returns>
-        public string ReturnCommands(string userId)
+        public string ReturnCommands(int userId)
         {
             string commandList = string.Empty;
             UserRelated userRelated = SessionRelated.Instance.ReturnInfo(userId);
@@ -92,21 +98,21 @@ namespace Bot
             {
                 foreach (string command in EntrepreneurList())
                 {
-                    commandList = commandList + "\n";
+                    commandList = commandList + command + "\n";
                 }
             }
             else if (userRelated.User.Role is RoleUserCompany)
             {
                 foreach (string command in CompanyUserList())
                 {
-                    commandList = commandList + "\n";
+                    commandList = commandList + command +"\n";
                 }
             }
             else
             {
                 foreach (string command in AdminList())
                 {
-                    commandList = commandList + "\n";
+                    commandList = commandList + command + "\n";
                 }
             }
             return commandList;
@@ -115,7 +121,7 @@ namespace Bot
         /// <summary>
         /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
         /// </summary>
-        /// <param name="command"></param>
+        /// <param name="command">Comando a verificar</param>
         /// <returns>Si la lista contiene el comando buscado</returns>
         public bool ExistingCommand(string command)
         {
