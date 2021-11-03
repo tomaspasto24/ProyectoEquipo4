@@ -33,7 +33,7 @@ namespace BotTests
         {
             publicationTest.ClosePublication(entrepreneur);
             CompanyReport reporte = new CompanyReport(company);
-            String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias1- Madera de pino";
+            String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias";
 
             StringAssert.Contains(expected, reporte.GiveReport());
         }
