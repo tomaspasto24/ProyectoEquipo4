@@ -15,6 +15,11 @@ namespace Bot
     public class ConsoleBot : AbstractBot
     {
         private static ConsoleBot instance;
+
+        /// <summary>
+        /// Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
+        /// </summary>
+        /// <value>La instancia inicializada</value>
         public static ConsoleBot Instance
         {
             get

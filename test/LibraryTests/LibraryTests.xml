@@ -4,6 +4,61 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:BotTests.CommandHandlerTest">
+            <summary>
+            Clase para testear el CommandHandler
+            </summary>
+        </member>
+        <member name="M:BotTests.CommandHandlerTest.SetUp">
+            <summary>
+            Metodo SetUp de los tests
+            </summary>
+        </member>
+        <member name="M:BotTests.CommandHandlerTest.TestAdminCommandHandler">
+            <summary>
+            Test para probar los comandos que tiene un admin
+            </summary>
+        </member>
+        <member name="M:BotTests.CommandHandlerTest.TestRoleUserCompanyCommandHandler">
+            <summary>
+            Test para probar los comandos que tiene un UserCompany
+            </summary>
+        </member>
+        <member name="M:BotTests.CommandHandlerTest.TestRoleEntrepreneurCommandHandler">
+            <summary>
+            Test para probar los comandos que tiene un Emprendedor
+            </summary>
+        </member>
+        <member name="T:BotTests.RegisterCompanyUserHandlerTest">
+            <summary>
+            Clase para testear el RegisterCompanyUserHandler
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.SetUp">
+            <summary>
+            Metodo SetUp para los tests
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestRegisterHandled">
+            <summary>
+            Test para probar que el RegisterHandler actua
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestNoTokenFound">
+            <summary>
+            Test para probar que pasa cuando no se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestTokenFound">
+            <summary>
+            Test para probar que pasa cuando se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestCancel">
+            <summary>
+            Test para probar el Cancel del handler
+            </summary>
+        </member>
         <member name="F:BotTests.TokenTest.admin">
             <summary>
             defino la variable afuera para que sea global y adentro del metodo la instancio

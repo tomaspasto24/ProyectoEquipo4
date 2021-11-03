@@ -30,6 +30,10 @@ namespace Bot
         public static Dictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
+        /// <summary>
+        /// Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
+        /// </summary>
+        /// <value>La instancia inicializada</value>
         public static SessionRelated Instance
         {
             get
@@ -121,6 +125,11 @@ namespace Bot
             return info;
         }
 
+        /// <summary>
+        /// Metodo para retornar la Company asociada al token generado
+        /// </summary>
+        /// <param name="token">Token que el usuario inserta</param>
+        /// <returns></returns>
         public Company ReturnCompany(string token)
         {
             Company company;

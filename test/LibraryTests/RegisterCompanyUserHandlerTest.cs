@@ -4,6 +4,9 @@ using Bot;
 
 namespace BotTests
 {
+    /// <summary>
+    /// Clase para testear el RegisterCompanyUserHandler
+    /// </summary>
     public class RegisterCompanyUserHandlerTest
     {
 
@@ -17,6 +20,9 @@ namespace BotTests
         RegisterHandler handler;
         RoleUserCompany newRole;
 
+        /// <summary>
+        /// Metodo SetUp para los tests
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -33,12 +39,14 @@ namespace BotTests
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser("Seba", 123, role);
-            SessionRelated.DiccUserTokens.Add("IHaveAToken", company);
 
             message = new Message(usuario.Id, null);
             handler = new RegisterHandler(null);
         }
 
+        /// <summary>
+        /// Test para probar que el RegisterHandler actua
+        /// </summary>
         [Test]
         public void TestRegisterHandled()
         {
@@ -52,6 +60,9 @@ namespace BotTests
             Assert.That(response, Is.EqualTo("Inserta tu token de usuario empresa: "));
         }
 
+        /// <summary>
+        /// Test para probar que pasa cuando no se encuentra un token
+        /// </summary>
         [Test]
         public void TestNoTokenFound()
         {
@@ -67,9 +78,14 @@ namespace BotTests
             Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
         }
 
+        /// <summary>
+        /// Test para probar que pasa cuando se encuentra un token
+        /// </summary>
         [Test]
         public void TestTokenFound()
         {
+            SessionRelated.DiccUserTokens.Add("IHaveAToken", company);
+            
             message.Text = "/registro";
             string response;
             handler.Handle(message, out response);
@@ -83,6 +99,9 @@ namespace BotTests
             // Chequear si quedan los roles cambiados
         }
 
+        /// <summary>
+        /// Test para probar el Cancel del handler
+        /// </summary>
         [Test]
         public void TestCancel()
         {

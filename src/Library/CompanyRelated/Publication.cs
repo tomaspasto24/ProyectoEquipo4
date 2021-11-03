@@ -147,20 +147,21 @@ namespace Bot
         /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
         /// </summary>
         /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
-        public Publication ClosePublication(RoleEntrepreneur interestedPerson)
+        public RoleEntrepreneur ClosePublication()
         {
             this.isClosed = true;
             this.closedDate = DateTime.Now;
-            this.interestedPerson = interestedPerson;
             PublicationSet.DeletePublication(this);
             if(interestedPerson != null)
             {
                 this.company.AddListHistorialPublications(this);
-                this.interestedPerson.SaveHistorialPublication(this);
-                return this;
+                this.interestedPerson.AddHistorialPublication(this);
+                return interestedPerson;
             }
-            else return null;
-
+            else 
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace Bot
 
         /// <summary>
         /// Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
-        /// Debe ser llamado por el método AskContactToPublication de la clase RolEmprendedor.
+        /// Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
         /// </summary>
         /// <param name="interestedPerson">InterestedPerson</param>
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
