@@ -39,6 +39,5 @@ namespace BotTests
             String token = admin.GenerateToken(company);
             Assert.Contains(token, RoleAdmin.globalRatingsList);
         }
-
     }
 }
