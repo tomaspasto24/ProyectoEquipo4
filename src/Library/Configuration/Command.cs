@@ -2,6 +2,11 @@ using System.Collections.Generic;
 
 namespace Bot
 {
+    /*
+    Patrones y principios:
+    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    */
     /// <summary>
     /// Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
     /// </summary>
@@ -105,7 +110,7 @@ namespace Bot
             {
                 foreach (string command in CompanyUserList())
                 {
-                    commandList = commandList + command +"\n";
+                    commandList = commandList + command + "\n";
                 }
             }
             else
