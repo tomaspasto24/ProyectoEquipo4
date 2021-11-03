@@ -18,15 +18,16 @@ namespace Bot
         public List<Publication> listHistorialPublications = new List<Publication>();
 
         /// <summary>
-        /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
+        /// /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
         /// y suma un valor al contador de emprendedores estático
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
         /// <param name="heading"></param>
         /// <param name="geolocation"></param>
         /// <param name="certification"></param>
-        /// <param name="specializations"></param>
+        /// <param name="specialization"></param>
+        /// <returns></returns>
         public RoleEntrepreneur(string name, int id, string heading, GeoLocation geolocation, string certification, string specialization) : base(name, id)
         {
             this.location = geolocation;

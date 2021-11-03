@@ -2,7 +2,6 @@ namespace Bot
 {
     /*
     Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
     También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
     A su vez, cumple con el patrón Chain of Responsability.
     */
@@ -18,7 +17,9 @@ namespace Bot
         /// </summary>
         public enum RegisterState
         {
+            /// Estado antes de mandar el token
             Start,
+            /// Estado mientras el bot espera y confirma un token
             ConfirmingToken,
         }
 
@@ -35,7 +36,7 @@ namespace Bot
         /// <summary>
         /// Constructor de la clase RegisterHandler
         /// </summary>
-        /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         public RegisterHandler(AbstractHandler succesor) : base(succesor)
         {
             State = RegisterState.Start;
@@ -45,6 +46,7 @@ namespace Bot
         /// Metodo que se encarga de atender el handler.
         /// </summary>
         /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+        /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
             UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
@@ -78,6 +80,9 @@ namespace Bot
             return false;
         }
 
+        /// <summary>
+        /// Clase para almacenar la data relacionada al registro
+        /// </summary>
         public class RegisterData
         {
             /// <summary>

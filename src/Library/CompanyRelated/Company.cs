@@ -9,7 +9,6 @@ namespace Bot
     /// </summary>
     public class Company
     {
-        //Hacer metodo para publicar Publicación. y guardarlo en lista 
         private static List<Company> registeredCompanies = new List<Company>();
         private static int counterCompanies = 0; // contadorEmpresas
         private string name;
@@ -32,6 +31,10 @@ namespace Bot
             }
         }
 
+        /// <summary>
+        /// Atributo nombre de la clase Empresa.
+        /// </summary>
+        /// <value>String</value>
         public String Name
         {
             get
@@ -125,11 +128,19 @@ namespace Bot
             return this.listOwnPublications;
         }
 
+        /// <summary>
+        /// Método que se encarga de añadir una clase Publicación a ListHistorialPublications.
+        /// </summary>
+        /// <param name="publication">Publicación a añadir.</param>
         public void AddListHistorialPublications(Publication publication)
         {
             this.listHistorialPublications.Add(publication);
         }
 
+        /// <summary>
+        /// Método que devuelve el objeto ListHistorialPublications de la clase Empresa.
+        /// </summary>
+        /// <returns>List Publication</returns>
         public List<Publication> GetListHistorialPublications()
         {
             return this.listHistorialPublications;

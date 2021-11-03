@@ -4,5 +4,10 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="F:BotTests.TokenTest.admin">
+            <summary>
+            defino la variable afuera para que sea global y adentro del metodo la instancio
+            </summary>
+        </member>
     </members>
 </doc>

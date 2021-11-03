@@ -4,6 +4,9 @@ using Bot;
 
 namespace BotTests
 {
+    /// <summary>
+    /// Clase para testear el RegisterCompanyUserHandler
+    /// </summary>
     public class RegisterCompanyUserHandlerTest
     {
 
@@ -17,6 +20,9 @@ namespace BotTests
         RegisterHandler handler;
         RoleUserCompany newRole;
 
+        /// <summary>
+        /// Metodo SetUp para los tests
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -25,7 +31,8 @@ namespace BotTests
 
             newRole = new RoleUserCompany(company, "Seba", 123);
 
-            role = new RoleEntrepreneur("name", 123);
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
+            role = new RoleEntrepreneur("name", 123, "carpintero", entrepreneurLocation, "oficial", "lustrado");
             usuario = new User("Seba", 123, role);
             userRelated = UserRelated.Instance;
             userRelated.User = usuario;
@@ -38,6 +45,9 @@ namespace BotTests
             handler = new RegisterHandler(null);
         }
 
+        /// <summary>
+        /// Test para probar que el RegisterHandler actua
+        /// </summary>
         [Test]
         public void TestRegisterHandled()
         {
@@ -51,6 +61,9 @@ namespace BotTests
             Assert.That(response, Is.EqualTo("Inserta tu token de usuario empresa: "));
         }
 
+        /// <summary>
+        /// Test para probar que pasa cuando no se encuentra un token
+        /// </summary>
         [Test]
         public void TestNoTokenFound()
         {
@@ -66,6 +79,9 @@ namespace BotTests
             Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
         }
 
+        /// <summary>
+        /// Test para probar que pasa cuando se encuentra un token
+        /// </summary>
         [Test]
         public void TestTokenFound()
         {
@@ -82,6 +98,9 @@ namespace BotTests
             // Chequear si quedan los roles cambiados
         }
 
+        /// <summary>
+        /// Test para probar el Cancel del handler
+        /// </summary>
         [Test]
         public void TestCancel()
         {
