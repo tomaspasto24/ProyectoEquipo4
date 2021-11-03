@@ -7,7 +7,7 @@ namespace BotTests
 {
     public class RoleEntrepreneurTests
     {
-        RoleEntrepreneur emprendedor; 
+        RoleEntrepreneur emprendedor;
         GeoLocation location;
         string name;
         int id;

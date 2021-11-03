@@ -29,6 +29,90 @@
             Test para probar los comandos que tiene un Emprendedor
             </summary>
         </member>
+        <member name="T:BotTests.GeoLocationTests">
+            <summary>
+            GeoLocationTests se encarga de testear los atributos y las funcionalidades de la clase
+            GeoLocation.
+            </summary>
+        </member>
+        <member name="M:BotTests.GeoLocationTests.SetUp">
+            <summary>
+            Este método se encarga de inicializar los atributos address, city y departament.
+            Además de construir el objeto a testear location.
+            </summary>
+        </member>
+        <member name="M:BotTests.GeoLocationTests.TestLocationInstance">
+            <summary>
+            Test que se encarga de comprobar la instancia de la clase GeoLocation.
+            </summary>
+        </member>
+        <member name="M:BotTests.GeoLocationTests.TestDuration">
+            <summary>
+            Test que se encarga de testear el calculo de duración que realiza 
+            el método CalculateDuration de la clase GeoLocation.
+            </summary>
+        </member>
+        <member name="M:BotTests.GeoLocationTests.TestDistance">
+            <summary>
+            Test que se encarga de testear el calculo de distancia que realiza 
+            el método CalculateDistance de la clase GeoLocation.
+            </summary>        
+        </member>
+        <member name="T:BotTests.MaterialTests">
+            <summary>
+            Test de la clase Material que se encarga de testear todas las funcionalidades
+            y opciones que otorga la clase a los demás objetos.
+            </summary>
+        </member>
+        <member name="M:BotTests.MaterialTests.CreateSimpleMaterial">
+            <summary>
+            Test que se encarga de comprobar los atributos
+            básicos de la clase Material mediante la creación de un simple Material.
+            </summary>
+        </member>
+        <member name="M:BotTests.MaterialTests.KeyWordsTest">
+            <summary>
+            Test que se encarga de testear la funcionalidad de obtener, agregar y quitar 
+            palabras clave anidadas a la clase Material.
+            </summary>
+        </member>
+        <member name="T:BotTests.PublishPublicationTests">
+            <summary>
+            PublishPublicationTests se encarga de testear el funcionamiento de la 
+            funcionalidad de Publicar Publicación que en un futuro será implementada 
+            en el Bot de Telegram como /publicar.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishPublicationTests.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos location, companyTest, initialMaterial,
+            entrepreneurLocation, entrepreneur; que serán usados por los siguientes métodos. 
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishPublicationTests.TestSimplePublication">
+            <summary>
+            Este test se encarga de crear una publicación simple y de comprobar que sus 
+            atributos no sean null.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishPublicationTests.TestPublishPublicationAndAddMaterials">
+            <summary>
+            Test que se encarga de comprobar la creación de una publicación y además de crear materiales
+            para comprobar que se agregan a la lista de materiales de la publicación.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishPublicationTests.TestPublicationClosed">
+            <summary>
+            Test que se encarga de comprobar el funcionamiento de la clase de cerrarse
+            a si misma.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishPublicationTests.TestPublicationClosedWithInterestedPerson">
+            <summary>
+            Test que se encarga de comprobar el funcionamiento de la clase de cerrarse
+            a si misma y de setar y devolver a la persona interesada.
+            </summary>
+        </member>
         <member name="T:BotTests.RegisterCompanyUserHandlerTest">
             <summary>
             Clase para testear el RegisterCompanyUserHandler
@@ -59,9 +143,60 @@
             Test para probar el Cancel del handler
             </summary>
         </member>
+        <member name="T:BotTests.ReportTest">
+            <summary>
+            Clase ReportTest la cual se encarga de testear las funcionalidades de la clase EntrepreneurReport y CompanyReport.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos que seran utilizados para ejecutar los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.CompanyReportClosedPublicationTest">
+            <summary>
+            Test de reporte empresa cuando la publicacion esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.CompanyReportPublicationNotClosedTest">
+            <summary>
+            Test de reporte empresa cuando la publicacion no esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.EntrepreneurReportClosedPublicationTest">
+            <summary>
+            Test del reporte emprendedor cuando la publicacion esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.EntrepreneurReportPublicationNotClosedTest">
+            <summary>
+            Test del reporte emprendedor en caso de que la publicacion no este cerrada.
+            </summary>
+        </member>
+        <member name="T:BotTests.TokenTest">
+            <summary>
+            Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
+            </summary>
+        </member>
         <member name="F:BotTests.TokenTest.admin">
             <summary>
-            defino la variable afuera para que sea global y adentro del metodo la instancio
+            Defino la variable afuera para que sea global y adentro del metodo la instancio.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenLenghtTest">
+            <summary>
+            Test del token para ver si tiene la cantidad de caracteres esperada.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenAddedTest">
+            <summary>
+            Test para agregar el token generado a la lista de globalRatingsList.
+            
             </summary>
         </member>
     </members>

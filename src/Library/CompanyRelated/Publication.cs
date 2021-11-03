@@ -53,6 +53,10 @@ namespace Bot
                 return this.company;
             }
         }
+        /// <summary>
+        /// Propiedad para tener get público el atributo Location.
+        /// </summary>
+        /// <value></value>
         public GeoLocation Location
         {
             get
@@ -159,13 +163,13 @@ namespace Bot
             this.isClosed = true;
             this.closedDate = DateTime.Now;
             PublicationSet.DeletePublication(this);
-            if(interestedPerson != null)
+            if (interestedPerson != null)
             {
                 this.company.AddListHistorialPublications(this);
                 this.interestedPerson.AddHistorialPublication(this);
                 return interestedPerson;
             }
-            else 
+            else
             {
                 return null;
             }
