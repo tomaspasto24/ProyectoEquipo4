@@ -53,6 +53,11 @@ namespace Bot
                 return this.company;
             }
         }
+
+        /// <summary>
+        /// Get público que retorna la ubicación de la publicación.
+        /// </summary>
+        /// <value>GeoLocation</value>
         public GeoLocation Location
         {
             get
