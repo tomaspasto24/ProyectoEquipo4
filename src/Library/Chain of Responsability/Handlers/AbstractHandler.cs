@@ -17,7 +17,7 @@ namespace Bot
         /// <summary>
         /// Constructor de la clase AbstractHandlers
         /// </summary>
-        /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         public AbstractHandler(AbstractHandler succesor)
         {
             this.Succesor = succesor;
@@ -50,7 +50,9 @@ namespace Bot
         /// <summary>
         /// Metodo para manejar las peticiones. Si se cumple la condicion, se ejecuta el handler asociado. Sino lo delega a su sucesor.
         /// </summary>
-        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+        /// <param name="request">Mensaje del usuario</param>
+        /// <param name="response">Respuesta del bot</param>
+        /// <returns></returns>
         public IHandler Handle(Message request, out string response)
         {
             if (this.InternalHandle(request, out response))

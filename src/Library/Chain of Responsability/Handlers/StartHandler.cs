@@ -14,13 +14,14 @@ namespace Bot
         /// <summary>
         /// Constructor de la clase StartHandler
         /// </summary>
-        /// <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         public StartHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
         /// </summary>
         /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+        /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
             Command commands = new Command();

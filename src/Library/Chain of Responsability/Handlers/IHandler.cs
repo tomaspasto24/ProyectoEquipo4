@@ -1,5 +1,8 @@
 namespace Bot
 {
+    /// <summary>
+    /// Interfaz para los handlers de Chain of Responsability
+    /// </summary>
     public interface IHandler
     {
         /// <summary>
