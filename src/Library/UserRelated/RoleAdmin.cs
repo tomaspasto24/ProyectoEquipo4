@@ -3,12 +3,12 @@ using System.Collections.Generic;
 namespace Bot
 {
     /// <summary>
-    /// clase RoleAdmin que hereda de la clase Role
+    /// Clase RoleAdmin que hereda de la clase Role
     /// </summary>
     public class RoleAdmin : Role
     {
         /// <summary>
-        /// se inicializa la lista globalRatingsList
+        /// Se inicializa la lista globalRatingsList
         /// </summary>
         /// <typeparam name="string"></typeparam>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
+        /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// metodo estatico para generar un string alfanumerico unico para una lista dada.
+        /// Metodo estatico para generar un string alfanumerico unico para una lista dada.
         /// </summary>
         /// <param name="company"></param>
         /// <param name="tokens"></param>
@@ -60,20 +60,9 @@ namespace Bot
                 return resultString;
             }
         }
-        /// <summary>
-        /// metodo para agregar las habilitaciones a la lista "globalRatingsList" 
-        /// </summary>
-        /// <param name="rating"></param>
-        /// 
-        /// 
-       /* public void AddRating(string rating)
-        {
-            globalRatingsList.Add(rating);
-        }*/
-
 
         /// <summary>
-        /// metodo para eliminar las habilitaciones a la lista "globalRatingsList" 
+        /// Metodo para eliminar las habilitaciones a la lista "globalRatingsList" 
         /// </summary>
         /// <param name="rating"></param>
         public void DeleteRating(string rating)
