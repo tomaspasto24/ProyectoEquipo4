@@ -13,8 +13,8 @@ namespace Bot
         /// Rubro
         /// </summary>
         public string heading;
-        private List<string> certification;
-        private List<string> specializations;
+        private List<string> certification = new List<string>();
+        private List<string> specializations = new List<string>();
         public List<Publication> listHistorialPublications = new List<Publication>();
 
         /// <summary>

@@ -48,7 +48,6 @@ namespace BotTests
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
-            Assert.That(publicationToCompare.Date is DateTime);
 
             Assert.IsNotNull(publicationToCompare);
             Assert.IsNotNull(PublicationSet.ListPublications);
@@ -89,7 +88,7 @@ namespace BotTests
 
             Assert.IsNull(publicationToCompare.ClosePublication());
             Assert.IsTrue(publicationToCompare.IsClosed);
-            Assert.That(publicationToCompare.ClosedDate is DateTime);
+            Assert.IsNotNull(publicationToCompare.ClosedDate);
         }
 
         /// <summary>
