@@ -3,6 +3,12 @@ using System.Linq;
 
 namespace Bot
 {
+    /*
+    Patrones y principios: 
+    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método handle.
+    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    A su vez, cumple con el patrón Chain of Responsability.
+    */
     /// <summary>
     /// Clase abstracta para los distintos bots.
     /// </summary>

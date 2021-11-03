@@ -1,12 +1,17 @@
 namespace Bot
 {
+    /*
+    Patrones y principios:
+    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    */
     /// <summary>
     /// Bot abstracto del cual heredarán los bots concretos.
     /// </summary>
     public abstract class AbstractBot
     {
         private AbstractHandler handler;
-        
+
         /// <summary>
         /// Constructor de la clase AbstractBot
         /// </summary>
