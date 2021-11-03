@@ -13,8 +13,8 @@ namespace Bot
         /// Rubro
         /// </summary>
         public string heading;
-        private List<string> certification;
-        private List<string> specializations;
+        private List<string> certification = new List<string>();
+        private List<string> specializations = new List<string>();
         public List<Publication> listHistorialPublications = new List<Publication>();
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Bot
         {
             if (certification != null)
             {
-                this.certification.Add(certification);    
+                this.certification.Add(certification);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Bot
         {
             this.listHistorialPublications.Add(publication);
         }
-        
+
         /// <summary>
         /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
         /// como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo

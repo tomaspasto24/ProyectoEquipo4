@@ -36,15 +36,12 @@
             Bot concreto de consola que hereda de AbstractBot
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="P:Bot.ConsoleBot.Instance">
             <summary>
             Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
             </summary>
             <value>La instancia inicializada</value>
         </member>
->>>>>>> master
         <member name="M:Bot.ConsoleBot.#ctor">
             <summary>
             Constructor de ConsoleBot que utiliza el constructor de AbstractBot
@@ -73,11 +70,7 @@
             <summary>
             Constructor de la clase AbstractHandlers
             </summary>
-<<<<<<< HEAD
-            <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-=======
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
->>>>>>> master
         </member>
         <member name="P:Bot.AbstractHandler.Succesor">
             <summary>
@@ -104,13 +97,9 @@
             <summary>
             Metodo para manejar las peticiones. Si se cumple la condicion, se ejecuta el handler asociado. Sino lo delega a su sucesor.
             </summary>
-<<<<<<< HEAD
-            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-=======
             <param name="request">Mensaje del usuario</param>
             <param name="response">Respuesta del bot</param>
             <returns></returns>
->>>>>>> master
         </member>
         <member name="M:Bot.AbstractHandler.Cancel">
             <summary>
@@ -128,19 +117,12 @@
             <summary>
             Constructor de la clase CommandHandler
             </summary>
-<<<<<<< HEAD
-            <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-=======
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
->>>>>>> master
         </member>
         <member name="M:Bot.CommandHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
-<<<<<<< HEAD
-            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-=======
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
@@ -148,7 +130,6 @@
             <summary>
             Interfaz para los handlers de Chain of Responsability
             </summary>
->>>>>>> master
         </member>
         <member name="P:Bot.IHandler.Succesor">
             <summary>
@@ -183,15 +164,12 @@
             - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="F:Bot.RegisterHandler.RegisterState.Start">
             Estado antes de mandar el token
         </member>
         <member name="F:Bot.RegisterHandler.RegisterState.ConfirmingToken">
             Estado mientras el bot espera y confirma un token
         </member>
->>>>>>> master
         <member name="P:Bot.RegisterHandler.Data">
             <summary>
             Los datos que va obteniendo el comando en los diferentes estados.
@@ -206,26 +184,19 @@
             <summary>
             Constructor de la clase RegisterHandler
             </summary>
-<<<<<<< HEAD
-            <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-=======
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
->>>>>>> master
         </member>
         <member name="M:Bot.RegisterHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-<<<<<<< HEAD
-=======
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
         <member name="T:Bot.RegisterHandler.RegisterData">
             <summary>
             Clase para almacenar la data relacionada al registro
             </summary>
->>>>>>> master
         </member>
         <member name="P:Bot.RegisterHandler.RegisterData.Token">
             <summary>
@@ -241,21 +212,14 @@
             <summary>
             Constructor de la clase StartHandler
             </summary>
-<<<<<<< HEAD
-            <param name="condition">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-=======
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
->>>>>>> master
         </member>
         <member name="M:Bot.StartHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-<<<<<<< HEAD
-=======
             <param name="response">La respuesta al mensaje procesado.</param>
->>>>>>> master
         </member>
         <member name="T:Bot.Company">
             <summary>
@@ -308,11 +272,7 @@
         </member>
         <member name="M:Bot.Company.DeleteUser(Bot.User)">
             <summary>
-<<<<<<< HEAD
-            Método que se encarga de eliminar un uusario del conjunto usuarios de la clase Empresa.
-=======
             Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
->>>>>>> master
             </summary>
             <param name="user">Clase Usuario.</param>
             <returns></returns>
@@ -463,11 +423,7 @@
             </summary>
             <returns>String con todo los materiales enumerados</returns>
         </member>
-<<<<<<< HEAD
-        <member name="M:Bot.Publication.ClosePublication(Bot.RoleEntrepreneur)">
-=======
         <member name="M:Bot.Publication.ClosePublication">
->>>>>>> master
             <summary>
             Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
             llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
@@ -497,11 +453,7 @@
         <member name="M:Bot.Publication.SetInterestedPerson(Bot.RoleEntrepreneur)">
             <summary>
             Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
-<<<<<<< HEAD
-            Debe ser llamado por el método AskContactToPublication de la clase RolEmprendedor.
-=======
             Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
->>>>>>> master
             </summary>
             <param name="interestedPerson">InterestedPerson</param>
         </member>
@@ -620,15 +572,12 @@
             Diccionario que contiene el token que se relaciona con la empresa
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="P:Bot.SessionRelated.Instance">
             <summary>
             Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
             </summary>
             <value>La instancia inicializada</value>
         </member>
->>>>>>> master
         <member name="M:Bot.SessionRelated.#ctor">
             <summary>
             Constructor de la clase SessionRelated
@@ -669,8 +618,6 @@
             <param name="id">Id del usuario</param>
             <returns>La informacion del usuario</returns>
         </member>
-<<<<<<< HEAD
-=======
         <member name="M:Bot.SessionRelated.ReturnCompany(System.String)">
             <summary>
             Metodo para retornar la Company asociada al token generado
@@ -683,7 +630,6 @@
             Rubro
             </summary>
         </member>
->>>>>>> master
         <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,System.Int32,System.String,Bot.GeoLocation,System.String,System.String)">
             <summary>
             /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
@@ -705,25 +651,6 @@
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
             <summary>
-<<<<<<< HEAD
-            Método para agregarle espcializaciones al empresario
-            </summary>
-            <param name="specializations"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.GetReport">
-            <summary>
-            Método para obtener el reporte del emprendedor 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.SearchingMaterials(System.String)">
-            <summary>
-            Método para buscar por materiales o por ubicación
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.SaveHistorialPublication(Bot.Publication)">
-=======
             Método para agregarle espcializaciones al emprendedor
             </summary>
             <param name="specializations"></param>
@@ -741,17 +668,12 @@
             <returns></returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
->>>>>>> master
             <summary>
             Método público que guarda las Publicaciones adquiridas por el emprendedor.
             </summary>
             <param name="publication">Publicación cerrada.</param>
         </member>
-<<<<<<< HEAD
-        <member name="M:Bot.RoleEntrepreneur.AskContactToPublication(Bot.Publication)">
-=======
         <member name="M:Bot.RoleEntrepreneur.ContactCompany(Bot.Publication)">
->>>>>>> master
             <summary>
             Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
             como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo
@@ -834,15 +756,9 @@
             </summary>
         </member>
         <member name="T:Bot.CompanyReport">
-<<<<<<< HEAD
             <summary>
             clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. tambien esta clase implementa la interfaz IReport y cumple con el patron ISP.
             </summary>
-=======
-             <summary>
-            clase ReporteEmpresa que implementa la interfaz de IReporte
-             </summary>
->>>>>>> master
         </member>
         <member name="F:Bot.CompanyReport.company">
             <summary>
@@ -863,11 +779,7 @@
         </member>
         <member name="T:Bot.EntrepreneurReport">
             <summary>
-<<<<<<< HEAD
             clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. esta clase tambien implementa la interfaz IReport y cumple con el patron ISP.
-=======
-            clase reporte emprendedor que hereda de la interfaz iReport
->>>>>>> master
             </summary>
         </member>
         <member name="M:Bot.EntrepreneurReport.#ctor(Bot.RoleEntrepreneur)">
@@ -902,26 +814,26 @@
         </member>
         <member name="T:Bot.RoleAdmin">
             <summary>
-            clase RoleAdmin que hereda de la clase Role
+            Clase RoleAdmin que hereda de la clase Role
             </summary>
         </member>
         <member name="F:Bot.RoleAdmin.globalRatingsList">
             <summary>
-            se inicializa la lista globalRatingsList
+            Se inicializa la lista globalRatingsList
             </summary>
             <typeparam name="string"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Bot.RoleAdmin.GenerateToken(Bot.Company)">
             <summary>
-            metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
+            Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
             </summary>
             <param name="company"></param>
             <returns></returns>
         </member>
         <member name="M:Bot.RoleAdmin.CodeGeneratortoUserCompany(System.Collections.Generic.List{System.String})">
             <summary>
-            metodo estatico para generar un string alfanumerico unico para una lista dada.
+            Metodo estatico para generar un string alfanumerico unico para una lista dada.
             </summary>
             <param name="company"></param>
             <param name="tokens"></param>
@@ -929,17 +841,13 @@
         </member>
         <member name="M:Bot.RoleAdmin.DeleteRating(System.String)">
             <summary>
-            metodo para eliminar las habilitaciones a la lista "globalRatingsList" 
+            Metodo para eliminar las habilitaciones a la lista "globalRatingsList" 
             </summary>
             <param name="rating"></param>
         </member>
         <member name="T:Bot.User">
             <summary>
-<<<<<<< HEAD
             Clase encargada de representar al usuario (componiendo id y role). Esta cumple con el patron SRP y Expert 
-=======
-            Clase encargada de representar al usuario (componiendo id y role).
->>>>>>> master
             </summary>
         </member>
         <member name="P:Bot.User.Id">
@@ -967,8 +875,6 @@
             Clase UserRelated que contiene informacion acerca del usuario.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="P:Bot.UserRelated.Channel">
             <summary>
             Almacena el canal de interaccion con el bot
@@ -987,14 +893,11 @@
             </summary>
             <value>La instancia inicializada</value>
         </member>
->>>>>>> master
         <member name="M:Bot.UserRelated.#ctor">
             <summary>
             Constructor de la clase UserRelated.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="M:Bot.UserRelated.ChangeRoleToUserCompany(Bot.Company)">
             <summary>
             Metodo para cambiar el rol del usuario a UserCompany
@@ -1015,6 +918,5 @@
             <param name="certification">Certificacion</param>
             <param name="specialization">Especializacion</param>
         </member>
->>>>>>> master
     </members>
 </doc>
