@@ -1,3 +1,4 @@
+/*
 namespace Bot
 {
     /// <summary>
@@ -25,3 +26,4 @@ namespace Bot
 
     }
 }
+*/

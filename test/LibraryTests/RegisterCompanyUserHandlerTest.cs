@@ -25,7 +25,8 @@ namespace BotTests
 
             newRole = new RoleUserCompany(company, "Seba", 123);
 
-            role = new RoleEntrepreneur("name", 123);
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
+            role = new RoleEntrepreneur("name", 123, "carpintero", entrepreneurLocation, "oficial", "lustrado");
             usuario = new User("Seba", 123, role);
             userRelated = UserRelated.Instance;
             userRelated.User = usuario;

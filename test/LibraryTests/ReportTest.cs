@@ -11,8 +11,10 @@ namespace BotTests
         RoleEntrepreneur entrepreneur;
 
         [SetUp]
+        /// <summary>
+        /// se instancian las variables que se van a usar en los test
+        /// </summary>
         public void Setup()
-
         {
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo", "Montevideo");
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
@@ -24,9 +26,11 @@ namespace BotTests
         }
 
         [Test]
+        /// <summary>
+        /// test de reporte empresa cuando la publicacion esta cerrada
+        /// </summary>
         public void CompanyReportClosedPublicationTest()
         {
-
             publicationTest.ClosePublication(entrepreneur);
             CompanyReport reporte = new CompanyReport(company);
             String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias1- Madera de pino";
@@ -35,6 +39,9 @@ namespace BotTests
         }
 
         [Test]
+        /// <summary>
+        /// test de reporte empresa cuando la publicacion no esta cerrada
+        /// </summary>
         public void CompanyReportPublicationNotClosedTest()
         {
             CompanyReport reporte = new CompanyReport(company);

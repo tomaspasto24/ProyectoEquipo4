@@ -10,6 +10,8 @@ namespace BotTests
         GeoLocation location;
         Company companyTest;
         Material initialMaterial;
+        RoleEntrepreneur entrepreneur;
+
 
         [SetUp]
         public void Setup()
@@ -17,6 +19,9 @@ namespace BotTests
             location = new GeoLocation("Universidad Católica", "Montevideo", "Montevideo");
             companyTest = new Company("Test", "itemTest", location, "093929434");
             initialMaterial = new Material("Wood", 15, 0);
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
+            entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
+
         }
 
         [Test]
@@ -32,9 +37,9 @@ namespace BotTests
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
             Assert.That(publicationToCompare.Date is DateTime);
-            
+
             Assert.IsNotNull(publicationToCompare);
-            Assert.IsNotNull(PublicationSet.listPublications);
+            Assert.IsNotNull(PublicationSet.ListPublications);
             Assert.That(publicationToCompare.ReturnListRatings() is not null);
             Assert.That(publicationToCompare.DeleteMaterial(0));
         }
@@ -49,11 +54,11 @@ namespace BotTests
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
-            PublicationSet.listPublications[0].AddMaterial(material1);
-            PublicationSet.listPublications[0].AddMaterial(material2);
-            PublicationSet.listPublications[0].AddMaterial(material3);
+            PublicationSet.ListPublications[0].AddMaterial(material1);
+            PublicationSet.ListPublications[0].AddMaterial(material2);
+            PublicationSet.ListPublications[0].AddMaterial(material3);
 
-            Assert.IsNotEmpty(PublicationSet.listPublications[0].ReturnListMaterials());
+            Assert.IsNotEmpty(PublicationSet.ListPublications[0].ReturnListMaterials());
         }
 
         [Test]
@@ -62,9 +67,9 @@ namespace BotTests
             Publication publicationToCompare;
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
 
-            Assert.IsNull(publicationToCompare.ClosePublication());
-            Assert.IsTrue(publicationToCompare.IsClosed);     
-            Assert.That(publicationToCompare.ClosedDate is DateTime);                  
+            Assert.IsNull(publicationToCompare.ClosePublication(entrepreneur));
+            Assert.IsTrue(publicationToCompare.IsClosed);
+            Assert.That(publicationToCompare.ClosedDate is DateTime);
         }
 
         [Test]
@@ -75,10 +80,10 @@ namespace BotTests
             RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", 20, "Prueba", location, "Prueba", "Prueba");
 
             entrepreneur.AskContactToPublication(publicationToCompare);
-            Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
+            Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication(entrepreneur));
 
             Assert.IsNotNull(publicationToCompare.interestedPerson);
-            Assert.That(entrepreneur.ListHistorialPublications.Contains(publicationToCompare));    
+            Assert.That(entrepreneur.ListHistorialPublications.Contains(publicationToCompare));
         }
     }
 }

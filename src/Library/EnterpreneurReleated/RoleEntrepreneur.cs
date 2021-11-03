@@ -10,24 +10,34 @@ namespace Bot
         private static int entrepreneurAccountant = 0;
         private GeoLocation location;
         public string heading; //rubro
-        private List<string> certification;
-        private List<string> specializations;
+        private List<Publication> listHistorialPublications = new List<Publication>();
+        private List<string> certification = new List<string>();
+        private List<string> specializations = new List<string>();
+
+        public List<Publication> ListHistorialPublications
+        {
+            get
+            {
+                return this.listHistorialPublications;
+            }
+        }
         /// <summary>
-        /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
+        /// /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
         /// y suma un valor al contador de emprendedores estático
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
         /// <param name="heading"></param>
         /// <param name="geolocation"></param>
         /// <param name="certification"></param>
-        /// <param name="specializations"></param>
+        /// <param name="specialization"></param>
+        /// <returns></returns>
         public RoleEntrepreneur(string name, int id, string heading, GeoLocation geolocation, string certification, string specialization) : base(name, id)
         {
             this.location = geolocation;
             this.heading = heading;
-            AddCertification(certification);
-            AddSpecialization(specialization);
+            this.AddCertification(certification);
+            this.AddSpecialization(specialization);
             entrepreneurAccountant++;
         }
         /// <summary>
@@ -36,7 +46,7 @@ namespace Bot
         /// <param name="certification"></param>
         public void AddCertification(string certification)
         {
-            this.certification.Add(certification);
+            if (certification != null) this.certification.Add(certification);
         }
         /// <summary>
         /// Método para agregarle espcializaciones al empresario
@@ -44,7 +54,7 @@ namespace Bot
         /// <param name="specializations"></param>
         public void AddSpecialization(string specializations)
         {
-            this.specializations.Add(specializations);
+            if (specializations != null) this.specializations.Add(specializations);
         }
 
         /// <summary>
@@ -68,8 +78,30 @@ namespace Bot
         /// <returns></returns>
         public List<Publication> SearchingMaterials(string wordToSearch)
         {
-            return Search(wordToSearch);
+            //return Search(wordToSearch);
+            return null;
         }
-        //VER A QUÉ SEARCH LLAMAR SEGUN SI ES POR UBICACION O POR MATERIAL
+
+        /// <summary>
+        /// Método público que guarda las Publicaciones adquiridas por el emprendedor.
+        /// </summary>
+        /// <param name="publication">Publicación cerrada.</param>
+        public void SaveHistorialPublication(Publication publication)
+        {
+            listHistorialPublications.Add(publication);
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
+        /// como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo
+        /// el contacto de la empresa dueña de la publicación.
+        /// </summary>
+        /// <param name="publication"></param>
+        public string AskContactToPublication(Publication publication)
+        {
+            this.SaveHistorialPublication(publication);
+            publication.SetInterestedPerson(this);
+            return publication.Company.ReturnContact();
+        }
     }
 }
