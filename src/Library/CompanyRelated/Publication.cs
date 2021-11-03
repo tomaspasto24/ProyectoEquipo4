@@ -41,6 +41,13 @@ namespace Bot
                 return this.company;
             }
         }
+        public GeoLocation Location
+        {
+            get
+            {
+                return this.location;
+            }
+        }
 
         public DateTime Date
         {

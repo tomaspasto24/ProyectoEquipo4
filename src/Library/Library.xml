@@ -239,7 +239,7 @@
         </member>
         <member name="M:Bot.Company.DeleteUser(Bot.User)">
             <summary>
-            Método que se encarga de eliminar un uusario del conjunto usuarios de la clase Empresa.
+            Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
             </summary>
             <param name="user">Clase Usuario.</param>
             <returns></returns>
@@ -334,6 +334,14 @@
             </summary>
             <returns>String con todo los materiales enumerados</returns>
         </member>
+        <member name="M:Bot.Publication.ClosePublication">
+            <summary>
+            Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
+            llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
+            de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
+            </summary>
+            <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
+        </member>
         <member name="M:Bot.Publication.AddRating(System.String)">
             <summary>
             Agrega una habilitación a la lista de Habilitaciones de la clase Material.
@@ -352,6 +360,13 @@
             Retorna la lista de Habilitaciones que tiene el material.s
             </summary>
             <returns>String</returns>
+        </member>
+        <member name="M:Bot.Publication.SetInterestedPerson(Bot.RoleEntrepreneur)">
+            <summary>
+            Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
+            Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
+            </summary>
+            <param name="interestedPerson">InterestedPerson</param>
         </member>
         <member name="T:Bot.PublicationSet">
             <summary>
@@ -508,6 +523,61 @@
             <param name="id">Id del usuario</param>
             <returns>La informacion del usuario</returns>
         </member>
+        <member name="F:Bot.RoleEntrepreneur.heading">
+            <summary>
+            Rubro
+            </summary>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,System.Int32,System.String,Bot.GeoLocation,System.String,System.String)">
+            <summary>
+            Constructor de la clase Entrepreneur, setea los valores de los parámetros 
+            y suma un valor al contador de emprendedores estático
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="heading"></param>
+            <param name="geolocation"></param>
+            <param name="certification"></param>
+            <param name="specializations"></param>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.AddCertification(System.String)">
+            <summary>
+            Método para agregarle certificaciones al emprendedor
+            </summary>
+            <param name="certification"></param>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
+            <summary>
+            Método para agregarle espcializaciones al emprendedor
+            </summary>
+            <param name="specializations"></param>
+        </member>
+        <member name="P:Bot.RoleEntrepreneur.EntrepreneurAccountant">
+            <summary>
+            Devuelve el contador estático que representa la cantidad de emprendedores registrados
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
+            <summary>
+            Método público que guarda las Publicaciones adquiridas por el emprendedor.
+            </summary>
+            <param name="publication">Publicación cerrada.</param>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.ContactCompany(Bot.Publication)">
+            <summary>
+            Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
+            como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo
+            el contacto de la empresa dueña de la publicación.
+            </summary>
+            <param name="publication"></param>
+        </member>
         <member name="T:Bot.GeoLocation">
             <summary>
             Clase que depende de la API Location de la UCU.
@@ -608,30 +678,6 @@
             <summary>
             cambiar name e id que recibe base
             </summary>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,System.Int32,System.String,Bot.GeoLocation,System.String,System.String)">
-            <summary>
-            Constructor de la clase Entrepreneur, setea los valores de los parámetros 
-            y suma un valor al contador de emprendedores estático
-            </summary>
-            <param name="username"></param>
-            <param name="password"></param>
-            <param name="heading"></param>
-            <param name="geolocation"></param>
-            <param name="certification"></param>
-            <param name="specializations"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
-            <summary>
-            Método para agregarle espcializaciones al empresario
-            </summary>
-            <param name="specializations"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.GetReport">
-            <summary>
-            Método para obtener el reporte del emprendedor 
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Bot.User">
             <summary>
