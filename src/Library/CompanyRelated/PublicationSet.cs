@@ -16,13 +16,13 @@ namespace Bot
         /// manipular eficientemente las Publicaciones.
         /// </summary>
         /// <value></value>
-        // public static List<Publication> ListPublications
-        // {
-        //     get
-        //     {
-        //         return listPublications;
-        //     }
-        // }
+        public static List<Publication> ListPublications
+        {
+            get
+                {
+                    return listPublications;
+                }
+        }
 
         /// <summary>
         /// Método que agrega una publicación a la lista publicaciones, toma como parámetro 

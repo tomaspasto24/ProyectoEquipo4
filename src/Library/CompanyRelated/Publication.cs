@@ -125,10 +125,13 @@ namespace Bot
             if(interestedPerson != null)
             {
                 this.company.AddListHistorialPublications(this);
-                this.interestedPerson.SaveHistorialPublication(this);
+                this.interestedPerson.AddHistorialPublication(this);
                 return interestedPerson;
             }
-            else return null;
+            else 
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -177,7 +180,7 @@ namespace Bot
 
         /// <summary>
         /// Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
-        /// Debe ser llamado por el método AskContactToPublication de la clase RolEmprendedor.
+        /// Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
         /// </summary>
         /// <param name="interestedPerson">InterestedPerson</param>
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)

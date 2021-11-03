@@ -19,7 +19,7 @@ namespace Bot
             StringBuilder report = new StringBuilder("Materiales consumidos en los ultimos 30 dias por el emprendedor: ");
             int contador = 0;
 
-            foreach (Publication publication in this.emprendedor.ListHistorialPublications)
+            foreach (Publication publication in this.emprendedor.listHistorialPublications)
             {
                 if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)

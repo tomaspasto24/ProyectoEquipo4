@@ -74,11 +74,11 @@ namespace BotTests
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
             RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", 20, "Prueba", location, "Prueba", "Prueba");
 
-            entrepreneur.AskContactToPublication(publicationToCompare);
+            entrepreneur.ContactCompany(publicationToCompare);
             Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
 
             Assert.IsNotNull(publicationToCompare.interestedPerson);
-            Assert.That(entrepreneur.ListHistorialPublications.Contains(publicationToCompare));    
+            Assert.That(entrepreneur.listHistorialPublications.Contains(publicationToCompare));    
         }
     }
 }
