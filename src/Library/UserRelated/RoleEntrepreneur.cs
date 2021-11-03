@@ -11,8 +11,9 @@ namespace Bot
         private GeoLocation location;
         public string heading; //rubro
         private List<Publication> listHistorialPublications = new List<Publication>();
-        private List<string> certification;
-        private List<string> specializations;
+        private List<string> certification = new List<string>();
+        private List<string> specializations = new List<string>();
+
 
         public List<Publication> ListHistorialPublications
         {

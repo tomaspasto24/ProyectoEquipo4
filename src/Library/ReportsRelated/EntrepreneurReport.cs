@@ -10,14 +10,14 @@ namespace Bot
     /// </summary>
     public class EntrepreneurReport : IReport
     {
-        private RoleEntrepreneur emprendedor;
+        private RoleEntrepreneur entrepreneur;
         /// <summary>
         /// constructor de la clase emprendedor
         /// </summary>
-        /// <param name="emprendedor"></param>
-        public EntrepreneurReport(RoleEntrepreneur emprendedor)
+        /// <param name="entrepreneur"></param>
+        public EntrepreneurReport(RoleEntrepreneur entrepreneur)
         {
-            this.emprendedor = emprendedor;
+            this.entrepreneur = entrepreneur;
         }
         /// <summary>
         /// metodo para entregar el reporte del emprendedor
@@ -25,19 +25,27 @@ namespace Bot
         /// <returns></returns>
         public String GiveReport()
         {
-            StringBuilder report = new StringBuilder("Materiales consumidos en los ultimos 30 dias por el emprendedor: ");
+            StringBuilder report = new StringBuilder();
+            String result;
             int contador = 0;
 
-            foreach (Publication publication in this.emprendedor.ListHistorialPublications)
+            foreach (Publication publication in this.entrepreneur.ListHistorialPublications)
             {
                 if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)
                 {
-                    report.Append($"{++contador} - {publication.Title} - {publication.ClosedDate} \n");
-                    return "";
+                    report.Append($"#{++contador} - {publication.Title} - {publication.ClosedDate} \n");
                 }
             }
-            return report.ToString();
+            if (report.Length > 0)
+            {
+                result = ($"Materiales consumidos en los ultimos 30 dias por el emprendedor: {this.entrepreneur.Name} {report} ");
+            }
+            else
+            {
+                result = $"El emprendedor: {this.entrepreneur.Name}, no tiene publicaciones asignadas en los ultimos 30 dias";
+            }
+            return result;
         }
     }
 }

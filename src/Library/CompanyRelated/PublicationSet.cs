@@ -9,7 +9,7 @@ namespace Bot
     /// </summary>
     public static class PublicationSet
     {
-        private static List<Publication> listPublications;
+        private static List<Publication> listPublications = new List<Publication>();
 
         /// <summary>
         /// Get público que retorna la lista de publicaciones, esto para que la clase Búsqueda pueda 
@@ -33,15 +33,18 @@ namespace Bot
         /// <param name="company">Clase Empresa.</param>
         /// <param name="location">Clase Ubicación.</param>
         /// <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
-        public static void AddPublication(string title, Company company, GeoLocation location, Material material)
+        public static Publication AddPublication(string title, Company company, GeoLocation location, Material material)
         {
-            if(company != null)
+            Publication publication = null;
+            if (company != null)
             {
-                Publication publication = new Publication(title, company, location, material);
+                publication = new Publication(title, company, location, material);
                 listPublications.Add(publication);
                 company.AddOwnPublication(publication);
             }
-        } 
+            return publication;
+
+        }
 
         /// <summary>
         /// Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
@@ -55,7 +58,7 @@ namespace Bot
         {
             return listPublications.Remove(listPublications[indicePublicacion]);
         }
-        
+
         /// <summary>
         /// Elimina una Publicación de la lista publicaciones.
         /// </summary>
@@ -77,7 +80,7 @@ namespace Bot
             StringBuilder resultado = new StringBuilder("Publicaciones: \n");
             int contador = 0;
 
-            foreach(Publication publication in listPublications)
+            foreach (Publication publication in listPublications)
             {
                 resultado.Append($"{++contador}- {publication.Title} \n");
             }

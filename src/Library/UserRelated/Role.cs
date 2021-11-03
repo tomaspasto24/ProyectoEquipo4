@@ -16,5 +16,12 @@ namespace Bot
             this.name = name;
             this.id = id;
         }
+        public String Name
+        {
+            get
+            {
+                return this.name;
+            }
+        }
     }
 }

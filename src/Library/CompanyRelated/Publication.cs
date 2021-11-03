@@ -129,14 +129,15 @@ namespace Bot
         /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
         /// </summary>
         /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
-        public RoleEntrepreneur ClosePublication()
+        public Publication ClosePublication(RoleEntrepreneur interestedPerson)
         {
             this.isClosed = true;
             this.closedDate = DateTime.Now;
+            this.interestedPerson = interestedPerson;
             PublicationSet.DeletePublication(this);
             this.company.AddListHistorialPublications(this);
-            // this.interestedPerson.SaveHistorialPublication(this);
-            return interestedPerson;
+            this.interestedPerson.SaveHistorialPublication(this);
+            return this;
         }
 
         /// <summary>
