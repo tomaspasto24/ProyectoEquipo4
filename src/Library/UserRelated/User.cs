@@ -22,7 +22,10 @@ namespace Bot
                 return this.id;
             }
         }
-
+        /// <summary>
+        /// Propiedad para tener get público el atributo name.
+        /// </summary>
+        /// <value></value>
         public string Name
         {
             get

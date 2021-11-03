@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 
-
 namespace Bot
 {
     /// <summary>
@@ -17,13 +16,12 @@ namespace Bot
         private Company company;  //arraylist con la data para generar el reporte 
 
         /// <summary>
-        /// constructor de la clase
+        /// Constructor de la clase CompanyReport
         /// </summary>
-        /// <param name="publications"></param>
+        /// <param name="company"></param>
         public CompanyReport(Company company)
         {
             this.company = company;
-            //Publication.Title + Publication.Date //comparo esta fecha con la de un mes atras;
         }
         /// <summary>
         /// método de la clase ReporteEmpresa
@@ -31,7 +29,8 @@ namespace Bot
         /// <returns></returns>
         public String GiveReport()
         {
-            StringBuilder report = new StringBuilder("Publicaciones cerradas de los ultimos 30 dias de la empresa: " + company.Name);
+            String result;
+            StringBuilder report = new StringBuilder();
             int contador = 0;
 
             foreach (Publication publication in this.company.GetListHistorialPublications())
@@ -40,10 +39,18 @@ namespace Bot
                 && publication.IsClosed)
                 {
                     report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");
-                    return "";
                 }
+
             }
-            return report.ToString();
+            if (report.Length > 0)
+            {
+                result = "Publicaciones cerradas de los ultimos 30 dias de la empresa: " + company.Name + "\n" + report.ToString();
+            }
+            else
+            {
+                result = "No hay publicaciones cerradas en los ultimos 30 dias para la empresa: " + company.Name;
+            }
+            return result;
         }
     }
 }
