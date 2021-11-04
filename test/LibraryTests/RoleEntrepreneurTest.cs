@@ -29,22 +29,6 @@ namespace BotTests
         }
 
         [Test]
-        public void AddCertificationTest()
-        {
-            certification = "Manejar expliosivos";
-            emprendedor.AddCertification(certification);
-            Assert.AreEqual(emprendedor.ReturnCertification(), "Manejar explisivos");
-        }
-
-        [Test]
-        public void AddSpecializationTest()
-        {
-            specialization = "Quimica";
-            emprendedor.AddSpecialization(specialization);
-            Assert.AreEqual(emprendedor.ReturnSpecialization(), "Quimica");
-        }
-
-        [Test]
         public void AddListHistorialPublicationsTest1()
         {
             RoleEntrepreneur emprendedor2 = new RoleEntrepreneur("Juan", 2, "Industria", ubicacionParaPruebas, "Uso de corrosivos", "");
@@ -66,11 +50,7 @@ namespace BotTests
             listaPublicacionesEsperada.Add(publicacion);
             Assert.AreEqual(listaPublicacionesEsperada, emprendedor.ReturnListHistorialPublications());
         }
-        [Test]
-        public void EntrepreneurAccountantTest()
-        {
-            Assert.AreEqual(1, RoleEntrepreneur.EntrepreneurAccountant);
-        }
+        
         [Test]
         public void ContactCompanyTest()
         {

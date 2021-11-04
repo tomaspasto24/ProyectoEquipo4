@@ -679,10 +679,17 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
+        <member name="M:Bot.RoleEntrepreneur.SearchingByMaterials(System.String)">
             <summary>
-            
+            Buscar publicaciones por material
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.RoleEntrepreneur.SearchingByLocation(System.String)">
+            <summary>
+            Buscar publicaciones por ubicación
+            </summary>
+            <param name="addresToSearch"></param>
             <returns></returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
