@@ -7,7 +7,7 @@ namespace BotTests
 {
     public class RoleEntrepreneurTests
     {
-        RoleEntrepreneur emprendedor; 
+        RoleEntrepreneur emprendedor;
         GeoLocation ubicacionParaPruebas;
         string name;
         int id;
@@ -79,6 +79,6 @@ namespace BotTests
             Publication publicacion = new Publication("Publicación de plástico", pvcCompany, ubicacionParaPruebas, pvc);
             Assert.AreEqual(pvcCompany.ReturnContact(), emprendedor.ContactCompany(publicacion));
         }
-        
+
     }
 }
