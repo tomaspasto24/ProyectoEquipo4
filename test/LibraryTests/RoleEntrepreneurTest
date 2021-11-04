@@ -79,6 +79,5 @@ namespace BotTests
             Publication publicacion = new Publication("Publicación de plástico", pvcCompany, ubicacionParaPruebas, pvc);
             Assert.AreEqual(pvcCompany.ReturnContact(), emprendedor.ContactCompany(publicacion));
         }
-        
     }
 }
