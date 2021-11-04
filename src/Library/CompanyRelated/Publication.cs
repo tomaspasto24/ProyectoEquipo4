@@ -53,10 +53,11 @@ namespace Bot
                 return this.company;
             }
         }
+
         /// <summary>
-        /// Propiedad para tener get público el atributo Location.
+        /// Get público que retorna la ubicación de la publicación.
         /// </summary>
-        /// <value></value>
+        /// <value>GeoLocation</value>
         public GeoLocation Location
         {
             get
