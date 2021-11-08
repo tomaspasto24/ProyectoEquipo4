@@ -29,7 +29,7 @@ namespace BotTests
             Assert.IsNotNull(Materialtest.Quantity);
             Assert.That(Materialtest.Quantity == 10);
 
-            Assert.IsNotNull(Materialtest.ReturnKeyWords());
+            Assert.IsNotNull(Materialtest.KeyWords);
         }
 
         /// <summary>
@@ -45,11 +45,11 @@ namespace BotTests
             Materialtest.AddKeyWord("TestKeyWord1");
             Materialtest.AddKeyWord("TestKeyWord2");
 
-            Assert.IsNotEmpty(Materialtest.ReturnKeyWords());
-            Assert.That(Materialtest.ReturnKeyWords().Count == 3);
+            Assert.IsNotEmpty(Materialtest.KeyWords);
+            Assert.That(Materialtest.KeyWords.Count == 3);
 
-            Assert.IsTrue(Materialtest.DeleteKeyWord(0));
-            Assert.That(Materialtest.ReturnKeyWords().Count == 2);
+            Assert.IsTrue(Materialtest.DeleteKeyWord("TestKeyWord"));
+            Assert.That(Materialtest.KeyWords.Count == 2);
         }
     }
 }
