@@ -10,36 +10,35 @@ namespace Bot
     public class Company
     {
         private static List<Company> registeredCompanies = new List<Company>();
-        private static int counterCompanies = 0; // contadorEmpresas
         private string name;
-        private string item; //rubro 
+        private string item;  
         private GeoLocation location;
         private string contact;
-        private List<User> setUsers = new List<User>(); //conjunto usuarios
-        private List<Publication> listOwnPublications = new List<Publication>(); //conjunto publicaciones propias de la empresa
-        private List<Publication> listHistorialPublications = new List<Publication>(); //historial de publicaciones
+        private List<User> setUsers = new List<User>(); // Conjunto usuarios
+        private List<Publication> listOwnPublications = new List<Publication>(); // Conjunto publicaciones propias de la empresa
+        private List<Publication> listHistorialPublications = new List<Publication>(); // Historial de publicaciones
 
         /// <summary>
-        /// Contador estático que representa el número de Empresas creadas.
+        /// Obtiene nombre de la clase Empresa.
         /// </summary>
-        /// <value>Entero.</value>
-        public static int CounterCompanies
-        {
-            get
-            {
-                return counterCompanies;
-            }
-        }
-
-        /// <summary>
-        /// Atributo nombre de la clase Empresa.
-        /// </summary>
-        /// <value>String</value>
+        /// <value>Cadena de caracteres.</value>
         public String Name
         {
             get
             {
-                return name;
+                return this.name;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene objeto ListHistorialPublications de la clase Empresa.
+        /// </summary>
+        /// <returns>Lista Publicación.</returns>
+        public IReadOnlyList<Publication> ListHistorialPublications
+        {
+            get
+            {
+                return this.listHistorialPublications.AsReadOnly();
             }
         }
 
@@ -47,18 +46,17 @@ namespace Bot
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
         /// contador de empresas estático.
         /// </summary>
-        /// <param name="nombre">Nombre de la Empresa.</param>
-        /// <param name="rubro">Rubro de la Empresa.</param>
+        /// <param name="name">Nombre de la Empresa.</param>
+        /// <param name="item">Rubro de la Empresa.</param>
         /// <param name="location">Ubicación establecida de la Empresa.</param>
-        /// <param name="contacto">Contacto (Teléfono) de la Empresa.</param>
-        public Company(string nombre, string rubro, GeoLocation location, string contacto)
+        /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
+        public Company(string name, string item, GeoLocation location, string contact)
         {
-            this.name = nombre;
-            this.item = rubro;
+            this.name = name;
+            this.item = item;
             this.location = location;
-            this.contact = contacto;
+            this.contact = contact;
             this.RegisterCompany();
-            counterCompanies++;
         }
 
         /// <summary>
@@ -105,7 +103,7 @@ namespace Bot
         /// Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
         /// </summary>
         /// <param name="user">Clase Usuario.</param>
-        /// <returns></returns>
+        /// <returns>Retorna <c>True</c> en caso de que pueda eliminarse, <c>False</c> en caso contrario.</returns>
         public bool DeleteUser(User user)
         {
             return this.setUsers.Remove(user);
@@ -114,7 +112,7 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de agregar una publicación propia de la empresa.
         /// </summary>
-        /// <param name="publication">Publication</param>
+        /// <param name="publication">Publicación.</param>
         public void AddOwnPublication(Publication publication)
         {
             this.listOwnPublications.Add(publication);
@@ -123,10 +121,13 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de retornar la lista de publicaciones propia de la clase Empresa.
         /// </summary>
-        /// <returns>List Publication </returns>
-        public List<Publication> GetListOwnPublications()
+        /// <returns>Lista Publicación.</returns>
+        public IReadOnlyList<Publication> ListOwnPublications
         {
-            return this.listOwnPublications;
+            get
+            {
+                return this.listOwnPublications.AsReadOnly();
+            }
         }
 
         /// <summary>
@@ -136,15 +137,6 @@ namespace Bot
         public void AddListHistorialPublications(Publication publication)
         {
             this.listHistorialPublications.Add(publication);
-        }
-
-        /// <summary>
-        /// Método que devuelve el objeto ListHistorialPublications de la clase Empresa.
-        /// </summary>
-        /// <returns>List Publication</returns>
-        public List<Publication> GetListHistorialPublications()
-        {
-            return this.listHistorialPublications;
         }
     }
 }
