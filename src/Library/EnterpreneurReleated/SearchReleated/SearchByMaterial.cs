@@ -28,7 +28,7 @@ namespace Bot
                     /// <returns></returns>       
                     foreach (Material material in publication.ReturnListMaterials())
                     {
-                        if (material.ReturnKeyWords().Contains(wordToSearch))
+                        if (material.KeyWords.Contains(wordToSearch))
                         {
                             result.Add(publication);
                             exit = true; 
