@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Bot
 {
@@ -16,9 +14,9 @@ namespace Bot
         private List<string> keyWords = new List<string>(); // Palabras clave
 
         /// <summary>
-        /// Devuelve atributo nombre del la clase Material.
+        /// Obtiene nombre del la clase Material.
         /// </summary>
-        /// <value>String</value>
+        /// <value>String.</value>
         public string Name
         {
             get
@@ -28,9 +26,21 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve atributo cantidad del la clase Material.
+        /// Obitene todas las Palabras Clave que contiene el Material.
         /// </summary>
-        /// <value>Int</value>
+        /// <returns>Cadena de caracteres.</returns>
+        public IReadOnlyList<string> KeyWords
+        {
+            get
+            {
+                return this.keyWords.AsReadOnly();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene cantidad del la clase Material.
+        /// </summary>
+        /// <value>Entero.</value>
         public int Quantity
         {
             get
@@ -40,9 +50,9 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve Atributo precio del la clase Material.
+        /// Obtiene precio del la clase Material.
         /// </summary>
-        /// <value>Int</value>
+        /// <value>Entero.</value>
         public double Price
         {
             get
@@ -52,48 +62,36 @@ namespace Bot
         }
 
         /// <summary>
-        /// Constructor de la clase Material que se encarga de asignar valores a los 
-        /// atributos name, quantity y price. Construye el Material. En caso de no tener 
-        /// precio, se asigna 0 a su atributo.
+        /// Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
         /// </summary>
-        /// <param name="nombre">String nombre.</param>
-        /// <param name="cantidad">Int cantidad</param>
-        /// <param name="precio">Int precio</param>
-        public Material(string nombre, int cantidad, int precio)
+        /// <param name="name">String nombre.</param>
+        /// <param name="quantity">Entero cantidad.</param>
+        /// <param name="price">Entero precio.</param>
+        public Material(string name, int quantity, int price)
         {
-            this.name = nombre;
-            this.quantity = cantidad;
-            this.price = precio;   
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;   
         }
 
         /// <summary>
-        /// Agrega una palabra clave a la lista de palabras clave
+        /// Agrega una palabra clave a la lista de palabras clave.
         /// </summary>
-        /// <param name="palabraClave"></param>
-        public void AddKeyWord(string palabraClave) // Agregar palabras clave
+        /// <param name="keyWord"></param>
+        public void AddKeyWord(string keyWord) // Agregar palabras clave
         {
-            this.keyWords.Add(palabraClave);
+            this.keyWords.Add(keyWord);
         }
 
         /// <summary>
-        /// El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
+        /// El método busca si hay un valor del string ingresado como parámetro, en caso de que exista un elemento:
         /// lo elimina y retorna True. De lo contrario solamente retorna False.
         /// </summary>
-        /// <param name="indicePalabraClave">Indice de la palabra clave que se quiera eliminar.
-        /// Se obtiene con la función DevolverPalabrasClave.</param>
-        /// <returns></returns>
-        public bool DeleteKeyWord(int indicePalabraClave)
+        /// <param name="palabraClave">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
+        /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
+        public bool DeleteKeyWord(string palabraClave)
         {
-            return this.keyWords.Remove(keyWords[indicePalabraClave]);
-        }
-
-        /// <summary>
-        /// Método que devuelve todas las Palabras Clave que contiene el Material.
-        /// </summary>
-        /// <returns>String</returns>
-        public List<string> ReturnKeyWords() 
-        {
-            return this.keyWords;
+            return this.keyWords.Remove(palabraClave);
         }
     }
 }

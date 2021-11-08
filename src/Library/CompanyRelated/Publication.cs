@@ -12,7 +12,7 @@ namespace Bot
     {
         private string title;
         private List<Material> listMaterials = new List<Material>();
-        private List<string> listRatings = new List<string>(); // Lista Habilitaciones
+        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         private DateTime date;
         private DateTime closedDate;
@@ -119,7 +119,7 @@ namespace Bot
             this.date = DateTime.Now;
             this.closedDate = DateTime.MinValue;
             this.location = location;
-            AddMaterial(material);
+            this.AddMaterial(material);
             this.interestedPerson = null;
         }
 
@@ -129,7 +129,7 @@ namespace Bot
         /// <param name="material">Objeto Material</param>
         public void AddMaterial(Material material)
         {
-            listMaterials.Add(material);
+            this.listMaterials.Add(material);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Bot
         /// <returns></returns>
         public bool DeleteMaterial(int indiceMaterial)
         {
-            return listMaterials.Remove(listMaterials[indiceMaterial]);
+            return this.listMaterials.Remove(listMaterials[indiceMaterial]);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Bot
         /// <returns>String con todo los materiales enumerados</returns>
         public List<Material> ReturnListMaterials()
         {
-            return listMaterials;
+            return this.listMaterials;
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Bot
             {
                 this.company.AddListHistorialPublications(this);
                 this.interestedPerson.AddHistorialPublication(this);
-                return interestedPerson;
+                return this.interestedPerson;
             }
             else 
             {
@@ -186,7 +186,7 @@ namespace Bot
             if (RoleAdmin.globalRatingsList.Contains(habilitacion))
 
             {
-                listRatings.Add(habilitacion);
+                this.listQualifications.Add(habilitacion);
             }
             else
             {
@@ -201,7 +201,7 @@ namespace Bot
         /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
         public bool DeleteRating(int indiceHabilitacion)
         {
-            return listRatings.Remove(listRatings[indiceHabilitacion]);
+            return this.listQualifications.Remove(listQualifications[indiceHabilitacion]);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Bot
             StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
             int contador = 0;
 
-            foreach (string palabra in this.listRatings)
+            foreach (string palabra in this.listQualifications)
             {
                 resultado.Append($"{++contador}- {palabra} \n");
             }
