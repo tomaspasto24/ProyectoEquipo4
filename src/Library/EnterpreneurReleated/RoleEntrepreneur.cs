@@ -5,10 +5,15 @@ using System.Threading.Tasks;
 
 namespace Bot
 {
+    /*
+        En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
+        su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
+    */
     public class RoleEntrepreneur : Role
     {
-        private static int entrepreneurAccountant = 0;
         private GeoLocation location;
+        private SearchByLocation searchByLocation;
+        private SearchByMaterial searchByMaterial;
         /// <summary>
         /// Rubro
         /// </summary>
@@ -34,7 +39,6 @@ namespace Bot
             this.heading = heading;
             this.AddCertification(certification);
             this.AddSpecialization(specialization);
-            entrepreneurAccountant++;
         }
 
         /// <summary>
@@ -43,10 +47,8 @@ namespace Bot
         /// <param name="certification"></param>
         public void AddCertification(string certification)
         {
-            if (certification != null)
-            {
-                this.certification.Add(certification);
-            }
+
+            this.certification.Add(certification);
         }
         public List<string> ReturnCertification()
         {
@@ -59,10 +61,11 @@ namespace Bot
         /// <param name="specializations"></param>
         public void AddSpecialization(string specialization)
         {
-            if (specialization != null)
+            this.specializations.Add(specialization);
+            /*if (specialization != null)
             {
                 this.specializations.Add(specialization);
-            }
+            }*/
         }
 
         public List<string> ReturnSpecialization()
@@ -71,35 +74,21 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve el contador estático que representa la cantidad de emprendedores registrados
+        /// Buscar publicaciones por material
         /// </summary>
-        /// <value></value>
-        public static int EntrepreneurAccountant
+        /// <returns></returns>
+        public List<Publication> SearchingByMaterials(string wordToSearch)
         {
-            get
-            {
-                return entrepreneurAccountant;
-            }
+            return this.searchByMaterial.Search(wordToSearch); 
         }
-
         /// <summary>
-        /// Método para buscar por materiales o por ubicación
+        /// Buscar publicaciones por ubicación
         /// </summary>
+        /// <param name="addresToSearch"></param>
         /// <returns></returns>
-        /*public List<Publication> SearchingMaterials(string wordToSearch)
+        public List<Publication> SearchingByLocation(string addresToSearch)
         {
-            return Search(wordToSearch);  //VER A QUÉ SEARCH LLAMAR SEGUN SI ES POR UBICACION O POR MATERIAL
-        }*/
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public List<Publication> ReturnListHistorialPublications()
-        {
-            {
-                return this.listHistorialPublications;
-            }
+            return this.searchByLocation.Search(addresToSearch);
         }
 
         /// <summary>
@@ -110,7 +99,13 @@ namespace Bot
         {
             this.listHistorialPublications.Add(publication);
         }
-
+        
+        public List<Publication> ReturnListHistorialPublications()
+        {
+            {
+                return this.listHistorialPublications;
+            }
+        }
         /// <summary>
         /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
         /// como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo

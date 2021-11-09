@@ -4,16 +4,19 @@ using Bot;
 
 namespace BotTests
 {
+    /// <summary>
+    /// Clase ReportTest la cual se encarga de testear las funcionalidades de la clase EntrepreneurReport y CompanyReport.
+    /// </summary>
     public class ReportTest
     {
         Publication publicationTest;
         Company company;
         RoleEntrepreneur entrepreneur;
 
-        [SetUp]
         /// <summary>
-        /// se instancian las variables que se van a usar en los test
+        /// Método que crea y asgina las instancias a los atributos que seran utilizados para ejecutar los test.
         /// </summary>
+        [SetUp]
         public void Setup()
         {
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
@@ -25,10 +28,10 @@ namespace BotTests
             entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
         }
 
-        [Test]
         /// <summary>
-        /// test de reporte empresa cuando la publicacion esta cerrada
+        /// Test de reporte empresa cuando la publicacion esta cerrada.
         /// </summary>
+        [Test]
         public void CompanyReportClosedPublicationTest()
         {
             entrepreneur.ContactCompany(publicationTest);
@@ -39,20 +42,21 @@ namespace BotTests
             StringAssert.Contains(expected, reporte.GiveReport());
         }
 
-        [Test]
         /// <summary>
-        /// test de reporte empresa cuando la publicacion no esta cerrada
+        /// Test de reporte empresa cuando la publicacion no esta cerrada.
         /// </summary>
+        [Test]
         public void CompanyReportPublicationNotClosedTest()
         {
             CompanyReport reporte = new CompanyReport(company);
             String expected = "No hay publicaciones cerradas en los ultimos 30 dias para la empresa: Las Acacias";
             StringAssert.Contains(expected, reporte.GiveReport());
         }
-        [Test]
+
         /// <summary>
-        /// test del reporte emprendedor cuando la publicacion esta cerrada
+        /// Test del reporte emprendedor cuando la publicacion esta cerrada.
         /// </summary>
+        [Test]
         public void EntrepreneurReportClosedPublicationTest()
         {
             entrepreneur.ContactCompany(publicationTest);
@@ -62,10 +66,11 @@ namespace BotTests
             StringAssert.Contains(expected, reporte.GiveReport());
             //Assert.AreEqual(expected, reporte.GiveReport());
         }
-        [Test]
+
         /// <summary>
-        /// test del reporte emprendedor en caso de que la publicacion no este cerrada
+        /// Test del reporte emprendedor en caso de que la publicacion no este cerrada.
         /// </summary>
+        [Test]
         public void EntrepreneurReportPublicationNotClosedTest()
         {
             EntrepreneurReport reporte = new EntrepreneurReport(entrepreneur);

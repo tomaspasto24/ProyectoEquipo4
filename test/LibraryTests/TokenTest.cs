@@ -4,14 +4,20 @@ using Bot;
 
 namespace BotTests
 {
+    /// <summary>
+    /// Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
+    /// </summary>
     public class TokenTest
     {
         /// <summary>
-        /// defino la variable afuera para que sea global y adentro del metodo la instancio
+        /// Defino la variable afuera para que sea global y adentro del metodo la instancio.
         /// </summary>
         RoleAdmin admin;
         Company company;
 
+        /// <summary>
+        /// Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -20,20 +26,21 @@ namespace BotTests
             company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
         }
 
-        [Test]
         /// <summary>
-        /// test del token para ver si tiene la cantidad de caracteres esperada
+        /// Test del token para ver si tiene la cantidad de caracteres esperada.
         /// </summary>
+        [Test]
         public void TokenLenghtTest()
         {
             String token = admin.GenerateToken(company);
             Assert.AreEqual(8, token.Length);
         }
 
-        [Test]
         /// <summary>
-        /// test para agregar el token generado a la lista de globalRatingsList
+        /// Test para agregar el token generado a la lista de globalRatingsList.
+        /// 
         /// </summary>
+        [Test]
         public void TokenAddedTest()
         {
             String token = admin.GenerateToken(company);

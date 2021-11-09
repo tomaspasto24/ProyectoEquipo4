@@ -10,10 +10,15 @@ namespace Bot
         /// <summary>
         /// Se inicializa la lista globalRatingsList
         /// </summary>
-        /// <typeparam name="string"></typeparam>
         /// <returns></returns>
         public static List<string> globalQualificationList = new List<string>();
 
+        /// <summary>
+        /// Constructor de la clase RoleAdmin.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RoleAdmin(String name, int id) : base(name, id)
         {
         }
@@ -34,7 +39,6 @@ namespace Bot
         /// <summary>
         /// Metodo estatico para generar un string alfanumerico unico para una lista dada.
         /// </summary>
-        /// <param name="company"></param>
         /// <param name="tokens"></param>
         /// <returns></returns>
         private static string CodeGeneratortoUserCompany(List<string> tokens)

@@ -164,13 +164,13 @@ namespace Bot
             this.isClosed = true;
             this.closedDate = DateTime.Now;
             PublicationSet.DeletePublication(this);
-            if(interestedPerson != null)
+            if (interestedPerson != null)
             {
                 this.company.AddListHistorialPublications(this);
                 this.interestedPerson.AddHistorialPublication(this);
                 return this.interestedPerson;
             }
-            else 
+            else
             {
                 return null;
             }
