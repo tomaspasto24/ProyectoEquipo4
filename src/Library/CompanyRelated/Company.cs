@@ -9,7 +9,6 @@ namespace Bot
     /// </summary>
     public class Company
     {
-        private static List<Company> registeredCompanies = new List<Company>();
         private string name;
         private string item;  
         private GeoLocation location;
@@ -32,7 +31,6 @@ namespace Bot
             this.item = item;
             this.location = location;
             this.contact = contact;
-            this.RegisterCompany();
         }        
         /// <summary>
         /// Obtiene nombre de la clase Empresa.
@@ -99,22 +97,6 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método que registra (agrega) una Empresa a la lista estática de Empresas.
-        /// </summary>
-        public void RegisterCompany()
-        {
-            registeredCompanies.Add(this);
-        }
-
-        /// <summary>
-        /// Método que elimina la Empresa de la lista estática de Empresas.
-        /// </summary>
-        public void DeleteCompany()
-        {
-            registeredCompanies.Remove(this);
-        }
-
-        /// <summary>
         /// Método que se encarga de agregar usuario al conjunto usuarios de la clase Empresa.
         /// </summary>
         /// <param name="user">Clase Usuario.</param>
@@ -141,12 +123,20 @@ namespace Bot
         {
             this.listOwnPublications.Add(publication);
         }
+        /// <summary>
+        /// Método que se encarga de eliminar una publicación propia de la empresa.
+        /// </summary>
+        /// <param name="publication">Publicación.</param>
+        public bool DeleteOwnPublication(Publication publication)
+        {
+            return this.listOwnPublications.Remove(publication);
+        }
 
         /// <summary>
         /// Método que se encarga de añadir una clase Publicación a ListHistorialPublications.
         /// </summary>
         /// <param name="publication">Publicación a añadir.</param>
-        public void AddListHistorialPublications(Publication publication)
+        public void AddListHistorialPublication(Publication publication)
         {
             this.listHistorialPublications.Add(publication);
         }

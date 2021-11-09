@@ -11,13 +11,12 @@ namespace Bot
     public class Publication
     {
         private string title;
-        private List<Material> listMaterials = new List<Material>();
-        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
-
         private DateTime date;
         private DateTime closedDate;
         private GeoLocation location;
         private Company company;
+        private List<Material> listMaterials = new List<Material>();
+        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
         /// Atributo público de la clase Publicación con set privado, quedando el get público.
@@ -28,6 +27,24 @@ namespace Bot
         /// <value>RoleEntrepreneur.</value>
         public RoleEntrepreneur interestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
         private bool isClosed = false;
+
+        /// <summary>
+        /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="Company"></param>
+        /// <param name="location"></param>
+        /// <param name="material"></param>
+        public Publication(String title, Company Company, GeoLocation location, Material material)
+        {
+            this.title = title;
+            this.company = Company;
+            this.date = DateTime.Now;
+            this.closedDate = DateTime.MinValue;
+            this.location = location;
+            this.AddMaterial(material);
+            this.interestedPerson = null;
+        }
 
         /// <summary>
         /// Titulo que representa la publicación. Más que nada para poder retornar una lista
@@ -93,6 +110,18 @@ namespace Bot
         }
 
         /// <summary>
+        /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
+        /// </summary>
+        /// <returns>String con todo los materiales enumerados</returns>
+        public IReadOnlyCollection<Material> ListMaterials
+        {
+            get
+            {
+                return this.listMaterials.AsReadOnly();
+            }
+        }
+
+        /// <summary>
         /// Get público del atributo booleano IsClosed que representa el estado Abierto/Cerrado
         /// de una Publicación.
         /// </summary>
@@ -103,24 +132,6 @@ namespace Bot
             {
                 return this.isClosed;
             }
-        }
-
-        /// <summary>
-        /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="Company"></param>
-        /// <param name="location"></param>
-        /// <param name="material"></param>
-        public Publication(String title, Company Company, GeoLocation location, Material material)
-        {
-            this.title = title;
-            this.company = Company;
-            this.date = DateTime.Now;
-            this.closedDate = DateTime.MinValue;
-            this.location = location;
-            this.AddMaterial(material);
-            this.interestedPerson = null;
         }
 
         /// <summary>
@@ -145,15 +156,6 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
-        /// </summary>
-        /// <returns>String con todo los materiales enumerados</returns>
-        public List<Material> ReturnListMaterials()
-        {
-            return this.listMaterials;
-        }
-
-        /// <summary>
         /// Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
         /// llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
         /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
@@ -166,7 +168,7 @@ namespace Bot
             PublicationSet.DeletePublication(this);
             if (interestedPerson != null)
             {
-                this.company.AddListHistorialPublications(this);
+                this.company.AddListHistorialPublication(this);
                 this.interestedPerson.AddHistorialPublication(this);
                 return this.interestedPerson;
             }
@@ -202,22 +204,6 @@ namespace Bot
         public bool DeleteQualification(string qualification)
         {
             return this.listQualifications.Remove(qualification);
-        }
-
-        /// <summary>
-        /// Retorna la lista de Habilitaciones que tiene el material.s
-        /// </summary>
-        /// <returns>String</returns>
-        public string ReturnListQualifications()
-        {
-            StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
-            int accountant = 0;
-
-            foreach (string qualification in this.listQualifications)
-            {
-                resultado.Append($"{++accountant}- {qualification} \n");
-            }
-            return resultado.ToString();
         }
 
         /// <summary>

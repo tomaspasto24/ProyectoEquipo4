@@ -11,13 +11,12 @@ namespace Bot
         {
             List<Publication> result = new List<Publication>();
 
-            List<Publication> listPublications = PublicationSet.ListPublications;
             bool exit = false;
             /// <summary>
             /// VAriable para salir de la publicación cuando se encontró el material buscado
             /// </summary>
             bool exitPublication = false;
-            foreach (Publication publication in listPublications)
+            foreach (Publication publication in PublicationSet.ListPublications)
             {
                 while (!exitPublication)
                 {
@@ -26,7 +25,7 @@ namespace Bot
                     /// </summary>
                     /// <param name="publication.ReturnListMaterials()"></param>
                     /// <returns></returns>       
-                    foreach (Material material in publication.ReturnListMaterials())
+                    foreach (Material material in publication.ListMaterials)
                     {
                         if (material.KeyWords.Contains(wordToSearch))
                         {

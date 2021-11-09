@@ -52,7 +52,6 @@ namespace BotTests
             resultadoBusqueda = emprendedor.SearchingByLocation("Av.Italia");
             
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
-            Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
         }
     }
 }

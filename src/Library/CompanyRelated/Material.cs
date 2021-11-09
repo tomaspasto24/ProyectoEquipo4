@@ -12,6 +12,19 @@ namespace Bot
         private int quantity;
         private double price;
         private List<string> keyWords = new List<string>(); // Palabras clave
+        
+        /// <summary>
+        /// Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
+        /// </summary>
+        /// <param name="name">String nombre.</param>
+        /// <param name="quantity">Entero cantidad.</param>
+        /// <param name="price">Entero precio.</param>
+        public Material(string name, int quantity, int price)
+        {
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;   
+        }
 
         /// <summary>
         /// Obtiene nombre del la clase Material.
@@ -59,19 +72,6 @@ namespace Bot
             {
                 return this.price;
             }
-        }
-
-        /// <summary>
-        /// Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
-        /// </summary>
-        /// <param name="name">String nombre.</param>
-        /// <param name="quantity">Entero cantidad.</param>
-        /// <param name="price">Entero precio.</param>
-        public Material(string name, int quantity, int price)
-        {
-            this.name = name;
-            this.quantity = quantity;
-            this.price = price;   
         }
 
         /// <summary>

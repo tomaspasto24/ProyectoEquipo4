@@ -17,11 +17,11 @@ namespace Bot
         /// manipular eficientemente las Publicaciones.
         /// </summary>
         /// <value></value>
-        public static List<Publication> ListPublications
+        public static IReadOnlyCollection<Publication> ListPublications
         {
             get
             {
-                return listPublications;
+                return listPublications.AsReadOnly();
             }
         }
 
