@@ -143,6 +143,16 @@
             Test para probar el Cancel del handler
             </summary>
         </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddListHistorialPublicationsTest1">
+            <summary>
+            kkkk
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.SearchByLocationTest">
+            <summary>
+            El resultado de la búsqueda contiene a la publicación y esta al material con la ubicación buscada
+            </summary>
+        </member>
         <member name="F:BotTests.TokenTest.admin">
             <summary>
             defino la variable afuera para que sea global y adentro del metodo la instancio
