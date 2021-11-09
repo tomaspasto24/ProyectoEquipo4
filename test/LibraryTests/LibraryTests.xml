@@ -143,19 +143,60 @@
             Test para probar el Cancel del handler
             </summary>
         </member>
-        <member name="M:BotTests.RoleEntrepreneurTests.AddListHistorialPublicationsTest1">
+        <member name="T:BotTests.ReportTest">
             <summary>
-            kkkk
+            Clase ReportTest la cual se encarga de testear las funcionalidades de la clase EntrepreneurReport y CompanyReport.
             </summary>
         </member>
-        <member name="M:BotTests.SearchTests.SearchByLocationTest">
+        <member name="M:BotTests.ReportTest.Setup">
             <summary>
-            El resultado de la búsqueda contiene a la publicación y esta al material con la ubicación buscada
+            Método que crea y asgina las instancias a los atributos que seran utilizados para ejecutar los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.CompanyReportClosedPublicationTest">
+            <summary>
+            Test de reporte empresa cuando la publicacion esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.CompanyReportPublicationNotClosedTest">
+            <summary>
+            Test de reporte empresa cuando la publicacion no esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.EntrepreneurReportClosedPublicationTest">
+            <summary>
+            Test del reporte emprendedor cuando la publicacion esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.EntrepreneurReportPublicationNotClosedTest">
+            <summary>
+            Test del reporte emprendedor en caso de que la publicacion no este cerrada.
+            </summary>
+        </member>
+        <member name="T:BotTests.TokenTest">
+            <summary>
+            Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
             </summary>
         </member>
         <member name="F:BotTests.TokenTest.admin">
             <summary>
-            defino la variable afuera para que sea global y adentro del metodo la instancio
+            Defino la variable afuera para que sea global y adentro del metodo la instancio.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenLenghtTest">
+            <summary>
+            Test del token para ver si tiene la cantidad de caracteres esperada.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenAddedTest">
+            <summary>
+            Test para agregar el token generado a la lista de globalRatingsList.
+            
             </summary>
         </member>
     </members>

@@ -20,9 +20,9 @@ namespace Bot
         public static List<Publication> ListPublications
         {
             get
-                {
-                    return listPublications;
-                }
+            {
+                return listPublications;
+            }
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Bot
         /// <summary>
         /// Elimina una Publicación de la lista publicaciones.
         /// </summary>
-        /// <param name="publication">Publication</param>
+        /// <param name="publication">Publicación.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
         /// contrario.</returns>
         public static bool DeletePublication(Publication publication)
