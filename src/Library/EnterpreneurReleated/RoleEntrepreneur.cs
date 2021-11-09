@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 
 namespace Bot
 {
+    /*
+        En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
+        su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
+    */
     public class RoleEntrepreneur : Role
     {
-        private static int entrepreneurAccountant = 0;
         private GeoLocation location;
         private SearchByLocation searchByLocation;
         private SearchByMaterial searchByMaterial;
@@ -36,7 +39,6 @@ namespace Bot
             this.heading = heading;
             this.AddCertification(certification);
             this.AddSpecialization(specialization);
-            entrepreneurAccountant++;
         }
 
         /// <summary>
@@ -45,10 +47,8 @@ namespace Bot
         /// <param name="certification"></param>
         public void AddCertification(string certification)
         {
-            if (certification != null)
-            {
-                this.certification.Add(certification);
-            }
+
+            this.certification.Add(certification);
         }
         public List<string> ReturnCertification()
         {
@@ -61,27 +61,16 @@ namespace Bot
         /// <param name="specializations"></param>
         public void AddSpecialization(string specialization)
         {
-            if (specialization != null)
+            this.specializations.Add(specialization);
+            /*if (specialization != null)
             {
                 this.specializations.Add(specialization);
-            }
+            }*/
         }
 
         public List<string> ReturnSpecialization()
         {
             return this.specializations;
-        }
-
-        /// <summary>
-        /// Devuelve el contador estático que representa la cantidad de emprendedores registrados
-        /// </summary>
-        /// <value></value>
-        public static int EntrepreneurAccountant
-        {
-            get
-            {
-                return entrepreneurAccountant;
-            }
         }
 
         /// <summary>

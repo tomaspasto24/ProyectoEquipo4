@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 
 namespace BotTests
-{
+{   
+    /// <summary>
+    /// Tests de los métodos de la clase RoleEntrepreneur
+    /// </summary>
     public class RoleEntrepreneurTests
     {
         RoleEntrepreneur emprendedor; 
@@ -31,9 +34,9 @@ namespace BotTests
         [Test]
         public void AddCertificationTest()
         {
-            certification = "Manejar expliosivos";
+            certification = "Manejar explosivos";
             emprendedor.AddCertification(certification);
-            Assert.AreEqual(emprendedor.ReturnCertification(), "Manejar explisivos");
+            Assert.AreEqual("Manejar explosivos", emprendedor.ReturnCertification()[1]);
         }
 
         [Test]
@@ -41,9 +44,9 @@ namespace BotTests
         {
             specialization = "Quimica";
             emprendedor.AddSpecialization(specialization);
-            Assert.AreEqual(emprendedor.ReturnSpecialization(), "Quimica");
+            Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
         }
-
+        
         [Test]
         public void AddListHistorialPublicationsTest1()
         {
@@ -66,11 +69,7 @@ namespace BotTests
             listaPublicacionesEsperada.Add(publicacion);
             Assert.AreEqual(listaPublicacionesEsperada, emprendedor.ReturnListHistorialPublications());
         }
-        [Test]
-        public void EntrepreneurAccountantTest()
-        {
-            Assert.AreEqual(1, RoleEntrepreneur.EntrepreneurAccountant);
-        }
+        
         [Test]
         public void ContactCompanyTest()
         {

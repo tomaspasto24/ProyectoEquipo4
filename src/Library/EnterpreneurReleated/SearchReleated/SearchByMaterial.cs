@@ -14,7 +14,7 @@ namespace Bot
             List<Publication> listPublications = PublicationSet.ListPublications;
             bool exit = false;
             /// <summary>
-            /// Variable para salir de la publicación cuando en ella ya se encontró el material buscado
+            /// VAriable para salir de la publicación cuando se encontró el material buscado
             /// </summary>
             bool exitPublication = false;
             foreach (Publication publication in listPublications)
