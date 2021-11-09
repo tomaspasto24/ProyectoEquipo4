@@ -24,7 +24,7 @@ namespace BotTests
             name = "Alejandra";
             id = 1;
             heading = "";
-            GeoLocation ubicacionParaPruebas = new GeoLocation("8 de OCtubre", "Blanqueada", "Mdeo");
+            GeoLocation ubicacionParaPruebas = new GeoLocation("8 de OCtubre", "Blanqueada");
             certification = "";
             specialization = "";
 

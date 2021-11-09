@@ -15,7 +15,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            location = new GeoLocation("Av. Italia", "Montevideo", "Montevideo");
+            location = new GeoLocation("Av. Italia", "Montevideo");
             
             emprendedor = new RoleEntrepreneur("Pedrito", 4, "herrería", location, "", "");
 
