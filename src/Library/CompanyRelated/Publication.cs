@@ -136,12 +136,12 @@ namespace Bot
         /// El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
         /// lo elimina y retorna True. De lo contrario solamente retorna False.
         /// </summary>
-        /// <param name="indiceMaterial">Indice del Material que se quiera eliminar.
+        /// <param name="material">Indice del Material que se quiera eliminar.
         /// Se obtiene con la función DevolverListaMateriales.</param>
         /// <returns></returns>
-        public bool DeleteMaterial(int indiceMaterial)
+        public bool DeleteMaterial(Material material)
         {
-            return this.listMaterials.Remove(listMaterials[indiceMaterial]);
+            return this.listMaterials.Remove(material);
         }
 
         /// <summary>
@@ -179,14 +179,14 @@ namespace Bot
         /// <summary>
         /// Agrega una habilitación a la lista de Habilitaciones de la clase Material.
         /// </summary>
-        /// <param name="habilitacion">String</param>
-        public void AddRating(string habilitacion)
+        /// <param name="qualification">String</param>
+        public void AddQualification(string qualification)
         {
 
-            if (RoleAdmin.globalRatingsList.Contains(habilitacion))
+            if (RoleAdmin.globalQualificationList.Contains(qualification))
 
             {
-                this.listQualifications.Add(habilitacion);
+                this.listQualifications.Add(qualification);
             }
             else
             {
@@ -197,25 +197,25 @@ namespace Bot
         /// <summary>
         /// Elimina una habilitación de la lista de Habilitaciones de la clase Material.
         /// </summary>
-        /// <param name="indiceHabilitacion">Índice de la Habilitación</param>
+        /// <param name="qualification">Índice de la Habilitación</param>
         /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
-        public bool DeleteRating(int indiceHabilitacion)
+        public bool DeleteQualification(string qualification)
         {
-            return this.listQualifications.Remove(listQualifications[indiceHabilitacion]);
+            return this.listQualifications.Remove(qualification);
         }
 
         /// <summary>
         /// Retorna la lista de Habilitaciones que tiene el material.s
         /// </summary>
         /// <returns>String</returns>
-        public string ReturnListRatings()
+        public string ReturnListQualifications()
         {
             StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
-            int contador = 0;
+            int accountant = 0;
 
-            foreach (string palabra in this.listQualifications)
+            foreach (string qualification in this.listQualifications)
             {
-                resultado.Append($"{++contador}- {palabra} \n");
+                resultado.Append($"{++accountant}- {qualification} \n");
             }
             return resultado.ToString();
         }

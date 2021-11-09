@@ -12,7 +12,7 @@ namespace Bot
         /// </summary>
         /// <typeparam name="string"></typeparam>
         /// <returns></returns>
-        public static List<string> globalRatingsList = new List<string>();
+        public static List<string> globalQualificationList = new List<string>();
 
         public RoleAdmin(String name, int id) : base(name, id)
         {
@@ -25,7 +25,7 @@ namespace Bot
         /// <returns></returns>
         public String GenerateToken(Company company)
         {
-            String newToken = CodeGeneratortoUserCompany(globalRatingsList);
+            String newToken = CodeGeneratortoUserCompany(globalQualificationList);
             SessionRelated.DiccUserTokens.Add(newToken, company);
             return newToken;
 
@@ -67,7 +67,7 @@ namespace Bot
         /// <param name="rating"></param>
         public void DeleteRating(string rating)
         {
-            globalRatingsList.Remove(rating);
+            globalQualificationList.Remove(rating);
         }
     }
 }

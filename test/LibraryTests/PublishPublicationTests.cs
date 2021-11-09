@@ -42,16 +42,16 @@ namespace BotTests
             Publication publicationToCompare;
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            publicationToCompare.AddRating("Habilitación de Prueba");
-            publicationToCompare.AddRating("Habilitación de Prueba1");
-            publicationToCompare.AddRating("Habilitación de Prueba2");
+            publicationToCompare.AddQualification("Habilitación de Prueba");
+            publicationToCompare.AddQualification("Habilitación de Prueba1");
+            publicationToCompare.AddQualification("Habilitación de Prueba2");
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
 
             Assert.IsNotNull(publicationToCompare);
             Assert.IsNotNull(PublicationSet.ListPublications);
-            Assert.That(publicationToCompare.ReturnListRatings() is not null);
+            Assert.That(publicationToCompare.ReturnListQualifications() is not null);
             Assert.That(publicationToCompare.DeleteMaterial(0));
         }
 

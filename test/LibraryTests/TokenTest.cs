@@ -37,7 +37,7 @@ namespace BotTests
         public void TokenAddedTest()
         {
             String token = admin.GenerateToken(company);
-            Assert.Contains(token, RoleAdmin.globalRatingsList);
+            Assert.Contains(token, RoleAdmin.globalQualificationList);
         }
     }
 }
