@@ -15,42 +15,41 @@ namespace Bot
         private DateTime closedDate;
         private GeoLocation location;
         private Company company;
+        private bool isClosed;
         private List<Material> listMaterials = new List<Material>();
         private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
-        /// Atributo público de la clase Publicación con set privado, quedando el get público.
-        /// Este atributo se setea cuando una clase Emprendedor ejecuta el método AskContactToPublication
-        /// sobre una publicación lo que acciona el método interno SetInterestedPerson seteando a la persona
-        /// interesada.
+        /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
-        /// <value>RoleEntrepreneur.</value>
-        public RoleEntrepreneur interestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
-        private bool isClosed = false;
+        /// <value>Rol Emprendedor.</value>
+        public RoleEntrepreneur InterestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
+
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="Company"></param>
-        /// <param name="location"></param>
-        /// <param name="material"></param>
-        public Publication(String title, Company Company, GeoLocation location, Material material)
+        /// <param name="title">Titulo.</param>
+        /// <param name="company">Empresa.</param>
+        /// <param name="location">Ubicación.</param>
+        /// <param name="material">Material</param>
+        public Publication(String title, Company company, GeoLocation location, Material material)
         {
             this.title = title;
-            this.company = Company;
+            this.company = company;
             this.date = DateTime.Now;
             this.closedDate = DateTime.MinValue;
             this.location = location;
             this.AddMaterial(material);
-            this.interestedPerson = null;
+            this.isClosed = false;
+            this.InterestedPerson = null;
         }
 
         /// <summary>
-        /// Titulo que representa la publicación. Más que nada para poder retornar una lista
+        /// Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
         /// identificando por título.
         /// </summary>
-        /// <value>string</value>
+        /// <value>Cadena de caracteres.</value>
         public string Title
         {
             get
@@ -112,7 +111,7 @@ namespace Bot
         /// <summary>
         /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
         /// </summary>
-        /// <returns>String con todo los materiales enumerados</returns>
+        /// <returns>String con todo los materiales enumerados.</returns>
         public IReadOnlyCollection<Material> ListMaterials
         {
             get
@@ -166,11 +165,11 @@ namespace Bot
             this.isClosed = true;
             this.closedDate = DateTime.Now;
             PublicationSet.DeletePublication(this);
-            if (interestedPerson != null)
+            if (InterestedPerson != null)
             {
                 this.company.AddListHistorialPublication(this);
-                this.interestedPerson.AddHistorialPublication(this);
-                return this.interestedPerson;
+                this.InterestedPerson.AddHistorialPublication(this);
+                return this.InterestedPerson;
             }
             else
             {
@@ -213,7 +212,7 @@ namespace Bot
         /// <param name="interestedPerson">InterestedPerson</param>
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
         {
-            this.interestedPerson = interestedPerson;
+            this.InterestedPerson = interestedPerson;
         }
     }
 }

@@ -343,7 +343,7 @@
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
-            Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
+            Método de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
             </summary>
             <param name="name">String nombre.</param>
             <param name="quantity">Entero cantidad.</param>
@@ -357,7 +357,7 @@
         </member>
         <member name="P:Bot.Material.KeyWords">
             <summary>
-            Obitene todas las Palabras Clave que contiene el Material.
+            Obtiene todas las Palabras Clave que contiene el Material.
             </summary>
             <returns>Cadena de caracteres.</returns>
         </member>
@@ -377,7 +377,7 @@
             <summary>
             Agrega una palabra clave a la lista de palabras clave.
             </summary>
-            <param name="keyWord"></param>
+            <param name="keyWord">Palabra clave.</param>
         </member>
         <member name="M:Bot.Material.DeleteKeyWord(System.String)">
             <summary>
@@ -393,23 +393,20 @@
             que la aplicación muestra a los emprendedores.
             </summary>
         </member>
-        <member name="P:Bot.Publication.interestedPerson">
+        <member name="P:Bot.Publication.InterestedPerson">
             <summary>
-            Atributo público de la clase Publicación con set privado, quedando el get público.
-            Este atributo se setea cuando una clase Emprendedor ejecuta el método AskContactToPublication
-            sobre una publicación lo que acciona el método interno SetInterestedPerson seteando a la persona
-            interesada.
+            Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
             </summary>
-            <value>RoleEntrepreneur.</value>
+            <value>Rol Emprendedor.</value>
         </member>
         <member name="M:Bot.Publication.#ctor(System.String,Bot.Company,Bot.GeoLocation,Bot.Material)">
             <summary>
             Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
             </summary>
-            <param name="title"></param>
-            <param name="Company"></param>
-            <param name="location"></param>
-            <param name="material"></param>
+            <param name="title">Titulo.</param>
+            <param name="Company">Empresa.</param>
+            <param name="location">Ubicación.</param>
+            <param name="material">Material</param>
         </member>
         <member name="P:Bot.Publication.Title">
             <summary>
