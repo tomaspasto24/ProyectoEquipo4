@@ -87,11 +87,11 @@ namespace Bot
         /// El método busca si hay un valor del string ingresado como parámetro, en caso de que exista un elemento:
         /// lo elimina y retorna True. De lo contrario solamente retorna False.
         /// </summary>
-        /// <param name="palabraClave">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
+        /// <param name="keyWord">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
         /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
-        public bool DeleteKeyWord(string palabraClave)
+        public bool DeleteKeyWord(string keyWord)
         {
-            return this.keyWords.Remove(palabraClave);
+            return this.keyWords.Remove(keyWord);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Bot
         public List<Publication> Search(string addresToSearch)
         {
             double distance;
-            location = new GeoLocation(addresToSearch, "Montevideo", "Montevideo");
+            location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
             List<Publication> listaPublicaciones = PublicationSet.ListPublications;
                 /// <summary>

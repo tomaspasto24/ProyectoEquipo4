@@ -226,27 +226,40 @@
             Clase que se encarga de representar una Empresa.
             </summary>
         </member>
-        <member name="P:Bot.Company.CounterCompanies">
-            <summary>
-            Contador estático que representa el número de Empresas creadas.
-            </summary>
-            <value>Entero.</value>
-        </member>
-        <member name="P:Bot.Company.Name">
-            <summary>
-            Atributo nombre de la clase Empresa.
-            </summary>
-            <value>String</value>
-        </member>
         <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
             <summary>
             Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
             contador de empresas estático.
             </summary>
-            <param name="nombre">Nombre de la Empresa.</param>
-            <param name="rubro">Rubro de la Empresa.</param>
+            <param name="name">Nombre de la Empresa.</param>
+            <param name="item">Rubro de la Empresa.</param>
             <param name="location">Ubicación establecida de la Empresa.</param>
-            <param name="contacto">Contacto (Teléfono) de la Empresa.</param>
+            <param name="contact">Contacto (Teléfono) de la Empresa.</param>
+        </member>
+        <member name="P:Bot.Company.Name">
+            <summary>
+            Obtiene nombre de la clase Empresa.
+            </summary>
+            <value>Cadena de caracteres.</value>
+        </member>
+        <member name="P:Bot.Company.ListHistorialPublications">
+            <summary>
+            Obtiene el historial de publicaciones como una lista de solo lectura para que no se
+            pueda agregar o quitar objetos Publication de la instancia obtenida.
+            </summary>
+            <returns>Lista Publications de solo lectura.</returns>
+        </member>
+        <member name="P:Bot.Company.ListOwnPublications">
+            <summary>
+            Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
+            </summary>
+            <returns>Lista Publitacions de solo lectura.</returns>
+        </member>
+        <member name="P:Bot.Company.ListUsers">
+            <summary>
+            Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
+            </summary>
+            <returns>Lista User de solo lectura.</returns>
         </member>
         <member name="M:Bot.Company.ReturnContact">
             <summary>
@@ -275,31 +288,19 @@
             Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
             </summary>
             <param name="user">Clase Usuario.</param>
-            <returns></returns>
+            <returns>Retorna <c>True</c> en caso de que pueda eliminarse, <c>False</c> en caso contrario.</returns>
         </member>
         <member name="M:Bot.Company.AddOwnPublication(Bot.Publication)">
             <summary>
             Método que se encarga de agregar una publicación propia de la empresa.
             </summary>
-            <param name="publication">Publication</param>
-        </member>
-        <member name="M:Bot.Company.GetListOwnPublications">
-            <summary>
-            Método que se encarga de retornar la lista de publicaciones propia de la clase Empresa.
-            </summary>
-            <returns>List Publication </returns>
+            <param name="publication">Publicación.</param>
         </member>
         <member name="M:Bot.Company.AddListHistorialPublications(Bot.Publication)">
             <summary>
             Método que se encarga de añadir una clase Publicación a ListHistorialPublications.
             </summary>
             <param name="publication">Publicación a añadir.</param>
-        </member>
-        <member name="M:Bot.Company.GetListHistorialPublications">
-            <summary>
-            Método que devuelve el objeto ListHistorialPublications de la clase Empresa.
-            </summary>
-            <returns>List Publication</returns>
         </member>
         <member name="T:Bot.Material">
             <summary>
@@ -309,52 +310,49 @@
         </member>
         <member name="P:Bot.Material.Name">
             <summary>
-            Devuelve atributo nombre del la clase Material.
+            Obtiene nombre del la clase Material.
             </summary>
-            <value>String</value>
+            <value>String.</value>
+        </member>
+        <member name="P:Bot.Material.KeyWords">
+            <summary>
+            Obitene todas las Palabras Clave que contiene el Material.
+            </summary>
+            <returns>Cadena de caracteres.</returns>
         </member>
         <member name="P:Bot.Material.Quantity">
             <summary>
-            Devuelve atributo cantidad del la clase Material.
+            Obtiene cantidad del la clase Material.
             </summary>
-            <value>Int</value>
+            <value>Entero.</value>
         </member>
         <member name="P:Bot.Material.Price">
             <summary>
-            Devuelve Atributo precio del la clase Material.
+            Obtiene precio del la clase Material.
             </summary>
-            <value>Int</value>
+            <value>Entero.</value>
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
-            Constructor de la clase Material que se encarga de asignar valores a los 
-            atributos name, quantity y price. Construye el Material. En caso de no tener 
-            precio, se asigna 0 a su atributo.
+            Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
             </summary>
-            <param name="nombre">String nombre.</param>
-            <param name="cantidad">Int cantidad</param>
-            <param name="precio">Int precio</param>
+            <param name="name">String nombre.</param>
+            <param name="quantity">Entero cantidad.</param>
+            <param name="price">Entero precio.</param>
         </member>
         <member name="M:Bot.Material.AddKeyWord(System.String)">
             <summary>
-            Agrega una palabra clave a la lista de palabras clave
+            Agrega una palabra clave a la lista de palabras clave.
             </summary>
-            <param name="palabraClave"></param>
+            <param name="keyWord"></param>
         </member>
-        <member name="M:Bot.Material.DeleteKeyWord(System.Int32)">
+        <member name="M:Bot.Material.DeleteKeyWord(System.String)">
             <summary>
-            El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
+            El método busca si hay un valor del string ingresado como parámetro, en caso de que exista un elemento:
             lo elimina y retorna True. De lo contrario solamente retorna False.
             </summary>
-            <param name="indicePalabraClave">Indice de la palabra clave que se quiera eliminar.
-            Se obtiene con la función DevolverPalabrasClave.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.Material.ReturnKeyWords">
-            <summary>
-            Método que devuelve todas las Palabras Clave que contiene el Material.
-            </summary>
-            <returns>String</returns>
+            <param name="keyWord">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
+            <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
         </member>
         <member name="T:Bot.Publication">
             <summary>
@@ -426,12 +424,12 @@
             </summary>
             <param name="material">Objeto Material</param>
         </member>
-        <member name="M:Bot.Publication.DeleteMaterial(System.Int32)">
+        <member name="M:Bot.Publication.DeleteMaterial(Bot.Material)">
             <summary>
             El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
             lo elimina y retorna True. De lo contrario solamente retorna False.
             </summary>
-            <param name="indiceMaterial">Indice del Material que se quiera eliminar.
+            <param name="material">Indice del Material que se quiera eliminar.
             Se obtiene con la función DevolverListaMateriales.</param>
             <returns></returns>
         </member>
@@ -449,20 +447,20 @@
             </summary>
             <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
         </member>
-        <member name="M:Bot.Publication.AddRating(System.String)">
+        <member name="M:Bot.Publication.AddQualification(System.String)">
             <summary>
             Agrega una habilitación a la lista de Habilitaciones de la clase Material.
             </summary>
-            <param name="habilitacion">String</param>
+            <param name="qualification">String</param>
         </member>
-        <member name="M:Bot.Publication.DeleteRating(System.Int32)">
+        <member name="M:Bot.Publication.DeleteQualification(System.String)">
             <summary>
             Elimina una habilitación de la lista de Habilitaciones de la clase Material.
             </summary>
-            <param name="indiceHabilitacion">Índice de la Habilitación</param>
+            <param name="qualification">Índice de la Habilitación</param>
             <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
         </member>
-        <member name="M:Bot.Publication.ReturnListRatings">
+        <member name="M:Bot.Publication.ReturnListQualifications">
             <summary>
             Retorna la lista de Habilitaciones que tiene el material.s
             </summary>
@@ -498,21 +496,11 @@
             <param name="location">Clase Ubicación.</param>
             <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
         </member>
-        <member name="M:Bot.PublicationSet.DeletePublication(System.Int32)">
-            <summary>
-            Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
-            haber visto el método ReturnListPublications para poder saber su índice. Retorna 
-            <c>True</c> en caso de que se haya eliminado con éxito, en caso contrario <c>Fasle</c>.
-            </summary>
-            <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
-            <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
-            contrario.</returns>
-        </member>
         <member name="M:Bot.PublicationSet.DeletePublication(Bot.Publication)">
             <summary>
             Elimina una Publicación de la lista publicaciones.
             </summary>
-            <param name="publication">Publication</param>
+            <param name="publication">Publicación.</param>
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
             contrario.</returns>
         </member>
@@ -679,17 +667,10 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.SearchingByMaterials(System.String)">
+        <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
             <summary>
-            Buscar publicaciones por material
+            
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.SearchingByLocation(System.String)">
-            <summary>
-            Buscar publicaciones por ubicación
-            </summary>
-            <param name="addresToSearch"></param>
             <returns></returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
@@ -717,26 +698,19 @@
             </summary>
             <value>String que representa ciudad.</value>
         </member>
-        <member name="P:Bot.GeoLocation.Departament">
-            <summary>
-            Departamento ingresado como parámetro no obligatorio para instancia Location.
-            </summary>
-            <value>String que representa el departamento.</value>  
-        </member>
         <member name="P:Bot.GeoLocation.Address">
             <summary>
-            Dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
+            Obtiene dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
             </summary>
             <value></value>
         </member>
-        <member name="M:Bot.GeoLocation.#ctor(System.String,System.String,System.String)">
+        <member name="M:Bot.GeoLocation.#ctor(System.String,System.String)">
             <summary>
             Constructor de la clase Geolocation, llama a un método privado asincrono y después se valida la propiedad Found.
             <c>True</c> se asignan los parámetros ingresados a los atributos city, departament y address respectivamente.
             </summary>
             <param name="address">Dirección.</param>
             <param name="city">Ciudad.</param>
-            <param name="departament">Departamento.</param>
         </member>
         <member name="M:Bot.GeoLocation.CalculateDistance(Bot.GeoLocation)">
             <summary>
@@ -830,11 +804,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Bot.Role">
-            <summary>
-            clase abstracta Role.
-            </summary>
-        </member>
         <member name="M:Bot.Role.#ctor(System.String,System.Int32)">
             <summary>
             constructor de la clase Role
@@ -842,29 +811,16 @@
             <param name="name"></param>
             <param name="id"></param>
         </member>
-        <member name="P:Bot.Role.Name">
-            <summary>
-            Propiedad para tener get público el atributo name.
-            </summary>
-            <value></value>
-        </member>
         <member name="T:Bot.RoleAdmin">
             <summary>
             Clase RoleAdmin que hereda de la clase Role
             </summary>
         </member>
-        <member name="F:Bot.RoleAdmin.globalRatingsList">
+        <member name="F:Bot.RoleAdmin.globalQualificationList">
             <summary>
             Se inicializa la lista globalRatingsList
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.RoleAdmin.#ctor(System.String,System.Int32)">
-            <summary>
-            Constructor de la clase RoleAdmin.
-            </summary>
-            <param name="name"></param>
-            <param name="id"></param>
+            <typeparam name="string"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Bot.RoleAdmin.GenerateToken(Bot.Company)">
@@ -878,6 +834,7 @@
             <summary>
             Metodo estatico para generar un string alfanumerico unico para una lista dada.
             </summary>
+            <param name="company"></param>
             <param name="tokens"></param>
             <returns></returns>
         </member>
@@ -909,14 +866,8 @@
         </member>
         <member name="T:Bot.User">
             <summary>
-            Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert 
+            Clase encargada de representar al usuario (componiendo id y role). Esta cumple con el patron SRP y Expert 
             </summary>
-        </member>
-        <member name="P:Bot.User.Role">
-            <summary>
-            atributo de la clase User con get y set.
-            </summary>
-            <value></value>
         </member>
         <member name="P:Bot.User.Id">
             <summary>
@@ -931,13 +882,12 @@
             <value></value>
         </member>
         <member name="M:Bot.User.#ctor(System.String,System.Int32,Bot.Role)">
-             <summary>
+            <summary>
             Método constructor de la clase User que se encarga de asignar los atributos
-            name, id y role que usará la clase.
-             </summary>
-             <param name="name"></param>
-             <param name="id"></param>
-             <param name="role"></param>
+            id y role que usará la clase.
+            </summary>
+            <param name="id">Id</param>
+            <param name="name">Nombre</param>
         </member>
         <member name="T:Bot.UserRelated">
             <summary>

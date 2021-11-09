@@ -48,19 +48,6 @@ namespace Bot
         }
 
         /// <summary>
-        /// Elimina una Publicación de la lista publicaciones, para poder usar el método es necesario 
-        /// haber visto el método ReturnListPublications para poder saber su índice. Retorna 
-        /// <c>True</c> en caso de que se haya eliminado con éxito, en caso contrario <c>Fasle</c>.
-        /// </summary>
-        /// <param name="indicePublicacion">Entero que indica la posición de la Publicación.</param>
-        /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
-        /// contrario.</returns>
-        public static bool DeletePublication(int indicePublicacion)
-        {
-            return listPublications.Remove(listPublications[indicePublicacion]);
-        }
-
-        /// <summary>
         /// Elimina una Publicación de la lista publicaciones.
         /// </summary>
         /// <param name="publication">Publicación.</param>
@@ -79,7 +66,7 @@ namespace Bot
         public static string ReturnListPublications()
         {
             StringBuilder resultado = new StringBuilder("Publicaciones: \n");
-            int contador = 0;
+            int contador = 1;
 
             foreach (Publication publication in listPublications)
             {

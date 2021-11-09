@@ -14,33 +14,9 @@ namespace Bot
         private string item;  
         private GeoLocation location;
         private string contact;
-        private List<User> setUsers = new List<User>(); // Conjunto usuarios
-        private List<Publication> listOwnPublications = new List<Publication>(); // Conjunto publicaciones propias de la empresa
-        private List<Publication> listHistorialPublications = new List<Publication>(); // Historial de publicaciones
-
-        /// <summary>
-        /// Obtiene nombre de la clase Empresa.
-        /// </summary>
-        /// <value>Cadena de caracteres.</value>
-        public String Name
-        {
-            get
-            {
-                return this.name;
-            }
-        }
-
-        /// <summary>
-        /// Obtiene objeto ListHistorialPublications de la clase Empresa.
-        /// </summary>
-        /// <returns>Lista Publicación.</returns>
-        public IReadOnlyList<Publication> ListHistorialPublications
-        {
-            get
-            {
-                return this.listHistorialPublications.AsReadOnly();
-            }
-        }
+        private List<User> listUsers = new List<User>();
+        private List<Publication> listOwnPublications = new List<Publication>(); 
+        private List<Publication> listHistorialPublications = new List<Publication>(); 
 
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
@@ -57,6 +33,54 @@ namespace Bot
             this.location = location;
             this.contact = contact;
             this.RegisterCompany();
+        }        
+        /// <summary>
+        /// Obtiene nombre de la clase Empresa.
+        /// </summary>
+        /// <value>Cadena de caracteres.</value>
+        public String Name
+        {
+            get
+            {
+                return this.name;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el historial de publicaciones como una lista de solo lectura para que no se
+        /// pueda agregar o quitar objetos Publication de la instancia obtenida.
+        /// </summary>
+        /// <returns>Lista Publications de solo lectura.</returns>
+        public IReadOnlyList<Publication> ListHistorialPublications
+        {
+            get
+            {
+                return this.listHistorialPublications.AsReadOnly();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
+        /// </summary>
+        /// <returns>Lista Publitacions de solo lectura.</returns>
+        public IReadOnlyList<Publication> ListOwnPublications
+        {
+            get
+            {
+                return this.listOwnPublications.AsReadOnly();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
+        /// </summary>
+        /// <returns>Lista User de solo lectura.</returns>
+        public IReadOnlyList<User> ListUsers
+        {
+            get
+            {
+                return this.listUsers.AsReadOnly();
+            }
         }
 
         /// <summary>
@@ -96,7 +120,7 @@ namespace Bot
         /// <param name="user">Clase Usuario.</param>
         public void AddUser(User user)
         {
-            this.setUsers.Add(user);
+            this.listUsers.Add(user);
         }
 
         /// <summary>
@@ -106,7 +130,7 @@ namespace Bot
         /// <returns>Retorna <c>True</c> en caso de que pueda eliminarse, <c>False</c> en caso contrario.</returns>
         public bool DeleteUser(User user)
         {
-            return this.setUsers.Remove(user);
+            return this.listUsers.Remove(user);
         }
 
         /// <summary>
@@ -116,18 +140,6 @@ namespace Bot
         public void AddOwnPublication(Publication publication)
         {
             this.listOwnPublications.Add(publication);
-        }
-
-        /// <summary>
-        /// Método que se encarga de retornar la lista de publicaciones propia de la clase Empresa.
-        /// </summary>
-        /// <returns>Lista Publicación.</returns>
-        public IReadOnlyList<Publication> ListOwnPublications
-        {
-            get
-            {
-                return this.listOwnPublications.AsReadOnly();
-            }
         }
 
         /// <summary>

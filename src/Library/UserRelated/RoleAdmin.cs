@@ -11,7 +11,7 @@ namespace Bot
         /// Se inicializa la lista globalRatingsList
         /// </summary>
         /// <returns></returns>
-        public static List<string> globalRatingsList = new List<string>();
+        public static List<string> globalQualificationList = new List<string>();
 
         /// <summary>
         /// Constructor de la clase RoleAdmin.
@@ -30,7 +30,7 @@ namespace Bot
         /// <returns></returns>
         public String GenerateToken(Company company)
         {
-            String newToken = CodeGeneratortoUserCompany(globalRatingsList);
+            String newToken = CodeGeneratortoUserCompany(globalQualificationList);
             SessionRelated.DiccUserTokens.Add(newToken, company);
             return newToken;
 
@@ -71,7 +71,7 @@ namespace Bot
         /// <param name="rating"></param>
         public void DeleteRating(string rating)
         {
-            globalRatingsList.Remove(rating);
+            globalQualificationList.Remove(rating);
         }
     }
 }
