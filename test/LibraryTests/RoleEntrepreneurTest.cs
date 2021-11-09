@@ -4,10 +4,13 @@ using System;
 using System.Collections.Generic;
 
 namespace BotTests
-{
+{   
+    /// <summary>
+    /// Tests de los métodos de la clase RoleEntrepreneur
+    /// </summary>
     public class RoleEntrepreneurTests
     {
-        RoleEntrepreneur emprendedor;
+        RoleEntrepreneur emprendedor; 
         GeoLocation ubicacionParaPruebas;
         string name;
         int id;
@@ -28,6 +31,22 @@ namespace BotTests
             emprendedor = new RoleEntrepreneur(name, id, heading, ubicacionParaPruebas, certification, specialization);
         }
 
+        [Test]
+        public void AddCertificationTest()
+        {
+            certification = "Manejar explosivos";
+            emprendedor.AddCertification(certification);
+            Assert.AreEqual("Manejar explosivos", emprendedor.ReturnCertification()[1]);
+        }
+
+        [Test]
+        public void AddSpecializationTest()
+        {
+            specialization = "Quimica";
+            emprendedor.AddSpecialization(specialization);
+            Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
+        }
+        
         [Test]
         public void AddListHistorialPublicationsTest1()
         {
@@ -59,6 +78,5 @@ namespace BotTests
             Publication publicacion = new Publication("Publicación de plástico", pvcCompany, ubicacionParaPruebas, pvc);
             Assert.AreEqual(pvcCompany.ReturnContact(), emprendedor.ContactCompany(publicacion));
         }
-
     }
 }
