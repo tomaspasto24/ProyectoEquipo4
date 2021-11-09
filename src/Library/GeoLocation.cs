@@ -1,6 +1,6 @@
 using LocationApi;
-using System;
 using System.Threading.Tasks;
+using System;
 
 namespace Bot
 {
@@ -11,7 +11,6 @@ namespace Bot
     {
         private LocationApiClient client = new LocationApiClient();
         private string city;
-        private string departament;
         private string address;
         private Location location;
 
@@ -26,19 +25,9 @@ namespace Bot
                 return this.city;
             }
         }
+
         /// <summary>
-        /// Departamento ingresado como parámetro no obligatorio para instancia Location.
-        /// </summary>
-        /// <value>String que representa el departamento.</value>  
-        public string Departament
-        {
-            get
-            {
-                return this.departament;
-            }
-        }  
-        /// <summary>
-        /// Dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
+        /// Obtiene dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
         /// </summary>
         /// <value></value>
         public string Address
@@ -55,18 +44,11 @@ namespace Bot
         /// </summary>
         /// <param name="address">Dirección.</param>
         /// <param name="city">Ciudad.</param>
-        /// <param name="departament">Departamento.</param>
-        public GeoLocation(string address, string city, string departament)
+        public GeoLocation(string address, string city)
         {
-            EstablishLocation(address, city, departament);
+            this.EstablishLocation(address, city);
             this.city = city;
-            this.departament = departament;
             this.address = address;
-        }
-
-        private async void EstablishLocation(string address, string city, string departament)
-        {
-            this.location = await client.GetLocation(address);
         }
 
         /// <summary>
@@ -76,7 +58,7 @@ namespace Bot
         /// <returns>Distancia de tipo Task double.</returns>
         public async Task<double> CalculateDistance(GeoLocation secondLocation)
         {
-            Distance distance = await client.GetDistance(this.location, secondLocation.location);
+            Distance distance = await this.client.GetDistance(this.location, secondLocation.location);
             return distance.TravelDistance;
         }
 
@@ -87,8 +69,15 @@ namespace Bot
         /// <returns>Duración de tipo Task double.</returns>
         public async Task<double> CalculateDuration(GeoLocation secondLocation)
         {
-            Distance distance = await client.GetDistance(this.location, secondLocation.location);
-            return distance.TravelDuration;
+            bool contract = secondLocation.location != null;
+
+            if (contract)
+            {
+                Distance distance = await this.client.GetDistance(this.location, secondLocation.location);
+                return distance.TravelDuration;
+            }
+            else throw new NullReferenceException();
+
         }
 
         /// <summary>
@@ -97,8 +86,13 @@ namespace Bot
         /// <returns>Objeto mismo.</returns>
         public async Task<Location> GetLocation()
         {
-            await client.DownloadMap(this.location.Latitude, this.location.Longitude, @"Location");
+            await this.client.DownloadMap(this.location.Latitude, this.location.Longitude, @"Location");
             return this.location;
+        }
+
+        private async void EstablishLocation(string address, string city)
+        {
+            this.location = await this.client.GetLocation(address, city);
         }
     }
 }

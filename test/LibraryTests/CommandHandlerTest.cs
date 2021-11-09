@@ -56,7 +56,7 @@ namespace BotTests
         [Test]
         public void TestRoleUserCompanyCommandHandler()
         {
-            GeoLocation location = new GeoLocation("adress", "city", "city");
+            GeoLocation location = new GeoLocation("adress", "city");
             Company company = new Company("nombre", "rubro", location, "contacto");
 
             userRelated.ChangeRoleToUserCompany(company);
@@ -76,7 +76,7 @@ namespace BotTests
         [Test]
         public void TestRoleEntrepreneurCommandHandler()
         {
-            GeoLocation location = new GeoLocation("adress", "city", "city");
+            GeoLocation location = new GeoLocation("adress", "city");
 
             userRelated.ChangeRoleToEntrepreneur("heading", location, "certification", "specialization");
 

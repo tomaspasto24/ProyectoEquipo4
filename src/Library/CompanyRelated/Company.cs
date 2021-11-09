@@ -19,6 +19,22 @@ namespace Bot
         private List<Publication> listHistorialPublications = new List<Publication>(); 
 
         /// <summary>
+        /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
+        /// contador de empresas estático.
+        /// </summary>
+        /// <param name="name">Nombre de la Empresa.</param>
+        /// <param name="item">Rubro de la Empresa.</param>
+        /// <param name="location">Ubicación establecida de la Empresa.</param>
+        /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
+        public Company(string name, string item, GeoLocation location, string contact)
+        {
+            this.name = name;
+            this.item = item;
+            this.location = location;
+            this.contact = contact;
+            this.RegisterCompany();
+        }        
+        /// <summary>
         /// Obtiene nombre de la clase Empresa.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
@@ -65,23 +81,6 @@ namespace Bot
             {
                 return this.listUsers.AsReadOnly();
             }
-        }
-
-        /// <summary>
-        /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
-        /// contador de empresas estático.
-        /// </summary>
-        /// <param name="name">Nombre de la Empresa.</param>
-        /// <param name="item">Rubro de la Empresa.</param>
-        /// <param name="location">Ubicación establecida de la Empresa.</param>
-        /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
-        public Company(string name, string item, GeoLocation location, string contact)
-        {
-            this.name = name;
-            this.item = item;
-            this.location = location;
-            this.contact = contact;
-            this.RegisterCompany();
         }
 
         /// <summary>

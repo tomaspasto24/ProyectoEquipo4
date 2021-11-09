@@ -16,7 +16,7 @@ namespace BotTests
         public void Setup()
         {
             admin = new RoleAdmin("admin1", 1234);
-            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
+            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
             company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
         }
 

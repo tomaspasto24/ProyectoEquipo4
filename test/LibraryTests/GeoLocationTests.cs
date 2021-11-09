@@ -28,9 +28,8 @@ namespace BotTests
         {
             address = "8 de octubre";
             city = "Montevideo";
-            departament = "Montevideo";
 
-            location = new GeoLocation(address, city, departament);
+            location = new GeoLocation(address, city);
         }
 
         /// <summary>
@@ -41,7 +40,6 @@ namespace BotTests
         {
             Assert.IsNotNull(location.GetLocation());
             Assert.IsNotNull(location.City);
-            Assert.IsNotNull(location.Departament);
             Assert.IsNotNull(location.Address);
         }
 
@@ -52,7 +50,7 @@ namespace BotTests
         [Test]
         public void TestDuration()
         {
-            GeoLocation secondLocation = new GeoLocation("8 de octubre y comercio", "Montevideo", "Montevideo");
+            GeoLocation secondLocation = new GeoLocation("8 de octubre y comercio", "Montevideo");
             Task<double> duration = location.CalculateDuration(secondLocation);
 
             Assert.That(duration is Task<double>);
@@ -66,7 +64,7 @@ namespace BotTests
         [Test]
         public void TestDistance()
         {
-            GeoLocation secondLocation = new GeoLocation("8 de octubre y comercio", "Montevideo", "Montevideo");
+            GeoLocation secondLocation = new GeoLocation("8 de octubre y comercio", "Montevideo");
             Task<double> distance = location.CalculateDuration(secondLocation);
 
             Assert.That(distance is Task<double>);
