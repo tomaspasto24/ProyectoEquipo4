@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -25,7 +26,7 @@ namespace Bot
         /// <value>Rol Emprendedor.</value>
         public RoleEntrepreneur InterestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
 
-
+        [JsonConstructor]
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
         /// </summary>
