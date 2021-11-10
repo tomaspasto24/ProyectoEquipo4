@@ -31,7 +31,7 @@ namespace Bot
         public String GenerateToken(Company company)
         {
             String newToken = CodeGeneratortoUserCompany(globalQualificationList);
-            SessionRelated.DiccUserTokens.Add(newToken, company);
+            SessionRelated.Instance.DiccUserTokens.Add(newToken, company);
             return newToken;
 
         }
