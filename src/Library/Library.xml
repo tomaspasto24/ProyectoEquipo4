@@ -404,16 +404,16 @@
             Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
             </summary>
             <param name="title">Titulo.</param>
-            <param name="Company">Empresa.</param>
+            <param name="company">Empresa.</param>
             <param name="location">Ubicación.</param>
             <param name="material">Material</param>
         </member>
         <member name="P:Bot.Publication.Title">
             <summary>
-            Titulo que representa la publicación. Más que nada para poder retornar una lista
+            Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
             identificando por título.
             </summary>
-            <value>string</value>
+            <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Publication.Company">
             <summary>
@@ -445,7 +445,7 @@
             <summary>
             Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
             </summary>
-            <returns>String con todo los materiales enumerados</returns>
+            <returns>String con todo los materiales enumerados.</returns>
         </member>
         <member name="P:Bot.Publication.IsClosed">
             <summary>
@@ -786,20 +786,20 @@
         </member>
         <member name="F:Bot.CompanyReport.company">
             <summary>
-            atributo de la clase 
+            atributo de la clase.
             </summary>
         </member>
         <member name="M:Bot.CompanyReport.#ctor(Bot.Company)">
             <summary>
-            Constructor de la clase CompanyReport
+            Constructor de la clase CompanyReport.
             </summary>
-            <param name="company"></param>
+            <param name="company">El nombre de la compania.</param>
         </member>
         <member name="M:Bot.CompanyReport.GiveReport">
             <summary>
-            método de la clase ReporteEmpresa
+            método de la clase ReporteEmpresa el cual se encarga de generar el reporte y devolverlo.
             </summary>
-            <returns></returns>
+            <returns>El reporte de la empresa.</returns>
         </member>
         <member name="T:Bot.EntrepreneurReport">
             <summary>
@@ -808,15 +808,15 @@
         </member>
         <member name="M:Bot.EntrepreneurReport.#ctor(Bot.RoleEntrepreneur)">
             <summary>
-            constructor de la clase emprendedor
+            constructor de la clase emprendedor.
             </summary>
-            <param name="entrepreneur"></param>
+            <param name="entrepreneur">El nombre del emprendedor.</param>
         </member>
         <member name="M:Bot.EntrepreneurReport.GiveReport">
             <summary>
-            metodo para entregar el reporte del emprendedor
+            metodo para entregar el reporte del emprendedor.
             </summary>
-            <returns></returns>
+            <returns>El reporte del emprendedor.</returns>
         </member>
         <member name="T:Bot.IReport">
             <summary>
@@ -908,35 +908,35 @@
         </member>
         <member name="T:Bot.User">
             <summary>
-            Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert 
+            Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert.
             </summary>
         </member>
-        <member name="P:Bot.User.Role">
+        <member name="M:Bot.User.#ctor(System.String,System.Int32,Bot.Role)">
             <summary>
-            atributo de la clase User con get y set.
+            Método constructor de la clase User que se encarga de asignar los atributos
+            name, id y role que usará la clase.
             </summary>
-            <value></value>
+            <param name="name">El nombre del usuario.</param>
+            <param name="id">El id del usuario.</param>
+            <param name="role">El rol del usuario.</param>
         </member>
         <member name="P:Bot.User.Id">
             <summary>
-            Propiedad para tener get público el atributo id.
+            Obtiene el atributo Id de la clase usuario.
             </summary>
-            <value>int</value>
+            <value>El Id del usuario.</value>
         </member>
         <member name="P:Bot.User.Name">
             <summary>
-            Propiedad para tener get público el atributo name.
+            Obtiene el valor de la propiedad privada name del usuario.
             </summary>
-            <value></value>
+            <value>Nombre del usuario.</value>
         </member>
-        <member name="M:Bot.User.#ctor(System.String,System.Int32,Bot.Role)">
-             <summary>
-            Método constructor de la clase User que se encarga de asignar los atributos
-            name, id y role que usará la clase.
-             </summary>
-             <param name="name"></param>
-             <param name="id"></param>
-             <param name="role"></param>
+        <member name="P:Bot.User.Role">
+            <summary>
+            Obtiene o establece el valor de la propiedad role del usuario.
+            </summary>
+            <value>El rol del usuario.</value>
         </member>
         <member name="T:Bot.UserRelated">
             <summary>
