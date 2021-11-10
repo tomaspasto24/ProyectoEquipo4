@@ -1,4 +1,4 @@
-using LocationApi;
+using Ucu.Poo.Locations.Client;
 using System.Threading.Tasks;
 using System;
 
@@ -56,9 +56,9 @@ namespace Bot
         /// </summary>
         /// <param name="secondLocation">Segunda clase a calcular distancia.</param>
         /// <returns>Distancia de tipo Task double.</returns>
-        public async Task<double> CalculateDistance(GeoLocation secondLocation)
+        public double CalculateDistance(GeoLocation secondLocation)
         {
-            Distance distance = await this.client.GetDistance(this.location, secondLocation.location);
+            Distance distance = this.client.GetDistance(this.location, secondLocation.location);
             return distance.TravelDistance;
         }
 
@@ -67,13 +67,13 @@ namespace Bot
         /// </summary>
         /// <param name="secondLocation">Segunda clase a calcular duración.</param>
         /// <returns>Duración de tipo Task double.</returns>
-        public async Task<double> CalculateDuration(GeoLocation secondLocation)
+        public double CalculateDuration(GeoLocation secondLocation)
         {
             bool contract = secondLocation.location != null;
 
             if (contract)
             {
-                Distance distance = await this.client.GetDistance(this.location, secondLocation.location);
+                Distance distance = this.client.GetDistance(this.location, secondLocation.location);
                 return distance.TravelDuration;
             }
             else throw new NullReferenceException();
@@ -84,15 +84,15 @@ namespace Bot
         /// Retorna el propio objeto Location y descarga el mapa con la ubicación correspondiente.
         /// </summary>
         /// <returns>Objeto mismo.</returns>
-        public async Task<Location> GetLocation()
+        public Location GetLocation()
         {
-            await this.client.DownloadMap(this.location.Latitude, this.location.Longitude, @"Location");
+            this.client.DownloadMap(this.location.Latitude, this.location.Longitude, @"Location");
             return this.location;
         }
 
-        private async void EstablishLocation(string address, string city)
+        private void EstablishLocation(string address, string city)
         {
-            this.location = await this.client.GetLocation(address, city);
+            this.location = this.client.GetLocation(address, city);
         }
     }
 }
