@@ -27,7 +27,7 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public static Dictionary<string, Company> DiccUserTokens;
+        public static Dictionary<int, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>
@@ -53,7 +53,7 @@ namespace Bot
         {
             AllUsers = new List<User>();
             DiccUserRelated = new Dictionary<int, UserRelated>();
-            DiccUserTokens = new Dictionary<string, Company>();
+            DiccUserTokens = new Dictionary<int, Company>();
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Bot
         /// </summary>
         /// <param name="token">Token que el usuario inserta</param>
         /// <returns></returns>
-        public Company ReturnCompany(string token)
+        public Company ReturnCompany(int token)
         {
             Company company;
             if (DiccUserTokens.TryGetValue(token, out company))
