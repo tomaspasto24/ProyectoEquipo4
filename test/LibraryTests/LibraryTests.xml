@@ -173,6 +173,16 @@
             Test del reporte emprendedor en caso de que la publicacion no este cerrada.
             </summary>
         </member>
+        <member name="T:BotTests.RoleEntrepreneurTests">
+            <summary>
+            Tests de los métodos de la clase RoleEntrepreneur
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.SearchByLocationTest">
+            <summary>
+            El resultado de la búsqueda contiene a la publicación y esta al material con la ubicación buscada
+            </summary>
+        </member>
         <member name="T:BotTests.TokenTest">
             <summary>
             Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.

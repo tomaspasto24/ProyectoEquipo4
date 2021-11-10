@@ -14,12 +14,11 @@ namespace Bot
             double distance;
             location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
-            List<Publication> listaPublicaciones = PublicationSet.ListPublications;
                 /// <summary>
                 /// Variable para salir de la publicación cuando en ella ya se encontró el material buscado
                 /// </summary>
                 bool exitPublication = false;
-                foreach (Publication publication in listaPublicaciones)
+                foreach (Publication publication in PublicationSet.ListPublications)
                 {
                     distance = AsyncContext.Run<double>(() => location.CalculateDistance(publication.Location));
                     if (distance < 500)

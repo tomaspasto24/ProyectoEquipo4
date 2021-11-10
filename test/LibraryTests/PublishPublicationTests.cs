@@ -51,7 +51,6 @@ namespace BotTests
 
             Assert.IsNotNull(publicationToCompare);
             Assert.IsNotNull(PublicationSet.ListPublications);
-            Assert.That(publicationToCompare.ReturnListQualifications() is not null);
             Assert.That(publicationToCompare.DeleteMaterial(initialMaterial));
         }
 
@@ -69,11 +68,6 @@ namespace BotTests
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
-            PublicationSet.ListPublications[0].AddMaterial(material1);
-            PublicationSet.ListPublications[0].AddMaterial(material2);
-            PublicationSet.ListPublications[0].AddMaterial(material3);
-
-            Assert.IsNotEmpty(PublicationSet.ListPublications[0].ReturnListMaterials());
         }
 
         /// <summary>
@@ -105,7 +99,7 @@ namespace BotTests
             entrepreneur.ContactCompany(publicationToCompare);
             Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
 
-            Assert.IsNotNull(publicationToCompare.interestedPerson);
+            Assert.IsNotNull(publicationToCompare.InterestedPerson);
             Assert.That(entrepreneur.listHistorialPublications.Contains(publicationToCompare));    
         }
     }

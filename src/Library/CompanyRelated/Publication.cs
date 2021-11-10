@@ -11,29 +11,45 @@ namespace Bot
     public class Publication
     {
         private string title;
-        private List<Material> listMaterials = new List<Material>();
-        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
-
         private DateTime date;
         private DateTime closedDate;
         private GeoLocation location;
         private Company company;
+        private bool isClosed;
+        private List<Material> listMaterials = new List<Material>();
+        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
-        /// Atributo público de la clase Publicación con set privado, quedando el get público.
-        /// Este atributo se setea cuando una clase Emprendedor ejecuta el método AskContactToPublication
-        /// sobre una publicación lo que acciona el método interno SetInterestedPerson seteando a la persona
-        /// interesada.
+        /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
-        /// <value>RoleEntrepreneur.</value>
-        public RoleEntrepreneur interestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
-        private bool isClosed = false;
+        /// <value>Rol Emprendedor.</value>
+        public RoleEntrepreneur InterestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
+
 
         /// <summary>
-        /// Titulo que representa la publicación. Más que nada para poder retornar una lista
+        /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
+        /// </summary>
+        /// <param name="title">Titulo.</param>
+        /// <param name="company">Empresa.</param>
+        /// <param name="location">Ubicación.</param>
+        /// <param name="material">Material</param>
+        public Publication(String title, Company company, GeoLocation location, Material material)
+        {
+            this.title = title;
+            this.company = company;
+            this.date = DateTime.Now;
+            this.closedDate = DateTime.MinValue;
+            this.location = location;
+            this.AddMaterial(material);
+            this.isClosed = false;
+            this.InterestedPerson = null;
+        }
+
+        /// <summary>
+        /// Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
         /// identificando por título.
         /// </summary>
-        /// <value>string</value>
+        /// <value>Cadena de caracteres.</value>
         public string Title
         {
             get
@@ -93,6 +109,18 @@ namespace Bot
         }
 
         /// <summary>
+        /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
+        /// </summary>
+        /// <returns>String con todo los materiales enumerados.</returns>
+        public IReadOnlyCollection<Material> ListMaterials
+        {
+            get
+            {
+                return this.listMaterials.AsReadOnly();
+            }
+        }
+
+        /// <summary>
         /// Get público del atributo booleano IsClosed que representa el estado Abierto/Cerrado
         /// de una Publicación.
         /// </summary>
@@ -103,24 +131,6 @@ namespace Bot
             {
                 return this.isClosed;
             }
-        }
-
-        /// <summary>
-        /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="Company"></param>
-        /// <param name="location"></param>
-        /// <param name="material"></param>
-        public Publication(String title, Company Company, GeoLocation location, Material material)
-        {
-            this.title = title;
-            this.company = Company;
-            this.date = DateTime.Now;
-            this.closedDate = DateTime.MinValue;
-            this.location = location;
-            this.AddMaterial(material);
-            this.interestedPerson = null;
         }
 
         /// <summary>
@@ -145,15 +155,6 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
-        /// </summary>
-        /// <returns>String con todo los materiales enumerados</returns>
-        public List<Material> ReturnListMaterials()
-        {
-            return this.listMaterials;
-        }
-
-        /// <summary>
         /// Cierra la clase Publicación por completo, asigna <c>True</c> a la variable IsClosed y
         /// llama al método DeletePublications para eliminarse a si misma de la lista estática de publicaciones
         /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
@@ -164,11 +165,11 @@ namespace Bot
             this.isClosed = true;
             this.closedDate = DateTime.Now;
             PublicationSet.DeletePublication(this);
-            if (interestedPerson != null)
+            if (InterestedPerson != null)
             {
-                this.company.AddListHistorialPublications(this);
-                this.interestedPerson.AddHistorialPublication(this);
-                return this.interestedPerson;
+                this.company.AddListHistorialPublication(this);
+                this.InterestedPerson.AddHistorialPublication(this);
+                return this.InterestedPerson;
             }
             else
             {
@@ -205,29 +206,13 @@ namespace Bot
         }
 
         /// <summary>
-        /// Retorna la lista de Habilitaciones que tiene el material.s
-        /// </summary>
-        /// <returns>String</returns>
-        public string ReturnListQualifications()
-        {
-            StringBuilder resultado = new StringBuilder("Habilitaciones: \n");
-            int accountant = 0;
-
-            foreach (string qualification in this.listQualifications)
-            {
-                resultado.Append($"{++accountant}- {qualification} \n");
-            }
-            return resultado.ToString();
-        }
-
-        /// <summary>
         /// Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson. 
         /// Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
         /// </summary>
         /// <param name="interestedPerson">InterestedPerson</param>
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
         {
-            this.interestedPerson = interestedPerson;
+            this.InterestedPerson = interestedPerson;
         }
     }
 }
