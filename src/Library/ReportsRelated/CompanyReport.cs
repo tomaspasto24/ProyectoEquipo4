@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
-
 
 namespace Bot
 {
@@ -11,22 +9,23 @@ namespace Bot
     public class CompanyReport : IReport
     {
         /// <summary>
-        /// atributo de la clase 
+        /// atributo de la clase.
         /// </summary>
-        private Company company;  //arraylist con la data para generar el reporte 
+        private Company company; // arraylist con la data para generar el reporte.
 
         /// <summary>
-        /// Constructor de la clase CompanyReport
+        /// Constructor de la clase CompanyReport.
         /// </summary>
-        /// <param name="company"></param>
+        /// <param name="company">El nombre de la compania.</param>
         public CompanyReport(Company company)
         {
             this.company = company;
         }
+
         /// <summary>
-        /// método de la clase ReporteEmpresa
+        /// método de la clase ReporteEmpresa el cual se encarga de generar el reporte y devolverlo.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El reporte de la empresa.</returns>
         public String GiveReport()
         {
             String result;
@@ -40,16 +39,17 @@ namespace Bot
                 {
                     report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");
                 }
-
             }
+
             if (report.Length > 0)
             {
-                result = "Publicaciones cerradas de los ultimos 30 dias de la empresa: " + company.Name + "\n" + report.ToString();
+                result = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {this.company.Name} \n  {report.ToString()}";
             }
             else
             {
-                result = "No hay publicaciones cerradas en los ultimos 30 dias para la empresa: " + company.Name;
+                result = $"No hay publicaciones cerradas en los ultimos 30 dias para la empresa: {this.company.Name}";
             }
+
             return result;
         }
     }

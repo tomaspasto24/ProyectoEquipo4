@@ -63,7 +63,7 @@ namespace Bot
                 {
                     this.State = RegisterState.Start;
                     this.Data.Token = request.Text;
-                    userData.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
+                    userData.User.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }
