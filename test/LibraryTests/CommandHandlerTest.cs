@@ -10,7 +10,7 @@ namespace BotTests
     public class CommandHandlerTest
     {
 
-        User usuario;
+        User user;
         Role role;
         UserRelated userRelated;
         SessionRelated sessionRelated;
@@ -24,14 +24,14 @@ namespace BotTests
         public void SetUp()
         {
             role = new RoleAdmin("name", 123);
-            usuario = new User("Seba", 123, role);
+            user = new User("Seba", 123, role);
             userRelated = UserRelated.Instance;
-            userRelated.User = usuario;
+            userRelated.User = user;
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser("Seba", 123, role);
 
-            message = new Message(usuario.Id, null);
+            message = new Message(user.Id, null);
             handler = new CommandHandler(null);
         }
         
