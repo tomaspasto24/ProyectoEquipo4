@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -10,13 +11,14 @@ namespace Bot
     public class Company
     {
         private string name;
-        private string item;  
+        private string item;
         private GeoLocation location;
         private string contact;
         private List<User> listUsers = new List<User>();
         private List<Publication> listOwnPublications = new List<Publication>(); 
         private List<Publication> listHistorialPublications = new List<Publication>(); 
 
+        [JsonConstructor]
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
         /// contador de empresas estático.
@@ -41,6 +43,41 @@ namespace Bot
             get
             {
                 return this.name;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene nombre del rubro de la clase Empresa.
+        /// </summary>
+        /// <value>Cadena de caracteres.</value>
+        public String Item
+        {
+            get
+            {
+                return this.item;
+            }
+        }
+        /// <summary>
+        /// Obtiene la ubicación de la clase Empresa.
+        /// </summary>
+        /// <value>Cadena de caracteres.</value>
+        public GeoLocation Location
+        {
+            get
+            {
+                return this.location;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene nombre del rubro de la clase Empresa.
+        /// </summary>
+        /// <value>Cadena de caracteres.</value>
+        public String Contact
+        {
+            get
+            {
+                return this.contact;
             }
         }
 
