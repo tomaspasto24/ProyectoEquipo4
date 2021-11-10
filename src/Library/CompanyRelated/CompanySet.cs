@@ -12,7 +12,7 @@ namespace Bot
     /// </summary>
     public static class CompanySet 
     {
-    private const string path = @"C:\Users\Tomás\OneDrive - Universidad Católica del Uruguay\Programación II\Ejercicios\PII_2021_2_Equipo4\docs\CompanySet.txt";
+        private const string path = @"C:\Users\Tomás\OneDrive - Universidad Católica del Uruguay\Programación II\Ejercicios\PII_2021_2_Equipo4\docs\CompanyDataBase.txt";
         /// <summary>
         /// Obtiene la lista de Empresas, esto para que la clase Búsqueda pueda 
         /// manipular eficientemente las Publicaciones.
@@ -147,13 +147,13 @@ namespace Bot
         /// <returns>String con el nombre de la Empresa y sus indices.</returns>
         public static string ReturnListCompanies()
         {
-            StringBuilder resultado = new StringBuilder("Empresas: \n");
+            StringBuilder result = new StringBuilder("Empresas: \n");
 
             foreach (Company company in ListCompany)
             {
-                resultado.Append($"{company.Name} \n");
+                result.Append($"{company.Name} \n");
             }
-            return resultado.ToString();
+            return result.ToString();
         }
 
         /// <summary>

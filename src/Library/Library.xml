@@ -226,19 +226,27 @@
             Clase que se encarga de representar una Empresa.
             </summary>
         </member>
-        <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
-            <summary>
-            Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
-            contador de empresas estático.
-            </summary>
-            <param name="name">Nombre de la Empresa.</param>
-            <param name="item">Rubro de la Empresa.</param>
-            <param name="location">Ubicación establecida de la Empresa.</param>
-            <param name="contact">Contacto (Teléfono) de la Empresa.</param>
-        </member>
         <member name="P:Bot.Company.Name">
             <summary>
             Obtiene nombre de la clase Empresa.
+            </summary>
+            <value>Cadena de caracteres.</value>
+        </member>
+        <member name="P:Bot.Company.Item">
+            <summary>
+            Obtiene nombre del rubro de la clase Empresa.
+            </summary>
+            <value>Cadena de caracteres.</value>
+        </member>
+        <member name="P:Bot.Company.Location">
+            <summary>
+            Obtiene la ubicación de la clase Empresa.
+            </summary>
+            <value>Cadena de caracteres.</value>
+        </member>
+        <member name="P:Bot.Company.Contact">
+            <summary>
+            Obtiene nombre del rubro de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
@@ -318,7 +326,17 @@
             <param name="item">Rubro de Empresa.</param>
             <param name="location">Ubicación de Empresa.</param>
             <param name="contact">Contacto de Empresa.</param>
-            <returns></returns>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.CompanySet.AddCompany(Bot.Company)">
+            <summary>
+            Sobrecarga del método AddCompany que permite ingresar un objeto Empresa como parámetro
+            para ser ingresado al sistema.
+            </summary>
+            <param name="company">Empresa.</param>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
+            contrario.</returns>
         </member>
         <member name="M:Bot.CompanySet.DeleteCompany(Bot.Company)">
             <summary>
@@ -334,6 +352,15 @@
             índices.
             </summary>
             <returns>String con el nombre de la Empresa y sus indices.</returns>
+        </member>
+        <member name="M:Bot.CompanySet.ContainsCompanyInListCompanies(Bot.Company)">
+            <summary>
+            Método simple que se encarga de comprobar si una clase Empresa se encuentra
+            en el sistema de Empresas.
+            </summary>
+            <param name="company">Empresa.</param>
+            <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso 
+            contrario.</returns>
         </member>
         <member name="T:Bot.Material">
             <summary>
@@ -404,16 +431,24 @@
             Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
             </summary>
             <param name="title">Titulo.</param>
-            <param name="Company">Empresa.</param>
+            <param name="company">Empresa.</param>
             <param name="location">Ubicación.</param>
             <param name="material">Material</param>
         </member>
+        <member name="M:Bot.Publication.#ctor(System.String,Bot.Company,Bot.GeoLocation)">
+            <summary>
+            Sobrecarga del constructor Publicación, en el que no se requiere del parámetro material inicial.
+            </summary>
+            <param name="title">Titulo.</param>
+            <param name="company">Empresa.</param>
+            <param name="location">Ubicación.</param>
+        </member>
         <member name="P:Bot.Publication.Title">
             <summary>
-            Titulo que representa la publicación. Más que nada para poder retornar una lista
+            Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
             identificando por título.
             </summary>
-            <value>string</value>
+            <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Publication.Company">
             <summary>
@@ -445,7 +480,7 @@
             <summary>
             Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
             </summary>
-            <returns>String con todo los materiales enumerados</returns>
+            <returns>String con todo los materiales enumerados.</returns>
         </member>
         <member name="P:Bot.Publication.IsClosed">
             <summary>
@@ -499,30 +534,50 @@
         </member>
         <member name="T:Bot.PublicationSet">
             <summary>
-            Conjunto de Publicaciones, clase estática que administra la lista de publicaciones en general.
+            Clase PublicationSet que se encarga de la gestion de las clases Publications y de que
+            estas persistan en el sistema. Tiene un parecido a la clase CompanySet pero no se puede
+            implementar abstracciones porque las clases estáticas no permiten este tipo de implementaciones.
             </summary>
         </member>
-        <member name="P:Bot.PublicationSet.ListPublications">
+        <member name="P:Bot.PublicationSet.ListPublication">
             <summary>
-            Get público que retorna la lista de publicaciones, esto para que la clase Búsqueda pueda 
-            manipular eficientemente las Publicaciones.
+            Obtiene la lista de clases Publicación extraida del archivo PublicationSet.txt.
             </summary>
-            <value></value>
+            <value>Lista Publicación de solo lectura.</value>
         </member>
         <member name="M:Bot.PublicationSet.AddPublication(System.String,Bot.Company,Bot.GeoLocation,Bot.Material)">
             <summary>
-            Método que agrega una publicación a la lista publicaciones, toma como parámetro 
-            todos los datos para poder crear una instancia de Publicación dentro del método,
-            cumpliendo así con el Creator Pattern.
+            Método que se encarga de agregar una clase Publicación al sistema para que 
+            pueda persistir aunque el bot caiga.
             </summary>
-            <param name="title">String Título.</param>
-            <param name="company">Clase Empresa.</param>
-            <param name="location">Clase Ubicación.</param>
-            <param name="material">Clase Material que es tomado como el primero de la Publicación.</param>
+            <param name="title">Titulo.</param>
+            <param name="company">Empresa.</param>
+            <param name="location">Ubicación</param>
+            <param name="material">Material.</param>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.PublicationSet.AddPublication(System.String,Bot.Company,Bot.GeoLocation)">
+            <summary>
+            Sobrecarga del método AddCompany que permite no ingresar un material inicial.
+            </summary>
+            <param name="title">Titulo.</param>
+            <param name="company">Empresa.</param>
+            <param name="location">Ubicación.</param>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.PublicationSet.AddPublication(Bot.Publication)">
+            <summary>
+            Sobrecarga del método AddCompany que permite ingresar un objeto Publicación como parámetro
+            para ser ingresado al sistema.
+            </summary>
+            <param name="publication"></param>
+            <returns></returns>
         </member>
         <member name="M:Bot.PublicationSet.DeletePublication(Bot.Publication)">
             <summary>
-            Elimina una Publicación de la lista publicaciones.
+            Método que elimina una clase Publicación del sistema.
             </summary>
             <param name="publication">Publicación.</param>
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
@@ -530,10 +585,18 @@
         </member>
         <member name="M:Bot.PublicationSet.ReturnListPublications">
             <summary>
-            Método que retorna la lista completa de Publicaciones en un string con sus respectivos
-            índices.
+            Método que se encarga de retornar un string con el listado de publicaciones.
             </summary>
-            <returns>String con el nombre de la Publicación y sus indices.</returns>
+            <returns>Cadena de caracteres.</returns>
+        </member>
+        <member name="M:Bot.PublicationSet.ContainsPublicationInListPublications(Bot.Publication)">
+            <summary>
+            Método simple que se encarga de comprobar si una clase Publicación se encuentra
+            en el sistema de Publicaciones.
+            </summary>
+            <param name="publication">Publicación.</param>
+            <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso 
+            contrario.</returns>
         </member>
         <member name="T:Bot.Command">
             <summary>

@@ -24,7 +24,8 @@ namespace BotTests
             company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
             String title = "Madera de pino";
             Material materialTest = new Material(title, 500, 9000);
-            publicationTest = PublicationSet.AddPublication(title, company, companyLocation, materialTest);
+            publicationTest = new Publication(title, company, companyLocation, materialTest); 
+            PublicationSet.AddPublication(publicationTest);
             entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
         }
 

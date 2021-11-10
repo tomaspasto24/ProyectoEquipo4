@@ -46,6 +46,23 @@ namespace Bot
         }
 
         /// <summary>
+        /// Sobrecarga del constructor Publicación, en el que no se requiere del parámetro material inicial.
+        /// </summary>
+        /// <param name="title">Titulo.</param>
+        /// <param name="company">Empresa.</param>
+        /// <param name="location">Ubicación.</param>
+        public Publication(String title, Company company, GeoLocation location)
+        {
+            this.title = title;
+            this.company = company;
+            this.date = DateTime.Now;
+            this.closedDate = DateTime.MinValue;
+            this.location = location;
+            this.isClosed = false;
+            this.InterestedPerson = null;
+        }
+
+        /// <summary>
         /// Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
         /// identificando por título.
         /// </summary>

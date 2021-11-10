@@ -18,7 +18,7 @@ namespace Bot
                 /// Variable para salir de la publicación cuando en ella ya se encontró el material buscado
                 /// </summary>
                 bool exitPublication = false;
-                foreach (Publication publication in PublicationSet.ListPublications)
+                foreach (Publication publication in PublicationSet.ListPublication)
                 {
                     distance = AsyncContext.Run<double>(() => location.CalculateDistance(publication.Location));
                     if (distance < 500)

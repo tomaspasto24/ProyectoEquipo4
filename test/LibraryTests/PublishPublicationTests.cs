@@ -50,7 +50,7 @@ namespace BotTests
             Assert.That(publicationToCompare.Title == "PublicationTest");
 
             Assert.IsNotNull(publicationToCompare);
-            Assert.IsNotNull(PublicationSet.ListPublications);
+            Assert.IsNotNull(PublicationSet.ListPublication);
             Assert.That(publicationToCompare.DeleteMaterial(initialMaterial));
         }
 

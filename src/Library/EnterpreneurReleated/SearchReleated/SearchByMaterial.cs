@@ -16,7 +16,7 @@ namespace Bot
             /// VAriable para salir de la publicación cuando se encontró el material buscado
             /// </summary>
             bool exitPublication = false;
-            foreach (Publication publication in PublicationSet.ListPublications)
+            foreach (Publication publication in PublicationSet.ListPublication)
             {
                 while (!exitPublication)
                 {
