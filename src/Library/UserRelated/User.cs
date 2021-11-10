@@ -50,5 +50,36 @@ namespace Bot
             this.id = id;
             this.Role = role;
         }
+        /// <summary>
+        /// Metodo para cambiar el rol del usuario a UserCompany
+        /// </summary>
+        /// <param name="company">La company que va a tener asociada</param>
+        public void ChangeRoleToUserCompany(Company company)
+        {
+            RoleUserCompany newRole = new RoleUserCompany(company, this.Name, this.Id);
+            this.Role = newRole;
+        }
+
+        /// <summary>
+        /// Metodo para cambiar el rol del usuario a Admin
+        /// </summary>
+        public void ChangerRoleToAdmin()
+        {
+            RoleAdmin newRole = new RoleAdmin(this.Name, this.Id);
+            this.Role = newRole;
+        }
+
+        /// <summary>
+        /// Metodo para cambiar el rol del usuario a Emprendedor
+        /// </summary>
+        /// <param name="heading">Rubro</param>
+        /// <param name="location">Locacion del usuario</param>
+        /// <param name="certification">Certificacion</param>
+        /// <param name="specialization">Especializacion</param>
+        public void ChangeRoleToEntrepreneur(string heading, GeoLocation location, string certification, string specialization)
+        {
+            RoleEntrepreneur newRole = new RoleEntrepreneur(this.Name, this.Id, heading, location, certification, specialization);
+            this.Role = newRole;
+        }
     }
 }

@@ -404,16 +404,16 @@
             Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
             </summary>
             <param name="title">Titulo.</param>
-            <param name="Company">Empresa.</param>
+            <param name="company">Empresa.</param>
             <param name="location">Ubicación.</param>
             <param name="material">Material</param>
         </member>
         <member name="P:Bot.Publication.Title">
             <summary>
-            Titulo que representa la publicación. Más que nada para poder retornar una lista
+            Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
             identificando por título.
             </summary>
-            <value>string</value>
+            <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Publication.Company">
             <summary>
@@ -445,7 +445,7 @@
             <summary>
             Devuelve un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
             </summary>
-            <returns>String con todo los materiales enumerados</returns>
+            <returns>String con todo los materiales enumerados.</returns>
         </member>
         <member name="P:Bot.Publication.IsClosed">
             <summary>
@@ -938,6 +938,26 @@
              <param name="id"></param>
              <param name="role"></param>
         </member>
+        <member name="M:Bot.User.ChangeRoleToUserCompany(Bot.Company)">
+            <summary>
+            Metodo para cambiar el rol del usuario a UserCompany
+            </summary>
+            <param name="company">La company que va a tener asociada</param>
+        </member>
+        <member name="M:Bot.User.ChangerRoleToAdmin">
+            <summary>
+            Metodo para cambiar el rol del usuario a Admin
+            </summary>
+        </member>
+        <member name="M:Bot.User.ChangeRoleToEntrepreneur(System.String,Bot.GeoLocation,System.String,System.String)">
+            <summary>
+            Metodo para cambiar el rol del usuario a Emprendedor
+            </summary>
+            <param name="heading">Rubro</param>
+            <param name="location">Locacion del usuario</param>
+            <param name="certification">Certificacion</param>
+            <param name="specialization">Especializacion</param>
+        </member>
         <member name="T:Bot.UserRelated">
             <summary>
             Clase UserRelated que contiene informacion acerca del usuario.
@@ -965,26 +985,6 @@
             <summary>
             Constructor de la clase UserRelated.
             </summary>
-        </member>
-        <member name="M:Bot.UserRelated.ChangeRoleToUserCompany(Bot.Company)">
-            <summary>
-            Metodo para cambiar el rol del usuario a UserCompany
-            </summary>
-            <param name="company">La company que va a tener asociada</param>
-        </member>
-        <member name="M:Bot.UserRelated.ChangerRoleToAdmin">
-            <summary>
-            Metodo para cambiar el rol del usuario a Admin
-            </summary>
-        </member>
-        <member name="M:Bot.UserRelated.ChangeRoleToEntrepreneur(System.String,Bot.GeoLocation,System.String,System.String)">
-            <summary>
-            Metodo para cambiar el rol del usuario a Emprendedor
-            </summary>
-            <param name="heading">Rubro</param>
-            <param name="location">Locacion del usuario</param>
-            <param name="certification">Certificacion</param>
-            <param name="specialization">Especializacion</param>
         </member>
     </members>
 </doc>

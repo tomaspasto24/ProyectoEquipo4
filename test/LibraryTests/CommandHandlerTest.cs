@@ -59,7 +59,7 @@ namespace BotTests
             GeoLocation location = new GeoLocation("adress", "city");
             Company company = new Company("nombre", "rubro", location, "contacto");
 
-            userRelated.ChangeRoleToUserCompany(company);
+            user.ChangeRoleToUserCompany(company);
 
             message.Text = "/comandos";
             string response;
@@ -78,7 +78,7 @@ namespace BotTests
         {
             GeoLocation location = new GeoLocation("adress", "city");
 
-            userRelated.ChangeRoleToEntrepreneur("heading", location, "certification", "specialization");
+            user.ChangeRoleToEntrepreneur("heading", location, "certification", "specialization");
 
             message.Text = "/comandos";
             string response;
