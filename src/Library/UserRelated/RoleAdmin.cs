@@ -8,7 +8,7 @@ namespace Bot
     public class RoleAdmin : Role
     {
         /// <summary>
-        /// Se inicializa la lista globalRatingsList
+        /// Se inicializa la lista globalQualificationList
         /// </summary>
         /// <returns></returns>
         public static List<string> globalQualificationList = new List<string>();

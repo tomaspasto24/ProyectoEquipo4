@@ -107,7 +107,7 @@ namespace Bot
         /// </summary>
         /// <param name="token">Token que el usuario inserta</param>
         /// <returns></returns>
-        public Company ReturnCompany(string token)
+        public Company ReturnCompany(int token)
         {
             Company company;
             if (DiccUserTokens.TryGetValue(token, out company))
