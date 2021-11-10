@@ -46,6 +46,11 @@
             clases Empresa del sistema.
             </summary>
         </member>
+        <member name="T:BotTests.CompanyTest">
+            <summary>
+            Clase para testear la clase Company.
+            </summary>
+        </member>
         <member name="T:BotTests.GeoLocationTests">
             <summary>
             GeoLocationTests se encarga de testear los atributos y las funcionalidades de la clase
