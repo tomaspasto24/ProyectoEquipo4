@@ -32,7 +32,7 @@ namespace Bot
                 {       
                     foreach (Material material in publication.ReturnListMaterials())
                     {
-                        if (material.ReturnKeyWords().Contains(wordToSearch))
+                        if (material.KeyWords.Contains(wordToSearch))
                         {
                             result.Add(publication);
                             exitPublication = true; 
