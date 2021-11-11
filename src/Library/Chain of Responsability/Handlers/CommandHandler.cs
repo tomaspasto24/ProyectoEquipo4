@@ -25,7 +25,7 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             Command commands = new Command();
-            UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
+            User user = SessionRelated.Instance.GetUserById(request.UserId);
 
             if (request.Text.Equals("/comandos"))
             {

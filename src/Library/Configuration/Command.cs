@@ -98,15 +98,15 @@ namespace Bot
         public string ReturnCommands(int userId)
         {
             string commandList = string.Empty;
-            UserRelated userRelated = SessionRelated.Instance.ReturnInfo(userId);
-            if (userRelated.User.Role is RoleEntrepreneur)
+            User user = SessionRelated.Instance.GetUserById(userId);
+            if (user.Role is RoleEntrepreneur)
             {
                 foreach (string command in EntrepreneurList())
                 {
                     commandList = commandList + command + "\n";
                 }
             }
-            else if (userRelated.User.Role is RoleUserCompany)
+            else if (user.Role is RoleUserCompany)
             {
                 foreach (string command in CompanyUserList())
                 {

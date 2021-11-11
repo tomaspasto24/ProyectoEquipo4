@@ -12,7 +12,6 @@ namespace BotTests
 
         User user;
         Role role;
-        UserRelated userRelated;
         SessionRelated sessionRelated;
         Message message;
         CommandHandler handler;
@@ -25,8 +24,6 @@ namespace BotTests
         {
             role = new RoleAdmin("name", 123);
             user = new User("Seba", 123, role);
-            userRelated = UserRelated.Instance;
-            userRelated.User = user;
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser("Seba", 123, role);

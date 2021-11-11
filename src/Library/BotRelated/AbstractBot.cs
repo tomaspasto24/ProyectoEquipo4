@@ -25,14 +25,6 @@ namespace Bot
         public abstract void StartCommunication();
 
         /// <summary>
-        /// Metodo publico y abstracto para setear el canal de comunicacion entre el usuario y el bot.
-        /// </summary>
-        public void ChangeChannel(int id, AbstractBot channel)
-        {
-            SessionRelated.Instance.SetChatChannel(id, channel);
-        }
-
-        /// <summary>
         /// Metodo para enviar el mensaje por el canal donde se esta comunicando
         /// </summary>
         /// <param name="id">id del usuario con el que dialoga el bot</param>
