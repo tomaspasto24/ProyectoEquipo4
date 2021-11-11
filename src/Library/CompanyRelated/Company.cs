@@ -15,10 +15,9 @@ namespace Bot
         private GeoLocation location;
         private string contact;
         private List<User> listUsers = new List<User>();
-        private List<Publication> listOwnPublications = new List<Publication>(); 
-        private List<Publication> listHistorialPublications = new List<Publication>(); 
+        private List<Publication> listOwnPublications = new List<Publication>();
+        private List<Publication> listHistorialPublications = new List<Publication>();
 
-        [JsonConstructor]
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
         /// contador de empresas estático.
@@ -27,13 +26,15 @@ namespace Bot
         /// <param name="item">Rubro de la Empresa.</param>
         /// <param name="location">Ubicación establecida de la Empresa.</param>
         /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
+        [JsonConstructor]
         public Company(string name, string item, GeoLocation location, string contact)
         {
             this.name = name;
             this.item = item;
             this.location = location;
             this.contact = contact;
-        }        
+        }
+
         /// <summary>
         /// Obtiene nombre de la clase Empresa.
         /// </summary>
@@ -57,6 +58,7 @@ namespace Bot
                 return this.item;
             }
         }
+
         /// <summary>
         /// Obtiene la ubicación de la clase Empresa.
         /// </summary>
@@ -160,10 +162,12 @@ namespace Bot
         {
             this.listOwnPublications.Add(publication);
         }
+
         /// <summary>
         /// Método que se encarga de eliminar una publicación propia de la empresa.
         /// </summary>
         /// <param name="publication">Publicación.</param>
+        /// <returns>Retorna <c>True</c> en caso de que pueda eliminarse, <c>False</c> en caso contrario.</returns>
         public bool DeleteOwnPublication(Publication publication)
         {
             return this.listOwnPublications.Remove(publication);

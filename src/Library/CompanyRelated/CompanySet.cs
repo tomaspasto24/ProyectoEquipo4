@@ -1,23 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Bot
 {
     /// <summary>
     /// Conjunto de Empresas, clase estática que administra la lista de Empresas en general.
     /// </summary>
-    public static class CompanySet 
+    public static class CompanySet
     {
-        private const string path = @"C:\Users\Tomás\OneDrive - Universidad Católica del Uruguay\Programación II\Ejercicios\PII_2021_2_Equipo4\docs\CompanyDataBase.txt";
+        private const string Path = @"C:\Users\Tomás\OneDrive - Universidad Católica del Uruguay\Programación II\Ejercicios\PII_2021_2_Equipo4\docs\CompanyDataBase.txt";
         /// <summary>
-        /// Obtiene la lista de Empresas, esto para que la clase Búsqueda pueda 
-        /// manipular eficientemente las Publicaciones.
+        /// Obtiene la lista de Empresas, esto para que la clase Búsqueda pueda manipular eficientemente las Publicaciones.
         /// </summary>
-        /// <value></value>
+        /// <value>Clase Empresa.</value>
         public static IReadOnlyCollection<Company> ListCompany
         {
             get
@@ -26,8 +24,9 @@ namespace Bot
                 Company company;
                 try
                 {
-                    using(StreamReader txtReader = new StreamReader(path))
+                    using (StreamReader txtReader = new StreamReader(Path))
                     {
+                        
                         string line = txtReader.ReadLine();
                         string name;
                         string item;
@@ -74,7 +73,7 @@ namespace Bot
             {
                 string jsonCompany = JsonSerializer.Serialize(company);
 
-                using(StreamWriter txtWrite = new StreamWriter(path, true))
+                using(StreamWriter txtWrite = new StreamWriter(Path, true))
                 {
                     txtWrite.WriteLine(jsonCompany);
                     txtWrite.Close();
@@ -98,7 +97,7 @@ namespace Bot
             {
                 string jsonCompany = JsonSerializer.Serialize(company);
 
-                using(StreamWriter txtWrite = new StreamWriter(path, true))
+                using(StreamWriter txtWrite = new StreamWriter(Path, true))
                 {
                     txtWrite.WriteLine(jsonCompany);
                     txtWrite.Close();
@@ -129,7 +128,7 @@ namespace Bot
                         listCompaniesEdit.Add(item);  
                     }
                 }
-                File.WriteAllText(path, "");
+                File.WriteAllText(Path, "");
                 
                 foreach(Company companyToAdd in listCompaniesEdit)
                 {

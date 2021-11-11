@@ -25,7 +25,7 @@ namespace Bot
         {
             this.name = name;
             this.quantity = quantity;
-            this.price = price;   
+            this.price = price;
         }
 
         /// <summary>
