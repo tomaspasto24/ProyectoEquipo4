@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bot
 {
@@ -17,17 +18,12 @@ namespace Bot
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
-        public static List<User> AllUsers;
-
-        /// <summary>
-        /// Diccionario que contiene la id que se relaciona con un usuario
-        /// </summary>
-        public static Dictionary<int, UserRelated> DiccUserRelated;
+        public List<User> AllUsers;
 
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public static Dictionary<int, Company> DiccUserTokens;
+        public Dictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>
@@ -52,8 +48,7 @@ namespace Bot
         private SessionRelated()
         {
             AllUsers = new List<User>();
-            DiccUserRelated = new Dictionary<int, UserRelated>();
-            DiccUserTokens = new Dictionary<int, Company>();
+            DiccUserTokens = new Dictionary<string, Company>();
         }
 
         /// <summary>
@@ -85,7 +80,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario a verificar</param>
         /// <returns>true o false</returns>
-        public static bool UsernameExists(int id)
+        public bool UsernameExists(int id)
         {
             foreach (User user in AllUsers)
             {
@@ -98,31 +93,13 @@ namespace Bot
         }
 
         /// <summary>
-        /// Metodo para cambiar el canal de comunicacion entre el bot y el usuario
-        /// </summary>
-        /// <param name="id">id del usuario</param>
-        /// <param name="channel">Canal que se va a usar</param>
-        public void SetChatChannel(int id, AbstractBot channel)
-        {
-            ReturnInfo(id).Channel = channel;
-        }
-
-        /// <summary>
-        /// Metodo para obtener la informacion relacionada a un usuario
+        /// Metodo para obtener el usuario relacionado al id.
         /// </summary>
         /// <param name="id">Id del usuario</param>
-        /// <returns>La informacion del usuario</returns>
-        public UserRelated ReturnInfo(int id)
+        /// <returns>El usuario</returns>
+        public User GetUserById(int id)
         {
-            UserRelated info;
-            // TryGetValue: Intenta devolver en info, el valor que tiene asignado la key id.
-            if (DiccUserRelated.TryGetValue(id, out info))
-            {
-                return info;
-            }
-            info = UserRelated.Instance;
-            DiccUserRelated.Add(id, info);
-            return info;
+            return AllUsers.Find(user => user.Id == id);
         }
 
         /// <summary>
