@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace BotTests
 {
+    /// <summary>
+    /// Tests del método Search de las clases SearchByMaterial y SearchByLocation
+    /// </summary>
     public class SearchTests
     {
         RoleEntrepreneur emprendedor;
@@ -12,6 +15,9 @@ namespace BotTests
         Material material2;
         Publication publicacion;
         GeoLocation location;
+        /// <summary>
+        /// Se crean dos instancias de Material y una de Company para poder crear una de Publication y usarlas en los dos test
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -27,11 +33,10 @@ namespace BotTests
         }
 
         /// <summary>
-        /// El resultado de la búsqueda contiene a la publicación y esta contiene al material buscado,
+        /// El resultado de la búsqueda es una lista con la publicación y esta contiene al material buscado,
         /// cada material tiene una lista de palabras claves
         /// </summary>
-        
-        /*[Test]
+        [Test]
         public void SearchByMaterialTest()
         {             
             List<Publication> resultadoBusqueda = new List<Publication>();
@@ -41,10 +46,10 @@ namespace BotTests
             
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
             Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
-        }*/
+        }
 
         /// <summary>
-        /// El resultado de la búsqueda contiene a la publicación y esta al material con la ubicación buscada
+        /// El resultado de la búsqueda es una lista con la publicación de igual ubicación a la buscada
         /// </summary>
         public void SearchByLocationTest()
         {             
