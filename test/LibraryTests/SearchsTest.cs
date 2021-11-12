@@ -21,7 +21,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            location = new GeoLocation("Av. Italia", "Montevideo", "Montevideo");
+            location = new GeoLocation("Av. Italia", "Montevideo");
             
             emprendedor = new RoleEntrepreneur("Pedrito", 4, "herrería", location, "", "");
 
@@ -57,7 +57,6 @@ namespace BotTests
             resultadoBusqueda = emprendedor.SearchingByLocation("Av.Italia");
             
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
-            Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
         }
     }
 }

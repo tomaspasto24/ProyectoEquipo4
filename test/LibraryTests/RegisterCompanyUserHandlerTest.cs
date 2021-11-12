@@ -10,8 +10,7 @@ namespace BotTests
     public class RegisterCompanyUserHandlerTest
     {
 
-        User usuario;
-        UserRelated userRelated;
+        User user;
         Role role;
         Company company;
         GeoLocation location;
@@ -26,21 +25,19 @@ namespace BotTests
         [SetUp]
         public void SetUp()
         {
-            location = new GeoLocation("8 de octubre", "Montevideo", "Montevideo");
+            location = new GeoLocation("8 de octubre", "Montevideo");
             company = new Company("Test", "itemTest", location, "093929434");
 
             newRole = new RoleUserCompany(company, "Seba", 123);
 
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
             role = new RoleEntrepreneur("name", 123, "carpintero", entrepreneurLocation, "oficial", "lustrado");
-            usuario = new User("Seba", 123, role);
-            userRelated = UserRelated.Instance;
-            userRelated.User = usuario;
+            user = new User("Seba", 123, role);
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser("Seba", 123, role);
 
-            message = new Message(usuario.Id, null);
+            message = new Message(user.Id, null);
             handler = new RegisterHandler(null);
         }
 
@@ -84,7 +81,7 @@ namespace BotTests
         [Test]
         public void TestTokenFound()
         {
-            SessionRelated.DiccUserTokens.Add("IHaveAToken", company);
+            SessionRelated.Instance.DiccUserTokens.Add("IHaveAToken", company);
             
             message.Text = "/registro";
             string response;

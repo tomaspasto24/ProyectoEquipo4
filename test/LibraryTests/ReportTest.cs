@@ -19,13 +19,13 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo", "Montevideo");
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
-            company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
+            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
+            this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
             String title = "Madera de pino";
             Material materialTest = new Material(title, 500, 9000);
-            publicationTest = PublicationSet.AddPublication(title, company, companyLocation, materialTest);
-            entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
+            this.publicationTest = PublicationSet.AddPublication(title, this.company, companyLocation, materialTest);
+            this.entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace BotTests
         [Test]
         public void CompanyReportClosedPublicationTest()
         {
-            entrepreneur.ContactCompany(publicationTest);
-            publicationTest.ClosePublication();
-            CompanyReport reporte = new CompanyReport(company);
+            this.entrepreneur.ContactCompany(this.publicationTest);
+            this.publicationTest.ClosePublication();
+            CompanyReport reporte = new CompanyReport(this.company);
             String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias";
 
             StringAssert.Contains(expected, reporte.GiveReport());
@@ -48,7 +48,7 @@ namespace BotTests
         [Test]
         public void CompanyReportPublicationNotClosedTest()
         {
-            CompanyReport reporte = new CompanyReport(company);
+            CompanyReport reporte = new CompanyReport(this.company);
             String expected = "No hay publicaciones cerradas en los ultimos 30 dias para la empresa: Las Acacias";
             StringAssert.Contains(expected, reporte.GiveReport());
         }
@@ -59,9 +59,9 @@ namespace BotTests
         [Test]
         public void EntrepreneurReportClosedPublicationTest()
         {
-            entrepreneur.ContactCompany(publicationTest);
-            publicationTest.ClosePublication();
-            EntrepreneurReport reporte = new EntrepreneurReport(entrepreneur);
+            this.entrepreneur.ContactCompany(this.publicationTest);
+            this.publicationTest.ClosePublication();
+            EntrepreneurReport reporte = new EntrepreneurReport(this.entrepreneur);
             String expected = "Materiales consumidos en los ultimos 30 dias por el emprendedor: emprendedor1 #1 - Madera de pino";
             StringAssert.Contains(expected, reporte.GiveReport());
             //Assert.AreEqual(expected, reporte.GiveReport());
@@ -73,7 +73,7 @@ namespace BotTests
         [Test]
         public void EntrepreneurReportPublicationNotClosedTest()
         {
-            EntrepreneurReport reporte = new EntrepreneurReport(entrepreneur);
+            EntrepreneurReport reporte = new EntrepreneurReport(this.entrepreneur);
             String expected = $"El emprendedor: emprendedor1, no tiene publicaciones asignadas en los ultimos 30 dias";
             // StringAssert.Contains(expected, reporte.GiveReport());
             Assert.AreEqual(expected, reporte.GiveReport());

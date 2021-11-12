@@ -254,7 +254,6 @@
         <member name="M:BotTests.TokenTest.TokenAddedTest">
             <summary>
             Test para agregar el token generado a la lista de globalRatingsList.
-            
             </summary>
         </member>
     </members>

@@ -49,7 +49,7 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            UserRelated userData = SessionRelated.Instance.ReturnInfo(request.UserId);
+            User user = SessionRelated.Instance.GetUserById(request.UserId);
 
             if ((State == RegisterState.Start) && (request.Text.Equals("/registro")))
             {
@@ -59,11 +59,11 @@ namespace Bot
             }
             else if (State == RegisterState.ConfirmingToken)
             {
-                if (SessionRelated.DiccUserTokens.ContainsKey(request.Text))
+                if (SessionRelated.Instance.DiccUserTokens.ContainsKey(request.Text))
                 {
                     this.State = RegisterState.Start;
                     this.Data.Token = request.Text;
-                    userData.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
+                    user.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }

@@ -11,8 +11,9 @@
     <Rule Id="CA1303" Action="None" />
     <Rule Id="SA1614" Action="None" />
     <Rule Id="SA1633" Action="None" />
-    <Rule Id="CS1711" Action="None" />
-    
+    <Rule Id="CS1711" Action="None" />     
+    <Rule Id="SA1642" Action="None" />
+    <Rule Id="SA1633" Action="None" />
   </Rules>
 </RuleSet>
 

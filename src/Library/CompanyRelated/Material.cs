@@ -1,3 +1,5 @@
+/* Encabezado
+*/
 using System.Collections.Generic;
 
 namespace Bot
@@ -14,6 +16,19 @@ namespace Bot
         private List<string> keyWords = new List<string>(); // Palabras clave
 
         /// <summary>
+        /// Método de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
+        /// </summary>
+        /// <param name="name">String nombre.</param>
+        /// <param name="quantity">Entero cantidad.</param>
+        /// <param name="price">Entero precio.</param>
+        public Material(string name, int quantity, int price)
+        {
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;   
+        }
+
+        /// <summary>
         /// Obtiene nombre del la clase Material.
         /// </summary>
         /// <value>String.</value>
@@ -26,7 +41,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obitene todas las Palabras Clave que contiene el Material.
+        /// Obtiene todas las Palabras Clave que contiene el Material.
         /// </summary>
         /// <returns>Cadena de caracteres.</returns>
         public IReadOnlyList<string> KeyWords
@@ -62,22 +77,9 @@ namespace Bot
         }
 
         /// <summary>
-        /// Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
-        /// </summary>
-        /// <param name="name">String nombre.</param>
-        /// <param name="quantity">Entero cantidad.</param>
-        /// <param name="price">Entero precio.</param>
-        public Material(string name, int quantity, int price)
-        {
-            this.name = name;
-            this.quantity = quantity;
-            this.price = price;   
-        }
-
-        /// <summary>
         /// Agrega una palabra clave a la lista de palabras clave.
         /// </summary>
-        /// <param name="keyWord"></param>
+        /// <param name="keyWord">Palabra clave.</param>
         public void AddKeyWord(string keyWord) // Agregar palabras clave
         {
             this.keyWords.Add(keyWord);
@@ -87,11 +89,11 @@ namespace Bot
         /// El método busca si hay un valor del string ingresado como parámetro, en caso de que exista un elemento:
         /// lo elimina y retorna True. De lo contrario solamente retorna False.
         /// </summary>
-        /// <param name="palabraClave">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
+        /// <param name="keyWord">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
         /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
-        public bool DeleteKeyWord(string palabraClave)
+        public bool DeleteKeyWord(string keyWord)
         {
-            return this.keyWords.Remove(palabraClave);
+            return this.keyWords.Remove(keyWord);
         }
     }
 }

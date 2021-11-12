@@ -24,10 +24,10 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            location = new GeoLocation("Universidad Católica", "Montevideo", "Montevideo");
+            location = new GeoLocation("Universidad Católica", "Montevideo");
             companyTest = new Company("Test", "itemTest", location, "093929434");
             initialMaterial = new Material("Wood", 15, 0);
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo", "Montevideo");
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
             entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
 
         }
@@ -42,17 +42,16 @@ namespace BotTests
             Publication publicationToCompare;
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            publicationToCompare.AddRating("Habilitación de Prueba");
-            publicationToCompare.AddRating("Habilitación de Prueba1");
-            publicationToCompare.AddRating("Habilitación de Prueba2");
+            publicationToCompare.AddQualification("Habilitación de Prueba");
+            publicationToCompare.AddQualification("Habilitación de Prueba1");
+            publicationToCompare.AddQualification("Habilitación de Prueba2");
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
 
             Assert.IsNotNull(publicationToCompare);
             Assert.IsNotNull(PublicationSet.ListPublications);
-            Assert.That(publicationToCompare.ReturnListRatings() is not null);
-            Assert.That(publicationToCompare.DeleteMaterial(0));
+            Assert.That(publicationToCompare.DeleteMaterial(initialMaterial));
         }
 
         /// <summary>
@@ -69,11 +68,6 @@ namespace BotTests
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
             PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
-            PublicationSet.ListPublications[0].AddMaterial(material1);
-            PublicationSet.ListPublications[0].AddMaterial(material2);
-            PublicationSet.ListPublications[0].AddMaterial(material3);
-
-            Assert.IsNotEmpty(PublicationSet.ListPublications[0].ReturnListMaterials());
         }
 
         /// <summary>

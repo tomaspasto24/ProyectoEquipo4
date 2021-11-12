@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
-
 
 namespace Bot
 {
@@ -11,18 +9,20 @@ namespace Bot
     public class EntrepreneurReport : IReport
     {
         private RoleEntrepreneur entrepreneur;
+
         /// <summary>
-        /// constructor de la clase emprendedor
+        /// constructor de la clase emprendedor.
         /// </summary>
-        /// <param name="entrepreneur"></param>
+        /// <param name="entrepreneur">El nombre del emprendedor.</param>
         public EntrepreneurReport(RoleEntrepreneur entrepreneur)
         {
             this.entrepreneur = entrepreneur;
         }
+
         /// <summary>
-        /// metodo para entregar el reporte del emprendedor
+        /// metodo para entregar el reporte del emprendedor.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El reporte del emprendedor.</returns>
         public String GiveReport()
         {
             StringBuilder report = new StringBuilder();
@@ -37,14 +37,16 @@ namespace Bot
                     report.Append($"#{++contador} - {publication.Title} - {publication.ClosedDate} \n");
                 }
             }
+
             if (report.Length > 0)
             {
-                result = ($"Materiales consumidos en los ultimos 30 dias por el emprendedor: {this.entrepreneur.Name} {report} ");
+                result = $"Materiales consumidos en los ultimos 30 dias por el emprendedor: {this.entrepreneur.Name} {report} ";
             }
             else
             {
                 result = $"El emprendedor: {this.entrepreneur.Name}, no tiene publicaciones asignadas en los ultimos 30 dias";
             }
+
             return result;
         }
     }
