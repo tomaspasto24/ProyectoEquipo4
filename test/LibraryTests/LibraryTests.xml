@@ -178,9 +178,57 @@
             Tests de los métodos de la clase RoleEntrepreneur
             </summary>
         </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.Setup">
+            <summary>
+            Se crea una instancia de emprendedor que será usada para los tests de cada método
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddCertificationTest">
+            <summary>
+            Test del método que le agrega una certificación al emprendedor
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddSpecializationTest">
+            <summary>
+            Test del método que le agrega una especialización al emprendedor
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddListHistorialPublicationsTest1">
+            <summary>
+            Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+            y se fija que la lista no esté vacía
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddHistorialPublicationTest2">
+            <summary>
+            Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+            y se fija la lista sea la correcta
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.ContactCompanyTest">
+            <summary>
+            Verifica que la ubicación que se le devuelve al emprendedor sea efectivamente la correcta
+            </summary>
+        </member>
+        <member name="T:BotTests.SearchTests">
+            <summary>
+            Tests del método Search de las clases SearchByMaterial y SearchByLocation
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.Setup">
+            <summary>
+            Se crean dos instancias de Material y una de Company para poder crear una de Publication y usarlas en los dos test
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.SearchByMaterialTest">
+            <summary>
+            El resultado de la búsqueda es una lista con la publicación y esta contiene al material buscado,
+            cada material tiene una lista de palabras claves
+            </summary>
+        </member>
         <member name="M:BotTests.SearchTests.SearchByLocationTest">
             <summary>
-            El resultado de la búsqueda contiene a la publicación y esta al material con la ubicación buscada
+            El resultado de la búsqueda es una lista con la publicación de igual ubicación a la buscada
             </summary>
         </member>
         <member name="T:BotTests.TokenTest">
