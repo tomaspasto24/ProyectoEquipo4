@@ -34,13 +34,22 @@ namespace Bot
                         string title;
                         Company company;
                         GeoLocation location;
+                        IReadOnlyList<Material> listMaterials;
+                        IReadOnlyList<string> listQualifications;
 
                         while (line != null)
                         {
                             title = JsonSerializer.Deserialize<Publication>(line).Title;
                             company = JsonSerializer.Deserialize<Publication>(line).Company;
                             location = JsonSerializer.Deserialize<Publication>(line).Location;
-                            publication = new Publication(title, company, location);
+
+                            listMaterials = JsonSerializer.Deserialize<Publication>(line).ListMaterials;
+                            listQualifications = JsonSerializer.Deserialize<Publication>(line).ListQualifications;
+
+                            publication = new Publication(title, company, location, listMaterials[0]);
+                            publication.AddMaterial(listMaterials);
+                            publication.AddQualification(listQualifications);
+
                             listPublications.Add(publication);
                             //Read the next line
                             line = txtReader.ReadLine();
@@ -65,38 +74,15 @@ namespace Bot
         /// <param name="company">Empresa.</param>
         /// <param name="location">Ubicación</param>
         /// <param name="material">Material.</param>
+        /// <param name="listMaterials">Lista Material.</param>
+        /// <param name="listQualifications">Lista Habilitaciones.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
         /// contrario.</returns>
-        public static bool AddPublication(String title, Company company, GeoLocation location, Material material)
+        public static bool AddPublication(String title, Company company, GeoLocation location, Material material, IReadOnlyList<Material> listMaterials, IReadOnlyList<string> listQualifications)
         {
             Publication publication = new Publication(title, company, location, material);
-
-            if(!ContainsPublicationInListPublications(publication))
-            {
-                string jsonCompany = JsonSerializer.Serialize(publication);
-
-                using(StreamWriter txtWrite = new StreamWriter(Path, true))
-                {
-                    txtWrite.WriteLine(jsonCompany);
-                    txtWrite.Close();
-                    txtWrite.Dispose();
-                    return true;
-                }
-            }
-            else return false;
-        }
-
-        /// <summary>
-        /// Sobrecarga del método AddCompany que permite no ingresar un material inicial.
-        /// </summary>
-        /// <param name="title">Titulo.</param>
-        /// <param name="company">Empresa.</param>
-        /// <param name="location">Ubicación.</param>
-        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
-        /// contrario.</returns>
-        public static bool AddPublication(String title, Company company, GeoLocation location)
-        {
-            Publication publication = new Publication(title, company, location);
+            publication.AddMaterial(listMaterials);
+            publication.AddQualification(listQualifications);
 
             if(!ContainsPublicationInListPublications(publication))
             {

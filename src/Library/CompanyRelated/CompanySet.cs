@@ -77,7 +77,7 @@ namespace Bot
         /// <param name="contact">Contacto de Empresa.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
         /// contrario.</returns>
-        public static bool AddCompany(string name, string item, GeoLocation location, string contact, List<User> listUsers, List<Publication> listOwnPublications, List<Publication> listHistorialPublications)
+        public static bool AddCompany(string name, string item, GeoLocation location, string contact, IReadOnlyList<User> listUsers, IReadOnlyList<Publication> listOwnPublications, IReadOnlyList<Publication> listHistorialPublications)
         {
             Company company = new Company(name, item, location, contact);
             company.AddUser(listUsers);

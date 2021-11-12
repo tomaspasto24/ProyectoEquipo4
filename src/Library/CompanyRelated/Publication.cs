@@ -41,23 +41,6 @@ namespace Bot
         }
 
         /// <summary>
-        /// Sobrecarga del constructor Publicación, en el que no se requiere del parámetro material inicial.
-        /// </summary>
-        /// <param name="title">Titulo.</param>
-        /// <param name="company">Empresa.</param>
-        /// <param name="location">Ubicación.</param>
-        public Publication(String title, Company company, GeoLocation location)
-        {
-            this.title = title;
-            this.company = company;
-            this.date = DateTime.Now;
-            this.closedDate = DateTime.MinValue;
-            this.location = location;
-            this.isClosed = false;
-            this.InterestedPerson = null;
-        }
-
-        /// <summary>
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
         /// <value>Rol Emprendedor.</value>
@@ -127,14 +110,26 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene un string con todos los materiales enumerados, necesario para poder eliminar un objeto Material.
+        /// Obtiene una lista de solo lectura con todos los materiales.
         /// </summary>
         /// <returns>String con todo los materiales enumerados.</returns>
-        public IReadOnlyCollection<Material> ListMaterials
+        public IReadOnlyList<Material> ListMaterials
         {
             get
             {
                 return this.listMaterials.AsReadOnly();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene una lista de solo lectura de los string Habilitaciones.
+        /// </summary>
+        /// <value></value>
+        public IReadOnlyList<string> ListQualifications
+        {
+            get
+            {
+                return this.listQualifications;
             }
         }
 
@@ -157,6 +152,15 @@ namespace Bot
         public void AddMaterial(Material material)
         {
             this.listMaterials.Add(material);
+        }
+
+        /// <summary>
+        /// Sobrecarga de AddMaterial que agrega una lista de materiales a listMaterials.
+        /// </summary>
+        /// <param name="listMaterials"></param>
+        public void AddMaterial(IReadOnlyList<Material> listMaterials)
+        {
+            this.listMaterials.AddRange(listMaterials);
         }
 
         /// <summary>
@@ -203,6 +207,30 @@ namespace Bot
             if (RoleAdmin.globalQualificationList.Contains(qualification))
             {
                 this.listQualifications.Add(qualification);
+            }
+            else
+            {
+                System.Console.WriteLine("No se encuentra en la lista global de habilitaciones.");
+            }
+        }
+
+        /// <summary>
+        /// Sobrecarga del método AddQualification que agrega una lista de Habilitaciones a listQualifications.
+        /// </summary>
+        /// <param name="listQualifications"></param>
+        public void AddQualification(IReadOnlyList<string> listQualifications)
+        {
+            bool adminCondition = true;
+            foreach(string qualification in listQualifications)
+            {
+                if(!RoleAdmin.globalQualificationList.Contains(qualification))
+                {
+                    adminCondition = false;
+                }
+            }
+            if (adminCondition)
+            {
+                this.listQualifications.AddRange(listQualifications);
             }
             else
             {
