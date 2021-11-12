@@ -145,6 +145,15 @@ namespace Bot
         }
 
         /// <summary>
+        /// Sobrecarga del método AddUser, se encarga de agregar una lista de Usurios a listUsers.
+        /// </summary>
+        /// <param name="listUsers"></param>
+        public void AddUser(IReadOnlyList<User> listUsers)
+        {
+            this.listUsers.AddRange(listUsers);
+        }
+
+        /// <summary>
         /// Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
         /// </summary>
         /// <param name="user">Clase Usuario.</param>
@@ -164,6 +173,15 @@ namespace Bot
         }
 
         /// <summary>
+        /// Sobrecarga del método AddOwnPublication, se encarga de agregar una lista de Publicaciones a listOwnPublications.
+        /// </summary>
+        /// <param name="listPublications">Lista de Publicaciones.</param>
+        public void AddOwnPublication(IReadOnlyList<Publication> listPublications)
+        {
+            this.listOwnPublications.AddRange(listPublications);
+        }
+
+        /// <summary>
         /// Método que se encarga de eliminar una publicación propia de la empresa.
         /// </summary>
         /// <param name="publication">Publicación.</param>
@@ -180,6 +198,15 @@ namespace Bot
         public void AddListHistorialPublication(Publication publication)
         {
             this.listHistorialPublications.Add(publication);
+        }
+
+        /// <summary>
+        /// Sobrecarga del método AddListHistorialPublication, se encarga de agregar una lista de Publicaciones a listHistorialPublications.
+        /// </summary>
+        /// <param name="listPublications"></param>
+        public void AddListHistorialPublication(IReadOnlyList<Publication> listPublications)
+        {
+            this.listHistorialPublications.AddRange(listPublications);
         }
     }
 }

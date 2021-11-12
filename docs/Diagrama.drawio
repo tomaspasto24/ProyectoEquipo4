@@ -1,20 +1,20 @@
 <mxfile host="65bd71144e">
     <diagram id="8N9IxCA1fJN8erkE_-Jc" name="Página-1">
-        <mxGraphModel dx="1274" dy="312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1945" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="Company" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
-                    <mxGeometry x="150" y="250" width="270" height="240" as="geometry"/>
+                    <mxGeometry x="130" y="180" width="370" height="280" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="&lt;div&gt;&lt;span&gt;- name: string&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- item : string&lt;/div&gt;&lt;div&gt;- location : GeoLocation&lt;/div&gt;&lt;div&gt;- contact : string&lt;/div&gt;&lt;div&gt;- listUsers : List&amp;lt;User&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- ListOwnPublications: List&amp;lt;Publication&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- ListHistorialPublications: List&amp;lt;Publication&amp;gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="2" vertex="1">
-                    <mxGeometry y="26" width="270" height="100" as="geometry"/>
+                    <mxGeometry y="26" width="370" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="2" vertex="1">
-                    <mxGeometry y="126" width="270" height="14" as="geometry"/>
+                    <mxGeometry y="126" width="370" height="14" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="+ ReturnContact() : string&#10;+ AddUser(User) : void&#10;+ DeleteUser(User) : bool&#10;+ AddOwnPublication(Publication) : void&#10;+ DeleteOwnPublication(Publication) : bool&#10;+ AddListHistorialPublication(Publication) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
-                    <mxGeometry y="140" width="270" height="100" as="geometry"/>
+                <mxCell id="5" value="+ ReturnContact() : string&#10;+ AddUser(User) : void&#10;+ AddUser(IReadOnlyList&lt;User&gt;) : void&#10;+ DeleteUser(User) : bool&#10;+ AddOwnPublication(Publication) : void&#10;+ AddOwnPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;+ DeleteOwnPublication(Publication) : bool&#10;+ AddListHistorialPublication(Publication) : void&#10;+ AddListHistorialPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
+                    <mxGeometry y="140" width="370" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="Material" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
                     <mxGeometry x="140" y="920" width="180" height="140" as="geometry"/>
@@ -51,12 +51,6 @@
                 </mxCell>
                 <mxCell id="17" value="+ CalculateDistance(GeoLocation) : Task&lt;dobule&gt;&#10;+ CalculateDuration(GeoLocation) : Task&lt;dobule&gt;&#10;+ GetLocation() : Task&lt;Location&gt;&#10;- EstablishLocation(string, string) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="14" vertex="1">
                     <mxGeometry y="120" width="280" height="100" as="geometry"/>
-                </mxCell>
-                <mxCell id="22" value="" style="endArrow=classic;html=1;entryX=0.444;entryY=0.006;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="10" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="279" y="490" as="sourcePoint"/>
-                        <mxPoint x="279" y="583" as="targetPoint"/>
-                    </mxGeometry>
                 </mxCell>
                 <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="3" target="14" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -108,6 +102,14 @@
                 <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="33" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="110" y="400" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="10">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="295" y="470"/>
+                            <mxPoint x="295" y="470"/>
+                        </Array>
                     </mxGeometry>
                 </mxCell>
             </root>

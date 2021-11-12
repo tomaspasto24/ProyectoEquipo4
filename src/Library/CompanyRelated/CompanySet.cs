@@ -32,6 +32,9 @@ namespace Bot
                         string item;
                         GeoLocation location;
                         string contact;
+                        IReadOnlyList<Publication> listHistorialPublications;
+                        IReadOnlyList<Publication> ListOwnPublications;
+                        IReadOnlyList<User> ListUsers;
 
                         while (line != null)
                         {
@@ -39,7 +42,16 @@ namespace Bot
                             item = JsonSerializer.Deserialize<Company>(line).Item;
                             contact = JsonSerializer.Deserialize<Company>(line).Contact;
                             location = JsonSerializer.Deserialize<Company>(line).Location;
+
+                            listHistorialPublications = JsonSerializer.Deserialize<Company>(line).ListHistorialPublications;
+                            ListOwnPublications = JsonSerializer.Deserialize<Company>(line).ListOwnPublications;
+                            ListUsers = JsonSerializer.Deserialize<Company>(line).ListUsers;
+                            
                             company = new Company(name, item, location, contact);
+                            company.AddListHistorialPublication(listHistorialPublications);
+                            company.AddOwnPublication(ListOwnPublications);
+                            company.AddUser(ListUsers);
+
                             listCompanies.Add(company);
                             //Read the next line
                             line = txtReader.ReadLine();
@@ -65,9 +77,12 @@ namespace Bot
         /// <param name="contact">Contacto de Empresa.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso 
         /// contrario.</returns>
-        public static bool AddCompany(string name, string item, GeoLocation location, string contact)
+        public static bool AddCompany(string name, string item, GeoLocation location, string contact, List<User> listUsers, List<Publication> listOwnPublications, List<Publication> listHistorialPublications)
         {
             Company company = new Company(name, item, location, contact);
+            company.AddUser(listUsers);
+            company.AddOwnPublication(listOwnPublications);
+            company.AddListHistorialPublication(listHistorialPublications);
 
             if(!ContainsCompanyInListCompanies(company))
             {
