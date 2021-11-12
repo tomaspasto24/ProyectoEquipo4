@@ -28,7 +28,7 @@ namespace Bot
                 Publication publication;
                 try
                 {
-                    using(StreamReader txtReader = new StreamReader(path))
+                    using(StreamReader txtReader = new StreamReader(Path))
                     {
                         string line = txtReader.ReadLine();
                         string title;
@@ -75,7 +75,7 @@ namespace Bot
             {
                 string jsonCompany = JsonSerializer.Serialize(publication);
 
-                using(StreamWriter txtWrite = new StreamWriter(path, true))
+                using(StreamWriter txtWrite = new StreamWriter(Path, true))
                 {
                     txtWrite.WriteLine(jsonCompany);
                     txtWrite.Close();
@@ -102,7 +102,7 @@ namespace Bot
             {
                 string jsonCompany = JsonSerializer.Serialize(publication);
 
-                using(StreamWriter txtWrite = new StreamWriter(path, true))
+                using(StreamWriter txtWrite = new StreamWriter(Path, true))
                 {
                     txtWrite.WriteLine(jsonCompany);
                     txtWrite.Close();
@@ -125,7 +125,7 @@ namespace Bot
             {
                 string jsonPublication = JsonSerializer.Serialize(publication);
 
-                using(StreamWriter txtWrite = new StreamWriter(path, true))
+                using(StreamWriter txtWrite = new StreamWriter(Path, true))
                 {
                     txtWrite.WriteLine(jsonPublication);
                     txtWrite.Close();
@@ -156,7 +156,7 @@ namespace Bot
                         listPublicationsEdit.Add(item);  
                     }
                 }
-                File.WriteAllText(path, "");
+                File.WriteAllText(Path, "");
                 
                 foreach(Publication publicationToAdd in listPublicationsEdit)
                 {
