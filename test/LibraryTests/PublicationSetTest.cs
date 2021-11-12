@@ -14,14 +14,17 @@ namespace BotTests
         Publication publicationTest2;
         Publication publicationTest3;
         Company companyTest;
+        Material initialMaterial;
 
         [SetUp]
         public void SetUp()
         {
             companyTest = new Company("Prueba1", "Prueba", location, "0922877272");
-            publicationTest1 = new Publication("Prueba1", companyTest, location);
-            publicationTest2 = new Publication("Prueba1", companyTest, location);
-            publicationTest3 = new Publication("Prueba2", companyTest, location);
+            initialMaterial = new Material("MaterialTest", 12, 0);
+            
+            publicationTest1 = new Publication("Prueba1", companyTest, location, initialMaterial);
+            publicationTest2 = new Publication("Prueba1", companyTest, location, initialMaterial);
+            publicationTest3 = new Publication("Prueba2", companyTest, location, initialMaterial);
         }
 
         /// <summary>

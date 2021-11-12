@@ -45,7 +45,7 @@ namespace BotTests
             publicationToCompare.AddQualification("Habilitación de Prueba");
             publicationToCompare.AddQualification("Habilitación de Prueba1");
             publicationToCompare.AddQualification("Habilitación de Prueba2");
-            PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
+            PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial, new List<Material>(), new List<string>());
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
 
@@ -67,7 +67,7 @@ namespace BotTests
             Material material3 = new Material("Paper", 60, 100);
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial);
+            PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial, new List<Material>(), new List<string>());
         }
 
         /// <summary>
