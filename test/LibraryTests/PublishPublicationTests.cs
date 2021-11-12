@@ -106,7 +106,7 @@ namespace BotTests
             Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
 
             Assert.IsNotNull(publicationToCompare.interestedPerson);
-            Assert.That(entrepreneur.listHistorialPublications.Contains(publicationToCompare));    
+            Assert.That(entrepreneur.ReturnListHistorialPublications().Contains(publicationToCompare));    
         }
     }
 }

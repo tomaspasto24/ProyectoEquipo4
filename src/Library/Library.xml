@@ -226,27 +226,27 @@
             Clase que se encarga de representar una Empresa.
             </summary>
         </member>
-        <member name="P:Bot.Company.CounterCompanies">
-            <summary>
-            Contador estático que representa el número de Empresas creadas.
-            </summary>
-            <value>Entero.</value>
-        </member>
         <member name="P:Bot.Company.Name">
             <summary>
-            Atributo nombre de la clase Empresa.
+            Obtiene nombre de la clase Empresa.
             </summary>
-            <value>String</value>
+            <value>Cadena de caracteres.</value>
+        </member>
+        <member name="P:Bot.Company.ListHistorialPublications">
+            <summary>
+            Obtiene objeto ListHistorialPublications de la clase Empresa.
+            </summary>
+            <returns>Lista Publicación.</returns>
         </member>
         <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
             <summary>
             Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
             contador de empresas estático.
             </summary>
-            <param name="nombre">Nombre de la Empresa.</param>
-            <param name="rubro">Rubro de la Empresa.</param>
+            <param name="name">Nombre de la Empresa.</param>
+            <param name="item">Rubro de la Empresa.</param>
             <param name="location">Ubicación establecida de la Empresa.</param>
-            <param name="contacto">Contacto (Teléfono) de la Empresa.</param>
+            <param name="contact">Contacto (Teléfono) de la Empresa.</param>
         </member>
         <member name="M:Bot.Company.ReturnContact">
             <summary>
@@ -275,31 +275,25 @@
             Método que se encarga de eliminar un usario del conjunto usuarios de la clase Empresa.
             </summary>
             <param name="user">Clase Usuario.</param>
-            <returns></returns>
+            <returns>Retorna <c>True</c> en caso de que pueda eliminarse, <c>False</c> en caso contrario.</returns>
         </member>
         <member name="M:Bot.Company.AddOwnPublication(Bot.Publication)">
             <summary>
             Método que se encarga de agregar una publicación propia de la empresa.
             </summary>
-            <param name="publication">Publication</param>
+            <param name="publication">Publicación.</param>
         </member>
-        <member name="M:Bot.Company.GetListOwnPublications">
+        <member name="P:Bot.Company.ListOwnPublications">
             <summary>
             Método que se encarga de retornar la lista de publicaciones propia de la clase Empresa.
             </summary>
-            <returns>List Publication </returns>
+            <returns>Lista Publicación.</returns>
         </member>
         <member name="M:Bot.Company.AddListHistorialPublications(Bot.Publication)">
             <summary>
             Método que se encarga de añadir una clase Publicación a ListHistorialPublications.
             </summary>
             <param name="publication">Publicación a añadir.</param>
-        </member>
-        <member name="M:Bot.Company.GetListHistorialPublications">
-            <summary>
-            Método que devuelve el objeto ListHistorialPublications de la clase Empresa.
-            </summary>
-            <returns>List Publication</returns>
         </member>
         <member name="T:Bot.Material">
             <summary>
@@ -309,52 +303,49 @@
         </member>
         <member name="P:Bot.Material.Name">
             <summary>
-            Devuelve atributo nombre del la clase Material.
+            Obtiene nombre del la clase Material.
             </summary>
-            <value>String</value>
+            <value>String.</value>
+        </member>
+        <member name="P:Bot.Material.KeyWords">
+            <summary>
+            Obitene todas las Palabras Clave que contiene el Material.
+            </summary>
+            <returns>Cadena de caracteres.</returns>
         </member>
         <member name="P:Bot.Material.Quantity">
             <summary>
-            Devuelve atributo cantidad del la clase Material.
+            Obtiene cantidad del la clase Material.
             </summary>
-            <value>Int</value>
+            <value>Entero.</value>
         </member>
         <member name="P:Bot.Material.Price">
             <summary>
-            Devuelve Atributo precio del la clase Material.
+            Obtiene precio del la clase Material.
             </summary>
-            <value>Int</value>
+            <value>Entero.</value>
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
-            Constructor de la clase Material que se encarga de asignar valores a los 
-            atributos name, quantity y price. Construye el Material. En caso de no tener 
-            precio, se asigna 0 a su atributo.
+            Constructor de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
             </summary>
-            <param name="nombre">String nombre.</param>
-            <param name="cantidad">Int cantidad</param>
-            <param name="precio">Int precio</param>
+            <param name="name">String nombre.</param>
+            <param name="quantity">Entero cantidad.</param>
+            <param name="price">Entero precio.</param>
         </member>
         <member name="M:Bot.Material.AddKeyWord(System.String)">
             <summary>
-            Agrega una palabra clave a la lista de palabras clave
+            Agrega una palabra clave a la lista de palabras clave.
             </summary>
-            <param name="palabraClave"></param>
+            <param name="keyWord"></param>
         </member>
-        <member name="M:Bot.Material.DeleteKeyWord(System.Int32)">
+        <member name="M:Bot.Material.DeleteKeyWord(System.String)">
             <summary>
-            El método busca si hay un valor en el indice ingresado como parámetro, en caso de que exista un elemento:
+            El método busca si hay un valor del string ingresado como parámetro, en caso de que exista un elemento:
             lo elimina y retorna True. De lo contrario solamente retorna False.
             </summary>
-            <param name="indicePalabraClave">Indice de la palabra clave que se quiera eliminar.
-            Se obtiene con la función DevolverPalabrasClave.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.Material.ReturnKeyWords">
-            <summary>
-            Método que devuelve todas las Palabras Clave que contiene el Material.
-            </summary>
-            <returns>String</returns>
+            <param name="palabraClave">Cadena de caracteres de la palabra clave que se quiera eliminar.</param>
+            <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
         </member>
         <member name="T:Bot.Publication">
             <summary>
@@ -512,7 +503,7 @@
             <summary>
             Elimina una Publicación de la lista publicaciones.
             </summary>
-            <param name="publication">Publication</param>
+            <param name="publication">Publicación.</param>
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso 
             contrario.</returns>
         </member>
@@ -643,15 +634,28 @@
             <param name="token">Token que el usuario inserta</param>
             <returns></returns>
         </member>
+        <member name="T:Bot.RoleEntrepreneur">
+            <summary>
+            En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
+            su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
+            </summary>
+        </member>
+        <member name="F:Bot.RoleEntrepreneur.listHistorialPublications">
+            <summary>
+            Lista de las publiaciones adquiridas por el emprendedor.
+            </summary>
+            <typeparam name="Publication">Tipo de la lista devuelta.</typeparam>
+            <returns>Lista de tipo Publication.</returns>
+        </member>
         <member name="F:Bot.RoleEntrepreneur.heading">
             <summary>
-            Rubro
+            Rubro.
             </summary>
         </member>
         <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,System.Int32,System.String,Bot.GeoLocation,System.String,System.String)">
             <summary>
-            /// Constructor de la clase Entrepreneur, setea los valores de los parámetros 
-            y suma un valor al contador de emprendedores estático
+            Constructor de la clase Entrepreneur, setea los valores de los parámetros
+            y suma un valor al contador de emprendedores estático.
             </summary>
             <param name="name"></param>
             <param name="id"></param>
@@ -667,17 +671,23 @@
             </summary>
             <param name="certification"></param>
         </member>
+        <member name="M:Bot.RoleEntrepreneur.ReturnCertification">
+            <summary>
+            Método para devolver la lista de certificaciones del emprendedor
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
             <summary>
             Método para agregarle espcializaciones al emprendedor
             </summary>
-            <param name="specializations"></param>
+            <param name="specialization"></param>
         </member>
-        <member name="P:Bot.RoleEntrepreneur.EntrepreneurAccountant">
+        <member name="M:Bot.RoleEntrepreneur.ReturnSpecialization">
             <summary>
-            Devuelve el contador estático que representa la cantidad de emprendedores registrados
+            Método para devolver la lista de especializaciones del emprendedor
             </summary>
-            <value></value>
+            <returns></returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.SearchingByMaterials(System.String)">
             <summary>
@@ -698,13 +708,66 @@
             </summary>
             <param name="publication">Publicación cerrada.</param>
         </member>
+        <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
+            <summary>
+            Devuelve la lista con las publicaciones adquiridas por el emprendedor
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bot.RoleEntrepreneur.ContactCompany(Bot.Publication)">
             <summary>
             Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
-            como InterestedPerson de la clase Publicación que prefiera. El método termina devolviendo
+            como InterestedPerson de la clase Publication que prefiera. El método termina devolviendo
             el contacto de la empresa dueña de la publicación.
             </summary>
             <param name="publication"></param>
+        </member>
+        <member name="T:Bot.ISearch">
+            <summary>
+            Al tener esta interfaz se cumple con el principio OCP, implementándola podemos extender el código a nuevas formas de búsqueda
+            sin cambiar el código de las que ya tenemos.
+            También se cumple con el principio DIP porque se depende de una abstracción en lugar de directamente de una clase.
+            </summary>
+        </member>
+        <member name="M:Bot.ISearch.Search(System.String)">
+            <summary>
+            Método que se implementa tanto en las clases SerachByMaterial, SearchByLocation y en cualquier otra que se agregue
+            para hacer una búsqueda.
+            </summary>
+            <param name="wordToSearch">String por el que se buscará.</param>
+            <returns>Devuelve una lista con las publicaciónes que cumplan con la búsqueda.</returns>
+        </member>
+        <member name="T:Bot.SearchByLocation">
+            <summary>
+            Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por ubicación. Además,
+            cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación con la ubicación que se le indica.
+            </summary>
+        </member>
+        <member name="M:Bot.SearchByLocation.Search(System.String)">
+            <summary>
+            Método que búsca todas las publicaciones que contienen la ubicación pasada por parámetro. Recorre todas las
+            publicaciones y se fija si tiene la misma ubicación recibida. Si es igual, se agrega la publicación a la lista que 
+            va a devolver y se va a fijar a la siguiente.
+            </summary>
+            <param name="addresToSearch"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bot.SearchByMaterial">
+            <summary>
+            Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por material. Además, 
+            cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación 
+            que contenga al material que se le indica.
+            </summary>
+        </member>
+        <member name="M:Bot.SearchByMaterial.Search(System.String)">
+            <summary>
+            Método que búsca todas las publicaciones que contienen el material pasado por parámetro. Recorre todas las
+            publicaciones y se fija si alguno de sus materiales, tiene a la palabra que recibió por parámetro,
+            dentro de la lista de palabras claves. Si la encuentra, se agrega la publicación a la lista va a devolver 
+            y se va a fijar a la siguiente.
+            </summary>
+            <param name="wordToSearch"></param>
+            <returns></returns>
         </member>
         <member name="T:Bot.GeoLocation">
             <summary>

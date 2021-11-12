@@ -64,7 +64,7 @@ namespace BotTests
             Material vidrio = new Material("Vidrio", 100, 850);
             Publication publicacion = new Publication("Publicación de vidrio", empresaDeVidrios, ubicacionParaPruebas, vidrio);
             emprendedor.AddHistorialPublication(publicacion);
-            Assert.IsNotEmpty(emprendedor.listHistorialPublications);
+            Assert.IsNotEmpty(emprendedor.ReturnListHistorialPublications());
         }
         /// <summary>
         /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
