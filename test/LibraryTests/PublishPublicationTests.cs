@@ -99,7 +99,7 @@ namespace BotTests
             entrepreneur.ContactCompany(publicationToCompare);
             Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
 
-            Assert.IsNotNull(publicationToCompare.interestedPerson);
+            Assert.IsNotNull(publicationToCompare.InterestedPerson);
             Assert.That(entrepreneur.ReturnListHistorialPublications().Contains(publicationToCompare));    
         }
     }
