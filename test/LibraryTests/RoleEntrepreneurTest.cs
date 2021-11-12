@@ -17,7 +17,9 @@ namespace BotTests
         string heading;
         string certification;
         string specialization;
-
+        /// <summary>
+        /// Se crea una instancia de emprendedor que será usada para los tests de cada método
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -30,7 +32,9 @@ namespace BotTests
 
             emprendedor = new RoleEntrepreneur(name, id, heading, ubicacionParaPruebas, certification, specialization);
         }
-
+        /// <summary>
+        /// Test del método que le agrega una certificación al emprendedor
+        /// </summary>
         [Test]
         public void AddCertificationTest()
         {
@@ -38,7 +42,9 @@ namespace BotTests
             emprendedor.AddCertification(certification);
             Assert.AreEqual("Manejar explosivos", emprendedor.ReturnCertification()[1]);
         }
-
+        /// <summary>
+        /// Test del método que le agrega una especialización al emprendedor
+        /// </summary>
         [Test]
         public void AddSpecializationTest()
         {
@@ -46,7 +52,10 @@ namespace BotTests
             emprendedor.AddSpecialization(specialization);
             Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
         }
-        
+        /// <summary>
+        /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+        /// y se fija que la lista no esté vacía
+        /// </summary>
         [Test]
         public void AddListHistorialPublicationsTest1()
         {
@@ -55,8 +64,12 @@ namespace BotTests
             Material vidrio = new Material("Vidrio", 100, 850);
             Publication publicacion = new Publication("Publicación de vidrio", empresaDeVidrios, ubicacionParaPruebas, vidrio);
             emprendedor.AddHistorialPublication(publicacion);
-            Assert.IsNotEmpty(emprendedor.listHistorialPublications);
+            Assert.IsNotEmpty(emprendedor.ReturnListHistorialPublications());
         }
+        /// <summary>
+        /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+        /// y se fija la lista sea la correcta
+        /// </summary>
         [Test]
         public void AddHistorialPublicationTest2()
         {
@@ -69,7 +82,9 @@ namespace BotTests
             listaPublicacionesEsperada.Add(publicacion);
             Assert.AreEqual(listaPublicacionesEsperada, emprendedor.ReturnListHistorialPublications());
         }
-        
+        /// <summary>
+        /// Verifica que la ubicación que se le devuelve al emprendedor sea efectivamente la correcta
+        /// </summary>
         [Test]
         public void ContactCompanyTest()
         {
