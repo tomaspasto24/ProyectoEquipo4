@@ -112,7 +112,7 @@ namespace Bot
         /// <summary>
         /// Obtiene una lista de solo lectura con todos los materiales.
         /// </summary>
-        /// <returns>String con todo los materiales enumerados.</returns>
+        /// <returns>Lista de solo lectura de Material.</returns>
         public IReadOnlyList<Material> ListMaterials
         {
             get
@@ -124,7 +124,7 @@ namespace Bot
         /// <summary>
         /// Obtiene una lista de solo lectura de los string Habilitaciones.
         /// </summary>
-        /// <value></value>
+        /// <value>Lista de solo lectura de cadena de caracteres.</value>
         public IReadOnlyList<string> ListQualifications
         {
             get
@@ -136,7 +136,7 @@ namespace Bot
         /// <summary>
         /// Obtiene un valor que indica si el estado de la publicación es abierto o cerrado.
         /// </summary>
-        /// <value>Bool.</value>
+        /// <value>Booleano.</value>
         public Boolean IsClosed
         {
             get
@@ -220,21 +220,29 @@ namespace Bot
         /// <param name="listQualifications"></param>
         public void AddQualification(IReadOnlyList<string> listQualifications)
         {
-            bool adminCondition = true;
-            foreach(string qualification in listQualifications)
+            if (listQualifications != null)
             {
-                if(!RoleAdmin.globalQualificationList.Contains(qualification))
+                bool adminCondition = true;
+                foreach (string qualification in listQualifications)
                 {
-                    adminCondition = false;
+                    if (!RoleAdmin.globalQualificationList.Contains(qualification))
+                    {
+                        adminCondition = false;
+                    }
                 }
-            }
-            if (adminCondition)
-            {
-                this.listQualifications.AddRange(listQualifications);
+
+                if (adminCondition)
+                {
+                    this.listQualifications.AddRange(listQualifications);
+                }
+                else
+                {
+                    System.Console.WriteLine("No se encuentra en la lista global de habilitaciones.");
+                }
             }
             else
             {
-                System.Console.WriteLine("No se encuentra en la lista global de habilitaciones.");
+                throw new ArgumentNullException(nameof(listQualifications));
             }
         }
 
