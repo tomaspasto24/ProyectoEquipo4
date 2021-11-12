@@ -11,7 +11,7 @@ namespace Bot
     /// </summary>
     public static class CompanySet
     {
-        private const string Path = @"C:\Users\Tomás\OneDrive - Universidad Católica del Uruguay\Programación II\Ejercicios\PII_2021_2_Equipo4\docs\CompanyDataBase.txt";
+        private const string Path = @"..\..\..\..\..\docs\CompanyDataBase.json";
         /// <summary>
         /// Obtiene la lista de Empresas, esto para que la clase Búsqueda pueda manipular eficientemente las Publicaciones.
         /// </summary>

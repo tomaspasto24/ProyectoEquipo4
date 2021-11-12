@@ -14,7 +14,7 @@ namespace Bot
     /// </summary>
     public static class PublicationSet 
     {
-    private const string path = @"C:\Users\Tomás\OneDrive - Universidad Católica del Uruguay\Programación II\Ejercicios\PII_2021_2_Equipo4\docs\CompanyDataBase.txt";
+    private const string Path = @"..\..\..\..\..\docs\PublicationDataBase.json";
 
         /// <summary>
         /// Obtiene la lista de clases Publicación extraida del archivo PublicationSet.txt.
