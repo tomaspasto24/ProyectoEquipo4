@@ -3,8 +3,7 @@ using NUnit.Framework;
 using Bot;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using LocationApi;
-
+using Ucu.Poo.Locations.Client;
 
 namespace BotTests
 {
@@ -51,10 +50,12 @@ namespace BotTests
         public void TestDuration()
         {
             GeoLocation secondLocation = new GeoLocation("8 de octubre y comercio", "Montevideo");
-            Task<double> duration = location.CalculateDuration(secondLocation);
+            double durationTest1 = location.CalculateDuration(secondLocation);
+            double durationTest2 = secondLocation.CalculateDuration(location);
 
-            Assert.That(duration is Task<double>);
-            Assert.IsNotNull(duration);
+            Assert.IsNotNull(durationTest1);
+            Assert.IsNotNull(durationTest2);
+            Assert.That(durationTest1 == durationTest2);
         }
 
         /// <summary>
@@ -65,10 +66,12 @@ namespace BotTests
         public void TestDistance()
         {
             GeoLocation secondLocation = new GeoLocation("8 de octubre y comercio", "Montevideo");
-            Task<double> distance = location.CalculateDuration(secondLocation);
+            double distanceTest1 = location.CalculateDistance(secondLocation);
+            double distanceTest2 = secondLocation.CalculateDistance(location);
 
-            Assert.That(distance is Task<double>);
-            Assert.IsNotNull(distance);
+            Assert.IsNotNull(distanceTest1);
+            Assert.IsNotNull(distanceTest2);
+            Assert.That(distanceTest1 == distanceTest2);
         }
     }
 }

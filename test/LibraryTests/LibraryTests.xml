@@ -29,6 +29,28 @@
             Test para probar los comandos que tiene un Emprendedor
             </summary>
         </member>
+        <member name="T:BotTests.CompanySetTest">
+            <summary>
+            Clase para testear la clase CompanySet.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanySetTest.AddCompanyTest">
+            <summary>
+            Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
+            clases Empresa al sistema.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanySetTest.DeleteCompanyTest">
+            <summary>
+            Test que se encarga de testear el funcionamiento de la clase CompanySet de eliminar 
+            clases Empresa del sistema.
+            </summary>
+        </member>
+        <member name="T:BotTests.CompanyTest">
+            <summary>
+            Clase para testear la clase Company.
+            </summary>
+        </member>
         <member name="T:BotTests.GeoLocationTests">
             <summary>
             GeoLocationTests se encarga de testear los atributos y las funcionalidades de la clase
@@ -74,6 +96,23 @@
             <summary>
             Test que se encarga de testear la funcionalidad de obtener, agregar y quitar 
             palabras clave anidadas a la clase Material.
+            </summary>
+        </member>
+        <member name="T:BotTests.PublicationSetTest">
+            <summary>
+            Clase para testear la clase CompanySet.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublicationSetTest.AddCompanyTest">
+            <summary>
+            Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
+            clases Empresa al sistema.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublicationSetTest.DeleteCompanyTest">
+            <summary>
+            Test que se encarga de testear el funcionamiento de la clase CompanySet de eliminar 
+            clases Empresa del sistema.
             </summary>
         </member>
         <member name="T:BotTests.PublishPublicationTests">

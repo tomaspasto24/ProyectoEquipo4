@@ -1,6 +1,5 @@
-using LocationApi;
-using System.Threading.Tasks;
 using System;
+using Ucu.Poo.Locations.Client;
 
 namespace Bot
 {
@@ -13,30 +12,6 @@ namespace Bot
         private string city;
         private string address;
         private Location location;
-
-        /// <summary>
-        /// Ciudad ingresada como parámetro no obligatorio para crear instancia Location.
-        /// </summary>
-        /// <value>String que representa ciudad.</value>
-        public string City
-        {
-            get
-            {
-                return this.city;
-            }
-        }
-
-        /// <summary>
-        /// Obtiene dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
-        /// </summary>
-        /// <value></value>
-        public string Address
-        {
-            get
-            {
-                return this.address;
-            }
-        }  
 
         /// <summary>
         /// Constructor de la clase Geolocation, llama a un método privado asincrono y después se valida la propiedad Found.
@@ -52,14 +27,45 @@ namespace Bot
         }
 
         /// <summary>
+        /// Obtiene ciudad ingresada como parámetro no obligatorio para crear instancia Location.
+        /// </summary>
+        /// <value>String que representa ciudad.</value>
+        public string City
+        {
+            get
+            {
+                return this.city;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
+        /// </summary>
+        /// <value>Cadena de caracteres.</value>
+        public string Address
+        {
+            get
+            {
+                return this.address;
+            }
+        }
+
+        /// <summary>
         /// Calcula y retorna la distancia en kilometros entre la propia instancia de clase y la ingresada como parámetro.
         /// </summary>
         /// <param name="secondLocation">Segunda clase a calcular distancia.</param>
         /// <returns>Distancia de tipo Task double.</returns>
-        public async Task<double> CalculateDistance(GeoLocation secondLocation)
+        public double CalculateDistance(GeoLocation secondLocation)
         {
-            Distance distance = await this.client.GetDistance(this.location, secondLocation.location);
-            return distance.TravelDistance;
+            if (secondLocation != null)
+            {
+                Distance distance = this.client.GetDistance(this.location, secondLocation.location);
+                return distance.TravelDistance;
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(secondLocation));
+            }
         }
 
         /// <summary>
@@ -67,32 +73,32 @@ namespace Bot
         /// </summary>
         /// <param name="secondLocation">Segunda clase a calcular duración.</param>
         /// <returns>Duración de tipo Task double.</returns>
-        public async Task<double> CalculateDuration(GeoLocation secondLocation)
+        public double CalculateDuration(GeoLocation secondLocation)
         {
-            bool contract = secondLocation.location != null;
-
-            if (contract)
+            if (secondLocation != null)
             {
-                Distance distance = await this.client.GetDistance(this.location, secondLocation.location);
+                Distance distance = this.client.GetDistance(this.location, secondLocation.location);
                 return distance.TravelDuration;
             }
-            else throw new NullReferenceException();
-
+            else
+            {
+                throw new ArgumentNullException(nameof(secondLocation));
+            }
         }
 
         /// <summary>
         /// Retorna el propio objeto Location y descarga el mapa con la ubicación correspondiente.
         /// </summary>
         /// <returns>Objeto mismo.</returns>
-        public async Task<Location> GetLocation()
+        public Location GetLocation()
         {
-            await this.client.DownloadMap(this.location.Latitude, this.location.Longitude, @"Location");
+            this.client.DownloadMap(this.location.Latitude, this.location.Longitude, @"Location");
             return this.location;
         }
 
-        private async void EstablishLocation(string address, string city)
+        private void EstablishLocation(string address, string city)
         {
-            this.location = await this.client.GetLocation(address, city);
+            this.location = this.client.GetLocation(address, city);
         }
     }
 }
