@@ -48,6 +48,22 @@ namespace BotTests
         }
 
         /// <summary>
+        /// Test que se encarga de comprobar que el funcionamiento de ContainsPublicationInListPublications sea el 
+        /// correcto y que se puedan identificar las pbulicaciones contenidas. (IMPORTANTE CORRER AddPublicationTest PARA QUE ESTE TEST PASE).
+        /// </summary>
+        [Test]
+        public void ContainsCompanyInListCompaniesTest()
+        {
+            bool conditionTest1 = PublicationSet.ContainsPublicationInListPublications(publicationTest1);
+            bool conditionTest2 = PublicationSet.ContainsPublicationInListPublications(publicationTest2);
+            bool conditionTest3 = PublicationSet.ContainsPublicationInListPublications(publicationTest3);
+
+            Assert.IsTrue(conditionTest1);
+            Assert.IsTrue(conditionTest2);
+            Assert.IsTrue(conditionTest3);
+        }
+
+        /// <summary>
         /// Test que se encarga de testear el funcionamiento de la clase CompanySet de eliminar 
         /// clases Empresa del sistema.
         /// </summary>
