@@ -11,12 +11,14 @@ namespace BotTests
     {
         GeoLocation location;
         Company companyTest;
+        Material initialMaterial;
 
         [SetUp]
         public void SetUp()
         {
             location = new GeoLocation("Universidad Católica", "Montevideo");
             companyTest = new Company("Test", "TestItem", location, "TestContact");
+            initialMaterial = new Material("MaterialTest", 12, 0);
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace BotTests
         {
             Assert.IsNotNull(companyTest.ListHistorialPublications);
 
-            Publication publicationTest = new Publication("Test", companyTest, location);
+            Publication publicationTest = new Publication("Test", companyTest, location, initialMaterial);
             companyTest.AddListHistorialPublication(publicationTest);
 
             Assert.That(companyTest.ListHistorialPublications.Count == 1);
@@ -56,7 +58,7 @@ namespace BotTests
         {
             Assert.IsNotNull(companyTest.ListOwnPublications);
 
-            Publication publicationTest = new Publication("Test", companyTest, location);
+            Publication publicationTest = new Publication("Test", companyTest, location, initialMaterial);
             companyTest.AddOwnPublication(publicationTest);
 
             Assert.That(companyTest.ListOwnPublications.Count == 1);

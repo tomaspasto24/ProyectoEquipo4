@@ -30,8 +30,8 @@ namespace BotTests
         public void AddCompanyTest()
         {
             bool test1 = CompanySet.AddCompany(companyTest1);
-            bool test2 = CompanySet.AddCompany(companyTest2.Name, companyTest2.Item, companyTest2.Location, companyTest2.Contact);
-            bool test3 = CompanySet.AddCompany(companyTest3.Name, companyTest3.Item, companyTest3.Location, companyTest3.Contact);
+            bool test2 = CompanySet.AddCompany(companyTest2);
+            bool test3 = CompanySet.AddCompany(companyTest3);
             string stringCompaniesTest = CompanySet.ReturnListCompanies();
 
             Assert.IsTrue(test1);
