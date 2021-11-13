@@ -16,6 +16,9 @@ namespace BotTests
         Company companyTest;
         Material initialMaterial;
 
+        /// <summary>
+        /// SetUp, asigna valores a las variables companyTest, initialMaterial, publicationTest1., publicationTest2, publicationTest3.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {

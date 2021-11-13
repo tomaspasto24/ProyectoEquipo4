@@ -13,6 +13,9 @@ namespace BotTests
         Company companyTest;
         Material initialMaterial;
 
+        /// <summary>
+        /// SetUp, asigna valores a las variables location, companyTest, initialMaterial.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
