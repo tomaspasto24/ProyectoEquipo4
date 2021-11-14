@@ -1,17 +1,11 @@
 using System;
+
 namespace Bot
 {
     /// <summary>
-    /// clase abstracta Role.
+    /// Interfaz que representa los roles
     /// </summary>
-    public abstract class Role
+    public interface IRole
     {
-
-        /// <summary>
-        /// constructor de la clase Role
-        /// </summary>
-        public Role()
-        {
-        }
     }
 }

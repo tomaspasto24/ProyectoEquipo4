@@ -23,7 +23,7 @@ namespace BotTests
         {
             location = new GeoLocation("Av. Italia", "Montevideo");
             
-            emprendedor = new RoleEntrepreneur("Pedrito", 4, "herrería", location, "", "");
+            emprendedor = new RoleEntrepreneur("herrería", location, "", "");
 
             material = new Material("Alambre", 800, 200);
             material2 = new Material("Alambre2", 1000, 300);

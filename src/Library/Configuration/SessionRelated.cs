@@ -57,7 +57,7 @@ namespace Bot
         /// <param name="name">Nombre del usuario</param>
         /// <param name="id">Id del usuario</param>
         /// <param name="role">Role del usuariro</param>
-        public void AddNewUser(string name, int id, Role role)
+        public void AddNewUser(string name, int id, IRole role)
         {
             if (UsernameExists(id))
             {

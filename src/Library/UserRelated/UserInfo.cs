@@ -7,21 +7,7 @@ namespace Bot
     {
         private string name;
         private int id;
-        private Role userRole;
-
-        /// <summary>
-        /// Método constructor de la clase User que se encarga de asignar los atributos
-        /// name, id y role que usará la clase.
-        /// </summary>
-        /// <param name="name">El nombre del usuario.</param>
-        /// <param name="id">El id del usuario.</param>
-        /// <param name="role">El rol del usuario.</param>
-        public UserInfo(string name, int id, Role role)
-        {
-            this.name = name;
-            this.id = id;
-            this.userRole = role;
-        }
+        public IRole UserRole { get; set; }
 
         /// <summary>
         /// Obtiene el atributo Id de la clase usuario.
@@ -48,51 +34,17 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene o establece el valor de la propiedad role del usuario.
+        /// Método constructor de la clase User que se encarga de asignar los atributos
+        /// name, id y role que usará la clase.
         /// </summary>
-        /// <value>El rol del usuario.</value>
-        public Role Role
+        /// <param name="name">El nombre del usuario.</param>
+        /// <param name="id">El id del usuario.</param>
+        /// <param name="role">El role del usuario</param>
+        public UserInfo(string name, int id, IRole role)
         {
-            get
-            {
-                return this.userRole;
-            }
-
-            set
-            {
-                this.userRole = value;
-            }
-        }
-        /// <summary>
-        /// Metodo para cambiar el rol del usuario a UserCompany
-        /// </summary>
-        /// <param name="company">La company que va a tener asociada</param>
-        public void ChangeRoleToUserCompany(Company company)
-        {
-            RoleUserCompany newRole = new RoleUserCompany(company);
-            this.Role = newRole;
-        }
-
-        /// <summary>
-        /// Metodo para cambiar el rol del usuario a Admin
-        /// </summary>
-        public void ChangerRoleToAdmin()
-        {
-            RoleAdmin newRole = new RoleAdmin();
-            this.userRole = newRole;
-        }
-
-        /// <summary>
-        /// Metodo para cambiar el rol del usuario a Emprendedor
-        /// </summary>
-        /// <param name="heading">Rubro</param>
-        /// <param name="location">Locacion del usuario</param>
-        /// <param name="certification">Certificacion</param>
-        /// <param name="specialization">Especializacion</param>
-        public void ChangeRoleToEntrepreneur(string heading, GeoLocation location, string certification, string specialization)
-        {
-            RoleEntrepreneur newRole = new RoleEntrepreneur(heading, location, certification, specialization);
-            this.userRole = newRole;
+            this.name = name;
+            this.id = id;
+            this.UserRole = role;
         }
     }
 }

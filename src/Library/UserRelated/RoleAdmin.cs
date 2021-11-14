@@ -3,25 +3,15 @@ using System.Collections.Generic;
 namespace Bot
 {
     /// <summary>
-    /// Clase RoleAdmin que hereda de la clase Role
+    /// Clase RoleAdmin que implementa la interfaz IRole
     /// </summary>
-    public class RoleAdmin : Role
+    public class RoleAdmin : IRole
     {
         /// <summary>
         /// Se inicializa la lista globalQualificationList
         /// </summary>
         /// <returns></returns>
         public static List<string> globalQualificationList = new List<string>();
-
-        /// <summary>
-        /// Constructor de la clase RoleAdmin.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public RoleAdmin() : base()
-        {
-        }
 
         /// <summary>
         /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 

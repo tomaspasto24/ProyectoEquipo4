@@ -13,6 +13,17 @@ namespace Bot
         public static void Main()
         {
             ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
+
+            RoleAdmin role = new RoleAdmin();
+
+            UserInfo user = new UserInfo("seba",123,role);
+
+            IRole userRole = user.UserRole;
+
+            if (userRole is RoleAdmin)
+            {
+                RoleAdmin admin = (RoleAdmin)userRole;
+            }
         }
     }
 }

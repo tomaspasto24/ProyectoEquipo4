@@ -10,8 +10,8 @@ namespace BotTests
     public class CommandHandlerTest
     {
 
-        User user;
-        Role role;
+        UserInfo user;
+        IRole role;
         SessionRelated sessionRelated;
         Message message;
         CommandHandler handler;
@@ -22,8 +22,8 @@ namespace BotTests
         [SetUp]
         public void SetUp()
         {
-            role = new RoleAdmin("name", 123);
-            user = new User("Seba", 123, role);
+            role = new RoleAdmin();
+            user = new UserInfo("Seba", 123, role);
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser("Seba", 123, role);
@@ -56,7 +56,7 @@ namespace BotTests
             GeoLocation location = new GeoLocation("adress", "city");
             Company company = new Company("nombre", "rubro", location, "contacto");
 
-            user.ChangeRoleToUserCompany(company);
+            UserInfo newUser = new UserInfo("Nuevo User", 101, new RoleUserCompany(company));
 
             message.Text = "/comandos";
             string response;
@@ -75,7 +75,7 @@ namespace BotTests
         {
             GeoLocation location = new GeoLocation("adress", "city");
 
-            user.ChangeRoleToEntrepreneur("heading", location, "certification", "specialization");
+            UserInfo newUser = new UserInfo("Nuevo User", 101, new RoleEntrepreneur("heading", location, "certification", "specialization"));
 
             message.Text = "/comandos";
             string response;

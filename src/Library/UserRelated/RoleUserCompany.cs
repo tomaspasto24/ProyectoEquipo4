@@ -6,7 +6,7 @@ namespace Bot
     /// Clase RoleUserCompany se encarga de servir como representación de un usuario
     /// que forma parte de una empresa. 
     /// </summary>
-    public class RoleUserCompany : Role
+    public class RoleUserCompany : IRole
     {
         /// <summary>
         /// Representa la clase Empresa a la cual es añadido.
@@ -18,8 +18,6 @@ namespace Bot
         /// Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
         /// </summary>
         /// <param name="company">Empresa</param>
-        /// <param name="name">Nombre</param>
-        /// <param name="id">Id</param>
         public RoleUserCompany(Company company)
         {
             this.company = company;
