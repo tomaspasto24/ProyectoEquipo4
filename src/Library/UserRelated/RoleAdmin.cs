@@ -5,7 +5,7 @@ namespace Bot
     /// <summary>
     /// Clase RoleAdmin que hereda de la clase Role
     /// </summary>
-    public class RoleAdmin
+    public class RoleAdmin : Role
     {
         /// <summary>
         /// Se inicializa la lista globalQualificationList
@@ -19,7 +19,7 @@ namespace Bot
         /// <param name="name"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public RoleAdmin()
+        public RoleAdmin() : base()
         {
         }
 

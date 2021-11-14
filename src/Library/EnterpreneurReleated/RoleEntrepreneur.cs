@@ -39,7 +39,7 @@ namespace Bot
         /// <param name="certification"></param>
         /// <param name="specialization"></param>
         /// <returns></returns>
-        public RoleEntrepreneur(string name, int id, string heading, GeoLocation geolocation, string certification, string specialization) : base(name, id)
+        public RoleEntrepreneur(string heading, GeoLocation geolocation, string certification, string specialization)
         {
             this.location = geolocation;
             this.heading = heading;

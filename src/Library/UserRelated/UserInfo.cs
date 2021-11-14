@@ -69,7 +69,7 @@ namespace Bot
         /// <param name="company">La company que va a tener asociada</param>
         public void ChangeRoleToUserCompany(Company company)
         {
-            RoleUserCompany newRole = new RoleUserCompany(company, this.Name, this.Id);
+            RoleUserCompany newRole = new RoleUserCompany(company);
             this.Role = newRole;
         }
 
@@ -78,8 +78,8 @@ namespace Bot
         /// </summary>
         public void ChangerRoleToAdmin()
         {
-            RoleAdmin newRole = new RoleAdmin(this.Name, this.Id);
-            this.Role = newRole;
+            RoleAdmin newRole = new RoleAdmin();
+            this.userRole = newRole;
         }
 
         /// <summary>
@@ -91,8 +91,8 @@ namespace Bot
         /// <param name="specialization">Especializacion</param>
         public void ChangeRoleToEntrepreneur(string heading, GeoLocation location, string certification, string specialization)
         {
-            RoleEntrepreneur newRole = new RoleEntrepreneur(this.Name, this.Id, heading, location, certification, specialization);
-            this.Role = newRole;
+            RoleEntrepreneur newRole = new RoleEntrepreneur(heading, location, certification, specialization);
+            this.userRole = newRole;
         }
     }
 }

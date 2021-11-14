@@ -20,7 +20,7 @@ namespace Bot
         /// <param name="company">Empresa</param>
         /// <param name="name">Nombre</param>
         /// <param name="id">Id</param>
-        public RoleUserCompany(Company company, string name, int id) : base(name, id)
+        public RoleUserCompany(Company company)
         {
             this.company = company;
         }
