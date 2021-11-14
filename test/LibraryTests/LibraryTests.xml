@@ -51,6 +51,29 @@
             Clase para testear la clase Company.
             </summary>
         </member>
+        <member name="M:BotTests.CompanyTest.InstanceTest">
+            <summary>
+            Test que se encarga de verificar que la instancia de la clase Empresa y sus atributos
+            internos esten correctamente definidos.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.HistorialPublicationsTest">
+            <summary>
+            Test que se encarga de comprobar el correcto funcionamiento de la lista historial de publicaciones.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.OwnPublicationsTest">
+            <summary>
+            Test que se encarga de verificar que funcionen bien los métodos que involucran la lista
+            de publicaciones propias de la empresa.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.UsersCompanyTest">
+            <summary>
+            Test que se encarga de validar que los usuarios puedan añadirse a una clase Empresa y también
+            puedan ser eliminados.
+            </summary>
+        </member>
         <member name="T:BotTests.GeoLocationTests">
             <summary>
             GeoLocationTests se encarga de testear los atributos y las funcionalidades de la clase
@@ -268,31 +291,6 @@
         <member name="M:BotTests.SearchTests.SearchByLocationTest">
             <summary>
             El resultado de la búsqueda es una lista con la publicación de igual ubicación a la buscada
-            </summary>
-        </member>
-        <member name="T:BotTests.TokenTest">
-            <summary>
-            Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
-            </summary>
-        </member>
-        <member name="F:BotTests.TokenTest.admin">
-            <summary>
-            Defino la variable afuera para que sea global y adentro del metodo la instancio.
-            </summary>
-        </member>
-        <member name="M:BotTests.TokenTest.Setup">
-            <summary>
-            Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
-            </summary>
-        </member>
-        <member name="M:BotTests.TokenTest.TokenLenghtTest">
-            <summary>
-            Test del token para ver si tiene la cantidad de caracteres esperada.
-            </summary>
-        </member>
-        <member name="M:BotTests.TokenTest.TokenAddedTest">
-            <summary>
-            Test para agregar el token generado a la lista de globalRatingsList.
             </summary>
         </member>
     </members>

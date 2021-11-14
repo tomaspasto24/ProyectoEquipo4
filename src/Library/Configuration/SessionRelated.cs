@@ -57,13 +57,13 @@ namespace Bot
         /// <param name="name">Nombre del usuario</param>
         /// <param name="id">Id del usuario</param>
         /// <param name="role">Role del usuariro</param>
-        public void AddNewUser(string name, int id, IRole role)
+        public void AddNewUser(UserInfo user)
         {
-            if (UsernameExists(id))
+            if (UsernameExists(user.Id))
             {
                 return;
             }
-            AllUsers.Add(new UserInfo(name, id, role));
+            AllUsers.Add(user);
         }
 
         /// <summary>

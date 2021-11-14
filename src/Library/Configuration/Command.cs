@@ -123,14 +123,14 @@ namespace Bot
             return commandList;
         }
 
-        /// <summary>
-        /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
-        /// </summary>
-        /// <param name="command">Comando a verificar</param>
-        /// <returns>Si la lista contiene el comando buscado</returns>
-        public bool ExistingCommand(string command)
-        {
-            return this.CommandsList.Contains(command.ToLower());
-        }
+        // /// <summary>
+        // /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
+        // /// </summary>
+        // /// <param name="command">Comando a verificar</param>
+        // /// <returns>Si la lista contiene el comando buscado</returns>
+        // public bool ExistingCommand(string command)
+        // {
+        //     return this.CommandsList.Contains(command.ToLower());
+        // }
     }
 }
