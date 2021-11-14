@@ -1,3 +1,5 @@
+using System;
+
 namespace Bot
 {
     /*
@@ -49,7 +51,7 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            User user = SessionRelated.Instance.GetUserById(request.UserId);
+            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
             if ((State == RegisterState.Start) && (request.Text.Equals("/registro")))
             {
@@ -63,7 +65,7 @@ namespace Bot
                 {
                     this.State = RegisterState.Start;
                     this.Data.Token = request.Text;
-                    user.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
+                    user.ChangeRoleToUserCompany(SessionRelated.Instance.GetCompanyByToken(request.Text));
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }

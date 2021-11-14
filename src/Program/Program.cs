@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Bot
 {
     /// <summary>
@@ -11,14 +10,9 @@ namespace Bot
         /// <summary>
         /// Programa principal que inicia la comunicacion con los bots.
         /// </summary>
-        static void Main(string[] args)
+        public static void Main()
         {
-            ConsoleBot.Instance.StartCommunication(); // iniciar comunicación
-
-            Role role = new RoleAdmin("Admin", 1234);
-
-            User Admin = new User("Prueba", 2002, role);
+            ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
         }
-
     }
 }

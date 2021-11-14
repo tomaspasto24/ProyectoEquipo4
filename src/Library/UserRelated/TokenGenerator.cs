@@ -22,7 +22,7 @@ namespace Bot
         public int GenerateToken(Company company)
         {
             int newToken = GenerateTokenToUserCompany(tokenList);
-            SessionRelated.DiccUserTokens.Add(newToken, company);
+            SessionRelated.Instance.DiccUserTokens.Add(newToken.ToString(), company);
             return newToken;
 
         }

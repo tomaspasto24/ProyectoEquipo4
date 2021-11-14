@@ -25,7 +25,7 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             Command commands = new Command();
-            User userData = SessionRelated.Instance.GetUserById(request.UserId);
+            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             
             if (request.Text.ToLower().Equals("/hola"))
             {

@@ -3,7 +3,7 @@ namespace Bot
     /// <summary>
     /// Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert.
     /// </summary>
-    public class User
+    public class UserInfo
     {
         private string name;
         private int id;
@@ -16,7 +16,7 @@ namespace Bot
         /// <param name="name">El nombre del usuario.</param>
         /// <param name="id">El id del usuario.</param>
         /// <param name="role">El rol del usuario.</param>
-        public User(string name, int id, Role role)
+        public UserInfo(string name, int id, Role role)
         {
             this.name = name;
             this.id = id;

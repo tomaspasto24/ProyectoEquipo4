@@ -98,7 +98,7 @@ namespace Bot
         public string ReturnCommands(int userId)
         {
             string commandList = string.Empty;
-            User user = SessionRelated.Instance.GetUserById(userId);
+            UserInfo user = SessionRelated.Instance.GetUserById(userId);
             if (user.Role is RoleEntrepreneur)
             {
                 foreach (string command in EntrepreneurList())
