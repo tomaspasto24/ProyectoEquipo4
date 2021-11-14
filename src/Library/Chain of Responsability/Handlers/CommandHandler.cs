@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Bot
 {
     /*
@@ -18,6 +20,59 @@ namespace Bot
         public CommandHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
+        /// Metodo que retorna una lista de comandos para el emprendedor
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
+        public List<string> EntrepreneurList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/registro",
+                "/hola",
+                "exit",
+                "/busqueda",
+                "/reporte",
+                "/contacto",
+                "/infoemprendedor"
+            };
+            return list;
+        }
+
+        /// <summary>
+        /// Metodo que retorna una lista de comandos para el usuario empresa
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
+        public List<string> CompanyUserList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/hola",
+                "exit",
+                "/reporte",
+                "/publicar"
+            };
+            return list;
+        }
+
+        /// <summary>
+        /// Metodo que retorna una lista de comnados para el admin
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
+        public List<string> AdminList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/hola",
+                "exit",
+                "/generartoken"
+            };
+            return list;
+        }
+
+        /// <summary>
         /// Metodo que se encarga de atender el handler.
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
@@ -29,7 +84,30 @@ namespace Bot
 
             if (request.Text.Equals("/comandos"))
             {
-                response = $"Estos son todos los comandos: \n{commands.ReturnCommands(request.UserId)}";
+                string commandList = string.Empty;
+                if (user.UserRole is RoleEntrepreneur)
+                {
+                    foreach (string command in EntrepreneurList())
+                    {
+                        commandList = commandList + command + "\n";
+                    }
+                }
+                else if (user.UserRole is RoleUserCompany)
+                {
+                    foreach (string command in CompanyUserList())
+                    {
+                        commandList = commandList + command + "\n";
+                    }
+                }
+                else
+                {
+                    foreach (string command in AdminList())
+                    {
+                        commandList = commandList + command + "\n";
+                    }
+                }
+                
+                response = $"Estos son todos los comandos: \n" + commandList;
                 return true;
             }
 

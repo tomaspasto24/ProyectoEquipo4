@@ -34,7 +34,7 @@ namespace BotTests
             user = new UserInfo("Seba", 123, role);
 
             sessionRelated = SessionRelated.Instance;
-            sessionRelated.AddNewUser("Seba", 123, role);
+            sessionRelated.AddNewUser(user);
 
             message = new Message(user.Id, null);
             handler = new RegisterHandler(null);
