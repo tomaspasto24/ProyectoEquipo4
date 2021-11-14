@@ -14,7 +14,7 @@ namespace Bot
         private string item;
         private GeoLocation location;
         private string contact;
-        private List<User> listUsers = new List<User>();
+        private List<UserInfo> listUsers = new List<UserInfo>();
         private List<Publication> listOwnPublications = new List<Publication>();
         private List<Publication> listHistorialPublications = new List<Publication>();
 
@@ -112,7 +112,7 @@ namespace Bot
         /// Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
         /// </summary>
         /// <returns>Lista User de solo lectura.</returns>
-        public IReadOnlyList<User> ListUsers
+        public IReadOnlyList<UserInfo> ListUsers
         {
             get
             {
@@ -139,7 +139,7 @@ namespace Bot
         /// Método que se encarga de agregar usuario al conjunto usuarios de la clase Empresa.
         /// </summary>
         /// <param name="user">Clase Usuario.</param>
-        public void AddUser(User user)
+        public void AddUser(UserInfo user)
         {
             this.listUsers.Add(user);
         }
@@ -148,7 +148,7 @@ namespace Bot
         /// Sobrecarga del método AddUser, se encarga de agregar una lista de Usurios a listUsers.
         /// </summary>
         /// <param name="listUsers"></param>
-        public void AddUser(IReadOnlyList<User> listUsers)
+        public void AddUser(IReadOnlyList<UserInfo> listUsers)
         {
             this.listUsers.AddRange(listUsers);
         }
@@ -158,7 +158,7 @@ namespace Bot
         /// </summary>
         /// <param name="user">Clase Usuario.</param>
         /// <returns>Retorna <c>True</c> en caso de que pueda eliminarse, <c>False</c> en caso contrario.</returns>
-        public bool DeleteUser(User user)
+        public bool DeleteUser(UserInfo user)
         {
             return this.listUsers.Remove(user);
         }

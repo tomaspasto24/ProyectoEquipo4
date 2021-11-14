@@ -93,11 +93,10 @@ namespace BotTests
         [Test]
         public void UsersCompanyTest()
         {
-            User userTest1 = new User("Test1", 12, new RoleUserCompany(companyTest, "Test1", 12));
-            User userTest2 = new User("Test2", 22, new RoleUserCompany(companyTest, "Test2", 22));
-            List<User> listUsersTest = new List<User>();
-            listUsersTest.Add(userTest1);
-            listUsersTest.Add(userTest2);
+            UserInfo userTest1 = new UserInfo("Test1", 12, new RoleUserCompany(companyTest));
+            UserInfo userTest2 = new UserInfo("Test2", 22, new RoleUserCompany(companyTest));
+            companyTest.AddUser(userTest1);
+            companyTest.AddUser(userTest2);
 
             Assert.IsNotNull(companyTest.ListUsers);
 
@@ -106,12 +105,6 @@ namespace BotTests
             Assert.That(companyTest.ListUsers.Count == 2);
             companyTest.DeleteUser(userTest1);
             Assert.That(companyTest.ListUsers.Count == 1);
-
-            companyTest.AddUser(listUsersTest);
-            Assert.That(companyTest.ListUsers.Count == 3);
-
-            companyTest.DeleteUser(userTest1);
-            Assert.That(companyTest.ListUsers.Count == 2);
         }
     }
 }
