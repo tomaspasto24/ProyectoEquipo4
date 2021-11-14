@@ -5,33 +5,9 @@ namespace Bot
     /// </summary>
     public class UserInfo
     {
-        private string name;
-        private int id;
+        public string Name { get; set; }
+        public int Id { get; set; }
         public IRole UserRole { get; set; }
-
-        /// <summary>
-        /// Obtiene el atributo Id de la clase usuario.
-        /// </summary>
-        /// <value>El Id del usuario.</value>
-        public int Id
-        {
-            get
-            {
-                return this.id;
-            }
-        }
-
-        /// <summary>
-        /// Obtiene el valor de la propiedad privada name del usuario.
-        /// </summary>
-        /// <value>Nombre del usuario.</value>
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-        }
 
         /// <summary>
         /// Método constructor de la clase User que se encarga de asignar los atributos
@@ -42,8 +18,8 @@ namespace Bot
         /// <param name="role">El role del usuario</param>
         public UserInfo(string name, int id, IRole role)
         {
-            this.name = name;
-            this.id = id;
+            this.Name = name;
+            this.Id = id;
             this.UserRole = role;
         }
     }

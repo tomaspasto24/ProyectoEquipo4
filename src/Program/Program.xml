@@ -9,7 +9,7 @@
             Programa de consola de demostración.
             </summary>
         </member>
-        <member name="M:Bot.Program.Main(System.String[])">
+        <member name="M:Bot.Program.Main">
             <summary>
             Programa principal que inicia la comunicacion con los bots.
             </summary>
