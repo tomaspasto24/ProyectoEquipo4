@@ -9,7 +9,7 @@ namespace Bot
     /// En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
     /// su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
     /// </summary>
-    public class RoleEntrepreneur : Role
+    public class RoleEntrepreneur :IRole
     {
         /// <summary>
         /// Lista de las publiaciones adquiridas por el emprendedor.
@@ -32,14 +32,12 @@ namespace Bot
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
         /// y suma un valor al contador de emprendedores estático.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
         /// <param name="heading"></param>
         /// <param name="geolocation"></param>
         /// <param name="certification"></param>
         /// <param name="specialization"></param>
         /// <returns></returns>
-        public RoleEntrepreneur(string name, int id, string heading, GeoLocation geolocation, string certification, string specialization) : base(name, id)
+        public RoleEntrepreneur(string heading, GeoLocation geolocation, string certification, string specialization)
         {
             this.location = geolocation;
             this.heading = heading;

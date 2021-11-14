@@ -18,7 +18,7 @@ namespace Bot
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
-        public List<User> AllUsers;
+        public List<UserInfo> AllUsers;
 
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
@@ -47,7 +47,7 @@ namespace Bot
         /// </summary>
         private SessionRelated()
         {
-            AllUsers = new List<User>();
+            AllUsers = new List<UserInfo>();
             DiccUserTokens = new Dictionary<string, Company>();
         }
 
@@ -57,20 +57,20 @@ namespace Bot
         /// <param name="name">Nombre del usuario</param>
         /// <param name="id">Id del usuario</param>
         /// <param name="role">Role del usuariro</param>
-        public void AddNewUser(string name, int id, Role role)
+        public void AddNewUser(string name, int id, IRole role)
         {
             if (UsernameExists(id))
             {
                 return;
             }
-            AllUsers.Add(new User(name, id, role));
+            AllUsers.Add(new UserInfo(name, id, role));
         }
 
         /// <summary>
         /// Metodo para borrar un usuario
         /// </summary>
         /// <param name="user">Usuaurio a borrar</param>
-        public void DeleteUser(User user)
+        public void DeleteUser(UserInfo user)
         {
             AllUsers.Remove(user);
         }
@@ -82,7 +82,7 @@ namespace Bot
         /// <returns>true o false</returns>
         public bool UsernameExists(int id)
         {
-            foreach (User user in AllUsers)
+            foreach (UserInfo user in AllUsers)
             {
                 if (user.Id == id)
                 {
@@ -97,7 +97,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario</param>
         /// <returns>El usuario</returns>
-        public User GetUserById(int id)
+        public UserInfo GetUserById(int id)
         {
             return AllUsers.Find(user => user.Id == id);
         }
@@ -107,10 +107,10 @@ namespace Bot
         /// </summary>
         /// <param name="token">Token que el usuario inserta</param>
         /// <returns></returns>
-        public Company ReturnCompany(int token)
+        public Company GetCompanyByToken(string token)
         {
             Company company;
-            if (DiccUserTokens.TryGetValue(token, out company))
+            if (DiccUserTokens.TryGetValue(token.ToString(), out company))
             {
                 return company;
             }

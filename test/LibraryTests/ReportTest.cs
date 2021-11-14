@@ -26,7 +26,7 @@ namespace BotTests
             Material materialTest = new Material(title, 500, 9000);
             publicationTest = new Publication(title, company, companyLocation, materialTest); 
             PublicationSet.AddPublication(publicationTest);
-            entrepreneur = new RoleEntrepreneur("emprendedor1", 5433264, "carpintero", entrepreneurLocation, "oficial", "lustrado");
+            entrepreneur = new RoleEntrepreneur("carpintero", entrepreneurLocation, "oficial", "lustrado");
         }
 
         /// <summary>
