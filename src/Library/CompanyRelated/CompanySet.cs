@@ -11,27 +11,31 @@ namespace Bot
     /// </summary>
     public class CompanySet : ISet<Company>
     {
-        private static CompanySet _instance;
+        private static CompanySet instance;
+        private List<Company> listCompanies = new List<Company>();
+
         private CompanySet() { }
 
         /// <summary>
-        /// Método estático que controla el acceso a la propia instancia de la clase CompanySet,
+        /// Obtiene el acceso a la propia instancia de la clase CompanySet,
         /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
         /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
         /// siempre se use la misma variable instancia y se cumpla con Singleton.
         /// </summary>
         /// <returns>Instancia CompanySet.</returns>
-        public static CompanySet GetInstance()
+        public static CompanySet Instance
         {
-            if (_instance == null)
+            get
             {
-                _instance = new CompanySet();
+                if (instance == null)
+                {
+                    instance = new CompanySet();
+                }
+                
+                return instance;
             }
-            return _instance;
         }
 
-        private List<Company> listCompanies = new List<Company>();
-    
         /// <summary>
         /// Obtiene la lista de Empresas.
         /// </summary>
@@ -55,7 +59,7 @@ namespace Bot
         /// contrario.</returns>
         public bool AddElement(string name, string item, GeoLocation location, string contact)
         {
-            if (!ContainsElementInListElements(name))
+            if (!this.ContainsElementInListElements(name))
             {
                 Company company = new Company(name, item, location, contact);
                 this.listCompanies.Add(company);
@@ -70,13 +74,14 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
         /// </summary>
+        /// <param name="element">Elemento Empresa.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
         /// contrario.</returns>
-        public bool AddElement(Company company)
+        public bool AddElement(Company element)
         {
-            if (!ContainsElementInListElements(company))
+            if (!this.ContainsElementInListElements(element))
             {
-                listCompanies.Add(company);
+                this.listCompanies.Add(element);
                 return true;
             }
             else
@@ -88,14 +93,14 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema.
         /// </summary>
-        /// <param name="company">Empresa.</param>
+        /// <param name="element">Empresa.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
         /// contrario.</returns>
-        public bool DeleteElement(Company company)
+        public bool DeleteElement(Company element)
         {
-            if(ContainsElementInListElements(company))
+            if (this.ContainsElementInListElements(element))
             {
-                listCompanies.Remove(company);
+                this.listCompanies.Remove(element);
                 return true;
             }
             else
@@ -113,7 +118,7 @@ namespace Bot
         {
             StringBuilder result = new StringBuilder("Empresas: \n");
 
-            foreach (Company company in listCompanies)
+            foreach (Company company in this.listCompanies)
             {
                 result.Append($"{company.Name} \n");
             }
@@ -125,16 +130,16 @@ namespace Bot
         /// Método simple que se encarga de comprobar si una clase Empresa se encuentra
         /// en el sistema de Empresas.
         /// </summary>
-        /// <param name="company">Empresa.</param>
+        /// <param name="element">Empresa.</param>
         /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
         /// contrario.</returns>
-        public bool ContainsElementInListElements(Company company)
+        public bool ContainsElementInListElements(Company element)
         {
-            if (company != null)
+            if (element != null)
             {
-                foreach (Company item in listCompanies)
+                foreach (Company item in this.listCompanies)
                 {
-                    if (item.Name == company.Name)
+                    if (item.Name == element.Name)
                     {
                         return true;
                     }
@@ -144,7 +149,7 @@ namespace Bot
             }
             else
             {
-                throw new ArgumentNullException(nameof(company));
+                throw new ArgumentNullException(nameof(element));
             }
         }
         
@@ -152,16 +157,16 @@ namespace Bot
         /// Sobrecarga de ContainsCompanyInListCompanies, se encarga de comprobar si el nombre de una clase Empresa se encuentra
         /// en la lista de Empresas.
         /// </summary>
-        /// <param name="companyName">Nombre de Empresa.</param>
+        /// <param name="elementName">Nombre de Empresa.</param>
         /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
         /// contrario.</returns>
-        public bool ContainsElementInListElements(string companyName)
+        public bool ContainsElementInListElements(string elementName)
         {
-            if (companyName != null)
+            if (elementName != null)
             {
-                foreach (Company item in listCompanies)
+                foreach (Company item in this.listCompanies)
                 {
-                    if (item.Name == companyName)
+                    if (item.Name == elementName)
                     {
                         return true;
                     }
@@ -171,7 +176,7 @@ namespace Bot
             }
             else
             {
-                throw new ArgumentNullException(nameof(companyName));
+                throw new ArgumentNullException(nameof(elementName));
             }
         }
     }

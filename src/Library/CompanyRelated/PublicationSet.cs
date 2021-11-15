@@ -11,26 +11,30 @@ namespace Bot
     /// </summary>
     public class PublicationSet : ISet<Publication>
     {
-        private static PublicationSet _instance;
+        private static PublicationSet instance;
+        private List<Publication> listPublications = new List<Publication>();
+        
         private PublicationSet() { }
 
         /// <summary>
-        /// Método estático que controla el acceso a la propia instancia de la clase PublicationSet,
+        /// Obtiene el acceso a la propia instancia de la clase PublicationSet,
         /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
         /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
         /// siempre se use la misma variable instancia y se cumpla con Singleton.
         /// </summary>
         /// <returns>Instancia PublicationSet.</returns>
-        public static PublicationSet GetInstance()
+        public static PublicationSet Instance
         {
-            if (_instance == null)
+            get
             {
-                _instance = new PublicationSet();
+            if (instance == null)
+            {
+                instance = new PublicationSet();
             }
-            return _instance;
-        }
 
-        private List<Publication> listPublications = new List<Publication>();
+            return instance;
+            }
+        }
     
         /// <summary>
         /// Obtiene la lista de Publicaciones.
@@ -47,13 +51,14 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de agregar una Publicación a la lista de Publicaciones del sistema.
         /// </summary>
+        /// <param name="element">Elemento Publicación.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
         /// contrario.</returns>
-        public bool AddElement(Publication publication)
+        public bool AddElement(Publication element)
         {
-            if (!ContainsElementInListElements(publication))
+            if (!this.ContainsElementInListElements(element))
             {
-                this.listPublications.Add(publication);
+                this.listPublications.Add(element);
                 return true;
             }
             else
@@ -65,14 +70,14 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de eliminar una Publicación de la lista de Publicaciones del sistema.
         /// </summary>
-        /// <param name="publication">Publicación.</param>
+        /// <param name="element">Publicación.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
         /// contrario.</returns>
-        public bool DeleteElement(Publication publication)
+        public bool DeleteElement(Publication element)
         {
-            if(ContainsElementInListElements(publication))
+            if (this.ContainsElementInListElements(element))
             {
-                this.listPublications.Remove(publication);
+                this.listPublications.Remove(element);
                 return true;
             }
             else
@@ -101,16 +106,16 @@ namespace Bot
         /// Método simple que se encarga de comprobar si una clase Publicación se encuentra
         /// en el sistema de Publicaciones.
         /// </summary>
-        /// <param name="publication">Publicación.</param>
+        /// <param name="element">Publicación.</param>
         /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
         /// contrario.</returns>
-        public bool ContainsElementInListElements(Publication publication)
+        public bool ContainsElementInListElements(Publication element)
         {
-            if (publication != null)
+            if (element != null)
             {
                 foreach (Publication item in this.listPublications)
                 {
-                    if (item.Title == publication.Title)
+                    if (item.Title == element.Title)
                     {
                         return true;
                     }
@@ -120,7 +125,7 @@ namespace Bot
             }
             else
             {
-                throw new ArgumentNullException(nameof(publication));
+                throw new ArgumentNullException(nameof(element));
             }
         }
         
@@ -128,16 +133,16 @@ namespace Bot
         /// Sobrecarga de ContainsElementInListElements, se encarga de comprobar si el nombre de una clase Publicación se encuentra
         /// en la lista de Publicaciones.
         /// </summary>
-        /// <param name="publicationName">Nombre de Publicación.</param>
+        /// <param name="elementName">Nombre de Publicación.</param>
         /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
         /// contrario.</returns>
-        public bool ContainsElementInListElements(string publicationName)
+        public bool ContainsElementInListElements(string elementName)
         {
-            if (publicationName != null)
+            if (elementName != null)
             {
                 foreach (Publication item in this.listPublications)
                 {
-                    if (item.Title == publicationName)
+                    if (item.Title == elementName)
                     {
                         return true;
                     }
@@ -147,7 +152,7 @@ namespace Bot
             }
             else
             {
-                throw new ArgumentNullException(nameof(publicationName));
+                throw new ArgumentNullException(nameof(elementName));
             }
         }
     }

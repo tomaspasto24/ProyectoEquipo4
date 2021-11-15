@@ -3,7 +3,7 @@ namespace Bot
     /// <summary>
     /// Interfaz pública ISet para CompanySet y PublicationSet.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Elemento T (Empresa o Publicación).</typeparam>
     public interface ISet<T>
     {
         /// <summary>
