@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 using Bot;
-/*
+
 namespace BotTests
 {
     /// <summary>
@@ -21,19 +21,19 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            this.admin = new RoleAdmin("admin1", 1234);
+            this.admin = new RoleAdmin();
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
             this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
         }
 
         /// <summary>
-        /// Test del token para ver si tiene la cantidad de caracteres esperada.
+        /// Test del token para ver si lo que retorna es de tipo int.
         /// </summary>
         [Test]
-        public void TokenLenghtTest()
+        public void TokenType()
         {
             String token = this.admin.GenerateToken(this.company);
-            Assert.AreEqual(8, token.Length);
+            Assert.AreEqual(8, token.GetType());
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace BotTests
         public void TokenAddedTest()
         {
             String token = this.admin.GenerateToken(this.company);
-            Assert.Contains(token, RoleAdmin.globalQualificationList);
+            Assert.Contains(token, TokenGenerator.tokenList);
         }
     }
-}*/
+}

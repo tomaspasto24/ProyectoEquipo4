@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 namespace Bot
 {
     /// <summary>
@@ -20,8 +21,8 @@ namespace Bot
         /// <returns></returns>
         public string GenerateToken(Company company)
         {
-            int newToken = TokenGenerator.Instance.GenerateToken(company);
-            SessionRelated.Instance.DiccUserTokens.Add(newToken.ToString(), company);
+            int newToken = TokenGenerator.Instance.GenerateToken();
+            SessionRelated.Instance.DiccUserTokens.Add(newToken, company);
             return newToken.ToString();
         }
 
