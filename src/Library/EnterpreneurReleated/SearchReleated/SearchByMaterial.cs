@@ -23,13 +23,13 @@ namespace Bot
         public List<Publication> Search(String wordToSearch)
         {
             List<Publication> result = new List<Publication>();
-            List<Publication> listPublications = PublicationSet.ListPublications;
+            List<Publication> listPublications = PublicationSet.ReturnListPublications();
             bool exitPublication = false;   // Variable para salir de la publicación cuando se encontró el material buscado
             foreach (Publication publication in listPublications)
             {
                 while (!exitPublication)
                 {       
-                    foreach (Material material in publication.ReturnListMaterials())
+                    foreach (Material material in publication.ListMaterials)
                     {
                         if (material.KeyWords.Contains(wordToSearch))
                         {
