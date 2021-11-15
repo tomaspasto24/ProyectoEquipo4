@@ -14,6 +14,9 @@ namespace BotTests
         Company companyTest2;
         Company companyTest3;
 
+        /// <summary>
+        /// SetUp, asigna valores a las variables companyTest1, companyTest2, companyTest3.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
