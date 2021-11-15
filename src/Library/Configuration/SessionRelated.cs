@@ -23,7 +23,7 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public Dictionary<string, Company> DiccUserTokens;
+        public Dictionary<int, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>
@@ -48,7 +48,7 @@ namespace Bot
         private SessionRelated()
         {
             AllUsers = new List<User>();
-            DiccUserTokens = new Dictionary<string, Company>();
+            DiccUserTokens = new Dictionary<int, Company>();
         }
 
         /// <summary>
