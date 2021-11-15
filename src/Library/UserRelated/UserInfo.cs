@@ -6,8 +6,9 @@ namespace Bot
     public class UserInfo
     {
         public string Name { get; set; }
-        public int Id { get; set; }
+        public long Id { get; set; }
         public IRole UserRole { get; set; }
+        public State HandlerState { get; set; }
 
         /// <summary>
         /// Método constructor de la clase User que se encarga de asignar los atributos
@@ -16,7 +17,7 @@ namespace Bot
         /// <param name="name">El nombre del usuario.</param>
         /// <param name="id">El id del usuario.</param>
         /// <param name="role">El role del usuario</param>
-        public UserInfo(string name, int id, IRole role)
+        public UserInfo(string name, long id, IRole role)
         {
             this.Name = name;
             this.Id = id;

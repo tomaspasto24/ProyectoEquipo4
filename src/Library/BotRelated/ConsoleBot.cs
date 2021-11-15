@@ -54,19 +54,34 @@ namespace Bot
         public override void StartCommunication()
         {
             IHandler handler =
-                new StartHandler(
-                new RegisterHandler(
-                new CommandHandler(null)
-            ));
+                new CommandHandler(
+                    new ContactHandler(
+                        new ConvertUserToEntrepreneurHandler(
+                            new PublishHandler(
+                                new RegisterHandler(
+                                    new ReportHandler(
+                                        new SearchHandler(
+                                            new StartHandler(
+                                                new TokenHandler(
+                                                    new UserInformationHandler(null)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
 
             Message message = new Message(1111, string.Empty);
             string response;
 
-            this.SendMessage(123, "Bienvenido al bot de consola! Puedes usar \"exit\" para terminar la conversacion.");
+            this.SendMessage(123, "Bienvenido al bot de consola! Puedes usar \"/exit\" para terminar la conversacion.");
             while (true)
             {
                 message.Text = Console.ReadLine();
-                if (message.Text.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+                if (message.Text.Equals("/exit", StringComparison.InvariantCultureIgnoreCase))
                 {
                     Console.WriteLine("Salimos");
                     break;
