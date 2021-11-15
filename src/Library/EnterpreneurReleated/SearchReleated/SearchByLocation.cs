@@ -26,7 +26,7 @@ namespace Bot
             double distance;
             location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
-            List<Publication> listaPublicaciones = PublicationSet.ListPublications;
+            List<Publication> listaPublicaciones = PublicationSet.ReturnListPublications();
                 foreach (Publication publication in listaPublicaciones)
                 {
                     distance = AsyncContext.Run<double>(() => location.CalculateDistance(publication.Location));
