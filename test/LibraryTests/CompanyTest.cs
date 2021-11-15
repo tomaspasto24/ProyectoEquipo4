@@ -75,8 +75,8 @@ namespace BotTests
         [Test]
         public void UsersCompanyTest()
         {
-            User usuarioTest1 = new User("Test1", 12, new RoleUserCompany(companyTest, "Test1", 12));
-            User usuarioTest2 = new User("Test2", 22, new RoleUserCompany(companyTest, "Test2", 22));
+            UserInfo usuarioTest1 = new UserInfo("Test1", 12, new RoleUserCompany(companyTest));
+            UserInfo usuarioTest2 = new UserInfo("Test2", 22, new RoleUserCompany(companyTest));
             companyTest.AddUser(usuarioTest1);
             companyTest.AddUser(usuarioTest2);
 

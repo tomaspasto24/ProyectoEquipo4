@@ -1,3 +1,5 @@
+using System;
+
 namespace Bot
 {
     /*
@@ -11,27 +13,9 @@ namespace Bot
     public class RegisterHandler : AbstractHandler
     {
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando RegisterHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide el token de registro
-        /// - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
-        /// </summary>
-        public enum RegisterState
-        {
-            /// Estado antes de mandar el token
-            Start,
-            /// Estado mientras el bot espera y confirma un token
-            ConfirmingToken,
-        }
-
-        /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public RegisterData Data { get; private set; } = new RegisterData();
-
-        /// <summary>
-        /// El estado del comando.
-        /// </summary>
-        public RegisterState State { get; private set; }
 
         /// <summary>
         /// Constructor de la clase RegisterHandler
@@ -39,7 +23,6 @@ namespace Bot
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         public RegisterHandler(AbstractHandler succesor) : base(succesor)
         {
-            State = RegisterState.Start;
         }
 
         /// <summary>
@@ -49,28 +32,33 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            User user = SessionRelated.Instance.GetUserById(request.UserId);
+            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if ((State == RegisterState.Start) && (request.Text.Equals("/registro")))
+            if (!(user.UserRole is RoleEntrepreneur))
             {
-                this.State = RegisterState.ConfirmingToken;
+                // TODO Exception
+            }
+
+            if ((user.HandlerState == Bot.State.Start) && (request.Text.Equals("/registro")))
+            {
+                user.HandlerState = Bot.State.ConfirmingToken;
                 response = "Inserta tu token de usuario empresa: ";
                 return true;
             }
-            else if (State == RegisterState.ConfirmingToken)
+            else if (user.HandlerState == Bot.State.ConfirmingToken)
             {
                 if (SessionRelated.Instance.DiccUserTokens.ContainsKey(request.Text))
                 {
-                    this.State = RegisterState.Start;
+                    user.HandlerState = Bot.State.Start;
                     this.Data.Token = request.Text;
-                    user.ChangeRoleToUserCompany(SessionRelated.Instance.ReturnCompany(request.Text));
+                    user.UserRole = new RoleUserCompany(SessionRelated.Instance.GetCompanyByToken(request.Text));
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }
                 else
                 {
                     this.Data.Token = request.Text;
-                    this.State = RegisterState.Start;
+                    user.HandlerState = Bot.State.Start;
                     response = "Disculpa, no hemos encontrado ese token :(";
                     return true;
                 }

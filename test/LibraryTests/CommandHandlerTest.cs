@@ -9,9 +9,8 @@ namespace BotTests
     /// </summary>
     public class CommandHandlerTest
     {
-
-        User user;
-        Role role;
+        UserInfo user;
+        IRole role;
         SessionRelated sessionRelated;
         Message message;
         CommandHandler handler;
@@ -22,23 +21,21 @@ namespace BotTests
         [SetUp]
         public void SetUp()
         {
-            role = new RoleAdmin("name", 123);
-            user = new User("Seba", 123, role);
-
             sessionRelated = SessionRelated.Instance;
-            sessionRelated.AddNewUser("Seba", 123, role);
-
-            message = new Message(user.Id, null);
             handler = new CommandHandler(null);
         }
-        
+
         /// <summary>
         /// Test para probar los comandos que tiene un admin
         /// </summary>
         [Test]
         public void TestAdminCommandHandler()
         {
-            message.Text = "/comandos";
+            role = new RoleAdmin();
+            user = new UserInfo("Admin", 1, role);
+            sessionRelated.AddNewUser(user);
+
+            message = new Message(user.Id, "/comandos");
             string response;
 
             IHandler result = handler.Handle(message, out response);
@@ -55,10 +52,11 @@ namespace BotTests
         {
             GeoLocation location = new GeoLocation("adress", "city");
             Company company = new Company("nombre", "rubro", location, "contacto");
+            role = new RoleUserCompany(company);
+            user = new UserInfo("UserCompany", 2, role);
+            sessionRelated.AddNewUser(user);
 
-            user.ChangeRoleToUserCompany(company);
-
-            message.Text = "/comandos";
+            message = new Message(user.Id, "/comandos");
             string response;
 
             IHandler result = handler.Handle(message, out response);
@@ -74,10 +72,11 @@ namespace BotTests
         public void TestRoleEntrepreneurCommandHandler()
         {
             GeoLocation location = new GeoLocation("adress", "city");
+            role = new RoleEntrepreneur("heading", location, "certification", "specialization");
+            user = new UserInfo("Entrepreneur", 3, role);
+            sessionRelated.AddNewUser(user);
 
-            user.ChangeRoleToEntrepreneur("heading", location, "certification", "specialization");
-
-            message.Text = "/comandos";
+            message = new Message(user.Id, "/comandos");
             string response;
 
             IHandler result = handler.Handle(message, out response);

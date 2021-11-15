@@ -7,6 +7,22 @@ namespace Bot
     /// </summary>
     public class TokenGenerator
     {
+        private static TokenGenerator instance;
+
+        public static TokenGenerator Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new TokenGenerator();
+                }
+                return instance;
+            }
+        }
+        private TokenGenerator()
+        {
+        }
         /// <summary>
         /// Se inicializa la lista tokenList.
         /// </summary>
@@ -21,31 +37,34 @@ namespace Bot
         /// <returns></returns>
         public int GenerateToken(Company company)
         {
-            int newToken = GenerateTokenToUserCompany(tokenList);
-            SessionRelated.DiccUserTokens.Add(newToken, company);
-            return newToken;
-
+            int token = 0;
+            foreach (int i in tokenList)
+            {
+                token = token + 1;
+            }
+            tokenList.Add(token);
+            return token;
         }
 
-        /// <summary>
-        /// Metodo estatico para generar un token unico para una lista dada.
-        /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        private static int GenerateTokenToUserCompany(List<int> tokenList)
-        {
-            var token = 0;
+        // /// <summary>
+        // /// Metodo estatico para generar un token unico para una lista dada.
+        // /// </summary>
+        // /// <param name="token"></param>
+        // /// <returns></returns>
+        // private static int GenerateTokenToUserCompany(List<int> tokenList)
+        // {
+        //     var token = 0;
 
-            if (tokenList.Contains(token))
-            {
-                token = +1;
-                return GenerateTokenToUserCompany(tokenList);
-            }
-            else
-            {
-                tokenList.Add(token);
-                return token;
-            }
-        }
+        //     if (tokenList.Contains(token))
+        //     {
+        //         token = +1;
+        //         return GenerateTokenToUserCompany(tokenList);
+        //     }
+        //     else
+        //     {
+        //         tokenList.Add(token);
+        //         return token;
+        //     }
+        // }
     }
 }

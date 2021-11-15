@@ -10,8 +10,6 @@ namespace Bot
     /// </summary>
     public abstract class AbstractBot
     {
-        private AbstractHandler handler;
-
         /// <summary>
         /// Constructor de la clase AbstractBot
         /// </summary>

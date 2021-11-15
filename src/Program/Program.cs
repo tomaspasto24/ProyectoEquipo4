@@ -1,5 +1,10 @@
 ﻿using System;
-
+using System.Threading;
+using System.Threading.Tasks;
+using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+using Library;
 
 namespace Bot
 {
@@ -11,14 +16,19 @@ namespace Bot
         /// <summary>
         /// Programa principal que inicia la comunicacion con los bots.
         /// </summary>
-        static void Main(string[] args)
+        public static void Main()
         {
-            ConsoleBot.Instance.StartCommunication(); // iniciar comunicación
+            // TODO HACER LOS COMENTARIOS DE TODO
+            // ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
 
-            Role role = new RoleAdmin("Admin", 1234);
+            TelegramBot botardo = TelegramBot.Instance;
 
-            User Admin = new User("Prueba", 2002, role);
+            botardo.StartCommunication();
+
+            Console.WriteLine($"Bot is up!");
+
+            // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
+            Console.ReadLine();
         }
-
     }
 }

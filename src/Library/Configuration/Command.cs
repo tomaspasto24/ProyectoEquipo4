@@ -27,7 +27,7 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "exit",
+                "/exit",
                 "/busqueda",
                 "/reporte",
                 "/contacto",
@@ -98,15 +98,15 @@ namespace Bot
         public string ReturnCommands(int userId)
         {
             string commandList = string.Empty;
-            User user = SessionRelated.Instance.GetUserById(userId);
-            if (user.Role is RoleEntrepreneur)
+            UserInfo user = SessionRelated.Instance.GetUserById(userId);
+            if (user.UserRole is RoleEntrepreneur)
             {
                 foreach (string command in EntrepreneurList())
                 {
                     commandList = commandList + command + "\n";
                 }
             }
-            else if (user.Role is RoleUserCompany)
+            else if (user.UserRole is RoleUserCompany)
             {
                 foreach (string command in CompanyUserList())
                 {
@@ -123,14 +123,14 @@ namespace Bot
             return commandList;
         }
 
-        /// <summary>
-        /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
-        /// </summary>
-        /// <param name="command">Comando a verificar</param>
-        /// <returns>Si la lista contiene el comando buscado</returns>
-        public bool ExistingCommand(string command)
-        {
-            return this.CommandsList.Contains(command.ToLower());
-        }
+        // /// <summary>
+        // /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
+        // /// </summary>
+        // /// <param name="command">Comando a verificar</param>
+        // /// <returns>Si la lista contiene el comando buscado</returns>
+        // public bool ExistingCommand(string command)
+        // {
+        //     return this.CommandsList.Contains(command.ToLower());
+        // }
     }
 }

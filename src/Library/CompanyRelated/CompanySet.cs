@@ -32,7 +32,7 @@ namespace Bot
                     string contact;
                     IReadOnlyList<Publication> listHistorialPublications;
                     IReadOnlyList<Publication> listOwnPublications;
-                    IReadOnlyList<User> listUsers;
+                    IReadOnlyList<UserInfo> listUsers;
 
                     while (line != null)
                     {
@@ -73,7 +73,7 @@ namespace Bot
         /// <param name="listHistorialPublications">Lista Historial de Publicaciones.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
         /// contrario.</returns>
-        public static bool AddCompany(string name, string item, GeoLocation location, string contact, IReadOnlyList<User> listUsers, IReadOnlyList<Publication> listOwnPublications, IReadOnlyList<Publication> listHistorialPublications)
+        public static bool AddCompany(string name, string item, GeoLocation location, string contact, IReadOnlyList<UserInfo> listUsers, IReadOnlyList<Publication> listOwnPublications, IReadOnlyList<Publication> listHistorialPublications)
         {
             Company company = new Company(name, item, location, contact);
             company.AddUser(listUsers);

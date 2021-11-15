@@ -1,21 +1,25 @@
+using System;
+using System.Collections.Generic;
+
 namespace Bot
 {
     /*
     Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
     También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
     A su vez, cumple con el patrón Chain of Responsability.
     */
     /// <summary>
-    /// Handler para saludar al usuario
+    /// Handler que se encarga del registro de un usuario
     /// </summary>
-    public class StartHandler : AbstractHandler
+    public class TokenHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de la clase StartHandler
+        /// Constructor de la clase RegisterHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public StartHandler(AbstractHandler succesor) : base(succesor) { }
+        public TokenHandler(AbstractHandler succesor) : base(succesor)
+        {
+        }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
@@ -24,16 +28,8 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            Command commands = new Command();
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            
-            if (request.Text.ToLower().Equals("/hola"))
-            {
-                response = "¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n" 
-                            + "\n Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe \"/Comandos\"";
-                return true;
-            }
-
+            // TODO
             response = string.Empty;
             return false;
         }
