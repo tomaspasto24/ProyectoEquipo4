@@ -37,10 +37,10 @@ namespace BotTests
         [Test]
         public void AddCompanyTest()
         {
-            bool test1 = PublicationSet.AddPublication(publicationTest1);
-            bool test2 = PublicationSet.AddPublication(publicationTest2);
-            bool test3 = PublicationSet.AddPublication(publicationTest3);
-            string stringPublicationsTest = PublicationSet.ReturnListPublications();
+            bool test1 = PublicationSet.Instance.AddElement(publicationTest1);
+            bool test2 = PublicationSet.Instance.AddElement(publicationTest2);
+            bool test3 = PublicationSet.Instance.AddElement(publicationTest3);
+            string stringPublicationsTest = PublicationSet.Instance.ReturnListElements();
 
             Assert.IsTrue(test1);
             Assert.IsTrue(test2);
@@ -54,9 +54,9 @@ namespace BotTests
         [Test]
         public void ContainsCompanyInListCompaniesTest()
         {
-            bool conditionTest1 = PublicationSet.ContainsPublicationInListPublications(publicationTest1);
-            bool conditionTest2 = PublicationSet.ContainsPublicationInListPublications(publicationTest2);
-            bool conditionTest3 = PublicationSet.ContainsPublicationInListPublications(publicationTest3);
+            bool conditionTest1 = PublicationSet.Instance.ContainsElementInListElements(publicationTest1);
+            bool conditionTest2 = PublicationSet.Instance.ContainsElementInListElements(publicationTest2);
+            bool conditionTest3 = PublicationSet.Instance.ContainsElementInListElements(publicationTest3);
 
             Assert.IsTrue(conditionTest1);
             Assert.IsTrue(conditionTest2);
@@ -70,14 +70,14 @@ namespace BotTests
         [Test]
         public void DeleteCompanyTest()
         {
-            bool test4 = PublicationSet.DeletePublication(publicationTest1);
-            bool test5 = PublicationSet.DeletePublication(publicationTest2);
+            bool test4 = PublicationSet.Instance.DeleteElement(publicationTest1);
+            bool test5 = PublicationSet.Instance.DeleteElement(publicationTest2);
 
             Assert.IsTrue(test4);
             Assert.IsTrue(test5);
-            Assert.IsEmpty(PublicationSet.ListPublication);
-            Assert.IsFalse(PublicationSet.ContainsPublicationInListPublications(publicationTest1));
-            Assert.IsFalse(PublicationSet.ContainsPublicationInListPublications(publicationTest2));
+            Assert.IsEmpty(PublicationSet.Instance.ListPublications);
+            Assert.IsFalse(PublicationSet.Instance.ContainsElementInListElements(publicationTest1));
+            Assert.IsFalse(PublicationSet.Instance.ContainsElementInListElements(publicationTest2));
         }
     }
 }
