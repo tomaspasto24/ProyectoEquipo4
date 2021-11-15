@@ -40,7 +40,11 @@ namespace Bot
 
             if (report.Length > 0)
             {
+<<<<<<< HEAD
                 result = $"Materiales consumidos en los ultimos 30 dias por el emprendedor {report} ";
+=======
+                result = $"Materiales consumidos en los ultimos 30 dias por el emprendedor: {report} ";
+>>>>>>> d55b4d64c8abf6ebd77001d20ad6b99901e9ecb1
             }
             else
             {
