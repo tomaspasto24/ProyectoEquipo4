@@ -25,15 +25,15 @@ namespace Bot
             double distance;
             location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
-            // List<Publication> listaPublicaciones = PublicationSet.ListPublications;
-            //     foreach (Publication publication in listaPublicaciones)
-            //     {
-            //         distance = AsyncContext.Run<double>(() => location.CalculateDistance(publication.Location));
-            //         if (distance < 500)
-            //         {
-            //             result.Add(publication);
-            //         }
-            //     }    
+            List<Publication> listaPublicaciones = PublicationSet.ListPublications;
+                foreach (Publication publication in listaPublicaciones)
+                {
+                    distance = AsyncContext.Run<double>(() => location.CalculateDistance(publication.Location));
+                    if (distance < 500)
+                    {
+                        result.Add(publication);
+                    }
+                }    
             return result;
         }
     }

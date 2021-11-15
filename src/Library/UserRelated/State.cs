@@ -11,5 +11,10 @@ namespace Bot
         Start,
         /// Estado mientras el bot espera y confirma un token
         ConfirmingToken,
+        ConfirmingHeadingEntrepreneur,
+        ConfirmingCityEntrepreneur,
+        ConfirmingAdressEntrepreneur,
+        ConfirmingCertificationEntrepreneur,
+        ConfirmingSpecializationEntrepeneur
     }
 }

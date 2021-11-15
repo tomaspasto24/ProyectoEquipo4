@@ -18,7 +18,8 @@ namespace Bot
         /// </summary>
         public static void Main()
         {
-            ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
+            // TODO HACER LOS COMENTARIOS DE TODO
+            // ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
 
             TelegramBot botardo = TelegramBot.Instance;
 

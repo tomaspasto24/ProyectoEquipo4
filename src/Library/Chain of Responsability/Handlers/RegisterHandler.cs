@@ -36,8 +36,7 @@ namespace Bot
 
             if (!(user.UserRole is RoleEntrepreneur))
             {
-                response = "Disculpa, no eres un emprendedor";
-                return false;
+                // TODO Exception
             }
 
             if ((user.HandlerState == Bot.State.Start) && (request.Text.Equals("/registro")))

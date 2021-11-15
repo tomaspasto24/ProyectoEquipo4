@@ -30,8 +30,7 @@ namespace Bot
             if (request.Text.ToLower().Equals("/hola"))
             {
                 response = "¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n" 
-                            + commands.ReturnCommands(123) +
-                            "\n Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe Comandos";
+                            + "\n Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe \"/Comandos\"";
                 return true;
             }
 

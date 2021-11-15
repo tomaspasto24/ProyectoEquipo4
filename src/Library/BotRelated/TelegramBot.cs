@@ -71,18 +71,49 @@ namespace Library
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
             IHandler handler =
-                new StartHandler(
-                new RegisterHandler(
-                new CommandHandler(null)
-            ));
+                new CommandHandler(
+                    new ContactHandler(
+                        new ConvertUserToEntrepreneurHandler(
+                            new PublishHandler(
+                                new RegisterHandler(
+                                    new ReportHandler(
+                                        new SearchHandler(
+                                            new StartHandler(
+                                                new TokenHandler(
+                                                    new UserInformationHandler(null)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
 
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
 
+            UserInfo userInfo = SessionRelated.Instance.GetUserById(chatId);
+
+            if (userInfo == null)
+            {
+                SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId, new RoleDefault()));
+            }
+
             Bot.Message msg = new Bot.Message(chatId, message.Text);
 
             string response;
-            IHandler result = handler.Handle(msg, out response);
+            IHandler result = handler.Handle(msg, out response); // TODO try catch exceptions con mensajes
+            // TODO Poder cancelar cosas en los handlers
+            if (result == null)
+            {
+                bot.SendTextMessageAsync(chatId, "Disculpa no te entiendo");
+            }
+            else
+            {
+                bot.SendTextMessageAsync(chatId, response);
+            }
         }
     }
 }

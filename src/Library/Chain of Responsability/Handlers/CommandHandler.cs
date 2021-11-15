@@ -30,11 +30,12 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "exit",
+                "/exit",
                 "/busqueda",
                 "/reporte",
                 "/contacto",
-                "/infoemprendedor"
+                "/infoemprendedor",
+                "/emprender"
             };
             return list;
         }
@@ -49,7 +50,7 @@ namespace Bot
             {
                 "/comandos",
                 "/hola",
-                "exit",
+                "/exit",
                 "/reporte",
                 "/publicar"
             };
@@ -66,8 +67,24 @@ namespace Bot
             {
                 "/comandos",
                 "/hola",
-                "exit",
+                "/exit",
                 "/generartoken"
+            };
+            return list;
+        }
+
+        /// <summary>
+        /// Metodo que retorna una lista de comnados para el admin
+        /// </summary>
+        /// <returns>Lista de comandos</returns>
+        public List<string> DefaultList()
+        {
+            List<string> list = new List<string>()
+            {
+                "/comandos",
+                "/hola",
+                "/exit",
+                "/emprender"
             };
             return list;
         }
@@ -99,14 +116,21 @@ namespace Bot
                         commandList = commandList + command + "\n";
                     }
                 }
-                else
+                else if (user.UserRole is RoleAdmin)
                 {
                     foreach (string command in AdminList())
                     {
                         commandList = commandList + command + "\n";
                     }
                 }
-                
+                else
+                {
+                    foreach (string command in DefaultList())
+                    {
+                        commandList = commandList + command + "\n";
+                    }
+                }
+
                 response = $"Estos son todos los comandos: \n" + commandList;
                 return true;
             }

@@ -132,11 +132,53 @@
             </summary>
             <returns>Lista de comandos</returns>
         </member>
+        <member name="M:Bot.CommandHandler.DefaultList">
+            <summary>
+            Metodo que retorna una lista de comnados para el admin
+            </summary>
+            <returns>Lista de comandos</returns>
+        </member>
         <member name="M:Bot.CommandHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
             <param name="request">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.ContactHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.ContactHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.ContactHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.ConvertUserToEntrepreneurHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.ConvertUserToEntrepreneurHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.ConvertUserToEntrepreneurHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
         <member name="T:Bot.IHandler">
@@ -164,6 +206,24 @@
             "handlers" que procesan varios mensajes cambiando de estado entre mensajes puedan volver al estado inicial en
             caso de error por ejemplo.
             </summary>
+        </member>
+        <member name="T:Bot.PublishHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.PublishHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.PublishHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
         </member>
         <member name="T:Bot.RegisterHandler">
             <summary>
@@ -234,6 +294,24 @@
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
+        <member name="T:Bot.SearchHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.SearchHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.SearchHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.StartHandler">
             <summary>
             Handler para saludar al usuario
@@ -246,6 +324,42 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.StartHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.TokenHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.TokenHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.TokenHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.UserInformationHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.UserInformationHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.UserInformationHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -1012,6 +1126,11 @@
             </summary>
             <param name="company"></param>
             <returns></returns>
+        </member>
+        <member name="T:Bot.RoleDefault">
+            <summary>
+            Clase RoleAdmin que implementa la interfaz IRole
+            </summary>
         </member>
         <member name="T:Bot.RoleUserCompany">
             <summary>

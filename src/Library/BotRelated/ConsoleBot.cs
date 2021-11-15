@@ -54,10 +54,25 @@ namespace Bot
         public override void StartCommunication()
         {
             IHandler handler =
-                new StartHandler(
-                new RegisterHandler(
-                new CommandHandler(null)
-            ));
+                new CommandHandler(
+                    new ContactHandler(
+                        new ConvertUserToEntrepreneurHandler(
+                            new PublishHandler(
+                                new RegisterHandler(
+                                    new ReportHandler(
+                                        new SearchHandler(
+                                            new StartHandler(
+                                                new TokenHandler(
+                                                    new UserInformationHandler(null)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
 
             Message message = new Message(1111, string.Empty);
             string response;
