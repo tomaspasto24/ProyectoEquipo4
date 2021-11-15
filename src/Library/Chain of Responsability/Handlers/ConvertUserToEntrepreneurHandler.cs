@@ -111,9 +111,7 @@ namespace Bot
                 specialization = request.Text;
                 response = "Especializacion registrada. Ahora eres un emprendedor!";
                 RoleEntrepreneur roleEntrepreneur = new RoleEntrepreneur(heading, 
-                new GeoLocation(address, city), // TODO Preguntar que onda con geolocation, no me deja registrarla
-                certification, 
-                specialization);
+                new GeoLocation(address, city)); // TODO Preguntar que onda con geolocation, no me deja registrarla
                 user.UserRole = roleEntrepreneur;
                 return true;
             }
