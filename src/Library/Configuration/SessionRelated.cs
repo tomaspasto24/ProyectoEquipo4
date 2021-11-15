@@ -47,13 +47,8 @@ namespace Bot
         /// </summary>
         private SessionRelated()
         {
-<<<<<<< HEAD
-            AllUsers = new List<User>();
-            DiccUserTokens = new Dictionary<int, Company>();
-=======
             AllUsers = new List<UserInfo>();
             DiccUserTokens = new Dictionary<string, Company>();
->>>>>>> master
         }
 
         /// <summary>
