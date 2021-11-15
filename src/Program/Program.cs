@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+using Library;
 
 namespace Bot
 {
@@ -14,16 +20,14 @@ namespace Bot
         {
             ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
 
-            RoleAdmin role = new RoleAdmin();
+            TelegramBot botardo = TelegramBot.Instance;
 
-            UserInfo user = new UserInfo("seba",123,role);
+            botardo.StartCommunication();
 
-            IRole userRole = user.UserRole;
+            Console.WriteLine($"Bot is up!");
 
-            if (userRole is RoleAdmin)
-            {
-                RoleAdmin admin = (RoleAdmin)userRole;
-            }
+            // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
+            Console.ReadLine();
         }
     }
 }

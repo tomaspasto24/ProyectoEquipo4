@@ -27,7 +27,7 @@ namespace Bot
                 "/comandos",
                 "/registro",
                 "/hola",
-                "exit",
+                "/exit",
                 "/busqueda",
                 "/reporte",
                 "/contacto",

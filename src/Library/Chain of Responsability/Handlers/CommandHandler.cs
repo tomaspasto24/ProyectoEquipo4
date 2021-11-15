@@ -82,7 +82,7 @@ namespace Bot
             Command commands = new Command();
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (request.Text.Equals("/comandos"))
+            if (request.Text.ToLower().Equals("/comandos"))
             {
                 string commandList = string.Empty;
                 if (user.UserRole is RoleEntrepreneur)

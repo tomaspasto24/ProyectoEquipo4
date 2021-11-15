@@ -80,7 +80,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario a verificar</param>
         /// <returns>true o false</returns>
-        public bool UsernameExists(int id)
+        public bool UsernameExists(long id)
         {
             foreach (UserInfo user in AllUsers)
             {
@@ -97,7 +97,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario</param>
         /// <returns>El usuario</returns>
-        public UserInfo GetUserById(int id)
+        public UserInfo GetUserById(long id)
         {
             return AllUsers.Find(user => user.Id == id);
         }

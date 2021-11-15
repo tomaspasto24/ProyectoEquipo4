@@ -170,27 +170,9 @@
             Handler que se encarga del registro de un usuario
             </summary>
         </member>
-        <member name="T:Bot.RegisterHandler.RegisterState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando RegisterHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide el token de registro
-            - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
-            </summary>
-        </member>
-        <member name="F:Bot.RegisterHandler.RegisterState.Start">
-            Estado antes de mandar el token
-        </member>
-        <member name="F:Bot.RegisterHandler.RegisterState.ConfirmingToken">
-            Estado mientras el bot espera y confirma un token
-        </member>
         <member name="P:Bot.RegisterHandler.Data">
             <summary>
             Los datos que va obteniendo el comando en los diferentes estados.
-            </summary>
-        </member>
-        <member name="P:Bot.RegisterHandler.State">
-            <summary>
-            El estado del comando.
             </summary>
         </member>
         <member name="M:Bot.RegisterHandler.#ctor(Bot.AbstractHandler)">
@@ -215,6 +197,42 @@
             <summary>
             El token que se ingresa en el estado ConfirmingToken
             </summary>
+        </member>
+        <member name="T:Bot.ReportHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="T:Bot.ReportHandler.ReportState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando RegisterHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide el token de registro
+            - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="F:Bot.ReportHandler.ReportState.Start">
+            Estado antes de mandar el token
+        </member>
+        <member name="F:Bot.ReportHandler.ReportState.ConfirmingToken">
+            Estado mientras el bot espera y confirma un token
+        </member>
+        <member name="P:Bot.ReportHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="M:Bot.ReportHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.ReportHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
         </member>
         <member name="T:Bot.StartHandler">
             <summary>
@@ -718,14 +736,14 @@
             </summary>
             <param name="user">Usuaurio a borrar</param>
         </member>
-        <member name="M:Bot.SessionRelated.UsernameExists(System.Int32)">
+        <member name="M:Bot.SessionRelated.UsernameExists(System.Int64)">
             <summary>
             Metodo para verificar si existe un usuario
             </summary>
             <param name="id">Id del usuario a verificar</param>
             <returns>true o false</returns>
         </member>
-        <member name="M:Bot.SessionRelated.GetUserById(System.Int32)">
+        <member name="M:Bot.SessionRelated.GetUserById(System.Int64)">
             <summary>
             Metodo para obtener el usuario relacionado al id.
             </summary>
@@ -922,7 +940,7 @@
             Clase Message que guarda el mensaje enviado por el usuario y además, su id.
             </summary>
         </member>
-        <member name="M:Bot.Message.#ctor(System.Int32,System.String)">
+        <member name="M:Bot.Message.#ctor(System.Int64,System.String)">
             <summary>
             Constructor de la clase Message
             </summary>
@@ -960,23 +978,6 @@
             método de la clase ReporteEmpresa el cual se encarga de generar el reporte y devolverlo.
             </summary>
             <returns>El reporte de la empresa.</returns>
-        </member>
-        <member name="T:Bot.EntrepreneurReport">
-            <summary>
-            clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. esta clase tambien implementa la interfaz IReport y cumple con el patron ISP.
-            </summary>
-        </member>
-        <member name="M:Bot.EntrepreneurReport.#ctor(Bot.RoleEntrepreneur)">
-            <summary>
-            constructor de la clase emprendedor.
-            </summary>
-            <param name="entrepreneur">El nombre del emprendedor.</param>
-        </member>
-        <member name="M:Bot.EntrepreneurReport.GiveReport">
-            <summary>
-            metodo para entregar el reporte del emprendedor.
-            </summary>
-            <returns>El reporte del emprendedor.</returns>
         </member>
         <member name="T:Bot.IReport">
             <summary>
@@ -1030,6 +1031,19 @@
             </summary>
             <param name="company">Empresa</param>
         </member>
+        <member name="T:Bot.State">
+            <summary>
+            Indica los diferentes estados que puede tener el comando RegisterHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide el token de registro
+            - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="F:Bot.State.Start">
+            Estado antes de mandar el token
+        </member>
+        <member name="F:Bot.State.ConfirmingToken">
+            Estado mientras el bot espera y confirma un token
+        </member>
         <member name="T:Bot.TokenGenerator">
             <summary>
             Clase TokenGenerator.
@@ -1054,7 +1068,7 @@
             Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert.
             </summary>
         </member>
-        <member name="M:Bot.UserInfo.#ctor(System.String,System.Int32,Bot.IRole)">
+        <member name="M:Bot.UserInfo.#ctor(System.String,System.Int64,Bot.IRole)">
             <summary>
             Método constructor de la clase User que se encarga de asignar los atributos
             name, id y role que usará la clase.

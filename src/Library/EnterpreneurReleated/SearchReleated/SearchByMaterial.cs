@@ -23,22 +23,22 @@ namespace Bot
         public List<Publication> Search(String wordToSearch)
         {
             List<Publication> result = new List<Publication>();
-            List<Publication> listPublications = PublicationSet.ListPublications;
-            bool exitPublication = false;   // Variable para salir de la publicación cuando se encontró el material buscado
-            foreach (Publication publication in listPublications)
-            {
-                while (!exitPublication)
-                {       
-                    foreach (Material material in publication.ReturnListMaterials())
-                    {
-                        if (material.KeyWords.Contains(wordToSearch))
-                        {
-                            result.Add(publication);
-                            exitPublication = true; 
-                        } 
-                    }
-                }                    
-            }      
+            // List<Publication> listPublications = PublicationSet.ListPublications;
+            // bool exitPublication = false;   // Variable para salir de la publicación cuando se encontró el material buscado
+            // foreach (Publication publication in listPublications)
+            // {
+            //     while (!exitPublication)
+            //     {       
+            //         foreach (Material material in publication.ReturnListMaterials())
+            //         {
+            //             if (material.KeyWords.Contains(wordToSearch))
+            //             {
+            //                 result.Add(publication);
+            //                 exitPublication = true; 
+            //             } 
+            //         }
+            //     }                    
+            // }      
             return result;
         }
     }
