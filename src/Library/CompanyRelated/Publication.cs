@@ -185,7 +185,7 @@ namespace Bot
         {
             this.isClosed = true;
             this.closedDate = DateTime.Now;
-            PublicationSet.DeletePublication(this);
+            PublicationSet.GetInstance().DeleteElement(this);
             if (this.InterestedPerson != null)
             {
                 this.company.AddListHistorialPublication(this);

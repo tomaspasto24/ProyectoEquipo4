@@ -1,151 +1,59 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using System.Text.Json;
 
 namespace Bot
 {
     /// <summary>
-    /// Clase PublicationSet que se encarga de la gestion de las clases Publications y de que
-    /// estas persistan en el sistema. Tiene un parecido a la clase CompanySet pero no se puede
-    /// implementar abstracciones porque las clases estáticas no permiten este tipo de implementaciones.
+    /// Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general. Su constructor se encuentra 
+    /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
+    /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public static class PublicationSet
+    public class PublicationSet : ISet<Publication>
     {
-    private const string Path = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private static PublicationSet _instance;
+        private PublicationSet() { }
 
-    /// <summary>
-    /// Obtiene la lista de clases Publicación extraida del archivo PublicationSet.txt.
-    /// </summary>
-    /// <value>Lista Publicación de solo lectura.</value>
-    public static IReadOnlyCollection<Publication> ListPublication
-    {
-        get
+        /// <summary>
+        /// Método estático que controla el acceso a la propia instancia de la clase PublicationSet,
+        /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
+        /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
+        /// siempre se use la misma variable instancia y se cumpla con Singleton.
+        /// </summary>
+        /// <returns>Instancia PublicationSet.</returns>
+        public static PublicationSet GetInstance()
         {
-            List<Publication> listPublications = new List<Publication>();
-            Publication publication;
-            using (StreamReader txtReader = new StreamReader(Path))
+            if (_instance == null)
             {
-                string line = txtReader.ReadLine();
-                string title;
-                Company company;
-                GeoLocation location;
-                IReadOnlyList<Material> listMaterials;
-                IReadOnlyList<string> listQualifications;
-
-                while (line != null)
-                {
-                    title = JsonSerializer.Deserialize<Publication>(line).Title;
-                    company = JsonSerializer.Deserialize<Publication>(line).Company;
-                    location = JsonSerializer.Deserialize<Publication>(line).Location;
-
-                    listMaterials = JsonSerializer.Deserialize<Publication>(line).ListMaterials;
-                    listQualifications = JsonSerializer.Deserialize<Publication>(line).ListQualifications;
-
-                    publication = new Publication(title, company, location, listMaterials[0]);
-                    publication.AddMaterial(listMaterials);
-                    publication.AddQualification(listQualifications);
-
-                    listPublications.Add(publication);
-                    line = txtReader.ReadLine();
-                }
-
-                txtReader.Close();
-                txtReader.Dispose();
+                _instance = new PublicationSet();
             }
+            return _instance;
+        }
 
-            return listPublications.AsReadOnly();
+        private List<Publication> listPublications = new List<Publication>();
+    
+        /// <summary>
+        /// Obtiene la lista de Publicaciones.
+        /// </summary>
+        /// <value>Lista de solo lectura de clase Publicación.</value>
+        public IReadOnlyCollection<Publication> ListPublications
+        {
+            get
+            {
+                return this.listPublications.AsReadOnly();
             }
         }
 
         /// <summary>
-        /// Método que se encarga de agregar una clase Publicación al sistema para que pueda persistir aunque el bot caiga.
+        /// Método que se encarga de agregar una Publicación a la lista de Publicaciones del sistema.
         /// </summary>
-        /// <param name="title">Titulo.</param>
-        /// <param name="company">Empresa.</param>
-        /// <param name="location">Ubicación.</param>
-        /// <param name="material">Material.</param>
-        /// <param name="listMaterials">Lista Material.</param>
-        /// <param name="listQualifications">Lista Habilitaciones.</param>
-        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso contrario.</returns>
-    public static bool AddPublication(String title, Company company, GeoLocation location, Material material, IReadOnlyList<Material> listMaterials, IReadOnlyList<string> listQualifications)
-        {
-            Publication publication = new Publication(title, company, location, material);
-            publication.AddMaterial(listMaterials);
-            publication.AddQualification(listQualifications);
-
-            if (!ContainsPublicationInListPublications(publication))
-            {
-                string jsonCompany = JsonSerializer.Serialize(publication);
-                using (StreamWriter txtWrite = new StreamWriter(Path, true))
-                {
-                    txtWrite.WriteLine(jsonCompany);
-                    txtWrite.Close();
-                    txtWrite.Dispose();
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Sobrecarga del método AddCompany que permite ingresar un objeto Publicación como parámetropara ser ingresado al sistema.
-        /// </summary>
-        /// <param name="publication"></param>
-        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso contrario.</returns>
-    public static bool AddPublication(Publication publication)
-        {
-            if (!ContainsPublicationInListPublications(publication))
-            {
-                string jsonPublication = JsonSerializer.Serialize(publication);
-                using (StreamWriter txtWrite = new StreamWriter(Path, true))
-                {
-                    txtWrite.WriteLine(jsonPublication);
-                    txtWrite.Close();
-                    txtWrite.Dispose();
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Método que elimina una clase Publicación del sistema.
-        /// </summary>
-        /// <param name="publication">Publicación.</param>
-        /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
+        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
         /// contrario.</returns>
-    public static bool DeletePublication(Publication publication)
-    {
-        if (publication != null)
+        public bool AddElement(Publication publication)
         {
-            if (ContainsPublicationInListPublications(publication))
+            if (!ContainsElementInListElements(publication))
             {
-                string titlePublicationToDelete = publication.Title;
-                List<Publication> listPublicationsEdit = new List<Publication>();
-
-                foreach (Publication item in ListPublication)
-                {
-                    if (publication.Title != item.Title)
-                    {
-                        listPublicationsEdit.Add(item);
-                    }
-                }
-
-                File.WriteAllText(Path, string.Empty);
-
-                foreach (Publication publicationToAdd in listPublicationsEdit)
-                {
-                    AddPublication(publicationToAdd);
-                }
-
+                this.listPublications.Add(publication);
                 return true;
             }
             else
@@ -153,21 +61,35 @@ namespace Bot
                 return false;
             }
         }
-        else
-        {
-            throw new ArgumentNullException(nameof(publication));
-        }
-    }
 
         /// <summary>
-        /// Método que se encarga de retornar un string con el listado de publicaciones.
+        /// Método que se encarga de eliminar una Publicación de la lista de Publicaciones del sistema.
         /// </summary>
-        /// <returns>Cadena de caracteres.</returns>
-    public static string ReturnListPublications()
+        /// <param name="publication">Publicación.</param>
+        /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
+        /// contrario.</returns>
+        public bool DeleteElement(Publication publication)
+        {
+            if(ContainsElementInListElements(publication))
+            {
+                this.listPublications.Remove(publication);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Método que retorna la lista completa de Publicaciones en un string.
+        /// </summary>
+        /// <returns>String con los nombres de las Publicaciones.</returns>
+        public string ReturnListElements()
         {
             StringBuilder result = new StringBuilder("Publicaciones: \n");
 
-            foreach (Publication publication in ListPublication)
+            foreach (Publication publication in this.listPublications)
             {
                 result.Append($"{publication.Title} \n");
             }
@@ -175,30 +97,58 @@ namespace Bot
             return result.ToString();
         }
 
-    /// <summary>
-    /// Método simple que se encarga de comprobar si una clase Publicación se encuentra
-    /// en el sistema de Publicaciones.
-    /// </summary>
-    /// <param name="publication">Publicación.</param>
-    /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso contrario.</returns>
-    public static bool ContainsPublicationInListPublications(Publication publication)
-    {
-        if (publication != null)
+        /// <summary>
+        /// Método simple que se encarga de comprobar si una clase Publicación se encuentra
+        /// en el sistema de Publicaciones.
+        /// </summary>
+        /// <param name="publication">Publicación.</param>
+        /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+        /// contrario.</returns>
+        public bool ContainsElementInListElements(Publication publication)
         {
-            foreach (Publication item in ListPublication)
+            if (publication != null)
             {
-                if (item.Title == publication.Title)
+                foreach (Publication item in this.listPublications)
                 {
-                    return true;
+                    if (item.Title == publication.Title)
+                    {
+                        return true;
+                    }
                 }
-            }
 
-            return false;
+                return false;
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(publication));
+            }
         }
-        else
+        
+        /// <summary>
+        /// Sobrecarga de ContainsElementInListElements, se encarga de comprobar si el nombre de una clase Publicación se encuentra
+        /// en la lista de Publicaciones.
+        /// </summary>
+        /// <param name="publicationName">Nombre de Publicación.</param>
+        /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+        /// contrario.</returns>
+        public bool ContainsElementInListElements(string publicationName)
         {
-            throw new ArgumentNullException(nameof(publication));
+            if (publicationName != null)
+            {
+                foreach (Publication item in this.listPublications)
+                {
+                    if (item.Title == publicationName)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(publicationName));
+            }
         }
-    }
     }
 }
