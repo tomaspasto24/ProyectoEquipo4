@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using Bot;
+using System.Collections.Generic;
 
 namespace BotTests
 {
@@ -13,6 +14,9 @@ namespace BotTests
         Company companyTest;
         Material initialMaterial;
 
+        /// <summary>
+        /// SetUp, asigna valores a las variables location, companyTest, initialMaterial.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -41,12 +45,18 @@ namespace BotTests
         [Test]
         public void HistorialPublicationsTest()
         {
-            Assert.IsNotNull(companyTest.ListHistorialPublications);
+            Publication publicationTest = new Publication("Test1", companyTest, location, initialMaterial);
+            List<Publication> listPublicationTest = new List<Publication>();
+            listPublicationTest.Add(publicationTest);
+            listPublicationTest.Add(new Publication("Test2", companyTest, location, initialMaterial));
+            listPublicationTest.Add(new Publication("Test3", companyTest, location, initialMaterial));
+            listPublicationTest.Add(new Publication("Test4", companyTest, location, initialMaterial));
 
-            Publication publicationTest = new Publication("Test", companyTest, location, initialMaterial);
+            Assert.IsNotNull(companyTest.ListHistorialPublications);            
             companyTest.AddListHistorialPublication(publicationTest);
-
             Assert.That(companyTest.ListHistorialPublications.Count == 1);
+            companyTest.AddListHistorialPublication(listPublicationTest);
+            Assert.That(companyTest.ListHistorialPublications.Count == 5);
         }
     
         /// <summary>
@@ -56,16 +66,24 @@ namespace BotTests
         [Test]
         public void OwnPublicationsTest()
         {
-            Assert.IsNotNull(companyTest.ListOwnPublications);
-
             Publication publicationTest = new Publication("Test", companyTest, location, initialMaterial);
+            List<Publication> listPublicationTest = new List<Publication>();
+            listPublicationTest.Add(publicationTest);
+            listPublicationTest.Add(new Publication("Test2", companyTest, location, initialMaterial));
+            listPublicationTest.Add(new Publication("Test3", companyTest, location, initialMaterial));
+            listPublicationTest.Add(new Publication("Test4", companyTest, location, initialMaterial));
+
+            Assert.IsNotNull(companyTest.ListOwnPublications);
+            
             companyTest.AddOwnPublication(publicationTest);
-
             Assert.That(companyTest.ListOwnPublications.Count == 1);
-
             companyTest.DeleteOwnPublication(publicationTest);
-
             Assert.IsEmpty(companyTest.ListOwnPublications);
+
+            companyTest.AddOwnPublication(listPublicationTest);
+            Assert.That(companyTest.ListOwnPublications.Count == 4);
+            companyTest.DeleteOwnPublication(publicationTest);
+            Assert.That(companyTest.ListOwnPublications.Count == 3);
         }
 
         /// <summary>
@@ -75,15 +93,17 @@ namespace BotTests
         [Test]
         public void UsersCompanyTest()
         {
-            UserInfo usuarioTest1 = new UserInfo("Test1", 12, new RoleUserCompany(companyTest));
-            UserInfo usuarioTest2 = new UserInfo("Test2", 22, new RoleUserCompany(companyTest));
-            companyTest.AddUser(usuarioTest1);
-            companyTest.AddUser(usuarioTest2);
+            UserInfo userTest1 = new UserInfo("Test1", 12, new RoleUserCompany(companyTest));
+            UserInfo userTest2 = new UserInfo("Test2", 22, new RoleUserCompany(companyTest));
+            companyTest.AddUser(userTest1);
+            companyTest.AddUser(userTest2);
 
+            Assert.IsNotNull(companyTest.ListUsers);
+
+            companyTest.AddUser(userTest1);
+            companyTest.AddUser(userTest2);
             Assert.That(companyTest.ListUsers.Count == 2);
-
-            companyTest.DeleteUser(usuarioTest1);
-
+            companyTest.DeleteUser(userTest1);
             Assert.That(companyTest.ListUsers.Count == 1);
         }
     }

@@ -40,11 +40,11 @@ namespace Bot
 
             if (report.Length > 0)
             {
-                result = $"Materiales consumidos en los ultimos 30 dias por el emprendedor: {this.entrepreneur.Name} {report} ";
+                result = $"Materiales consumidos en los ultimos 30 dias por el emprendedor {report} ";
             }
             else
             {
-                result = $"El emprendedor: {this.entrepreneur.Name}, no tiene publicaciones asignadas en los ultimos 30 dias";
+                result = $"El emprendedor no tiene publicaciones asignadas en los ultimos 30 dias";
             }
 
             return result;
