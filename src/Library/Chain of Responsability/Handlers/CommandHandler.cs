@@ -36,6 +36,7 @@ namespace Bot
                 "/contacto",
                 "/infoemprendedor",
                 "/emprender"
+                // TODO habilitaciones cuales tiene
             };
             return list;
         }
@@ -53,6 +54,7 @@ namespace Bot
                 "/exit",
                 "/reporte",
                 "/publicar"
+                // TODO crear el material y despues si, usar el publicar (sin material no puedo crear una publicacion) => Crear /materiales
             };
             return list;
         }
