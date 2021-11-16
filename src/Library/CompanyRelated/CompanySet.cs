@@ -1,63 +1,50 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using System.Text.Json;
 
 namespace Bot
 {
     /// <summary>
-    /// Conjunto de Empresas, clase estática que administra la lista de Empresas en general.
+    /// Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general. Su constructor se encuentra 
+    /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
+    /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public static class CompanySet
+    public class CompanySet : ISet<Company>
     {
-        private const string Path = @"..\..\..\..\..\docs\CompanyDataBase.json";
+        private static CompanySet instance;
+        private List<Company> listCompanies = new List<Company>();
+
+        private CompanySet() { }
 
         /// <summary>
-        /// Obtiene la lista de Empresas, esto para que la clase Búsqueda pueda manipular eficientemente las Publicaciones.
+        /// Obtiene el acceso a la propia instancia de la clase CompanySet,
+        /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
+        /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
+        /// siempre se use la misma variable instancia y se cumpla con Singleton.
         /// </summary>
-        /// <value>Clase Empresa.</value>
-        public static IReadOnlyCollection<Company> ListCompany
+        /// <returns>Instancia CompanySet.</returns>
+        public static CompanySet Instance
         {
             get
             {
-                List<Company> listCompanies = new List<Company>();
-                Company company;
-                using (StreamReader txtReader = new StreamReader(Path))
+                if (instance == null)
                 {
-                    string line = txtReader.ReadLine();
-                    string name;
-                    string item;
-                    GeoLocation location;
-                    string contact;
-                    IReadOnlyList<Publication> listHistorialPublications;
-                    IReadOnlyList<Publication> listOwnPublications;
-                    IReadOnlyList<UserInfo> listUsers;
-
-                    while (line != null)
-                    {
-                        name = JsonSerializer.Deserialize<Company>(line).Name;
-                        item = JsonSerializer.Deserialize<Company>(line).Item;
-                        contact = JsonSerializer.Deserialize<Company>(line).Contact;
-                        location = JsonSerializer.Deserialize<Company>(line).Location;
-
-                        listHistorialPublications = JsonSerializer.Deserialize<Company>(line).ListHistorialPublications;
-                        listOwnPublications = JsonSerializer.Deserialize<Company>(line).ListOwnPublications;
-                        listUsers = JsonSerializer.Deserialize<Company>(line).ListUsers;
-                        company = new Company(name, item, location, contact);
-                        company.AddListHistorialPublication(listHistorialPublications);
-                        company.AddOwnPublication(listOwnPublications);
-                        company.AddUser(listUsers);
-
-                        listCompanies.Add(company);
-                        line = txtReader.ReadLine();
-                    }
-
-                    txtReader.Close();
-                    txtReader.Dispose();
+                    instance = new CompanySet();
                 }
+                
+                return instance;
+            }
+        }
 
-                return listCompanies.AsReadOnly();
+        /// <summary>
+        /// Obtiene la lista de Empresas.
+        /// </summary>
+        /// <value>Lista de solo lectura de clase Empresa.</value>
+        public IReadOnlyCollection<Company> ListCompanies
+        {
+            get
+            {
+                return this.listCompanies.AsReadOnly();
             }
         }
 
@@ -68,29 +55,15 @@ namespace Bot
         /// <param name="item">Rubro de Empresa.</param>
         /// <param name="location">Ubicación de Empresa.</param>
         /// <param name="contact">Contacto de Empresa.</param>
-        /// <param name="listUsers">Lista de Users.</param>
-        /// <param name="listOwnPublications">Lista propia de publicaciones.</param>
-        /// <param name="listHistorialPublications">Lista Historial de Publicaciones.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
         /// contrario.</returns>
-        public static bool AddCompany(string name, string item, GeoLocation location, string contact, IReadOnlyList<UserInfo> listUsers, IReadOnlyList<Publication> listOwnPublications, IReadOnlyList<Publication> listHistorialPublications)
+        public bool AddElement(string name, string item, GeoLocation location, string contact)
         {
-            Company company = new Company(name, item, location, contact);
-            company.AddUser(listUsers);
-            company.AddOwnPublication(listOwnPublications);
-            company.AddListHistorialPublication(listHistorialPublications);
-
-            if (!ContainsCompanyInListCompanies(company))
+            if (!this.ContainsElementInListElements(name))
             {
-                string jsonCompany = JsonSerializer.Serialize(company);
-
-                using (StreamWriter txtWrite = new StreamWriter(Path, true))
-                {
-                    txtWrite.WriteLine(jsonCompany);
-                    txtWrite.Close();
-                    txtWrite.Dispose();
-                    return true;
-                }
+                Company company = new Company(name, item, location, contact);
+                this.listCompanies.Add(company);
+                return true;
             }
             else
             {
@@ -99,24 +72,17 @@ namespace Bot
         }
 
         /// <summary>
-        /// Sobrecarga del método AddCompany que permite ingresar un objeto Empresa como parámetro
-        /// para ser ingresado al sistema.
+        /// Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
         /// </summary>
-        /// <param name="company">Empresa.</param>
-        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso contrario.</returns>
-        public static bool AddCompany(Company company)
+        /// <param name="element">Elemento Empresa.</param>
+        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
+        /// contrario.</returns>
+        public bool AddElement(Company element)
         {
-            if (!ContainsCompanyInListCompanies(company))
+            if (!this.ContainsElementInListElements(element))
             {
-                string jsonCompany = JsonSerializer.Serialize(company);
-
-                using (StreamWriter txtWrite = new StreamWriter(Path, true))
-                {
-                    txtWrite.WriteLine(jsonCompany);
-                    txtWrite.Close();
-                    txtWrite.Dispose();
-                    return true;
-                }
+                this.listCompanies.Add(element);
+                return true;
             }
             else
             {
@@ -127,43 +93,19 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema.
         /// </summary>
-        /// <param name="company">Empresa.</param>
+        /// <param name="element">Empresa.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
         /// contrario.</returns>
-        public static bool DeleteCompany(Company company)
+        public bool DeleteElement(Company element)
         {
-            if (company != null)
+            if (this.ContainsElementInListElements(element))
             {
-                if (ContainsCompanyInListCompanies(company))
-                {
-                    string nameCompanyToDelete = company.Name;
-                    List<Company> listCompaniesEdit = new List<Company>();
-
-                    foreach (Company item in ListCompany)
-                    {
-                        if (company.Name != item.Name)
-                        {
-                            listCompaniesEdit.Add(item);
-                        }
-                    }
-
-                    File.WriteAllText(Path, string.Empty);
-
-                    foreach (Company companyToAdd in listCompaniesEdit)
-                    {
-                        AddCompany(companyToAdd);
-                    }
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                this.listCompanies.Remove(element);
+                return true;
             }
             else
             {
-                throw new ArgumentNullException(nameof(company));
+                return false;
             }
         }
 
@@ -172,11 +114,11 @@ namespace Bot
         /// índices.
         /// </summary>
         /// <returns>String con el nombre de la Empresa y sus indices.</returns>
-        public static string ReturnListCompanies()
+        public string ReturnListElements()
         {
             StringBuilder result = new StringBuilder("Empresas: \n");
 
-            foreach (Company company in ListCompany)
+            foreach (Company company in this.listCompanies)
             {
                 result.Append($"{company.Name} \n");
             }
@@ -188,16 +130,16 @@ namespace Bot
         /// Método simple que se encarga de comprobar si una clase Empresa se encuentra
         /// en el sistema de Empresas.
         /// </summary>
-        /// <param name="company">Empresa.</param>
+        /// <param name="element">Empresa.</param>
         /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
         /// contrario.</returns>
-        public static bool ContainsCompanyInListCompanies(Company company)
+        public bool ContainsElementInListElements(Company element)
         {
-            if (company != null)
+            if (element != null)
             {
-                foreach (Company item in ListCompany)
+                foreach (Company item in this.listCompanies)
                 {
-                    if (item.Name == company.Name)
+                    if (item.Name == element.Name)
                     {
                         return true;
                     }
@@ -207,7 +149,34 @@ namespace Bot
             }
             else
             {
-                throw new ArgumentNullException(nameof(company));
+                throw new ArgumentNullException(nameof(element));
+            }
+        }
+        
+        /// <summary>
+        /// Sobrecarga de ContainsCompanyInListCompanies, se encarga de comprobar si el nombre de una clase Empresa se encuentra
+        /// en la lista de Empresas.
+        /// </summary>
+        /// <param name="elementName">Nombre de Empresa.</param>
+        /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+        /// contrario.</returns>
+        public bool ContainsElementInListElements(string elementName)
+        {
+            if (elementName != null)
+            {
+                foreach (Company item in this.listCompanies)
+                {
+                    if (item.Name == elementName)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(elementName));
             }
         }
     }
