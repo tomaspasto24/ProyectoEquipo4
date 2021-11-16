@@ -30,7 +30,7 @@ namespace BotTests
             newRole = new RoleUserCompany(company);
 
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            role = new RoleEntrepreneur("carpintero", entrepreneurLocation, "oficial", "lustrado");
+            role = new RoleEntrepreneur("carpintero", entrepreneurLocation);
             user = new UserInfo("Seba", 123, role);
 
             sessionRelated = SessionRelated.Instance;

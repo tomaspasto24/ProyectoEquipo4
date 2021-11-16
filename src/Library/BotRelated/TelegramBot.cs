@@ -104,7 +104,17 @@ namespace Library
             Bot.Message msg = new Bot.Message(chatId, message.Text);
 
             string response;
-            IHandler result = handler.Handle(msg, out response); // TODO try catch exceptions con mensajes
+            IHandler result;
+            try
+            {
+                result = handler.Handle(msg, out response);
+            }
+            catch (System.Exception e)
+            {
+                bot.SendTextMessageAsync(chatId, $"Ha sucedido un error: {e.Message}");
+                return;
+            }
+
             // TODO Poder cancelar cosas en los handlers
             if (result == null)
             {

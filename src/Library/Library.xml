@@ -881,73 +881,72 @@
             <summary>
             Lista de las publiaciones adquiridas por el emprendedor.
             </summary>
-            <typeparam name="Publication">Tipo de la lista devuelta.</typeparam>
-            <returns>Lista de tipo Publication.</returns>
+            <typeparam name="Publication">Publicación.</typeparam>
+            <returns>Coleción de tipo Publication.</returns>
         </member>
         <member name="F:Bot.RoleEntrepreneur.heading">
             <summary>
             Rubro.
             </summary>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation,System.String,System.String)">
+        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation)">
             <summary>
             Constructor de la clase Entrepreneur, setea los valores de los parámetros
             y suma un valor al contador de emprendedores estático.
             </summary>
-            <param name="heading"></param>
-            <param name="geolocation"></param>
-            <param name="certification"></param>
-            <param name="specialization"></param>
-            <returns></returns>
+            <param name="heading">Rubro.</param>
+            <param name="geolocation">Ubicación.</param>
+            <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
+        </member>
+        <member name="P:Bot.RoleEntrepreneur.ReturnCertification">
+            <summary>
+            Obtiene la lista de certificaciones del emprendedor.
+            </summary>
+            <returns>Lista de certificaciones.</returns>
+        </member>
+        <member name="P:Bot.RoleEntrepreneur.ReturnSpecialization">
+            <summary>
+            Obtiene la lista de especializaciones del emprendedor.
+            </summary>
+            <returns>Lista de especializaciones.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddCertification(System.String)">
             <summary>
-            Método para agregarle certificaciones al emprendedor
+            Método para agregarle certificaciones al emprendedor.
             </summary>
-            <param name="certification"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.ReturnCertification">
-            <summary>
-            Método para devolver la lista de certificaciones del emprendedor
-            </summary>
-            <returns></returns>
+            <param name="certification">Certificación.</param>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
             <summary>
-            Método para agregarle espcializaciones al emprendedor
+            Método para agregarle espcializaciones al emprendedor.
             </summary>
-            <param name="specialization"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.ReturnSpecialization">
-            <summary>
-            Método para devolver la lista de especializaciones del emprendedor
-            </summary>
-            <returns></returns>
+            <param name="specialization">Especialización.</param>
         </member>
         <member name="M:Bot.RoleEntrepreneur.SearchingByMaterials(System.String)">
             <summary>
-            Buscar publicaciones por material
+            Buscar publicaciones por material.
             </summary>
-            <returns></returns>
+            <param name="wordToSearch"></param>
+            <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.SearchingByLocation(System.String)">
             <summary>
-            Buscar publicaciones por ubicación
+            Buscar publicaciones por ubicación.
             </summary>
-            <param name="addresToSearch"></param>
-            <returns></returns>
+            <param name="addresToSearch">Palabra clave como ubicación.</param>
+            <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
             <summary>
             Método público que guarda las Publicaciones adquiridas por el emprendedor.
             </summary>
-            <param name="publication">Publicación cerrada.</param>
+            <param name="publication">Publicación.</param>
         </member>
         <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
             <summary>
-            Devuelve la lista con las publicaciones adquiridas por el emprendedor
+            Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
             </summary>
-            <returns></returns>
+            <returns>Lista de publicaciones.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.ContactCompany(Bot.Publication)">
             <summary>
@@ -955,7 +954,8 @@
             como InterestedPerson de la clase Publication que prefiera. El método termina devolviendo
             el contacto de la empresa dueña de la publicación.
             </summary>
-            <param name="publication"></param>
+            <param name="publication">Publicación de la cual se requiere saber el contacto.</param>
+            <returns>Contacto de la empresa de la publicación como un string.</returns>
         </member>
         <member name="T:Bot.ISearch">
             <summary>
@@ -984,8 +984,8 @@
             publicaciones y se fija si tiene la misma ubicación recibida. Si es igual, se agrega la publicación a la lista que 
             va a devolver y se va a fijar a la siguiente.
             </summary>
-            <param name="addresToSearch"></param>
-            <returns></returns>
+            <param name="addresToSearch">Dirección para buscar.</param>
+            <returns>Lista de Publicaciones.</returns>
         </member>
         <member name="T:Bot.SearchByMaterial">
             <summary>
@@ -1093,6 +1093,23 @@
             </summary>
             <returns>El reporte de la empresa.</returns>
         </member>
+        <member name="T:Bot.EntrepreneurReport">
+            <summary>
+            clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. esta clase tambien implementa la interfaz IReport y cumple con el patron ISP.
+            </summary>
+        </member>
+        <member name="M:Bot.EntrepreneurReport.#ctor(Bot.RoleEntrepreneur)">
+            <summary>
+            constructor de la clase emprendedor.
+            </summary>
+            <param name="entrepreneur">El nombre del emprendedor.</param>
+        </member>
+        <member name="M:Bot.EntrepreneurReport.GiveReport">
+            <summary>
+            metodo para entregar el reporte del emprendedor.
+            </summary>
+            <returns>El reporte del emprendedor.</returns>
+        </member>
         <member name="T:Bot.IReport">
             <summary>
             interfaz con la firma del metodo que devuelve un reporte
@@ -1168,19 +1185,24 @@
             Clase TokenGenerator.
             </summary>
         </member>
+        <member name="P:Bot.TokenGenerator.Instance">
+            <summary>
+            Metodo para generar una instancia de token.
+            </summary>
+            <value>Instancia del Token. </value>
+        </member>
         <member name="F:Bot.TokenGenerator.tokenList">
             <summary>
             Se inicializa la lista tokenList.
             </summary>
             <typeparam name="int"></typeparam>
-            <returns></returns>
+            <returns>La lista inicializada.</returns>
         </member>
-        <member name="M:Bot.TokenGenerator.GenerateToken(Bot.Company)">
+        <member name="M:Bot.TokenGenerator.GenerateToken">
             <summary>
             Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
             </summary>
-            <param name="company"></param>
-            <returns></returns>
+            <returns>El token generado.</returns>
         </member>
         <member name="T:Bot.UserInfo">
             <summary>

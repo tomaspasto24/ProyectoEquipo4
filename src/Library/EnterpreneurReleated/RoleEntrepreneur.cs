@@ -8,7 +8,7 @@ namespace Bot
     /// En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
     /// su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
     /// </summary>
-    public class RoleEntrepreneur :IRole
+    public class RoleEntrepreneur : IRole
     {
         /// <summary>
         /// Lista de las publiaciones adquiridas por el emprendedor.

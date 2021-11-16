@@ -23,7 +23,7 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public Dictionary<int, Company> DiccUserTokens;
+        public Dictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>
