@@ -32,15 +32,15 @@ namespace BotTests
         [Test]
         public void AddCompanyTest()
         {
-            bool test1 = CompanySet.AddCompany(companyTest1);
-            bool test2 = CompanySet.AddCompany(companyTest2);
-            bool test3 = CompanySet.AddCompany(companyTest3);
-            string stringCompaniesTest = CompanySet.ReturnListCompanies();
+            bool test1 = CompanySet.Instance.AddElement(companyTest1);
+            bool test2 = CompanySet.Instance.AddElement(companyTest2);
+            bool test3 = CompanySet.Instance.AddElement(companyTest3);
+            string stringCompaniesTest = CompanySet.Instance.ReturnListElements();
 
             Assert.IsTrue(test1);
             Assert.IsFalse(test2);
             Assert.IsTrue(test3);
-            Assert.That(CompanySet.ListCompany.Count == 2);
+            Assert.That(CompanySet.Instance.ListCompanies.Count == 2);
             Assert.That(stringCompaniesTest.Contains("Prueba1"));
             Assert.That(stringCompaniesTest.Contains("Prueba2"));
         }
@@ -52,14 +52,14 @@ namespace BotTests
         [Test]
         public void DeleteCompanyTest()
         {
-            bool test4 = CompanySet.DeleteCompany(companyTest1);
-            bool test5 = CompanySet.DeleteCompany(companyTest3);
+            bool test4 = CompanySet.Instance.DeleteElement(companyTest1);
+            bool test5 = CompanySet.Instance.DeleteElement(companyTest3);
 
             Assert.IsTrue(test4);
             Assert.IsTrue(test5);
-            Assert.IsEmpty(CompanySet.ListCompany);
-            Assert.IsFalse(CompanySet.ContainsCompanyInListCompanies(companyTest1));
-            Assert.IsFalse(CompanySet.ContainsCompanyInListCompanies(companyTest2));
+            Assert.IsEmpty(CompanySet.Instance.ListCompanies);
+            Assert.IsFalse(CompanySet.Instance.ContainsElementInListElements(companyTest1));
+            Assert.IsFalse(CompanySet.Instance.ContainsElementInListElements(companyTest2));
         }
     }
 }

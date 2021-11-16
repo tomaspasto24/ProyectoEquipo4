@@ -23,7 +23,7 @@ namespace Bot
         public List<Publication> Search(String wordToSearch)
         {
             List<Publication> result = new List<Publication>();
-            IReadOnlyCollection<Publication> listPublications = PublicationSet.ListPublication;
+            IReadOnlyCollection<Publication> listPublications = PublicationSet.Instance.ListPublications;
             bool exitPublication = false;   // Variable para salir de la publicación cuando se encontró el material buscado
             foreach (Publication publication in listPublications)
             {

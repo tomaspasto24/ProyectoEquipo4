@@ -28,7 +28,7 @@ namespace BotTests
             companyTest = new Company("Test", "itemTest", location, "093929434");
             initialMaterial = new Material("Wood", 15, 0);
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            entrepreneur = new RoleEntrepreneur("carpintero", entrepreneurLocation, "oficial", "lustrado");
+            entrepreneur = new RoleEntrepreneur("carpintero", entrepreneurLocation);
 
         }
 
@@ -45,12 +45,11 @@ namespace BotTests
             publicationToCompare.AddQualification("Habilitación de Prueba");
             publicationToCompare.AddQualification("Habilitación de Prueba1");
             publicationToCompare.AddQualification("Habilitación de Prueba2");
-            PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial, new List<Material>(), new List<string>());
 
             Assert.That(publicationToCompare.Title == "PublicationTest");
 
             Assert.IsNotNull(publicationToCompare);
-            Assert.IsNotNull(PublicationSet.ListPublication);
+            Assert.IsNotNull(PublicationSet.Instance.ListPublications);
             Assert.That(publicationToCompare.DeleteMaterial(initialMaterial));
         }
 
@@ -67,7 +66,6 @@ namespace BotTests
             Material material3 = new Material("Paper", 60, 100);
 
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            PublicationSet.AddPublication("PublicationTest", companyTest, location, initialMaterial, new List<Material>(), new List<string>());
         }
 
         /// <summary>
@@ -94,7 +92,7 @@ namespace BotTests
         {
             Publication publicationToCompare;
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", location, "Prueba", "Prueba");
+            RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", location);
 
             entrepreneur.ContactCompany(publicationToCompare);
             Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
