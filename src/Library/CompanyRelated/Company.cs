@@ -6,7 +6,9 @@ using System.Text.Json.Serialization;
 namespace Bot
 {
     /// <summary>
-    /// Clase que se encarga de representar una Empresa.
+    /// Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
+    /// Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
+    /// un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
     /// </summary>
     public class Company
     {

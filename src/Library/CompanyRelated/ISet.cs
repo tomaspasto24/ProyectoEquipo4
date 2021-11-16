@@ -1,9 +1,9 @@
 namespace Bot
 {
     /// <summary>
-    /// Interfaz pública ISet para CompanySet y PublicationSet.
+    /// Interfaz pública ISet que representa a las clases que se encargan de administrar objetos (Conjunto).
     /// </summary>
-    /// <typeparam name="T">Elemento T (Empresa o Publicación).</typeparam>
+    /// <typeparam name="T">Elemento T (Ejemplo: empresa o publicación).</typeparam>
     public interface ISet<T>
     {
         /// <summary>

@@ -7,7 +7,9 @@ namespace Bot
 {
     /// <summary>
     /// Cada objeto de la clase Publicación, administrado por un objeto Empresa, es el conjunto de items
-    /// que la aplicación muestra a los emprendedores.
+    /// que la aplicación muestra a los emprendedores. Cumple con el patrón de diseño Creator porque la clase
+    /// Publication tiene la responsabilidad de crear instancias de la clase Material porque guarda instancias
+    /// de Material y lo usa de forma cercana.
     /// </summary>
     public class Publication
     {
@@ -44,7 +46,7 @@ namespace Bot
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
         /// <value>Rol Emprendedor.</value>
-        public RoleEntrepreneur InterestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
+        public RoleEntrepreneur InterestedPerson { get; private set; }
 
         /// <summary>
         /// Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista

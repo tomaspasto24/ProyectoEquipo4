@@ -51,29 +51,6 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
         /// </summary>
-        /// <param name="name">Nombre de Empresa.</param>
-        /// <param name="item">Rubro de Empresa.</param>
-        /// <param name="location">Ubicación de Empresa.</param>
-        /// <param name="contact">Contacto de Empresa.</param>
-        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
-        /// contrario.</returns>
-        public bool AddElement(string name, string item, GeoLocation location, string contact)
-        {
-            if (!this.ContainsElementInListElements(name))
-            {
-                Company company = new Company(name, item, location, contact);
-                this.listCompanies.Add(company);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
-        /// </summary>
         /// <param name="element">Elemento Empresa.</param>
         /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
         /// contrario.</returns>
