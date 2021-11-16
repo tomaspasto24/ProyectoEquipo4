@@ -36,7 +36,7 @@ namespace Bot
 
             if (!(user.UserRole is RoleEntrepreneur))
             {
-                // TODO Exception
+                throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
             }
 
             if ((user.HandlerState == Bot.State.Start) && (request.Text.Equals("/registro")))

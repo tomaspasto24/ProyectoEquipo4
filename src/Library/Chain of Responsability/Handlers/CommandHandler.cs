@@ -35,7 +35,6 @@ namespace Bot
                 "/reporte",
                 "/contacto",
                 "/infoemprendedor",
-                "/emprender"
                 // TODO habilitaciones cuales tiene
             };
             return list;

@@ -30,6 +30,11 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             // TODO
+            if (!(user.UserRole is RoleEntrepreneur))
+            {
+                throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
+            }
+
             response = string.Empty;
             return false;
         }
