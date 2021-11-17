@@ -17,9 +17,10 @@ namespace Bot
         private string item;
         private GeoLocation location;
         private string contact;
-        /// Las listas se declaran de tipo IList para que la lista dependa de una abstracción (Interfaz de List)
-        /// cumpliendo con el patrón de diseño DIP. Además cumplen con ISP ya que las listas no dependen de un
-        /// tipo que no usan y por esto no sobran métodos.
+
+        // Las listas se declaran de tipo IList para que la lista dependa de una abstracción (Interfaz de List)
+        // cumpliendo con el patrón de diseño DIP. Además cumplen con ISP ya que las listas no dependen de un
+        // tipo que no usan y por esto no sobran métodos.
         private IList<UserInfo> listUsers = new List<UserInfo>();
         private IList<Publication> listOwnPublications = new List<Publication>();
         private IList<Publication> listHistorialPublications = new List<Publication>();
