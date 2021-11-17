@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -16,9 +17,12 @@ namespace Bot
         private string item;
         private GeoLocation location;
         private string contact;
-        private List<UserInfo> listUsers = new List<UserInfo>();
-        private List<Publication> listOwnPublications = new List<Publication>();
-        private List<Publication> listHistorialPublications = new List<Publication>();
+        /// Las listas se declaran de tipo IList para que la lista dependa de una abstracción (Interfaz de List)
+        /// cumpliendo con el patrón de diseño DIP. Además cumplen con ISP ya que las listas no dependen de un
+        /// tipo que no usan y por esto no sobran métodos.
+        private IList<UserInfo> listUsers = new List<UserInfo>();
+        private IList<Publication> listOwnPublications = new List<Publication>();
+        private IList<Publication> listHistorialPublications = new List<Publication>();
 
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
@@ -94,7 +98,7 @@ namespace Bot
         {
             get
             {
-                return this.listHistorialPublications.AsReadOnly();
+                return new ReadOnlyCollection<Publication>(this.listHistorialPublications);
             }
         }
 
@@ -106,7 +110,7 @@ namespace Bot
         {
             get
             {
-                return this.listOwnPublications.AsReadOnly();
+                return new ReadOnlyCollection<Publication>(this.listOwnPublications);
             }
         }
 
@@ -118,7 +122,7 @@ namespace Bot
         {
             get
             {
-                return this.listUsers.AsReadOnly();
+                return new ReadOnlyCollection<UserInfo>(this.listUsers);
             }
         }
 
@@ -152,7 +156,7 @@ namespace Bot
         /// <param name="listUsers"></param>
         public void AddUser(IReadOnlyList<UserInfo> listUsers)
         {
-            this.listUsers.AddRange(listUsers);
+            (this.listUsers as List<UserInfo>).AddRange(listUsers);
         }
 
         /// <summary>
@@ -180,7 +184,7 @@ namespace Bot
         /// <param name="listPublications">Lista de Publicaciones.</param>
         public void AddOwnPublication(IReadOnlyList<Publication> listPublications)
         {
-            this.listOwnPublications.AddRange(listPublications);
+            (this.listOwnPublications as List<Publication>).AddRange(listPublications);
         }
 
         /// <summary>
@@ -208,7 +212,7 @@ namespace Bot
         /// <param name="listPublications"></param>
         public void AddListHistorialPublication(IReadOnlyList<Publication> listPublications)
         {
-            this.listHistorialPublications.AddRange(listPublications);
+            ((List<Publication>)this.listHistorialPublications).AddRange(listPublications);
         }
     }
 }

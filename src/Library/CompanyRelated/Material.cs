@@ -1,6 +1,7 @@
 /* Encabezado
 */
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Bot
 {
@@ -17,7 +18,7 @@ namespace Bot
         private string name;
         private int quantity;
         private double price;
-        private List<string> keyWords = new List<string>(); // Palabras clave
+        private IList<string> keyWords = new List<string>(); // Palabras clave
 
         /// <summary>
         /// Método de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
@@ -52,7 +53,7 @@ namespace Bot
         {
             get
             {
-                return this.keyWords.AsReadOnly();
+                return new ReadOnlyCollection<string>(this.keyWords);
             }
         }
 

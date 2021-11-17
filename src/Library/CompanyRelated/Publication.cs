@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
 
 namespace Bot
@@ -19,8 +19,8 @@ namespace Bot
         private GeoLocation location;
         private Company company;
         private bool isClosed;
-        private List<Material> listMaterials = new List<Material>();
-        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
+        private IList<Material> listMaterials = new List<Material>();
+        private IList<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
@@ -119,7 +119,7 @@ namespace Bot
         {
             get
             {
-                return this.listMaterials.AsReadOnly();
+                return new ReadOnlyCollection<Material>(this.listMaterials);
             }
         }
 
@@ -131,7 +131,7 @@ namespace Bot
         {
             get
             {
-                return this.listQualifications;
+                return new ReadOnlyCollection<string>(this.listQualifications);
             }
         }
 
@@ -162,7 +162,7 @@ namespace Bot
         /// <param name="listMaterials"></param>
         public void AddMaterial(IReadOnlyList<Material> listMaterials)
         {
-            this.listMaterials.AddRange(listMaterials);
+            (this.listMaterials as List<Material>).AddRange(listMaterials);
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace Bot
 
                 if (adminCondition)
                 {
-                    this.listQualifications.AddRange(listQualifications);
+                    (this.listQualifications as List<string>).AddRange(listQualifications);
                 }
                 else
                 {

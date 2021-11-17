@@ -4,7 +4,7 @@ namespace Bot
     /// Interfaz pública ISet que representa a las clases que se encargan de administrar objetos (Conjunto).
     /// </summary>
     /// <typeparam name="T">Elemento T (Ejemplo: empresa o publicación).</typeparam>
-    public interface ISet<T>
+    public interface ISetOfElement<T>
     {
         /// <summary>
         /// Método que se encarga de agregar un elemento a la lista de elementos del propio Set en cuestión.
