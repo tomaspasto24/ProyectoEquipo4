@@ -8,25 +8,30 @@ namespace Bot
     /// </summary>
     public class SerializeManager 
     {
-        private const string pathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
-        private const string pathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
+        private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
         private static SerializeManager instance;
-        private SerializeManager() { }
 
+        private SerializeManager() { }
+        
         /// <summary>
-        /// Método estático que controla el acceso a la propia instancia de la clase SerializeManager,
+        /// Obtiene el acceso a la propia instancia de la clase SerializeManager,
         /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
         /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
         /// siempre se use la misma variable instancia.
         /// </summary>
         /// <returns>Instancia Deserialize.</returns>
-        public static SerializeManager GetInstance()
+        public static SerializeManager Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new SerializeManager();
+                if (instance == null)
+                {
+                    instance = new SerializeManager();
+                }
+
+                return instance;
             }
-            return instance;
         }
 
         /// <summary>
@@ -44,10 +49,10 @@ namespace Bot
 
         private bool SerializeCompanies()
         {
-            if (File.Exists(pathContainerCompany))
+            if (File.Exists(PathContainerCompany))
             {
                 string jsonToSave = CompanySet.Instance.ConvertObjectToSaveToJson();
-                File.WriteAllText(pathContainerCompany, jsonToSave);
+                File.WriteAllText(PathContainerCompany, jsonToSave);
                 return true;
             }
             else
@@ -58,10 +63,10 @@ namespace Bot
 
         private bool SerializePublications()
         {
-            if (File.Exists(pathContainerPublication))
+            if (File.Exists(PathContainerPublication))
             {
                 string jsonToSave = PublicationSet.Instance.ConvertObjectToSaveToJson();
-                File.WriteAllText(pathContainerPublication, jsonToSave);
+                File.WriteAllText(PathContainerPublication, jsonToSave);
                 return true;
             }
             else

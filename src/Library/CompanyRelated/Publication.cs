@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
-using System.Text.Json;
 
 namespace Bot
 {
@@ -29,10 +28,7 @@ namespace Bot
         /// Constructor ingresado en blanco para la implementación de la Serialización.
         /// </summary>
         [JsonConstructor]
-        public Publication()
-        {
-            //Sin implementación.
-        }
+        public Publication() { }
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.

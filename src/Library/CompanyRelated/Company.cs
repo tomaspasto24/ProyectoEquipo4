@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json.Serialization;
-using System.Text.Json;
 
 namespace Bot
 {
@@ -29,10 +28,7 @@ namespace Bot
         /// Constructor ingresado en blanco para la implementación de la Serialización.
         /// </summary>
         [JsonConstructor]
-        public Company()
-        {
-            //Sin implementación.
-        }
+        public Company() { }
 
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al

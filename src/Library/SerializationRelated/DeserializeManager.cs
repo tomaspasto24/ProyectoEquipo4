@@ -1,7 +1,6 @@
-using System;
-using System.Text.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 namespace Bot
 {
@@ -11,25 +10,30 @@ namespace Bot
     /// </summary>
     public class DeserializeManager 
     {
-        private const string pathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
-        private const string pathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
+        private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
         private static DeserializeManager instance;
+
         private DeserializeManager() { }
 
         /// <summary>
-        /// Método estático que controla el acceso a la propia instancia de la clase DeserializeManager,
-        /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
+        /// Obtiene el acceso a la propia instancia de la clase DeserializeManager,
+        /// en caso de que la variable instance no este creada, la crea y la retorna. En caso 
         /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
         /// siempre se use la misma variable instancia.
         /// </summary>
         /// <returns>Instancia Deserialize.</returns>
-        public static DeserializeManager GetInstance()
+        public static DeserializeManager Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new DeserializeManager();
+                if (instance == null)
+                {
+                    instance = new DeserializeManager();
+                }
+
+                return instance;
             }
-            return instance;
         }
 
         /// <summary>
@@ -47,17 +51,14 @@ namespace Bot
 
         private bool DeserializeCompanies()
         {
-            if (File.Exists(pathContainerCompany))
+            if (File.Exists(PathContainerCompany))
             {
-                // Leer cada linea.
-                // string json = File.ReadAllLines(pathContainerCompany);
+                string json = File.ReadAllText(PathContainerCompany);
 
-                string json = File.ReadAllText(pathContainerCompany);
-
-                JsonSerializerOptions options = new()
+                JsonSerializerOptions options = new ()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true
+                    WriteIndented = true,
                 };
 
                 IList<Company> listCompanies = JsonSerializer.Deserialize<IList<Company>>(json, options);
@@ -65,25 +66,26 @@ namespace Bot
                 {
                     CompanySet.Instance.AddElement(company);
                 }
+
                 return true;
             }
             else
             {
-                File.Create(pathContainerCompany);
+                File.Create(PathContainerCompany);
                 return false;
             }
         }
 
         private bool DeserializePublications()
         {
-            if (File.Exists(pathContainerPublication))
+            if (File.Exists(PathContainerPublication))
             {
-                string json = File.ReadAllText(pathContainerPublication);
+                string json = File.ReadAllText(PathContainerPublication);
 
-                JsonSerializerOptions options = new()
+                JsonSerializerOptions options = new () 
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true
+                    WriteIndented = true,
                 };
 
                 IList<Publication> listPublications = JsonSerializer.Deserialize<IList<Publication>>(json, options);
@@ -91,11 +93,12 @@ namespace Bot
                 {
                     PublicationSet.Instance.AddElement(publication);
                 }
+
                 return true;
             }
             else
             {
-                File.Create(pathContainerPublication);
+                File.Create(PathContainerPublication);
                 return false;
             }
         }

@@ -176,7 +176,11 @@ namespace Bot
         /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
         public string ConvertObjectToSaveToJson()
         {
-            JsonSerializerOptions options = new(){ReferenceHandler = MyReferenceHandler.Instance, WriteIndented = true};
+            JsonSerializerOptions options = new () 
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true,
+            };
             return JsonSerializer.Serialize(this.listCompanies, options);
         }
     }
