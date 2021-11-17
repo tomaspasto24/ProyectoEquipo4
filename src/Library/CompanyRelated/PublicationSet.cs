@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Bot
@@ -9,10 +10,10 @@ namespace Bot
     /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
     /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public class PublicationSet : ISet<Publication>
+    public class PublicationSet : ISetOfElement<Publication>
     {
         private static PublicationSet instance;
-        private List<Publication> listPublications = new List<Publication>();
+        private IList<Publication> listPublications = new List<Publication>();
         
         private PublicationSet() { }
 
@@ -44,7 +45,7 @@ namespace Bot
         {
             get
             {
-                return this.listPublications.AsReadOnly();
+                return new ReadOnlyCollection<Publication>(this.listPublications);
             }
         }
 
