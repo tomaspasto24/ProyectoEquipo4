@@ -8,7 +8,7 @@ namespace Bot
     /// En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
     /// su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
     /// </summary>
-    public class RoleEntrepreneur :IRole
+    public class RoleEntrepreneur : IRole
     {
         /// <summary>
         /// Lista de las publiaciones adquiridas por el emprendedor.
@@ -17,8 +17,8 @@ namespace Bot
         /// <returns>Coleción de tipo Publication.</returns>
         private List<Publication> listHistorialPublications = new List<Publication>();
         private GeoLocation location;
-        private SearchByLocation searchByLocation;
-        private SearchByMaterial searchByMaterial;
+        private SearchByLocation searchByLocation = new SearchByLocation();
+        private SearchByMaterial searchByMaterial = new SearchByMaterial();
 
         /// <summary>
         /// Rubro.
@@ -87,9 +87,9 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch"></param>
         /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        public List<Publication> SearchingByMaterials(string wordToSearch) 
+        public IReadOnlyCollection<Publication> SearchingByMaterials(string wordToSearch) 
         {
-            return this.searchByMaterial.Search(wordToSearch);
+            return this.searchByMaterial.Search(wordToSearch).AsReadOnly();
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace Bot
         /// </summary>
         /// <param name="addresToSearch">Palabra clave como ubicación.</param>
         /// <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
-        public List<Publication> SearchingByLocation(string addresToSearch)
+        public IReadOnlyCollection<Publication> SearchingByLocation(string addresToSearch)
         {
-            return this.searchByLocation.Search(addresToSearch);
+            return this.searchByLocation.Search(addresToSearch).AsReadOnly();
         }
 
         /// <summary>
@@ -115,10 +115,10 @@ namespace Bot
         /// Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
         /// </summary>
         /// <returns>Lista de publicaciones.</returns>
-        public List<Publication> ReturnListHistorialPublications()
+        public IReadOnlyCollection<Publication> ReturnListHistorialPublications()
         {
             {
-                return this.listHistorialPublications;
+                return this.listHistorialPublications.AsReadOnly();
             }
         }
 

@@ -34,7 +34,8 @@ namespace Bot
                     {
                         result.Add(publication);
                     }
-                }    
+                }
+ 
             return result;
         }
     }

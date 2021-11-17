@@ -10,7 +10,7 @@ namespace Bot
     /// cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación 
     /// que contenga al material que se le indica.
     /// </summary>
-    public class SearchByMaterial: ISearch
+    public class SearchByMaterial : ISearch
     {
         /// <summary>
         /// Método que búsca todas las publicaciones que contienen el material pasado por parámetro. Recorre todas las
@@ -19,7 +19,7 @@ namespace Bot
         /// y se va a fijar a la siguiente.
         /// </summary>
         /// <param name="wordToSearch"></param>
-        /// <returns></returns>
+        /// <returns>Lista de publicaciones.</returns>
         public List<Publication> Search(String wordToSearch)
         {
             List<Publication> result = new List<Publication>();
@@ -38,7 +38,8 @@ namespace Bot
                         } 
                     }
                 }                    
-            }      
+            }
+
             return result;
         }
     }
