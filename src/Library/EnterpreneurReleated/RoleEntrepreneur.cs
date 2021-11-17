@@ -89,7 +89,7 @@ namespace Bot
         /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
         public IReadOnlyCollection<Publication> SearchingByMaterials(string wordToSearch) 
         {
-            return this.searchByMaterial.Search(wordToSearch).AsReadOnly();
+            return this.searchByMaterial.Search(wordToSearch);
         }
 
         /// <summary>
@@ -99,7 +99,9 @@ namespace Bot
         /// <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
         public IReadOnlyCollection<Publication> SearchingByLocation(string addresToSearch)
         {
-            return this.searchByLocation.Search(addresToSearch).AsReadOnly();
+            return this.searchByLocation.Search(addresToSearch);
+            //return new ReadOnlyCollection<Publication>(this.listPublications);
+
         }
 
         /// <summary>
