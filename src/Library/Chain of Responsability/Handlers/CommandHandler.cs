@@ -94,8 +94,6 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-
             if (request.Text == null)
             {
                 throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
@@ -103,37 +101,7 @@ namespace Bot
 
             if (request.Text.ToLower().Equals("/comandos"))
             {
-                string commandList = string.Empty;
-                if (user.UserRole is RoleEntrepreneur)
-                {
-                    foreach (string command in EntrepreneurCommandList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-                else if (user.UserRole is RoleUserCompany)
-                {
-                    foreach (string command in CompanyUserCommandList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-                else if (user.UserRole is RoleAdmin)
-                {
-                    foreach (string command in AdminCommandList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-                else
-                {
-                    foreach (string command in DefaultCommandList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-
-                response = $"Estos son todos los comandos: \n" + commandList;
+                response = $"Estos son todos los comandos: \n" + Command.ReturnCommands(request.UserId);
                 return true;
             }
 

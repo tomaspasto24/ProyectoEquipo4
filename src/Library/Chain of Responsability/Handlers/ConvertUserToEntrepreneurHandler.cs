@@ -14,15 +14,7 @@ namespace Bot
     public class ConvertUserToEntrepreneurHandler : AbstractHandler
     {
 
-        private string heading;
-
-        private string address;
-
-        private string city;
-
-        private string certification;
-
-        private string specialization;
+        private Dictionary<UserInfo, EntrepeneurData> entrepreneurData = new Dictionary<UserInfo, EntrepeneurData>();
 
         /// <summary>
         /// Constructor de la clase RegisterHandler
@@ -41,71 +33,75 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!(user.UserRole is RoleDefault))
+            if (user.UserRole is RoleDefault)
             {
-                throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
-            }
 
-            if (request.Text == null)
-            {
-                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
-            }
-            //TODO testear
-            if (request.Text.ToLower().Equals("/cancelar"))
-            {
-                user.HandlerState = Bot.State.Start;
-                response = "Operación cancelada.";
-                return true;
-            }
+                if (request.Text == null)
+                {
+                    throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
+                }
 
-            if (user.HandlerState == Bot.State.Start && request.Text.ToLower().Equals("/emprender"))
-            {
-                user.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-                // response = "Por favor, dinos tu rubro: ";
-                response = "Por favor, dinos tu rubro. \nEnvia \"/cancelar\" para cancelar la operación";
-                return true;
+                if (user.HandlerState == Bot.State.Start && request.Text.ToLower().Equals("/emprender"))
+                {
+                    user.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+                    response = "Por favor, dinos tu rubro. \nEnvia \"/cancelar\" para cancelar la operación";
+                    return true;
+                }
+                else if (user.HandlerState == Bot.State.ConfirmingHeadingEntrepreneur)
+                {
+                    if (request.Text.ToLower().Equals("/cancelar"))
+                    {
+                        user.HandlerState = Bot.State.Start;
+                        response = "Operación cancelada.";
+                        return true;
+                    }
+                    user.HandlerState = Bot.State.ConfirmingCityEntrepreneur;
+                    this.entrepreneurData.Add(user, new EntrepeneurData(request.Text));
+                    response = "Rubro registrado. Ahora dinos en que ciudad vives. \nEnvia \"/cancelar\" para cancelar la operación";
+                    return true;
+                }
+                else if (user.HandlerState == Bot.State.ConfirmingCityEntrepreneur)
+                {
+                    if (request.Text.ToLower().Equals("/cancelar"))
+                    {
+                        user.HandlerState = Bot.State.Start;
+                        response = "Operación cancelada.";
+                        return true;
+                    }
+                    user.HandlerState = Bot.State.ConfirmingAdressEntrepreneur;
+                    EntrepeneurData ed = this.entrepreneurData[user];
+                    ed.City = request.Text;
+                    response = "Ciudad registrada. Ahora dinos tu direccion. \nEnvia \"/cancelar\" para cancelar la operación";
+                    return true;
+                }
+                else if (user.HandlerState == Bot.State.ConfirmingAdressEntrepreneur)
+                {
+                    if (request.Text.ToLower().Equals("/cancelar"))
+                    {
+                        user.HandlerState = Bot.State.Start;
+                        response = "Operación cancelada.";
+                        return true;
+                    }
+                    user.HandlerState = Bot.State.Start;
+                    EntrepeneurData ed = this.entrepreneurData[user];
+                    response = "Direccion registrada. Ahora eres un emprendedor!";
+                    RoleEntrepreneur roleEntrepreneur = new RoleEntrepreneur(ed.Heading, new GeoLocation(request.Text, ed.City));
+                    user.UserRole = roleEntrepreneur;
+                    return true;
+                }
             }
-            else if (user.HandlerState == Bot.State.ConfirmingHeadingEntrepreneur)
-            {
-                user.HandlerState = Bot.State.ConfirmingCityEntrepreneur;
-                heading = request.Text;
-                response = "Rubro registrado. Ahora dinos en que ciudad vives. \nEnvia \"/cancelar\" para cancelar la operación";
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.ConfirmingCityEntrepreneur)
-            {
-                user.HandlerState = Bot.State.ConfirmingAdressEntrepreneur;
-                city = request.Text;
-                response = "Ciudad registrada. Ahora dinos tu direccion. \nEnvia \"/cancelar\" para cancelar la operación";
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.ConfirmingAdressEntrepreneur)
-            {
-                user.HandlerState = Bot.State.ConfirmingCertificationEntrepreneur;
-                address = request.Text;
-                response = "Direccion registrada. Ahora dinos tu certificacion. \nEnvia \"/cancelar\" para cancelar la operación";
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.ConfirmingCertificationEntrepreneur)
-            {
-                user.HandlerState = Bot.State.ConfirmingSpecializationEntrepeneur;
-                certification = request.Text;
-                response = "Certificacion registrada. Ahora dinos tu especializacion. \nEnvia \"/cancelar\" para cancelar la operación";
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.ConfirmingSpecializationEntrepeneur)
-            {
-                user.HandlerState = Bot.State.Start;
-                specialization = request.Text;
-                response = "Especializacion registrada. Ahora eres un emprendedor!";
-                RoleEntrepreneur roleEntrepreneur = new RoleEntrepreneur(heading,
-                null); // TODO Preguntar que onda con geolocation, no me deja registrarla CAMBIAR DE NULL A UNA LOCATION
-                user.UserRole = roleEntrepreneur;
-                return true;
-            }
-
             response = string.Empty;
             return false;
+        }
+        class EntrepeneurData
+        {
+            public string Heading { get; set; }
+            public string City { get; set; }
+
+            public EntrepeneurData(string heading)
+            {
+                this.Heading = heading;
+            }
         }
     }
 }

@@ -6,21 +6,41 @@ using Bot;
 
 namespace Library
 {
-    public class TelegramBot
+    public class TelegramBot : AbstractBot
     {
-
+        // TODO ULTRA IMPORTANTE: EXCEPTION SE TIRA ANTES DE CHEQUEAR SI EL HANDLER PUEDE MANEJARLO
         private const string TELEBRAM_BOT_TOKEN = "2100960953:AAGqylH0OVd18h5dJOPPZ0orCZOk6T4Wf9s";
         private static TelegramBot instance;
+
+        private readonly IHandler handler =
+            new CommandHandler(
+                new ContactHandler(
+                    new ConvertUserToEntrepreneurHandler(
+                        new PublishHandler(
+                            new RegisterHandler(
+                                new ReportHandler(
+                                    new SearchHandler(
+                                        new StartHandler(
+                                            new TokenHandler(
+                                                new UserInformationHandler(
+                                                    new DefaultHandler(null)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
 
         private TelegramBot()
         {
             this.Client = new TelegramBotClient(TELEBRAM_BOT_TOKEN);
         }
 
-        public ITelegramBotClient Client
-        {
-            get;
-        }
+        public ITelegramBotClient Client { get; }
 
         private User BotInfo
         {
@@ -58,35 +78,19 @@ namespace Library
             }
         }
 
-        public void StartCommunication()
+        public override void StartCommunication()
         {
             Client.OnMessage += OnMessage;
             Client.StartReceiving();
         }
 
+        public override void SendMessage(long id, string text)
+        {
+            Client.SendTextMessageAsync(id, text);
+        }
+
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
-            IHandler handler =
-                new CommandHandler(
-                    new ContactHandler(
-                        new ConvertUserToEntrepreneurHandler(
-                            new PublishHandler(
-                                new RegisterHandler(
-                                    new ReportHandler(
-                                        new SearchHandler(
-                                            new StartHandler(
-                                                new TokenHandler(
-                                                    new UserInformationHandler(null)
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                );
-
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
             Bot.Message msg = new Bot.Message(chatId, message.Text);
@@ -107,19 +111,12 @@ namespace Library
             }
             catch (System.Exception e)
             {
-                Client.SendTextMessageAsync(chatId, $"Ha sucedido un error: {e.Message}");
+                SendMessage(chatId, $"Ha sucedido un error: {e.Message}");
                 return;
             }
 
             // TODO Poder cancelar cosas en los handlers
-            if (result == null)
-            {
-                Client.SendTextMessageAsync(chatId, "Disculpa no te entiendo");
-            }
-            else
-            {
-                Client.SendTextMessageAsync(chatId, response);
-            }
+            SendMessage(chatId, response);
         }
     }
 }

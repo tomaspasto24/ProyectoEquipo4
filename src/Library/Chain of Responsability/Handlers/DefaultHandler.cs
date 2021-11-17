@@ -11,13 +11,13 @@ namespace Bot
     /// <summary>
     /// Handler que se encarga del registro de un usuario
     /// </summary>
-    public class SearchHandler : AbstractHandler
+    public class DefaultHandler : AbstractHandler
     {
         /// <summary>
         /// Constructor de la clase RegisterHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public SearchHandler(AbstractHandler succesor) : base(succesor)
+        public DefaultHandler(AbstractHandler succesor) : base(succesor)
         {
         }
 
@@ -28,11 +28,9 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             // TODO
-            
-            response = string.Empty;
-            return false;
+            response = "Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo.";
+            return true;
         }
     }
 }

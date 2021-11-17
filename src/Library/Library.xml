@@ -19,7 +19,7 @@
             Metodo publico y abstracto para comenzar la comunicacion entre el usuario y el canal y el bot o la consola.
             </summary>
         </member>
-        <member name="M:Bot.AbstractBot.SendMessage(System.Int32,System.String)">
+        <member name="M:Bot.AbstractBot.SendMessage(System.Int64,System.String)">
             <summary>
             Metodo para enviar el mensaje por el canal donde se esta comunicando
             </summary>
@@ -43,7 +43,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bot.ConsoleBot.SendMessage(System.Int32,System.String)">
+        <member name="M:Bot.ConsoleBot.SendMessage(System.Int64,System.String)">
             <summary>
             Manda un mensaje, en este caso, por consola.
             </summary>
@@ -114,25 +114,25 @@
             </summary>
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
-        <member name="M:Bot.CommandHandler.EntrepreneurList">
+        <member name="M:Bot.CommandHandler.EntrepreneurCommandList">
             <summary>
             Metodo que retorna una lista de comandos para el emprendedor
             </summary>
             <returns>Lista de comandos</returns>
         </member>
-        <member name="M:Bot.CommandHandler.CompanyUserList">
+        <member name="M:Bot.CommandHandler.CompanyUserCommandList">
             <summary>
             Metodo que retorna una lista de comandos para el usuario empresa
             </summary>
             <returns>Lista de comandos</returns>
         </member>
-        <member name="M:Bot.CommandHandler.AdminList">
+        <member name="M:Bot.CommandHandler.AdminCommandList">
             <summary>
             Metodo que retorna una lista de comnados para el admin
             </summary>
             <returns>Lista de comandos</returns>
         </member>
-        <member name="M:Bot.CommandHandler.DefaultList">
+        <member name="M:Bot.CommandHandler.DefaultCommandList">
             <summary>
             Metodo que retorna una lista de comnados para el admin
             </summary>
@@ -175,6 +175,24 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.ConvertUserToEntrepreneurHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.DefaultHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.DefaultHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.DefaultHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -844,40 +862,19 @@
             Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
             </summary>
         </member>
-        <member name="P:Bot.Command.CommandsList">
+        <member name="F:Bot.Command.entrepeneurCommandList">
             <summary>
-            Lista de comandos
+            Lista de comandos que un entrepeneur puede ejecutar.
             </summary>
+            <typeparam name="string"></typeparam>
+            <returns></returns>
         </member>
-        <member name="M:Bot.Command.#ctor">
-            <summary>
-            Constructor de la clase Command. Asigna a la lista de comandos, todos los comandos disponibles.
-            </summary>
-        </member>
-        <member name="M:Bot.Command.EntrepreneurList">
-            <summary>
-            Metodo que retorna una lista de comandos para el emprendedor
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.Command.CompanyUserList">
-            <summary>
-            Metodo que retorna una lista de comandos para el usuario empresa
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.Command.AdminList">
-            <summary>
-            Metodo que retorna una lista de comnados para el admin
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.Command.ReturnCommands(System.Int32)">
+        <member name="M:Bot.Command.ReturnCommands(System.Int64)">
             <summary>
             Metodo para retornar la lista de comandos segun que usuario la pida.
             </summary>
             <param name="userId">Id del usuario que pide la lista de comandos</param>
-            <returns>Lista de comandos</returns>
+            /// <returns>Lista de comandos</returns>
         </member>
         <member name="T:Bot.SessionRelated">
             <summary>
@@ -1265,13 +1262,6 @@
             Metodo para generar una instancia de token.
             </summary>
             <value>Instancia del Token. </value>
-        </member>
-        <member name="F:Bot.TokenGenerator.tokenList">
-            <summary>
-            Se inicializa la lista tokenList.
-            </summary>
-            <typeparam name="int"></typeparam>
-            <returns>La lista inicializada.</returns>
         </member>
         <member name="M:Bot.TokenGenerator.GenerateToken">
             <summary>

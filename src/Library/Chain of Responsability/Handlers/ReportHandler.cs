@@ -49,11 +49,6 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!(user.UserRole is RoleEntrepreneur || user.UserRole is RoleUserCompany))
-            {
-                throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
-            }
-
             if (user.UserRole is RoleEntrepreneur && request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
             {
                 StringBuilder report = new StringBuilder();

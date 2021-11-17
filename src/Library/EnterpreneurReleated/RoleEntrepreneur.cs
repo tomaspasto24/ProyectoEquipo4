@@ -135,5 +135,10 @@ namespace Bot
             publication.SetInterestedPerson(this);
             return publication.Company.ReturnContact();
         }
+
+        public string ToString()
+        {
+            
+        }
     }
 }

@@ -121,7 +121,7 @@ namespace Bot
         {
             foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
             {
-                if (SessionRelated.Instance.DiccUserTokens[token].Name.ToLower().Equals(companyName))
+                if (SessionRelated.Instance.DiccUserTokens[token].Name.ToLower().Equals(companyName.ToLower()))
                 {
                     return SessionRelated.Instance.DiccUserTokens[token];
                 }

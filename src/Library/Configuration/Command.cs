@@ -65,7 +65,7 @@ namespace Bot
         /// </summary>
         /// <param name="userId">Id del usuario que pide la lista de comandos</param>
         /// /// <returns>Lista de comandos</returns>
-        public static string ReturnCommands(int userId)
+        public static string ReturnCommands(long userId)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(userId);
             System.Text.StringBuilder sb = new System.Text.StringBuilder();

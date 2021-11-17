@@ -27,6 +27,6 @@ namespace Bot
         /// </summary>
         /// <param name="id">id del usuario con el que dialoga el bot</param>
         /// <param name="text">mensaje que se quiere enviar al usuario</param>
-        public abstract void SendMessage(int id, string text);
+        public abstract void SendMessage(long id, string text);
     }
 }

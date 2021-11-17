@@ -34,10 +34,7 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!(user.UserRole is RoleEntrepreneur))
-            {
-                throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
-            }
+
             if (request.Text == null)
             {
                 throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");

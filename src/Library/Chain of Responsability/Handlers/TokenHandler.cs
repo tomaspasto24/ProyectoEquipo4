@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Bot
 {
@@ -12,11 +13,7 @@ namespace Bot
     /// </summary>
     public class TokenHandler : AbstractHandler
     {
-        private string name;
-        private string heading;
-        private string address;
-        private string city;
-        private string contact;
+        private Dictionary<UserInfo, TokenGenerationData> dataPerUser = new Dictionary<UserInfo, TokenGenerationData>();
 
         /// <summary>
         /// Constructor de la clase RegisterHandler
@@ -34,16 +31,18 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            // TODO
-            if (!(user.UserRole is RoleAdmin))
-            {
-                throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
-            }
 
             if (request.Text == null)
             {
                 throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
             }
+            // if (request.Text.ToLower().Equals("/cancelar"))
+            // {
+            //     user.HandlerState = Bot.State.Start;
+            //     response = "Operación cancelada.";
+            //     this.dataPerUser.Remove(user);
+            //     return true;
+            // }
 
             if (user.HandlerState == Bot.State.Start && request.Text.ToLower().Equals("/generartoken"))
             {
@@ -51,8 +50,6 @@ namespace Bot
                 response = "Procedamos a crear la empresa para el token. \nDinos el nombre del empresa.\nEnvia \"/cancelar\" para cancelar la operación";
                 return true;
             }
-            //TODO testear
-            //TODO cancelar
             else if (user.HandlerState == Bot.State.ConfirmingCompanyName)
             {
                 Company company = SessionRelated.Instance.GetCompanyByName(request.Text);
@@ -64,7 +61,7 @@ namespace Bot
                 }
                 else
                 {
-                    name = request.Text;
+                    this.dataPerUser.Add(user, new TokenGenerationData(request.Text.ToLower()));
                     response = "Genial, tenemos el nombre de la empresa. \nAhora dinos el rubro.\nEnvia \"/cancelar\" para cancelar la operación";
                     user.HandlerState = Bot.State.ConfirmingCompanyHeader;
                     return true;
@@ -72,38 +69,76 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.ConfirmingCompanyHeader)
             {
-                heading = request.Text;
+                if (request.Text.ToLower().Equals("/cancelar"))
+                {
+                    user.HandlerState = Bot.State.Start;
+                    response = "Operación cancelada.";
+                    this.dataPerUser.Remove(user);
+                    return true;
+                }
+                TokenGenerationData tgd = this.dataPerUser[user];
+                tgd.Heading = request.Text.ToLower();
                 response = "Genial, tenemos el rubro de la empresa. \nAhora dinos la ciudad donde se ubica la empresa.\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.ConfirmingCompanyCity;
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingCompanyCity)
             {
-                city = request.Text;
+                if (request.Text.ToLower().Equals("/cancelar"))
+                {
+                    user.HandlerState = Bot.State.Start;
+                    response = "Operación cancelada.";
+                    this.dataPerUser.Remove(user);
+                    return true;
+                }
+                TokenGenerationData tgd = this.dataPerUser[user];
+                tgd.City = request.Text.ToLower();
                 response = "Genial, tenemos la ciudad de la empresa. \nAhora dinos la direccion de la empresa.\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.ConfirmingCompanyAdress;
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingCompanyAdress)
             {
-                address = request.Text;
+                if (request.Text.ToLower().Equals("/cancelar"))
+                {
+                    user.HandlerState = Bot.State.Start;
+                    response = "Operación cancelada.";
+                    this.dataPerUser.Remove(user);
+                    return true;
+                }
+                TokenGenerationData tgd = this.dataPerUser[user];
+                tgd.Address = request.Text.ToLower();
                 response = "Genial, tenemos la direccion de la empresa. \nAhora dinos el contacto de la empresa (e-mail o telefono).\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.ConfirmingCompanyContact;
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingCompanyContact)
             {
-                contact = request.Text;
-                Company company = new Company(name, heading, new GeoLocation(address, city), contact);
+                TokenGenerationData tgd = this.dataPerUser[user];
                 string token = TokenGenerator.Instance.GenerateToken().ToString();
-                SessionRelated.Instance.DiccUserTokens.Add(token.ToString(), company);
                 user.HandlerState = Bot.State.Start;
                 response = $"Genial, tenemos el contacto de la empresa. \nEmpresa creada con exito. El token para esta empresa es: \n{token}";
+                Company company = new Company(tgd.Name, tgd.Heading, new GeoLocation(tgd.Address, tgd.City), request.Text.ToLower());
+                SessionRelated.Instance.DiccUserTokens.Add(token.ToString(), company);
+                this.dataPerUser.Remove(user);
                 return true;
             }
-            
+
             response = string.Empty;
             return false;
+        }
+
+        class TokenGenerationData
+        {
+            public string Name { get; set; }
+            public string Heading { get; set; }
+            public string Address { get; set; }
+            public string City { get; set; }
+
+            public TokenGenerationData(string name)
+            {
+                this.Name = name;
+            }
         }
     }
 }
