@@ -30,7 +30,7 @@ namespace BotTests
             newRole = new RoleUserCompany(company);
 
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            role = new RoleEntrepreneur("carpintero", entrepreneurLocation, "oficial", "lustrado");
+            role = new RoleEntrepreneur("carpintero", location);
             user = new UserInfo("Seba", 123, role);
 
             sessionRelated = SessionRelated.Instance;
@@ -81,7 +81,7 @@ namespace BotTests
         public void TestTokenFound()
         {
             SessionRelated.Instance.DiccUserTokens.Add("IHaveAToken", company);
-            
+
             message.Text = "/registro";
             string response;
             handler.Handle(message, out response);

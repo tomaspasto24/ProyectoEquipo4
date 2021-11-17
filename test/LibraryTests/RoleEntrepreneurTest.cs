@@ -3,13 +3,13 @@ using Bot;
 using NUnit.Framework;
 
 namespace BotTests
-{   
+{
     /// <summary>
     /// Tests de los métodos de la clase RoleEntrepreneur.
     /// </summary>
     public class RoleEntrepreneurTests
     {
-        RoleEntrepreneur emprendedor; 
+        RoleEntrepreneur emprendedor;
         GeoLocation ubicacionParaPruebas;
         string name;
         int id;
@@ -59,7 +59,7 @@ namespace BotTests
         [Test]
         public void AddListHistorialPublicationsTest1()
         {
-            RoleEntrepreneur emprendedor2 = new RoleEntrepreneur("Industria", ubicacionParaPruebas, "Uso de corrosivos", "");
+            RoleEntrepreneur emprendedor2 = new RoleEntrepreneur("Industria", ubicacionParaPruebas);
             Company empresaDeVidrios = new Company("vidrioglass", "vidrio", ubicacionParaPruebas, "vidrioglas@correo.com");
             Material vidrio = new Material("Vidrio", 100, 850);
             Publication publicacion = new Publication("Publicación de vidrio", empresaDeVidrios, ubicacionParaPruebas, vidrio);
@@ -73,7 +73,7 @@ namespace BotTests
         [Test]
         public void AddHistorialPublicationTest2()
         {
-            RoleEntrepreneur emprendedor3 = new RoleEntrepreneur("Construcción", ubicacionParaPruebas, "", "");
+            RoleEntrepreneur emprendedor3 = new RoleEntrepreneur("Construcción", ubicacionParaPruebas);
             Company pvcCompany = new Company("pvCompany", "plasticos", ubicacionParaPruebas, "pvcventas@correo.com");
             Material pvc = new Material("PVC", 200, 500);
             Publication publicacion = new Publication("Publicación de plástico", pvcCompany, ubicacionParaPruebas, pvc);
