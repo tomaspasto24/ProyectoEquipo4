@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Bot
 {
@@ -11,15 +12,27 @@ namespace Bot
     /// Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
     /// un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
     /// </summary>
-    public class Company
+    public class Company : IJsonConvertible
     {
         private string name;
         private string item;
         private GeoLocation location;
         private string contact;
+        [JsonInclude]
         private IList<UserInfo> listUsers = new List<UserInfo>();
+        [JsonInclude]
         private IList<Publication> listOwnPublications = new List<Publication>();
+        [JsonInclude]
         private IList<Publication> listHistorialPublications = new List<Publication>();
+
+        /// <summary>
+        /// Constructor ingresado en blanco para la implementación de la Serialización.
+        /// </summary>
+        [JsonConstructor]
+        public Company()
+        {
+            //Sin implementación.
+        }
 
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
@@ -29,7 +42,6 @@ namespace Bot
         /// <param name="item">Rubro de la Empresa.</param>
         /// <param name="location">Ubicación establecida de la Empresa.</param>
         /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
-        [JsonConstructor]
         public Company(string name, string item, GeoLocation location, string contact)
         {
             this.name = name;
@@ -210,6 +222,16 @@ namespace Bot
         public void AddListHistorialPublication(IReadOnlyList<Publication> listPublications)
         {
             ((List<Publication>)this.listHistorialPublications).AddRange(listPublications);
+        }
+
+        /// <summary>
+        /// Método que convierte el propio objeto en formato JSON.
+        /// </summary>
+        /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new(){ReferenceHandler = MyReferenceHandler.Instance, WriteIndented = true};
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Bot
 {
@@ -11,7 +12,7 @@ namespace Bot
     /// Publication tiene la responsabilidad de crear instancias de la clase Material porque guarda instancias
     /// de Material y lo usa de forma cercana.
     /// </summary>
-    public class Publication
+    public class Publication : IJsonConvertible
     {
         private string title;
         private DateTime date;
@@ -19,8 +20,19 @@ namespace Bot
         private GeoLocation location;
         private Company company;
         private bool isClosed;
+        [JsonInclude]
         private IList<Material> listMaterials = new List<Material>();
+        [JsonInclude]
         private IList<string> listQualifications = new List<string>(); // Lista Habilitaciones
+
+        /// <summary>
+        /// Constructor ingresado en blanco para la implementación de la Serialización.
+        /// </summary>
+        [JsonConstructor]
+        public Publication()
+        {
+            //Sin implementación.
+        }
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
@@ -29,7 +41,6 @@ namespace Bot
         /// <param name="company">Empresa.</param>
         /// <param name="location">Ubicación.</param>
         /// <param name="material">Material.</param>
-        [JsonConstructor]
         public Publication(String title, Company company, GeoLocation location, Material material)
         {
             this.title = title;
@@ -266,6 +277,16 @@ namespace Bot
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
         {
             this.InterestedPerson = interestedPerson;
+        }
+
+        /// <summary>
+        /// Método que convierte la propia clase Publicación en formato JSON.
+        /// </summary>
+        /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new(){ReferenceHandler = MyReferenceHandler.Instance, WriteIndented = true};
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }
