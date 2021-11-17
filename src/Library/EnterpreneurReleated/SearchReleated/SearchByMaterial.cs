@@ -10,7 +10,7 @@ namespace Bot
     /// cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación 
     /// que contenga al material que se le indica.
     /// </summary>
-    public class SearchByMaterial: ISearch
+    public class SearchByMaterial : ISearch<Publication>
     {
         /// <summary>
         /// Método que búsca todas las publicaciones que contienen el material pasado por parámetro. Recorre todas las
@@ -19,8 +19,8 @@ namespace Bot
         /// y se va a fijar a la siguiente.
         /// </summary>
         /// <param name="wordToSearch"></param>
-        /// <returns></returns>
-        public List<Publication> Search(String wordToSearch)
+        /// <returns>Lista de publicaciones.</returns>
+        public IReadOnlyCollection<Publication> Search(String wordToSearch)
         {
             List<Publication> result = new List<Publication>();
             IReadOnlyCollection<Publication> listPublications = PublicationSet.Instance.ListPublications;
@@ -37,9 +37,9 @@ namespace Bot
                             exitPublication = true; 
                         } 
                     }
-                }                    
-            }      
-            return result;
+                }                 
+            }
+            return result.AsReadOnly();
         }
     }
 }

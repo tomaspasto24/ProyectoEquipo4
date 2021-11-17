@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Bot
@@ -9,10 +10,10 @@ namespace Bot
     /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
     /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public class CompanySet : ISet<Company>
+    public class CompanySet : ISetOfElement<Company>
     {
         private static CompanySet instance;
-        private List<Company> listCompanies = new List<Company>();
+        private IList<Company> listCompanies = new List<Company>();
 
         private CompanySet() { }
 
@@ -44,30 +45,7 @@ namespace Bot
         {
             get
             {
-                return this.listCompanies.AsReadOnly();
-            }
-        }
-
-        /// <summary>
-        /// Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
-        /// </summary>
-        /// <param name="name">Nombre de Empresa.</param>
-        /// <param name="item">Rubro de Empresa.</param>
-        /// <param name="location">Ubicación de Empresa.</param>
-        /// <param name="contact">Contacto de Empresa.</param>
-        /// <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
-        /// contrario.</returns>
-        public bool AddElement(string name, string item, GeoLocation location, string contact)
-        {
-            if (!this.ContainsElementInListElements(name))
-            {
-                Company company = new Company(name, item, location, contact);
-                this.listCompanies.Add(company);
-                return true;
-            }
-            else
-            {
-                return false;
+                return new ReadOnlyCollection<Company>(this.listCompanies);
             }
         }
 

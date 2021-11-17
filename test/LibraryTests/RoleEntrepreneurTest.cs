@@ -1,12 +1,11 @@
+using System.Collections.Generic;
 using Bot;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 
 namespace BotTests
 {   
     /// <summary>
-    /// Tests de los métodos de la clase RoleEntrepreneur
+    /// Tests de los métodos de la clase RoleEntrepreneur.
     /// </summary>
     public class RoleEntrepreneurTests
     {
@@ -18,22 +17,23 @@ namespace BotTests
         string certification;
         string specialization;
         /// <summary>
-        /// Se crea una instancia de emprendedor que será usada para los tests de cada método
+        /// Se crea una instancia de emprendedor que será usada para los tests de cada método.
         /// </summary>
         [SetUp]
         public void Setup()
         {
             name = "Alejandra";
             id = 1;
-            heading = "";
+            heading = string.Empty;
             GeoLocation ubicacionParaPruebas = new GeoLocation("8 de OCtubre", "Blanqueada");
-            certification = "";
-            specialization = "";
+            certification = string.Empty;
+            specialization = string.Empty;
 
-            emprendedor = new RoleEntrepreneur(heading, ubicacionParaPruebas, certification, specialization);
+            emprendedor = new RoleEntrepreneur(heading, ubicacionParaPruebas);
         }
+
         /// <summary>
-        /// Test del método que le agrega una certificación al emprendedor
+        /// Test del método que le agrega una certificación al emprendedor.
         /// </summary>
         [Test]
         public void AddCertificationTest()
