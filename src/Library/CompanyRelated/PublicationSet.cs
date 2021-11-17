@@ -78,8 +78,7 @@ namespace Bot
         {
             if (this.ContainsElementInListElements(element))
             {
-                this.listPublications.Remove(element);
-                return true;
+                return this.listPublications.Remove((this.listPublications as List<Publication>).Find(publicationInList => publicationInList.Title == element.Title));
             }
             else
             {

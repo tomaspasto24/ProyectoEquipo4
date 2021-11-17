@@ -69,7 +69,8 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema.
+        /// Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema. El criterio usado es
+        /// por el nombre de la clase Empresa. Es decir, el programa no admite 2 clases Empresa con mismo nombre.
         /// </summary>
         /// <param name="element">Empresa.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
@@ -78,8 +79,7 @@ namespace Bot
         {
             if (this.ContainsElementInListElements(element))
             {
-                this.listCompanies.Remove(element);
-                return true;
+                return this.listCompanies.Remove((this.listCompanies as List<Company>).Find(companyInList => companyInList.Name == element.Name));
             }
             else
             {
@@ -98,7 +98,7 @@ namespace Bot
 
             foreach (Company company in this.listCompanies)
             {
-                result.Append($"{company.Name} \n");
+                result.Append($"\t {company.Name} \n");
             }
 
             return result.ToString();
