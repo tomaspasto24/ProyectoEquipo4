@@ -10,10 +10,10 @@ namespace Bot
     /// Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por ubicación. Además,
     /// cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación con la ubicación que se le indica.
     /// </summary>
-    public class SearchByLocation : ISearch
+    public class SearchByLocation : ISearch<Publication>
     {
         GeoLocation location;
-        
+
         /// <summary>
         /// Método que búsca todas las publicaciones que contienen la ubicación pasada por parámetro. Recorre todas las
         /// publicaciones y se fija si tiene la misma ubicación recibida. Si es igual, se agrega la publicación a la lista que 
@@ -21,22 +21,22 @@ namespace Bot
         /// </summary>
         /// <param name="addresToSearch">Dirección para buscar.</param>
         /// <returns>Lista de Publicaciones.</returns>
-        public List<Publication> Search(string addresToSearch)
+        public IReadOnlyCollection<Publication> Search(string addresToSearch)
         {
             double distance;
             location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
-            IReadOnlyCollection<Publication> listaPublicaciones = PublicationSet.Instance.ListPublications;
-                foreach (Publication publication in listaPublicaciones)
+            IReadOnlyCollection<Publication> listaPublicaciones = PublicationSet.ListPublication;
+            foreach (Publication publication in listaPublicaciones)
+            {
+                distance = location.CalculateDistance(publication.Location);
+                if (distance < 500)
                 {
-                    distance = AsyncContext.Run<double>(() => location.CalculateDistance(publication.Location));
-                    if (distance < 500)
-                    {
-                        result.Add(publication);
-                    }
+                    result.Add(publication);
                 }
- 
-            return result;
+            }
+
+            return result.AsReadOnly();
         }
     }
 }

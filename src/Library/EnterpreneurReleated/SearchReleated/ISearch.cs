@@ -7,7 +7,7 @@ namespace Bot
     /// sin cambiar el código de las que ya tenemos.
     /// También se cumple con el principio DIP porque se depende de una abstracción en lugar de directamente de una clase.
     /// </summary>
-    public interface ISearch
+    public interface ISearch<T>
     {
         /// <summary>
         /// Método que se implementa tanto en las clases SerachByMaterial, SearchByLocation y en cualquier otra que se agregue
@@ -15,6 +15,6 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch">String por el que se buscará.</param>
         /// <returns>Devuelve una lista con las publicaciónes que cumplan con la búsqueda.</returns>
-    List<Publication> Search(string wordToSearch);
+    IReadOnlyCollection<T> Search(string wordToSearch);
     }
 }
