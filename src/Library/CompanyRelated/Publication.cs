@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
 
 namespace Bot
 {
     /// <summary>
     /// Cada objeto de la clase Publicación, administrado por un objeto Empresa, es el conjunto de items
-    /// que la aplicación muestra a los emprendedores.
+    /// que la aplicación muestra a los emprendedores. Cumple con el patrón de diseño Creator porque la clase
+    /// Publication tiene la responsabilidad de crear instancias de la clase Material porque guarda instancias
+    /// de Material y lo usa de forma cercana.
     /// </summary>
     public class Publication
     {
@@ -17,8 +19,8 @@ namespace Bot
         private GeoLocation location;
         private Company company;
         private bool isClosed;
-        private List<Material> listMaterials = new List<Material>();
-        private List<string> listQualifications = new List<string>(); // Lista Habilitaciones
+        private IList<Material> listMaterials = new List<Material>();
+        private IList<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
@@ -44,7 +46,7 @@ namespace Bot
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
         /// <value>Rol Emprendedor.</value>
-        public RoleEntrepreneur InterestedPerson { get; private set; } // Hay que ver como guardar la persona interesada
+        public RoleEntrepreneur InterestedPerson { get; private set; }
 
         /// <summary>
         /// Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
@@ -117,7 +119,7 @@ namespace Bot
         {
             get
             {
-                return this.listMaterials.AsReadOnly();
+                return new ReadOnlyCollection<Material>(this.listMaterials);
             }
         }
 
@@ -129,7 +131,7 @@ namespace Bot
         {
             get
             {
-                return this.listQualifications;
+                return new ReadOnlyCollection<string>(this.listQualifications);
             }
         }
 
@@ -160,7 +162,7 @@ namespace Bot
         /// <param name="listMaterials"></param>
         public void AddMaterial(IReadOnlyList<Material> listMaterials)
         {
-            this.listMaterials.AddRange(listMaterials);
+            (this.listMaterials as List<Material>).AddRange(listMaterials);
         }
 
         /// <summary>
@@ -233,7 +235,7 @@ namespace Bot
 
                 if (adminCondition)
                 {
-                    this.listQualifications.AddRange(listQualifications);
+                    (this.listQualifications as List<string>).AddRange(listQualifications);
                 }
                 else
                 {
