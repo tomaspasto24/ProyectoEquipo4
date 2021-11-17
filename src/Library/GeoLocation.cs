@@ -21,9 +21,16 @@ namespace Bot
         /// <param name="city">Ciudad.</param>
         public GeoLocation(string address, string city)
         {
-            this.EstablishLocation(address, city);
-            this.city = city;
-            this.address = address;
+            this.location = this.client.GetLocation(address, city);
+            if (this.location.Found)
+            {
+                this.city = city;
+                this.address = address;
+            }
+            else
+            {
+                throw new ArgumentException("No se ha podido encontrar la ubicación");
+            }
         }
 
         /// <summary>
@@ -54,7 +61,7 @@ namespace Bot
         /// Calcula y retorna la distancia en kilometros entre la propia instancia de clase y la ingresada como parámetro.
         /// </summary>
         /// <param name="secondLocation">Segunda clase a calcular distancia.</param>
-        /// <returns>Distancia de tipo Task double.</returns>
+        /// <returns>Distancia de tipo double.</returns>
         public double CalculateDistance(GeoLocation secondLocation)
         {
             if (secondLocation != null)
@@ -72,7 +79,7 @@ namespace Bot
         /// Calcula y retorna la duración entre la propia instancia de clase y la ingresada como parámetro.
         /// </summary>
         /// <param name="secondLocation">Segunda clase a calcular duración.</param>
-        /// <returns>Duración de tipo Task double.</returns>
+        /// <returns>Duración de tipo double.</returns>
         public double CalculateDuration(GeoLocation secondLocation)
         {
             if (secondLocation != null)
@@ -96,9 +103,13 @@ namespace Bot
             return this.location;
         }
 
-        private void EstablishLocation(string address, string city)
+        /// <summary>
+        /// Método que revisa si se puede encontrar la ubicación construida.
+        /// </summary>
+        /// <returns><c>True</c> en caso de que la ubicación sea válida, <c>False</c> en caso de no ser válida.</returns>
+        public bool IsValid()
         {
-            this.location = this.client.GetLocation(address, city);
+            return this.location.Found;
         }
     }
 }

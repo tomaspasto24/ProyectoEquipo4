@@ -1,19 +1,24 @@
 /* Encabezado
 */
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Bot
 {
     /// <summary>
-    /// Clase Material que cumple con el patrón Expert ya que todos los calculos que hace, los realiza con
-    /// datos internos que solo la clase Material conoce.
+    /// Clase Material se encarga de representar cada material, tiene la responsabilidad de conocer su nombre, cantidad, precio y 
+    /// sus palabras clave.
+    /// Cumple con el patrón Expert (GRASP) y SRP (SOLID) porque todas las operaciones que hace, las realiza con
+    /// datos internos que solo la clase Material conoce ya que es experta en lo que hace. En caso de que la clase Material no se hubiera creado, 
+    /// la clase Publication tendría más de una responsabilidad y además imposibilitaría que el usuario pueda publicar más de un material a la vez rompiendo
+    /// con el patron SRP.
     /// </summary>
     public class Material
     {
         private string name;
         private int quantity;
         private double price;
-        private List<string> keyWords = new List<string>(); // Palabras clave
+        private IList<string> keyWords = new List<string>(); // Palabras clave
 
         /// <summary>
         /// Método de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
@@ -48,7 +53,7 @@ namespace Bot
         {
             get
             {
-                return this.keyWords.AsReadOnly();
+                return new ReadOnlyCollection<string>(this.keyWords);
             }
         }
 

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="8N9IxCA1fJN8erkE_-Jc" name="Página-1">
-        <mxGraphModel dx="1945" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2183" dy="1948" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="2" vertex="1">
                     <mxGeometry y="126" width="370" height="14" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="+ ReturnContact() : string&#10;+ AddUser(User) : void&#10;+ AddUser(IReadOnlyList&lt;User&gt;) : void&#10;+ DeleteUser(User) : bool&#10;+ AddOwnPublication(Publication) : void&#10;+ AddOwnPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;+ DeleteOwnPublication(Publication) : bool&#10;+ AddListHistorialPublication(Publication) : void&#10;+ AddListHistorialPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
+                <mxCell id="5" value="+ ReturnContact() : string&#10;+ AddUser(UserInfo) : void&#10;+ AddUser(IReadOnlyList&lt;UserInfo&gt;) : void&#10;+ DeleteUser(UserInfo) : bool&#10;+ AddOwnPublication(Publication) : void&#10;+ AddOwnPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;+ DeleteOwnPublication(Publication) : bool&#10;+ AddListHistorialPublication(Publication) : void&#10;+ AddListHistorialPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
                     <mxGeometry y="140" width="370" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="Material" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
@@ -58,38 +58,29 @@
                 <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="13" target="14" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="310" y="30" width="270" height="100" as="geometry"/>
-                </mxCell>
-                <mxCell id="28" value="&lt;div&gt;&lt;span&gt;- name: string&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;-userRole: Role&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="27" vertex="1">
-                    <mxGeometry y="26" width="270" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="27" vertex="1">
-                    <mxGeometry y="86" width="270" height="14" as="geometry"/>
-                </mxCell>
                 <mxCell id="30" value="CompanySet" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="-360" y="190" width="350" height="194" as="geometry"/>
+                    <mxGeometry x="-360" y="170" width="350" height="196" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="&lt;div&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;+ ListCompany: IReadOnlyCollection&amp;lt;Company&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
-                    <mxGeometry y="30" width="350" height="50" as="geometry"/>
+                <mxCell id="31" value="&lt;div&gt;&lt;div&gt;&lt;u&gt;+ instance : CompanySet&lt;/u&gt;&lt;/div&gt;&lt;div&gt;+ listCompanies : List&amp;lt;Company&amp;gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
+                    <mxGeometry y="30" width="350" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="32" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="30" vertex="1">
-                    <mxGeometry y="80" width="350" height="14" as="geometry"/>
+                    <mxGeometry y="60" width="350" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="+ AddCompany(string, string, GeoLocation, string) : bool&#10;+ AddCompany(Company) : bool&#10;+ DeleteCompany(Company) : bool&#10;+ ReturnListCompanies() : string&#10;+ ContainsCompanyInListCompanies(Company) : bool&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="30" vertex="1">
-                    <mxGeometry y="94" width="350" height="100" as="geometry"/>
+                <mxCell id="33" value="+ AddElement(Company) : bool&#10;+ DeleteElement(Company) : bool&#10;+ ReturnListElements() : string&#10;+ ContainsElementInListElements(Company) : bool&#10;+ ContainsElementInListElements(string) : bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="30" vertex="1">
+                    <mxGeometry y="90" width="350" height="106" as="geometry"/>
                 </mxCell>
                 <mxCell id="34" value="PublicationSet" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
-                    <mxGeometry x="-370" y="460" width="360" height="190" as="geometry"/>
+                    <mxGeometry x="-370" y="460" width="360" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="&lt;div&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;+ ListPublication: IReadOnlyCollection&amp;lt;Publication&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="34" vertex="1">
-                    <mxGeometry y="26" width="360" height="50" as="geometry"/>
+                <mxCell id="35" value="&lt;div&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;u&gt;+ instance : PublicationSet&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;+ listPublications : List&amp;lt;Publication&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="34" vertex="1">
+                    <mxGeometry y="26" width="360" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="34" vertex="1">
-                    <mxGeometry y="76" width="360" height="14" as="geometry"/>
+                    <mxGeometry y="86" width="360" height="14" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="+ AddPublication(string, Company, GeoLocation, material) : bool&#10;+AddPublication(string, Company, GeoLocation) : bool&#10;+ AddPublication(Publication) : bool&#10;+ DeletePublication(Publication) : bool&#10;+ ReturnListPublications() : string&#10;+ ContainsPublicationInListPublications(Publication) : bool&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="34" vertex="1">
-                    <mxGeometry y="90" width="360" height="100" as="geometry"/>
+                <mxCell id="37" value="+ AddElement(Publication) : bool&#10;+ DeleteElement(Publication) : bool&#10;+ ReturnListElements() : string&#10;+ ContainsElementInListElements(Publication) : bool&#10;+ ContainsElementInListElements(string) : bool&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="34" vertex="1">
+                    <mxGeometry y="100" width="360" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.643;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="37" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -99,7 +90,7 @@
                         <mxPoint x="110" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.45;entryY=-0.021;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="13" target="6">
+                <mxCell id="44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.45;entryY=-0.021;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="13" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="251" y="900"/>
@@ -107,10 +98,83 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="45" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.454;entryY=1.007;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="10" target="5">
+                <mxCell id="45" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.454;entryY=1.007;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="10" target="5" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="350" y="450" as="sourcePoint"/>
                         <mxPoint x="400" y="400" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="52" value="User" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0050ef;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-150" y="-220" width="440" height="208" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="&lt;div&gt;&lt;div&gt;- name: string&lt;br&gt;&lt;/div&gt;&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;-userRole: Role&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="52" vertex="1">
+                    <mxGeometry y="30" width="440" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="52" vertex="1">
+                    <mxGeometry y="90" width="440" height="14" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="+ ChangeRoleToAdmin():void &#10;+ ChangeRoleToEntrepreneur(heading, location, certification, specialization):void &#10;&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="52" vertex="1">
+                    <mxGeometry y="104" width="440" height="104" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="EntrepreneurReport  : IReport" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0050ef;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-820" y="310" width="310" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="entrepreneur: RoleEntrepreneur" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="56" vertex="1">
+                    <mxGeometry y="30" width="310" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="56" vertex="1">
+                    <mxGeometry y="50" width="310" height="14" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="+ GiveReport: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="56" vertex="1">
+                    <mxGeometry y="64" width="310" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="CompanyReport : IReport" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0050ef;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="50" width="310" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="company: Company" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="60" vertex="1">
+                    <mxGeometry y="30" width="310" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="company: Company" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="60" vertex="1">
+                    <mxGeometry y="50" width="310" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="60" vertex="1">
+                    <mxGeometry y="70" width="310" height="14" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="+ GiveReport: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="60" vertex="1">
+                    <mxGeometry y="84" width="310" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="3" target="60" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="830.0000000000005" y="80" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="790" y="256"/>
+                            <mxPoint x="790" y="80"/>
+                            <mxPoint x="890" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="67" value="&lt;&lt;Interface&gt;&gt;&#10;ISet&lt;T&gt;&#10;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="-790" y="530" width="340" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="&#10;+ AddElement(T) : bool&#10;+ DeleteElement(T) : bool&#10;+ ReturnListElements() : string&#10;+ ContainsElementInListElements(T) : bool&#10;+ ContainsElementInListElements(string) : bool&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="67">
+                    <mxGeometry y="40" width="340" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.474;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="37" target="67">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-410" y="570"/>
+                            <mxPoint x="-410" y="470"/>
+                            <mxPoint x="-629" y="470"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.474;entryY=0.007;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="33" target="67">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-410" y="334"/>
+                            <mxPoint x="-410" y="470"/>
+                            <mxPoint x="-629" y="470"/>
+                        </Array>
                     </mxGeometry>
                 </mxCell>
             </root>
