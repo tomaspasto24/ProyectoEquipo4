@@ -13,9 +13,12 @@ namespace Bot
     public class CompanySet : ISetOfElement<Company>
     {
         private static CompanySet instance;
-        private IList<Company> listCompanies = new List<Company>();
+        private IList<Company> listCompanies;
 
-        private CompanySet() { }
+        private CompanySet()
+        {
+            this.Initialize();
+        }
 
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase CompanySet,
@@ -156,6 +159,14 @@ namespace Bot
             {
                 throw new ArgumentNullException(nameof(elementName));
             }
+        }
+
+        /// <summary>
+        /// Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
+        /// </summary>
+        public void Initialize()
+        {
+            this.listCompanies = new List<Company>();
         }
     }
 }

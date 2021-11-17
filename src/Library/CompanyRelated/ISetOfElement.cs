@@ -43,5 +43,11 @@ namespace Bot
         /// <returns><c>True</c> en caso de que se pueda encontrar y <c>False</c> en caso
         /// contrario.</returns>
         bool ContainsElementInListElements(string elementName);
+
+        /// <summary>
+        /// Método que debe ser ejecutado por el constructor de la clase. Esto pide de cierta forma a la clase que implemente
+        /// la interfaz ISetOfElement a que aplique el patrón Singleton. 
+        /// </summary>
+        void Initialize();
     }
 }

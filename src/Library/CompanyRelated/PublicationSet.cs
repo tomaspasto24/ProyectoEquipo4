@@ -13,9 +13,12 @@ namespace Bot
     public class PublicationSet : ISetOfElement<Publication>
     {
         private static PublicationSet instance;
-        private IList<Publication> listPublications = new List<Publication>();
+        private IList<Publication> listPublications;
         
-        private PublicationSet() { }
+        private PublicationSet()
+        {
+            this.Initialize();
+        }
 
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase PublicationSet,
@@ -154,6 +157,14 @@ namespace Bot
             {
                 throw new ArgumentNullException(nameof(elementName));
             }
+        }
+
+        /// <summary>
+        /// Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
+        /// </summary>
+        public void Initialize()
+        {
+            this.listPublications = new List<Publication>();
         }
     }
 }
