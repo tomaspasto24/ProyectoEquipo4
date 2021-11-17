@@ -38,6 +38,10 @@ namespace Bot
             {
                 throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
             }
+            if (request.Text == null)
+            {
+                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
+            }
 
             if ((user.HandlerState == Bot.State.Start) && (request.Text.Equals("/registro")))
             {

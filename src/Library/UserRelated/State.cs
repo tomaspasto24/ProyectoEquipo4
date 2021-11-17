@@ -15,6 +15,11 @@ namespace Bot
         ConfirmingCityEntrepreneur,
         ConfirmingAdressEntrepreneur,
         ConfirmingCertificationEntrepreneur,
-        ConfirmingSpecializationEntrepeneur
+        ConfirmingSpecializationEntrepeneur,
+        ConfirmingCompanyName,
+        ConfirmingCompanyHeader,
+        ConfirmingCompanyAdress,
+        ConfirmingCompanyCity,
+        ConfirmingCompanyContact
     }
 }

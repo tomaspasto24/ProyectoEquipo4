@@ -49,7 +49,7 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!(user.UserRole is RoleEntrepreneur) || !(user.UserRole is RoleUserCompany))
+            if (!(user.UserRole is RoleEntrepreneur || user.UserRole is RoleUserCompany))
             {
                 throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
             }
@@ -103,11 +103,6 @@ namespace Bot
                     response = $"No hay publicaciones cerradas en los ultimos 30 dias para la empresa: {((RoleUserCompany)user.UserRole).company.Name}";
                     return false;
                 }
-            }
-            else if (user.UserRole is RoleAdmin && request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
-            {
-                response = "Disculpa, no eres un emprendedor o un usuario empresa";
-                return false;
             }
 
             response = string.Empty;

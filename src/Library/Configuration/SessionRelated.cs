@@ -116,5 +116,29 @@ namespace Bot
             }
             return null;
         }
+
+        public Company GetCompanyByName(string companyName)
+        {
+            foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
+            {
+                if (SessionRelated.Instance.DiccUserTokens[token].Name.ToLower().Equals(companyName))
+                {
+                    return SessionRelated.Instance.DiccUserTokens[token];
+                }
+            }
+            return null;
+        }
+
+        public string GetTokenByCompany(Company company)
+        {
+            foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
+            {
+                if (SessionRelated.Instance.DiccUserTokens[token].Equals(company))
+                {
+                    return token;
+                }
+            }
+            return null;
+        }
     }
 }

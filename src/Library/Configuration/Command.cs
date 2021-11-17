@@ -12,125 +12,93 @@ namespace Bot
     /// </summary>
     public class Command
     {
+        //TODO Colocar explicacion para cada comando breve.
+        
         /// <summary>
-        /// Lista de comandos
+        /// Lista de comandos que un entrepeneur puede ejecutar.
         /// </summary>
-        public List<string> CommandsList { get; set; }
-
-        /// <summary>
-        /// Constructor de la clase Command. Asigna a la lista de comandos, todos los comandos disponibles.
-        /// </summary>
-        public Command()
+        /// <typeparam name="string"></typeparam>
+        /// <returns></returns>
+        private static List<string> entrepeneurCommandList = new List<string>()
         {
-            this.CommandsList = new List<string>()
-            {
-                "/comandos",
-                "/registro",
-                "/hola",
-                "/exit",
-                "/busqueda",
-                "/reporte",
-                "/contacto",
-                "/publicar",
-                "/generartoken",
-                "/infoemprendedor"
-            };
-        }
-
-        /// <summary>
-        /// Metodo que retorna una lista de comandos para el emprendedor
-        /// </summary>
-        /// <returns>Lista de comandos</returns>
-        public List<string> EntrepreneurList()
+            "/comandos",
+            "/registro",
+            "/hola",
+            "/exit",
+            "/busqueda",
+            "/reporte",
+            "/contacto",
+            "/infoemprendedor",
+            // TODO habilitaciones cuales tiene
+        };
+        
+        private static List<string> companyUserCommandList = new List<string>()
         {
-            List<string> list = new List<string>()
-            {
-                "/comandos",
-                "/registro",
-                "/hola",
-                "exit",
-                "/busqueda",
-                "/reporte",
-                "/contacto",
-                "/infoemprendedor"
-            };
-            return list;
-        }
+            "/comandos",
+            "/hola",
+            "/exit",
+            "/reporte",
+            "/publicar"
+            // TODO crear el material y despues si, usar el publicar (sin material no puedo crear una publicacion) => Crear /materiales
+        };
 
-        /// <summary>
-        /// Metodo que retorna una lista de comandos para el usuario empresa
-        /// </summary>
-        /// <returns>Lista de comandos</returns>
-        public List<string> CompanyUserList()
+        private static List<string> adminCommandList = new List<string>()
         {
-            List<string> list = new List<string>()
-            {
-                "/comandos",
-                "/hola",
-                "exit",
-                "/reporte",
-                "/publicar"
-            };
-            return list;
-        }
+            "/comandos",
+            "/hola",
+            "/exit",
+            "/generartoken"
+        };
 
-        /// <summary>
-        /// Metodo que retorna una lista de comnados para el admin
-        /// </summary>
-        /// <returns>Lista de comandos</returns>
-        public List<string> AdminList()
+
+        private static List<string> defaultCommandList = new List<string>()
         {
-            List<string> list = new List<string>()
-            {
-                "/comandos",
-                "/hola",
-                "exit",
-                "/generartoken"
-            };
-            return list;
-        }
+            "/comandos",
+            "/hola",
+            "/exit",
+            "/emprender"
+        };
+
 
         /// <summary>
         /// Metodo para retornar la lista de comandos segun que usuario la pida.
         /// </summary>
         /// <param name="userId">Id del usuario que pide la lista de comandos</param>
-        /// <returns>Lista de comandos</returns>
-        public string ReturnCommands(int userId)
+        /// /// <returns>Lista de comandos</returns>
+        public static string ReturnCommands(int userId)
         {
-            string commandList = string.Empty;
             UserInfo user = SessionRelated.Instance.GetUserById(userId);
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
             if (user.UserRole is RoleEntrepreneur)
             {
-                foreach (string command in EntrepreneurList())
+                foreach (string command in entrepeneurCommandList)
                 {
-                    commandList = commandList + command + "\n";
+                    sb.Append(command).Append("\n");
                 }
             }
             else if (user.UserRole is RoleUserCompany)
             {
-                foreach (string command in CompanyUserList())
+                foreach (string command in companyUserCommandList)
                 {
-                    commandList = commandList + command + "\n";
+                    sb.Append(command).Append("\n");
+                }
+            }
+            else if (user.UserRole is RoleAdmin)
+            {
+                foreach (string command in adminCommandList)
+                {
+                    sb.Append(command).Append("\n");
                 }
             }
             else
             {
-                foreach (string command in AdminList())
+                foreach (string command in defaultCommandList)
                 {
-                    commandList = commandList + command + "\n";
+                    sb.Append(command).Append("\n");
                 }
             }
-            return commandList;
+            return sb.ToString();
         }
-
-        // /// <summary>
-        // /// Metodo para verificar si el comando pasado como parametro existe en la lista de comandos.
-        // /// </summary>
-        // /// <param name="command">Comando a verificar</param>
-        // /// <returns>Si la lista contiene el comando buscado</returns>
-        // public bool ExistingCommand(string command)
-        // {
-        //     return this.CommandsList.Contains(command.ToLower());
-        // }
     }
 }

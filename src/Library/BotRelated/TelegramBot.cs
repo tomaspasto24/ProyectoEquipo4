@@ -11,19 +11,15 @@ namespace Library
 
         private const string TELEBRAM_BOT_TOKEN = "2100960953:AAGqylH0OVd18h5dJOPPZ0orCZOk6T4Wf9s";
         private static TelegramBot instance;
-        private ITelegramBotClient bot;
 
         private TelegramBot()
         {
-            this.bot = new TelegramBotClient(TELEBRAM_BOT_TOKEN);
+            this.Client = new TelegramBotClient(TELEBRAM_BOT_TOKEN);
         }
 
         public ITelegramBotClient Client
         {
-            get
-            {
-                return this.bot;
-            }
+            get;
         }
 
         private User BotInfo
@@ -64,8 +60,8 @@ namespace Library
 
         public void StartCommunication()
         {
-            bot.OnMessage += OnMessage;
-            bot.StartReceiving();
+            Client.OnMessage += OnMessage;
+            Client.StartReceiving();
         }
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
@@ -93,6 +89,8 @@ namespace Library
 
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
+            Bot.Message msg = new Bot.Message(chatId, message.Text);
+
 
             UserInfo userInfo = SessionRelated.Instance.GetUserById(chatId);
 
@@ -100,8 +98,6 @@ namespace Library
             {
                 SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId, new RoleDefault()));
             }
-
-            Bot.Message msg = new Bot.Message(chatId, message.Text);
 
             string response;
             IHandler result;
@@ -111,18 +107,18 @@ namespace Library
             }
             catch (System.Exception e)
             {
-                bot.SendTextMessageAsync(chatId, $"Ha sucedido un error: {e.Message}");
+                Client.SendTextMessageAsync(chatId, $"Ha sucedido un error: {e.Message}");
                 return;
             }
 
             // TODO Poder cancelar cosas en los handlers
             if (result == null)
             {
-                bot.SendTextMessageAsync(chatId, "Disculpa no te entiendo");
+                Client.SendTextMessageAsync(chatId, "Disculpa no te entiendo");
             }
             else
             {
-                bot.SendTextMessageAsync(chatId, response);
+                Client.SendTextMessageAsync(chatId, response);
             }
         }
     }

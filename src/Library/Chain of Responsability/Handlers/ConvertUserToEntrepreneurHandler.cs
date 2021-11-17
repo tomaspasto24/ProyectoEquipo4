@@ -22,7 +22,7 @@ namespace Bot
 
         private string certification;
 
-        string specialization;
+        private string specialization;
 
         /// <summary>
         /// Constructor de la clase RegisterHandler
@@ -46,71 +46,59 @@ namespace Bot
                 throw new IncorrectRoleException("Disculpa no tienes el rol adecuado para utilizar este comando");
             }
 
-            if ((user.HandlerState == Bot.State.Start) && (request.Text == "/emprender"))
+            if (request.Text == null)
+            {
+                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
+            }
+            //TODO testear
+            if (request.Text.ToLower().Equals("/cancelar"))
+            {
+                user.HandlerState = Bot.State.Start;
+                response = "Operación cancelada.";
+                return true;
+            }
+
+            if (user.HandlerState == Bot.State.Start && request.Text.ToLower().Equals("/emprender"))
             {
                 user.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-                response = "Por favor, dinos tu rubro: ";
+                // response = "Por favor, dinos tu rubro: ";
+                response = "Por favor, dinos tu rubro. \nEnvia \"/cancelar\" para cancelar la operación";
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingHeadingEntrepreneur)
             {
-                if (request.Text == null)
-                {
-                    // TODO Exception
-                }
-
                 user.HandlerState = Bot.State.ConfirmingCityEntrepreneur;
                 heading = request.Text;
-                response = "Rubro registrado. Ahora dinos en que ciudad vives: ";
+                response = "Rubro registrado. Ahora dinos en que ciudad vives. \nEnvia \"/cancelar\" para cancelar la operación";
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingCityEntrepreneur)
             {
-                if (request.Text == null)
-                {
-                    // TODO exception
-                }
-
                 user.HandlerState = Bot.State.ConfirmingAdressEntrepreneur;
                 city = request.Text;
-                response = "Ciudad registrada. Ahora dinos tu direccion: ";
+                response = "Ciudad registrada. Ahora dinos tu direccion. \nEnvia \"/cancelar\" para cancelar la operación";
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingAdressEntrepreneur)
             {
-                if (request.Text == null)
-                {
-                    // TODO exception
-                }
-
                 user.HandlerState = Bot.State.ConfirmingCertificationEntrepreneur;
                 address = request.Text;
-                response = "Direccion registrada. Ahora dinos tu certificacion: ";
+                response = "Direccion registrada. Ahora dinos tu certificacion. \nEnvia \"/cancelar\" para cancelar la operación";
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingCertificationEntrepreneur)
             {
-                if (request.Text == null)
-                {
-                    // TODO Exception
-                }
-
                 user.HandlerState = Bot.State.ConfirmingSpecializationEntrepeneur;
                 certification = request.Text;
-                response = "Certificacion registrada. Ahora dinos tu especializacion";
+                response = "Certificacion registrada. Ahora dinos tu especializacion. \nEnvia \"/cancelar\" para cancelar la operación";
                 return true;
             }
             else if (user.HandlerState == Bot.State.ConfirmingSpecializationEntrepeneur)
             {
-                if (request.Text == null)
-                {
-                    // TODO exception
-                }
-
                 user.HandlerState = Bot.State.Start;
                 specialization = request.Text;
                 response = "Especializacion registrada. Ahora eres un emprendedor!";
-                RoleEntrepreneur roleEntrepreneur = new RoleEntrepreneur(heading, 
+                RoleEntrepreneur roleEntrepreneur = new RoleEntrepreneur(heading,
                 null); // TODO Preguntar que onda con geolocation, no me deja registrarla CAMBIAR DE NULL A UNA LOCATION
                 user.UserRole = roleEntrepreneur;
                 return true;
