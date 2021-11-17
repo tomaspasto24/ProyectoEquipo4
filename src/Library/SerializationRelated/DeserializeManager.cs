@@ -5,6 +5,10 @@ using System.IO;
 
 namespace Bot
 {
+    /// <summary>
+    /// Clase que se encarga de administrar la deserialización, es decir, extraer todos las clases de los archivos JSON
+    /// y llevarlas al programa.
+    /// </summary>
     public class DeserializeManager 
     {
         private const string pathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
@@ -28,6 +32,11 @@ namespace Bot
             return instance;
         }
 
+        /// <summary>
+        /// Método principal de la clase que se encarga de accionar los métodos de Deserialización y obtener sus
+        /// resultados booleanos.
+        /// </summary>
+        /// <returns><c>True</c> en caso de que todo el proceso de deserialización este correcto, <c>False</c> en caso contrario.</returns>
         public bool DeserializeProgram()
         {
             bool conditionCompanies = this.DeserializeCompanies();

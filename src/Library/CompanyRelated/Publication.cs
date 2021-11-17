@@ -12,7 +12,7 @@ namespace Bot
     /// Publication tiene la responsabilidad de crear instancias de la clase Material porque guarda instancias
     /// de Material y lo usa de forma cercana.
     /// </summary>
-    public class Publication : IJsonConvertible
+    public class Publication
     {
         private string title;
         private DateTime date;
@@ -277,16 +277,6 @@ namespace Bot
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
         {
             this.InterestedPerson = interestedPerson;
-        }
-
-        /// <summary>
-        /// Método que convierte la propia clase Publicación en formato JSON.
-        /// </summary>
-        /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
-        public string ConvertToJson()
-        {
-            JsonSerializerOptions options = new(){ReferenceHandler = MyReferenceHandler.Instance, WriteIndented = true};
-            return JsonSerializer.Serialize(this, options);
         }
     }
 }

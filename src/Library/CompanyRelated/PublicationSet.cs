@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -10,9 +12,10 @@ namespace Bot
     /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
     /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public class PublicationSet : ISetOfElement<Publication>
+    public class PublicationSet : ISetOfElement<Publication>, IJsonConvertible
     {
         private static PublicationSet instance;
+        [JsonInclude]
         private IList<Publication> listPublications;
         
         private PublicationSet()
@@ -165,6 +168,16 @@ namespace Bot
         public void Initialize()
         {
             this.listPublications = new List<Publication>();
+        }
+
+        /// <summary>
+        /// Método que convierte la lista de la clase Publicación en formato JSON.
+        /// </summary>
+        /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
+        public string ConvertObjectToSaveToJson()
+        {
+            JsonSerializerOptions options = new(){ReferenceHandler = MyReferenceHandler.Instance, WriteIndented = true};
+            return JsonSerializer.Serialize(this.listPublications, options);
         }
     }
 }

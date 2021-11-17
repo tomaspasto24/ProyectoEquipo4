@@ -12,7 +12,7 @@ namespace Bot
     /// Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
     /// un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
     /// </summary>
-    public class Company : IJsonConvertible
+    public class Company
     {
         private string name;
         private string item;
@@ -222,16 +222,6 @@ namespace Bot
         public void AddListHistorialPublication(IReadOnlyList<Publication> listPublications)
         {
             ((List<Publication>)this.listHistorialPublications).AddRange(listPublications);
-        }
-
-        /// <summary>
-        /// Método que convierte el propio objeto en formato JSON.
-        /// </summary>
-        /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
-        public string ConvertToJson()
-        {
-            JsonSerializerOptions options = new(){ReferenceHandler = MyReferenceHandler.Instance, WriteIndented = true};
-            return JsonSerializer.Serialize(this, options);
         }
     }
 }
