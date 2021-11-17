@@ -26,6 +26,24 @@ namespace BotTests
         }
 
         /// <summary>
+        /// Test que se encarga de comprobar que se cumpla el patrón Singleton en cuanto a que siempre se devuelva una
+        /// única instancia y que el constructor sea privado.
+        /// </summary>
+        [Test]
+        public void InstanceTest()
+        {
+            CompanySet instanceTest1 = CompanySet.Instance;
+            CompanySet instanceTest2 = CompanySet.Instance;
+
+            Assert.IsNotNull(instanceTest1.ListCompanies);
+
+            Assert.IsInstanceOf<CompanySet>(instanceTest1);
+            Assert.IsInstanceOf<CompanySet>(instanceTest2);
+
+            Assert.That(instanceTest1 == instanceTest2);
+        }
+
+        /// <summary>
         /// Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
         /// clases Empresa al sistema.
         /// </summary>
@@ -60,6 +78,49 @@ namespace BotTests
             Assert.IsEmpty(CompanySet.Instance.ListCompanies);
             Assert.IsFalse(CompanySet.Instance.ContainsElementInListElements(companyTest1));
             Assert.IsFalse(CompanySet.Instance.ContainsElementInListElements(companyTest2));
+        }
+
+        /// <summary>
+        /// ReturnListElementsTest testea que el string de la lista de Empresas funcione bien.
+        /// </summary>
+        [Test]
+        public void ReturnListElementsTest()
+        {
+            CompanySet.Instance.AddElement(companyTest1);
+            CompanySet.Instance.AddElement(companyTest3);
+
+            string stringTest = CompanySet.Instance.ReturnListElements();
+            System.Console.WriteLine(stringTest);
+
+            Assert.That(stringTest is string);
+            Assert.That(stringTest.Contains("Empresas:"));
+            Assert.That(stringTest.Contains("Prueba1"));
+            Assert.That(stringTest.Contains("Prueba2"));
+        }
+
+        /// <summary>
+        /// ContainsCompanyInListCompaniesTest comprueba que el funcionamiento de encontrar
+        /// si las clases Empresa se encuentran en el sistema con la condición del nombre de la Empresa (linea 118 
+        /// da <c>True</c> porque encuentra el nombre, como debe ser ya que no se admiten 2 empresas diferentes con mismo nombre.
+        /// </summary>
+        [Test]
+        public void ContainsCompanyInListCompaniesTest()
+        {
+            CompanySet.Instance.AddElement(companyTest1);
+            CompanySet.Instance.AddElement(companyTest3);
+
+            string nameCompanyTest1 = companyTest1.Name;
+            string nameCompanyTest2 = companyTest2.Name;
+
+            bool test6 = CompanySet.Instance.ContainsElementInListElements(nameCompanyTest1);
+            bool test7 = CompanySet.Instance.ContainsElementInListElements(nameCompanyTest2);
+
+            Assert.IsTrue(CompanySet.Instance.ContainsElementInListElements(companyTest1));
+            Assert.IsTrue(CompanySet.Instance.ContainsElementInListElements(companyTest2));
+            Assert.IsTrue(CompanySet.Instance.ContainsElementInListElements(companyTest3));
+
+            Assert.IsTrue(CompanySet.Instance.ContainsElementInListElements(nameCompanyTest1));
+            Assert.IsTrue(CompanySet.Instance.ContainsElementInListElements(nameCompanyTest2));
         }
     }
 }

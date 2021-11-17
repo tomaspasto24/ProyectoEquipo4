@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -10,12 +12,16 @@ namespace Bot
     /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
     /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public class PublicationSet : ISetOfElement<Publication>
+    public class PublicationSet : ISetOfElement<Publication>, IJsonConvertible
     {
         private static PublicationSet instance;
-        private IList<Publication> listPublications = new List<Publication>();
+        [JsonInclude]
+        private IList<Publication> listPublications;
         
-        private PublicationSet() { }
+        private PublicationSet()
+        {
+            this.Initialize();
+        }
 
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase PublicationSet,
@@ -78,8 +84,7 @@ namespace Bot
         {
             if (this.ContainsElementInListElements(element))
             {
-                this.listPublications.Remove(element);
-                return true;
+                return this.listPublications.Remove((this.listPublications as List<Publication>).Find(publicationInList => publicationInList.Title == element.Title));
             }
             else
             {
@@ -155,6 +160,28 @@ namespace Bot
             {
                 throw new ArgumentNullException(nameof(elementName));
             }
+        }
+
+        /// <summary>
+        /// Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
+        /// </summary>
+        public void Initialize()
+        {
+            this.listPublications = new List<Publication>();
+        }
+
+        /// <summary>
+        /// Método que convierte la lista de la clase Publicación en formato JSON.
+        /// </summary>
+        /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
+        public string ConvertObjectToSaveToJson()
+        {
+            JsonSerializerOptions options = new () 
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true,
+            };
+            return JsonSerializer.Serialize(this.listPublications, options);
         }
     }
 }

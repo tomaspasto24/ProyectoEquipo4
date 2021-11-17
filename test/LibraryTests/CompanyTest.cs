@@ -93,6 +93,7 @@ namespace BotTests
         [Test]
         public void UsersCompanyTest()
         {
+            List<UserInfo> listUser = new List<UserInfo>();
             UserInfo userTest1 = new UserInfo("Test1", 12, new RoleUserCompany(companyTest));
             UserInfo userTest2 = new UserInfo("Test2", 22, new RoleUserCompany(companyTest));
             companyTest.AddUser(userTest1);
@@ -100,11 +101,31 @@ namespace BotTests
 
             Assert.IsNotNull(companyTest.ListUsers);
 
-            companyTest.AddUser(userTest1);
-            companyTest.AddUser(userTest2);
-            Assert.That(companyTest.ListUsers.Count == 2);
+            listUser.Add(userTest1);
+            listUser.Add(userTest2);
+            companyTest.AddUser(listUser);
+
+            Assert.That(companyTest.ListUsers.Count == 4);
             companyTest.DeleteUser(userTest1);
-            Assert.That(companyTest.ListUsers.Count == 1);
+            Assert.That(companyTest.ListUsers.Count == 3);
+        }
+
+        /// <summary>
+        /// Testea que el método ReturnContactTest retorne la cadena de carácteres con la información correcta.
+        /// </summary>
+        [Test]
+        public void ReturnContactTest()
+        {
+            string stringTest = companyTest.ReturnContact();
+            System.Console.WriteLine(stringTest);
+
+            Assert.That(stringTest is string);
+            Assert.That(stringTest.Contains("Empresa:"));
+            Assert.That(stringTest.Contains("Rubro:"));
+            Assert.That(stringTest.Contains("Contacto:"));
+            Assert.That(stringTest.Contains("Test"));
+            Assert.That(stringTest.Contains("TestItem"));
+            Assert.That(stringTest.Contains("TestContact"));
         }
     }
 }
