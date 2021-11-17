@@ -30,6 +30,7 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
+            // TODO filtrar por role (if grande que ocupe todos los ifs pequeños :) )
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
             if (request.Text == null)

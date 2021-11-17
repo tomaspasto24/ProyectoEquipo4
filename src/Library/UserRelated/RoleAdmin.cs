@@ -34,5 +34,10 @@ namespace Bot
         // {
         //     globalQualificationList.Remove(rating);
         // }
+
+        public override string ToString()
+        {
+            return "Admin";
+        }
     }
 }

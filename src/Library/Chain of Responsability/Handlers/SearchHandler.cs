@@ -31,6 +31,11 @@ namespace Bot
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             // TODO
             
+            if (user.UserRole is RoleEntrepreneur)
+            {
+                
+            }
+
             response = string.Empty;
             return false;
         }

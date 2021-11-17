@@ -1225,7 +1225,7 @@
             <summary>
             Clase RoleUserCompany se encarga de servir como representación de un usuario
             que forma parte de una empresa. 
-            </summary>
+            /// </summary>
         </member>
         <member name="P:Bot.RoleUserCompany.company">
             <summary>

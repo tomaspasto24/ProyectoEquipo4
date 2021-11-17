@@ -35,7 +35,6 @@ namespace Bot
 
             if (user.UserRole is RoleDefault)
             {
-
                 if (request.Text == null)
                 {
                     throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
@@ -90,6 +89,9 @@ namespace Bot
                     return true;
                 }
             }
+
+            // TODO limpiar la clase EntrepeneurData
+
             response = string.Empty;
             return false;
         }

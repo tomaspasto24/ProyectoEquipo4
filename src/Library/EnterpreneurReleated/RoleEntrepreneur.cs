@@ -136,9 +136,9 @@ namespace Bot
             return publication.Company.ReturnContact();
         }
 
-        public string ToString()
+        public override string ToString()
         {
-            
+            return "Emprendedor";
         }
     }
 }
