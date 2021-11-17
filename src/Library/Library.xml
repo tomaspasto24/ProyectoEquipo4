@@ -19,7 +19,7 @@
             Metodo publico y abstracto para comenzar la comunicacion entre el usuario y el canal y el bot o la consola.
             </summary>
         </member>
-        <member name="M:Bot.AbstractBot.SendMessage(System.Int32,System.String)">
+        <member name="M:Bot.AbstractBot.SendMessage(System.Int64,System.String)">
             <summary>
             Metodo para enviar el mensaje por el canal donde se esta comunicando
             </summary>
@@ -43,7 +43,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bot.ConsoleBot.SendMessage(System.Int32,System.String)">
+        <member name="M:Bot.ConsoleBot.SendMessage(System.Int64,System.String)">
             <summary>
             Manda un mensaje, en este caso, por consola.
             </summary>
@@ -114,25 +114,25 @@
             </summary>
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
-        <member name="M:Bot.CommandHandler.EntrepreneurList">
+        <member name="M:Bot.CommandHandler.EntrepreneurCommandList">
             <summary>
             Metodo que retorna una lista de comandos para el emprendedor
             </summary>
             <returns>Lista de comandos</returns>
         </member>
-        <member name="M:Bot.CommandHandler.CompanyUserList">
+        <member name="M:Bot.CommandHandler.CompanyUserCommandList">
             <summary>
             Metodo que retorna una lista de comandos para el usuario empresa
             </summary>
             <returns>Lista de comandos</returns>
         </member>
-        <member name="M:Bot.CommandHandler.AdminList">
+        <member name="M:Bot.CommandHandler.AdminCommandList">
             <summary>
             Metodo que retorna una lista de comnados para el admin
             </summary>
             <returns>Lista de comandos</returns>
         </member>
-        <member name="M:Bot.CommandHandler.DefaultList">
+        <member name="M:Bot.CommandHandler.DefaultCommandList">
             <summary>
             Metodo que retorna una lista de comnados para el admin
             </summary>
@@ -175,6 +175,24 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.ConvertUserToEntrepreneurHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.DefaultHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.DefaultHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.DefaultHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -482,16 +500,27 @@
         </member>
         <member name="T:Bot.CompanySet">
             <summary>
-            Conjunto de Empresas, clase estática que administra la lista de Empresas en general.
+            Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general. Su constructor se encuentra 
+            privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
+            GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
             </summary>
         </member>
-        <member name="P:Bot.CompanySet.ListCompany">
+        <member name="P:Bot.CompanySet.Instance">
             <summary>
-            Obtiene la lista de Empresas, esto para que la clase Búsqueda pueda manipular eficientemente las Publicaciones.
+            Obtiene el acceso a la propia instancia de la clase CompanySet,
+            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
+            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
+            siempre se use la misma variable instancia y se cumpla con Singleton.
             </summary>
-            <value>Clase Empresa.</value>
+            <returns>Instancia CompanySet.</returns>
         </member>
-        <member name="M:Bot.CompanySet.AddCompany(System.String,System.String,Bot.GeoLocation,System.String,System.Collections.Generic.IReadOnlyList{Bot.UserInfo},System.Collections.Generic.IReadOnlyList{Bot.Publication},System.Collections.Generic.IReadOnlyList{Bot.Publication})">
+        <member name="P:Bot.CompanySet.ListCompanies">
+            <summary>
+            Obtiene la lista de Empresas.
+            </summary>
+            <value>Lista de solo lectura de clase Empresa.</value>
+        </member>
+        <member name="M:Bot.CompanySet.AddElement(System.String,System.String,Bot.GeoLocation,System.String)">
             <summary>
             Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
             </summary>
@@ -499,42 +528,92 @@
             <param name="item">Rubro de Empresa.</param>
             <param name="location">Ubicación de Empresa.</param>
             <param name="contact">Contacto de Empresa.</param>
-            <param name="listUsers">Lista de Users.</param>
-            <param name="listOwnPublications">Lista propia de publicaciones.</param>
-            <param name="listHistorialPublications">Lista Historial de Publicaciones.</param>
             <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="M:Bot.CompanySet.AddCompany(Bot.Company)">
+        <member name="M:Bot.CompanySet.AddElement(Bot.Company)">
             <summary>
-            Sobrecarga del método AddCompany que permite ingresar un objeto Empresa como parámetro
-            para ser ingresado al sistema.
+            Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
             </summary>
-            <param name="company">Empresa.</param>
-            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso contrario.</returns>
+            <param name="element">Elemento Empresa.</param>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
+            contrario.</returns>
         </member>
-        <member name="M:Bot.CompanySet.DeleteCompany(Bot.Company)">
+        <member name="M:Bot.CompanySet.DeleteElement(Bot.Company)">
             <summary>
             Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema.
             </summary>
-            <param name="company">Empresa.</param>
+            <param name="element">Empresa.</param>
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="M:Bot.CompanySet.ReturnListCompanies">
+        <member name="M:Bot.CompanySet.ReturnListElements">
             <summary>
             Método que retorna la lista completa de Empresas en un string con sus respectivos
             índices.
             </summary>
             <returns>String con el nombre de la Empresa y sus indices.</returns>
         </member>
-        <member name="M:Bot.CompanySet.ContainsCompanyInListCompanies(Bot.Company)">
+        <member name="M:Bot.CompanySet.ContainsElementInListElements(Bot.Company)">
             <summary>
             Método simple que se encarga de comprobar si una clase Empresa se encuentra
             en el sistema de Empresas.
             </summary>
-            <param name="company">Empresa.</param>
+            <param name="element">Empresa.</param>
             <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.CompanySet.ContainsElementInListElements(System.String)">
+            <summary>
+            Sobrecarga de ContainsCompanyInListCompanies, se encarga de comprobar si el nombre de una clase Empresa se encuentra
+            en la lista de Empresas.
+            </summary>
+            <param name="elementName">Nombre de Empresa.</param>
+            <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="T:Bot.ISet`1">
+            <summary>
+            Interfaz pública ISet para CompanySet y PublicationSet.
+            </summary>
+            <typeparam name="T">Elemento T (Empresa o Publicación).</typeparam>
+        </member>
+        <member name="M:Bot.ISet`1.AddElement(`0)">
+            <summary>
+            Método que se encarga de agregar un elemento a la lista de elementos del propio Set en cuestión.
+            </summary>
+            <param name="element">Elemento.</param>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.ISet`1.DeleteElement(`0)">
+            <summary>
+            Método que se encarga de eliminar un elemento a la lista de elementos del propio Set en cuestión.
+            </summary>
+            <param name="element">Elemento.</param>
+            <returns><c>True</c> en caso de que se pueda eliminar y <c>False</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.ISet`1.ReturnListElements">
+            <summary>
+            Método que retorna en forma de string la lista de elementos.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="M:Bot.ISet`1.ContainsElementInListElements(`0)">
+            <summary>
+            Método que se encarga de buscar el elemento en la lista de elementos y retornar si se encuentra o no.
+            </summary>
+            <param name="element"></param>
+            <returns><c>True</c> en caso de que se pueda encontrar y <c>False</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.ISet`1.ContainsElementInListElements(System.String)">
+            <summary>
+            Sobrecarga del método ContainsElementInListElements, mismo funcionamiento pero con el nombre del elemento.
+            </summary>
+            <param name="elementName">Nombre del elemento.</param>
+            <returns><c>True</c> en caso de que se pueda encontrar y <c>False</c> en caso
             contrario.</returns>
         </member>
         <member name="T:Bot.Material">
@@ -718,97 +797,84 @@
         </member>
         <member name="T:Bot.PublicationSet">
             <summary>
-            Clase PublicationSet que se encarga de la gestion de las clases Publications y de que
-            estas persistan en el sistema. Tiene un parecido a la clase CompanySet pero no se puede
-            implementar abstracciones porque las clases estáticas no permiten este tipo de implementaciones.
+            Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general. Su constructor se encuentra 
+            privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
+            GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
             </summary>
         </member>
-        <member name="P:Bot.PublicationSet.ListPublication">
+        <member name="P:Bot.PublicationSet.Instance">
             <summary>
-            Obtiene la lista de clases Publicación extraida del archivo PublicationSet.txt.
+            Obtiene el acceso a la propia instancia de la clase PublicationSet,
+            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
+            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
+            siempre se use la misma variable instancia y se cumpla con Singleton.
             </summary>
-            <value>Lista Publicación de solo lectura.</value>
+            <returns>Instancia PublicationSet.</returns>
         </member>
-        <member name="M:Bot.PublicationSet.AddPublication(System.String,Bot.Company,Bot.GeoLocation,Bot.Material,System.Collections.Generic.IReadOnlyList{Bot.Material},System.Collections.Generic.IReadOnlyList{System.String})">
+        <member name="P:Bot.PublicationSet.ListPublications">
             <summary>
-            Método que se encarga de agregar una clase Publicación al sistema para que pueda persistir aunque el bot caiga.
+            Obtiene la lista de Publicaciones.
             </summary>
-            <param name="title">Titulo.</param>
-            <param name="company">Empresa.</param>
-            <param name="location">Ubicación.</param>
-            <param name="material">Material.</param>
-            <param name="listMaterials">Lista Material.</param>
-            <param name="listQualifications">Lista Habilitaciones.</param>
-            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso contrario.</returns>
+            <value>Lista de solo lectura de clase Publicación.</value>
         </member>
-        <member name="M:Bot.PublicationSet.AddPublication(Bot.Publication)">
+        <member name="M:Bot.PublicationSet.AddElement(Bot.Publication)">
             <summary>
-            Sobrecarga del método AddCompany que permite ingresar un objeto Publicación como parámetropara ser ingresado al sistema.
+            Método que se encarga de agregar una Publicación a la lista de Publicaciones del sistema.
             </summary>
-            <param name="publication"></param>
-            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso contrario.</returns>
+            <param name="element">Elemento Publicación.</param>
+            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
+            contrario.</returns>
         </member>
-        <member name="M:Bot.PublicationSet.DeletePublication(Bot.Publication)">
+        <member name="M:Bot.PublicationSet.DeleteElement(Bot.Publication)">
             <summary>
-            Método que elimina una clase Publicación del sistema.
+            Método que se encarga de eliminar una Publicación de la lista de Publicaciones del sistema.
             </summary>
-            <param name="publication">Publicación.</param>
+            <param name="element">Publicación.</param>
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="M:Bot.PublicationSet.ReturnListPublications">
+        <member name="M:Bot.PublicationSet.ReturnListElements">
             <summary>
-            Método que se encarga de retornar un string con el listado de publicaciones.
+            Método que retorna la lista completa de Publicaciones en un string.
             </summary>
-            <returns>Cadena de caracteres.</returns>
+            <returns>String con los nombres de las Publicaciones.</returns>
         </member>
-        <member name="M:Bot.PublicationSet.ContainsPublicationInListPublications(Bot.Publication)">
+        <member name="M:Bot.PublicationSet.ContainsElementInListElements(Bot.Publication)">
             <summary>
             Método simple que se encarga de comprobar si una clase Publicación se encuentra
             en el sistema de Publicaciones.
             </summary>
-            <param name="publication">Publicación.</param>
-            <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso contrario.</returns>
+            <param name="element">Publicación.</param>
+            <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="M:Bot.PublicationSet.ContainsElementInListElements(System.String)">
+            <summary>
+            Sobrecarga de ContainsElementInListElements, se encarga de comprobar si el nombre de una clase Publicación se encuentra
+            en la lista de Publicaciones.
+            </summary>
+            <param name="elementName">Nombre de Publicación.</param>
+            <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
+            contrario.</returns>
         </member>
         <member name="T:Bot.Command">
             <summary>
             Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
             </summary>
         </member>
-        <member name="P:Bot.Command.CommandsList">
+        <member name="F:Bot.Command.entrepeneurCommandList">
             <summary>
-            Lista de comandos
+            Lista de comandos que un entrepeneur puede ejecutar.
             </summary>
+            <typeparam name="string"></typeparam>
+            <returns></returns>
         </member>
-        <member name="M:Bot.Command.#ctor">
-            <summary>
-            Constructor de la clase Command. Asigna a la lista de comandos, todos los comandos disponibles.
-            </summary>
-        </member>
-        <member name="M:Bot.Command.EntrepreneurList">
-            <summary>
-            Metodo que retorna una lista de comandos para el emprendedor
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.Command.CompanyUserList">
-            <summary>
-            Metodo que retorna una lista de comandos para el usuario empresa
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.Command.AdminList">
-            <summary>
-            Metodo que retorna una lista de comnados para el admin
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.Command.ReturnCommands(System.Int32)">
+        <member name="M:Bot.Command.ReturnCommands(System.Int64)">
             <summary>
             Metodo para retornar la lista de comandos segun que usuario la pida.
             </summary>
             <param name="userId">Id del usuario que pide la lista de comandos</param>
-            <returns>Lista de comandos</returns>
+            /// <returns>Lista de comandos</returns>
         </member>
         <member name="T:Bot.SessionRelated">
             <summary>
@@ -881,73 +947,72 @@
             <summary>
             Lista de las publiaciones adquiridas por el emprendedor.
             </summary>
-            <typeparam name="Publication">Tipo de la lista devuelta.</typeparam>
-            <returns>Lista de tipo Publication.</returns>
+            <typeparam name="Publication">Publicación.</typeparam>
+            <returns>Coleción de tipo Publication.</returns>
         </member>
         <member name="F:Bot.RoleEntrepreneur.heading">
             <summary>
             Rubro.
             </summary>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation,System.String,System.String)">
+        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation)">
             <summary>
             Constructor de la clase Entrepreneur, setea los valores de los parámetros
             y suma un valor al contador de emprendedores estático.
             </summary>
-            <param name="heading"></param>
-            <param name="geolocation"></param>
-            <param name="certification"></param>
-            <param name="specialization"></param>
-            <returns></returns>
+            <param name="heading">Rubro.</param>
+            <param name="geolocation">Ubicación.</param>
+            <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
+        </member>
+        <member name="P:Bot.RoleEntrepreneur.ReturnCertification">
+            <summary>
+            Obtiene la lista de certificaciones del emprendedor.
+            </summary>
+            <returns>Lista de certificaciones.</returns>
+        </member>
+        <member name="P:Bot.RoleEntrepreneur.ReturnSpecialization">
+            <summary>
+            Obtiene la lista de especializaciones del emprendedor.
+            </summary>
+            <returns>Lista de especializaciones.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddCertification(System.String)">
             <summary>
-            Método para agregarle certificaciones al emprendedor
+            Método para agregarle certificaciones al emprendedor.
             </summary>
-            <param name="certification"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.ReturnCertification">
-            <summary>
-            Método para devolver la lista de certificaciones del emprendedor
-            </summary>
-            <returns></returns>
+            <param name="certification">Certificación.</param>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
             <summary>
-            Método para agregarle espcializaciones al emprendedor
+            Método para agregarle espcializaciones al emprendedor.
             </summary>
-            <param name="specialization"></param>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.ReturnSpecialization">
-            <summary>
-            Método para devolver la lista de especializaciones del emprendedor
-            </summary>
-            <returns></returns>
+            <param name="specialization">Especialización.</param>
         </member>
         <member name="M:Bot.RoleEntrepreneur.SearchingByMaterials(System.String)">
             <summary>
-            Buscar publicaciones por material
+            Buscar publicaciones por material.
             </summary>
-            <returns></returns>
+            <param name="wordToSearch"></param>
+            <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.SearchingByLocation(System.String)">
             <summary>
-            Buscar publicaciones por ubicación
+            Buscar publicaciones por ubicación.
             </summary>
-            <param name="addresToSearch"></param>
-            <returns></returns>
+            <param name="addresToSearch">Palabra clave como ubicación.</param>
+            <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
             <summary>
             Método público que guarda las Publicaciones adquiridas por el emprendedor.
             </summary>
-            <param name="publication">Publicación cerrada.</param>
+            <param name="publication">Publicación.</param>
         </member>
         <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
             <summary>
-            Devuelve la lista con las publicaciones adquiridas por el emprendedor
+            Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
             </summary>
-            <returns></returns>
+            <returns>Lista de publicaciones.</returns>
         </member>
         <member name="M:Bot.RoleEntrepreneur.ContactCompany(Bot.Publication)">
             <summary>
@@ -955,7 +1020,8 @@
             como InterestedPerson de la clase Publication que prefiera. El método termina devolviendo
             el contacto de la empresa dueña de la publicación.
             </summary>
-            <param name="publication"></param>
+            <param name="publication">Publicación de la cual se requiere saber el contacto.</param>
+            <returns>Contacto de la empresa de la publicación como un string.</returns>
         </member>
         <member name="T:Bot.ISearch">
             <summary>
@@ -984,8 +1050,8 @@
             publicaciones y se fija si tiene la misma ubicación recibida. Si es igual, se agrega la publicación a la lista que 
             va a devolver y se va a fijar a la siguiente.
             </summary>
-            <param name="addresToSearch"></param>
-            <returns></returns>
+            <param name="addresToSearch">Dirección para buscar.</param>
+            <returns>Lista de Publicaciones.</returns>
         </member>
         <member name="T:Bot.SearchByMaterial">
             <summary>
@@ -1034,20 +1100,26 @@
             Calcula y retorna la distancia en kilometros entre la propia instancia de clase y la ingresada como parámetro.
             </summary>
             <param name="secondLocation">Segunda clase a calcular distancia.</param>
-            <returns>Distancia de tipo Task double.</returns>
+            <returns>Distancia de tipo double.</returns>
         </member>
         <member name="M:Bot.GeoLocation.CalculateDuration(Bot.GeoLocation)">
             <summary>
             Calcula y retorna la duración entre la propia instancia de clase y la ingresada como parámetro.
             </summary>
             <param name="secondLocation">Segunda clase a calcular duración.</param>
-            <returns>Duración de tipo Task double.</returns>
+            <returns>Duración de tipo double.</returns>
         </member>
         <member name="M:Bot.GeoLocation.GetLocation">
             <summary>
             Retorna el propio objeto Location y descarga el mapa con la ubicación correspondiente.
             </summary>
             <returns>Objeto mismo.</returns>
+        </member>
+        <member name="M:Bot.GeoLocation.IsValid">
+            <summary>
+            Método que revisa si se puede encontrar la ubicación construida.
+            </summary>
+            <returns><c>True</c> en caso de que la ubicación sea válida, <c>False</c> en caso de no ser válida.</returns>
         </member>
         <member name="T:Bot.Message">
             <summary>
@@ -1093,6 +1165,23 @@
             </summary>
             <returns>El reporte de la empresa.</returns>
         </member>
+        <member name="T:Bot.EntrepreneurReport">
+            <summary>
+            clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. esta clase tambien implementa la interfaz IReport y cumple con el patron ISP.
+            </summary>
+        </member>
+        <member name="M:Bot.EntrepreneurReport.#ctor(Bot.RoleEntrepreneur)">
+            <summary>
+            constructor de la clase emprendedor.
+            </summary>
+            <param name="entrepreneur">El nombre del emprendedor.</param>
+        </member>
+        <member name="M:Bot.EntrepreneurReport.GiveReport">
+            <summary>
+            metodo para entregar el reporte del emprendedor.
+            </summary>
+            <returns>El reporte del emprendedor.</returns>
+        </member>
         <member name="T:Bot.IReport">
             <summary>
             interfaz con la firma del metodo que devuelve un reporte
@@ -1136,7 +1225,7 @@
             <summary>
             Clase RoleUserCompany se encarga de servir como representación de un usuario
             que forma parte de una empresa. 
-            </summary>
+            /// </summary>
         </member>
         <member name="P:Bot.RoleUserCompany.company">
             <summary>
@@ -1168,19 +1257,17 @@
             Clase TokenGenerator.
             </summary>
         </member>
-        <member name="F:Bot.TokenGenerator.tokenList">
+        <member name="P:Bot.TokenGenerator.Instance">
             <summary>
-            Se inicializa la lista tokenList.
+            Metodo para generar una instancia de token.
             </summary>
-            <typeparam name="int"></typeparam>
-            <returns></returns>
+            <value>Instancia del Token. </value>
         </member>
-        <member name="M:Bot.TokenGenerator.GenerateToken(Bot.Company)">
+        <member name="M:Bot.TokenGenerator.GenerateToken">
             <summary>
             Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
             </summary>
-            <param name="company"></param>
-            <returns></returns>
+            <returns>El token generado.</returns>
         </member>
         <member name="T:Bot.UserInfo">
             <summary>

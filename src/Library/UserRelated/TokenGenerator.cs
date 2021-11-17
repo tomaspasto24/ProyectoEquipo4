@@ -27,13 +27,7 @@ namespace Bot
             }
         }
 
-        /// <summary>
-        /// Se inicializa la lista tokenList.
-        /// </summary>
-        /// <typeparam name="int"></typeparam>
-        /// <returns>La lista inicializada.</returns>
-        public static List<int> tokenList = new List<int>();
-
+        int tkn = 0;
 
         /// <summary>
         /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
@@ -41,15 +35,7 @@ namespace Bot
         /// <returns>El token generado.</returns>
         public int GenerateToken()
         {
-            int token = 0;
-            foreach (int i in tokenList)
-            {
-                token = token + 1;
-            }
-
-            tokenList.Add(token);
-            return token;
-
+            return tkn++;
         }
     }
 }

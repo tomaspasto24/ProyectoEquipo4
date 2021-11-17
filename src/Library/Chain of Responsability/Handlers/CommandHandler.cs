@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Bot
 {
@@ -23,9 +24,9 @@ namespace Bot
         /// Metodo que retorna una lista de comandos para el emprendedor
         /// </summary>
         /// <returns>Lista de comandos</returns>
-        public List<string> EntrepreneurList()
+        public List<string> EntrepreneurCommandList()
         {
-            List<string> list = new List<string>()
+            return new List<string>()
             {
                 "/comandos",
                 "/registro",
@@ -35,58 +36,55 @@ namespace Bot
                 "/reporte",
                 "/contacto",
                 "/infoemprendedor",
-                "/emprender"
+                // TODO habilitaciones cuales tiene
             };
-            return list;
         }
 
         /// <summary>
         /// Metodo que retorna una lista de comandos para el usuario empresa
         /// </summary>
         /// <returns>Lista de comandos</returns>
-        public List<string> CompanyUserList()
+        public List<string> CompanyUserCommandList()
         {
-            List<string> list = new List<string>()
+            return new List<string>()
             {
                 "/comandos",
                 "/hola",
                 "/exit",
                 "/reporte",
                 "/publicar"
+                // TODO crear el material y despues si, usar el publicar (sin material no puedo crear una publicacion) => Crear /materiales
             };
-            return list;
         }
 
         /// <summary>
         /// Metodo que retorna una lista de comnados para el admin
         /// </summary>
         /// <returns>Lista de comandos</returns>
-        public List<string> AdminList()
+        public List<string> AdminCommandList()
         {
-            List<string> list = new List<string>()
+            return new List<string>()
             {
                 "/comandos",
                 "/hola",
                 "/exit",
                 "/generartoken"
             };
-            return list;
         }
 
         /// <summary>
         /// Metodo que retorna una lista de comnados para el admin
         /// </summary>
         /// <returns>Lista de comandos</returns>
-        public List<string> DefaultList()
+        public List<string> DefaultCommandList()
         {
-            List<string> list = new List<string>()
+            return new List<string>()
             {
                 "/comandos",
                 "/hola",
                 "/exit",
                 "/emprender"
             };
-            return list;
         }
 
         /// <summary>
@@ -96,42 +94,14 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            Command commands = new Command();
-            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            if (request.Text == null)
+            {
+                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
+            }
 
             if (request.Text.ToLower().Equals("/comandos"))
             {
-                string commandList = string.Empty;
-                if (user.UserRole is RoleEntrepreneur)
-                {
-                    foreach (string command in EntrepreneurList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-                else if (user.UserRole is RoleUserCompany)
-                {
-                    foreach (string command in CompanyUserList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-                else if (user.UserRole is RoleAdmin)
-                {
-                    foreach (string command in AdminList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-                else
-                {
-                    foreach (string command in DefaultList())
-                    {
-                        commandList = commandList + command + "\n";
-                    }
-                }
-
-                response = $"Estos son todos los comandos: \n" + commandList;
+                response = $"Estos son todos los comandos: \n" + Command.ReturnCommands(request.UserId);
                 return true;
             }
 

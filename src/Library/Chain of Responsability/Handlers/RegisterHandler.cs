@@ -34,9 +34,10 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!(user.UserRole is RoleEntrepreneur))
+
+            if (request.Text == null)
             {
-                // TODO Exception
+                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
             }
 
             if ((user.HandlerState == Bot.State.Start) && (request.Text.Equals("/registro")))

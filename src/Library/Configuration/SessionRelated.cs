@@ -23,7 +23,7 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public Dictionary<int, Company> DiccUserTokens;
+        public Dictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>
@@ -113,6 +113,30 @@ namespace Bot
             if (DiccUserTokens.TryGetValue(token.ToString(), out company))
             {
                 return company;
+            }
+            return null;
+        }
+
+        public Company GetCompanyByName(string companyName)
+        {
+            foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
+            {
+                if (SessionRelated.Instance.DiccUserTokens[token].Name.ToLower().Equals(companyName.ToLower()))
+                {
+                    return SessionRelated.Instance.DiccUserTokens[token];
+                }
+            }
+            return null;
+        }
+
+        public string GetTokenByCompany(Company company)
+        {
+            foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
+            {
+                if (SessionRelated.Instance.DiccUserTokens[token].Equals(company))
+                {
+                    return token;
+                }
             }
             return null;
         }

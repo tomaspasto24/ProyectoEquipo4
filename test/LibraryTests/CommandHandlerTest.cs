@@ -72,7 +72,7 @@ namespace BotTests
         public void TestRoleEntrepreneurCommandHandler()
         {
             GeoLocation location = new GeoLocation("adress", "city");
-            role = new RoleEntrepreneur("heading", location, "certification", "specialization");
+            role = new RoleEntrepreneur("heading", location);
             user = new UserInfo("Entrepreneur", 3, role);
             sessionRelated.AddNewUser(user);
 
