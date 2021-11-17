@@ -37,7 +37,7 @@ namespace Bot
                             exitPublication = true; 
                         } 
                     }
-                }                    
+                }                 
             }
             return result.AsReadOnly();
         }
