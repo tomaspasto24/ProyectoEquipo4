@@ -1,5 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace Bot
 {
@@ -13,13 +15,15 @@ namespace Bot
     /// <summary>
     /// Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
     /// </summary>
-    public class SessionRelated
+    public class SessionRelated : IJsonConvertible
     {
+        [JsonInclude]
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
         public List<UserInfo> AllUsers;
 
+        [JsonInclude]
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
@@ -139,6 +143,16 @@ namespace Bot
                 }
             }
             return null;
+        }
+
+        public string ConvertObjectToSaveToJson()
+        {
+            JsonSerializerOptions options = new () 
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true,
+            };
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }

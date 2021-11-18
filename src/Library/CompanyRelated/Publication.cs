@@ -19,9 +19,7 @@ namespace Bot
         private GeoLocation location;
         private Company company;
         private bool isClosed;
-        [JsonInclude]
         private IList<Material> listMaterials = new List<Material>();
-        [JsonInclude]
         private IList<string> listQualifications = new List<string>(); // Lista Habilitaciones
 
         /// <summary>
@@ -118,6 +116,7 @@ namespace Bot
             }
         }
 
+        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de solo lectura con todos los materiales.
         /// </summary>
@@ -130,6 +129,7 @@ namespace Bot
             }
         }
 
+        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de solo lectura de los string Habilitaciones.
         /// </summary>

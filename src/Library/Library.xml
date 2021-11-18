@@ -386,7 +386,14 @@
         </member>
         <member name="T:Bot.Company">
             <summary>
-            Clase que se encarga de representar una Empresa.
+            Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
+            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
+            un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
+            </summary>
+        </member>
+        <member name="M:Bot.Company.#ctor">
+            <summary>
+            Constructor ingresado en blanco para la implementación de la Serialización.
             </summary>
         </member>
         <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
@@ -422,25 +429,6 @@
             Obtiene nombre del rubro de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
-        </member>
-        <member name="P:Bot.Company.ListHistorialPublications">
-            <summary>
-            Obtiene el historial de publicaciones como una lista de solo lectura para que no se
-            pueda agregar o quitar objetos Publication de la instancia obtenida.
-            </summary>
-            <returns>Lista Publications de solo lectura.</returns>
-        </member>
-        <member name="P:Bot.Company.ListOwnPublications">
-            <summary>
-            Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
-            </summary>
-            <returns>Lista Publitacions de solo lectura.</returns>
-        </member>
-        <member name="P:Bot.Company.ListUsers">
-            <summary>
-            Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
-            </summary>
-            <returns>Lista User de solo lectura.</returns>
         </member>
         <member name="M:Bot.Company.ReturnContact">
             <summary>
@@ -520,17 +508,6 @@
             </summary>
             <value>Lista de solo lectura de clase Empresa.</value>
         </member>
-        <member name="M:Bot.CompanySet.AddElement(System.String,System.String,Bot.GeoLocation,System.String)">
-            <summary>
-            Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
-            </summary>
-            <param name="name">Nombre de Empresa.</param>
-            <param name="item">Rubro de Empresa.</param>
-            <param name="location">Ubicación de Empresa.</param>
-            <param name="contact">Contacto de Empresa.</param>
-            <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
-            contrario.</returns>
-        </member>
         <member name="M:Bot.CompanySet.AddElement(Bot.Company)">
             <summary>
             Método que se encarga de agregar una Empresa a la lista de Empresas del sistema.
@@ -541,7 +518,8 @@
         </member>
         <member name="M:Bot.CompanySet.DeleteElement(Bot.Company)">
             <summary>
-            Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema.
+            Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema. El criterio usado es
+            por el nombre de la clase Empresa. Es decir, el programa no admite 2 clases Empresa con mismo nombre.
             </summary>
             <param name="element">Empresa.</param>
             <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
@@ -572,13 +550,24 @@
             <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="T:Bot.ISet`1">
+        <member name="M:Bot.CompanySet.Initialize">
             <summary>
-            Interfaz pública ISet para CompanySet y PublicationSet.
+            Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
             </summary>
-            <typeparam name="T">Elemento T (Empresa o Publicación).</typeparam>
         </member>
-        <member name="M:Bot.ISet`1.AddElement(`0)">
+        <member name="M:Bot.CompanySet.ConvertObjectToSaveToJson">
+            <summary>
+            Método que convierte el propio objeto en formato JSON.
+            </summary>
+            <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+        </member>
+        <member name="T:Bot.ISetOfElement`1">
+            <summary>
+            Interfaz pública ISet que representa a las clases que se encargan de administrar objetos (Conjunto).
+            </summary>
+            <typeparam name="T">Elemento T (Ejemplo: empresa o publicación).</typeparam>
+        </member>
+        <member name="M:Bot.ISetOfElement`1.AddElement(`0)">
             <summary>
             Método que se encarga de agregar un elemento a la lista de elementos del propio Set en cuestión.
             </summary>
@@ -586,7 +575,7 @@
             <returns><c>True</c> en caso de que se pueda agregar y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="M:Bot.ISet`1.DeleteElement(`0)">
+        <member name="M:Bot.ISetOfElement`1.DeleteElement(`0)">
             <summary>
             Método que se encarga de eliminar un elemento a la lista de elementos del propio Set en cuestión.
             </summary>
@@ -594,13 +583,13 @@
             <returns><c>True</c> en caso de que se pueda eliminar y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="M:Bot.ISet`1.ReturnListElements">
+        <member name="M:Bot.ISetOfElement`1.ReturnListElements">
             <summary>
             Método que retorna en forma de string la lista de elementos.
             </summary>
             <returns>String.</returns>
         </member>
-        <member name="M:Bot.ISet`1.ContainsElementInListElements(`0)">
+        <member name="M:Bot.ISetOfElement`1.ContainsElementInListElements(`0)">
             <summary>
             Método que se encarga de buscar el elemento en la lista de elementos y retornar si se encuentra o no.
             </summary>
@@ -608,7 +597,7 @@
             <returns><c>True</c> en caso de que se pueda encontrar y <c>False</c> en caso
             contrario.</returns>
         </member>
-        <member name="M:Bot.ISet`1.ContainsElementInListElements(System.String)">
+        <member name="M:Bot.ISetOfElement`1.ContainsElementInListElements(System.String)">
             <summary>
             Sobrecarga del método ContainsElementInListElements, mismo funcionamiento pero con el nombre del elemento.
             </summary>
@@ -616,10 +605,20 @@
             <returns><c>True</c> en caso de que se pueda encontrar y <c>False</c> en caso
             contrario.</returns>
         </member>
+        <member name="M:Bot.ISetOfElement`1.Initialize">
+            <summary>
+            Método que debe ser ejecutado por el constructor de la clase. Esto pide de cierta forma a la clase que implemente
+            la interfaz ISetOfElement a que aplique el patrón Singleton. 
+            </summary>
+        </member>
         <member name="T:Bot.Material">
             <summary>
-            Clase Material que cumple con el patrón Expert ya que todos los calculos que hace, los realiza con
-            datos internos que solo la clase Material conoce.
+            Clase Material se encarga de representar cada material, tiene la responsabilidad de conocer su nombre, cantidad, precio y 
+            sus palabras clave.
+            Cumple con el patrón Expert (GRASP) y SRP (SOLID) porque todas las operaciones que hace, las realiza con
+            datos internos que solo la clase Material conoce ya que es experta en lo que hace. En caso de que la clase Material no se hubiera creado, 
+            la clase Publication tendría más de una responsabilidad y además imposibilitaría que el usuario pueda publicar más de un material a la vez rompiendo
+            con el patron SRP.
             </summary>
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
@@ -671,7 +670,14 @@
         <member name="T:Bot.Publication">
             <summary>
             Cada objeto de la clase Publicación, administrado por un objeto Empresa, es el conjunto de items
-            que la aplicación muestra a los emprendedores.
+            que la aplicación muestra a los emprendedores. Cumple con el patrón de diseño Creator porque la clase
+            Publication tiene la responsabilidad de crear instancias de la clase Material porque guarda instancias
+            de Material y lo usa de forma cercana.
+            </summary>
+        </member>
+        <member name="M:Bot.Publication.#ctor">
+            <summary>
+            Constructor ingresado en blanco para la implementación de la Serialización.
             </summary>
         </member>
         <member name="M:Bot.Publication.#ctor(System.String,Bot.Company,Bot.GeoLocation,Bot.Material)">
@@ -721,18 +727,6 @@
             Es decir, cuando el método ClosePublication es ejecutado.
             </summary>
             <value>DateTime.</value>
-        </member>
-        <member name="P:Bot.Publication.ListMaterials">
-            <summary>
-            Obtiene una lista de solo lectura con todos los materiales.
-            </summary>
-            <returns>Lista de solo lectura de Material.</returns>
-        </member>
-        <member name="P:Bot.Publication.ListQualifications">
-            <summary>
-            Obtiene una lista de solo lectura de los string Habilitaciones.
-            </summary>
-            <value>Lista de solo lectura de cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Publication.IsClosed">
             <summary>
@@ -856,6 +850,17 @@
             <param name="elementName">Nombre de Publicación.</param>
             <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
             contrario.</returns>
+        </member>
+        <member name="M:Bot.PublicationSet.Initialize">
+            <summary>
+            Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
+            </summary>
+        </member>
+        <member name="M:Bot.PublicationSet.ConvertObjectToSaveToJson">
+            <summary>
+            Método que convierte la lista de la clase Publicación en formato JSON.
+            </summary>
+            <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
         </member>
         <member name="T:Bot.Command">
             <summary>
@@ -1023,14 +1028,14 @@
             <param name="publication">Publicación de la cual se requiere saber el contacto.</param>
             <returns>Contacto de la empresa de la publicación como un string.</returns>
         </member>
-        <member name="T:Bot.ISearch">
+        <member name="T:Bot.ISearch`1">
             <summary>
             Al tener esta interfaz se cumple con el principio OCP, implementándola podemos extender el código a nuevas formas de búsqueda
             sin cambiar el código de las que ya tenemos.
             También se cumple con el principio DIP porque se depende de una abstracción en lugar de directamente de una clase.
             </summary>
         </member>
-        <member name="M:Bot.ISearch.Search(System.String)">
+        <member name="M:Bot.ISearch`1.Search(System.String)">
             <summary>
             Método que se implementa tanto en las clases SerachByMaterial, SearchByLocation y en cualquier otra que se agregue
             para hacer una búsqueda.
@@ -1068,7 +1073,7 @@
             y se va a fijar a la siguiente.
             </summary>
             <param name="wordToSearch"></param>
-            <returns></returns>
+            <returns>Lista de publicaciones.</returns>
         </member>
         <member name="T:Bot.GeoLocation">
             <summary>
@@ -1192,6 +1197,61 @@
             firma del metodo GiveReport
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Bot.DeserializeManager">
+            <summary>
+            Clase que se encarga de administrar la deserialización, es decir, extraer todos las clases de los archivos JSON
+            y llevarlas al programa.
+            </summary>
+        </member>
+        <member name="P:Bot.DeserializeManager.Instance">
+            <summary>
+            Obtiene el acceso a la propia instancia de la clase DeserializeManager,
+            en caso de que la variable instance no este creada, la crea y la retorna. En caso 
+            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
+            siempre se use la misma variable instancia.
+            </summary>
+            <returns>Instancia Deserialize.</returns>
+        </member>
+        <member name="M:Bot.DeserializeManager.DeserializeProgram">
+            <summary>
+            Método principal de la clase que se encarga de accionar los métodos de Deserialización y obtener sus
+            resultados booleanos.
+            </summary>
+            <returns><c>True</c> en caso de que todo el proceso de deserialización este correcto, <c>False</c> en caso contrario.</returns>
+        </member>
+        <member name="T:Bot.IJsonConvertible">
+            <summary>
+            Interfaz pública que define el tipo de los objetos que pueden ser serializados y deserializados.
+            </summary>
+        </member>
+        <member name="M:Bot.IJsonConvertible.ConvertObjectToSaveToJson">
+            <summary>
+            Método que convierte el objeto a formato JSON en cadena de caraceteres.
+            </summary>
+            <returns>Objeto convertido a JSON como una cadena de caracteres.</returns>
+        </member>
+        <member name="T:Bot.SerializeManager">
+            <summary>
+            Clase que se encarga de administrar la serialización, es decir, guardar todos las clases que necesiten
+            persistencia en formato JSON en su respectivo archivo contenedor.
+            </summary>
+        </member>
+        <member name="P:Bot.SerializeManager.Instance">
+            <summary>
+            Obtiene el acceso a la propia instancia de la clase SerializeManager,
+            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
+            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
+            siempre se use la misma variable instancia.
+            </summary>
+            <returns>Instancia Deserialize.</returns>
+        </member>
+        <member name="M:Bot.SerializeManager.SerializeProgram">
+            <summary>
+            Método principal de la clase que se encarga de accionar los métodos de Serialización y obtener sus
+            resultados booleanos.
+            </summary>
+            <returns><c>True</c> en caso de que todo el proceso de serialización este correcto, <c>False</c> en caso contrario.</returns>
         </member>
         <member name="T:Bot.IRole">
             <summary>

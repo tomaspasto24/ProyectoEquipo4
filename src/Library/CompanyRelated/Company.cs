@@ -17,11 +17,8 @@ namespace Bot
         private string item;
         private GeoLocation location;
         private string contact;
-        [JsonInclude]
         private IList<UserInfo> listUsers = new List<UserInfo>();
-        [JsonInclude]
         private IList<Publication> listOwnPublications = new List<Publication>();
-        [JsonInclude]
         private IList<Publication> listHistorialPublications = new List<Publication>();
 
         /// <summary>
@@ -94,6 +91,7 @@ namespace Bot
             }
         }
 
+        [JsonInclude]
         /// <summary>
         /// Obtiene el historial de publicaciones como una lista de solo lectura para que no se
         /// pueda agregar o quitar objetos Publication de la instancia obtenida.
@@ -107,6 +105,7 @@ namespace Bot
             }
         }
 
+        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
         /// </summary>
@@ -119,6 +118,7 @@ namespace Bot
             }
         }
 
+        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
         /// </summary>

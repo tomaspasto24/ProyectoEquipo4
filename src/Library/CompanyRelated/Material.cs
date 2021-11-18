@@ -2,6 +2,7 @@
 */
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -20,6 +21,8 @@ namespace Bot
         private double price;
         private IList<string> keyWords = new List<string>(); // Palabras clave
 
+        [JsonConstructor]
+        public Material() { }
         /// <summary>
         /// Método de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
         /// </summary>

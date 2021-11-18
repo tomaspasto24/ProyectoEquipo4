@@ -12,6 +12,8 @@ namespace Bot
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
+        private const string PathContainerSessionRelated = @"..\..\..\..\..\docs\UserDataBase.json";
         private static DeserializeManager instance;
 
         private DeserializeManager() { }
@@ -99,6 +101,53 @@ namespace Bot
             else
             {
                 File.Create(PathContainerPublication);
+                return false;
+            }
+        }
+
+        private bool DeserializeToken()
+        {
+            if (File.Exists(PathContainerToken))
+            {
+                string json = File.ReadAllText(PathContainerToken);
+
+                JsonSerializerOptions options = new () 
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true,
+                };
+
+                TokenGenerator tokenDeserialize = JsonSerializer.Deserialize<TokenGenerator>(json, options);
+                TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerToken);
+                return false;
+            }
+        }
+
+        private bool DeserializeSessionRelated()
+        {
+            if (File.Exists(PathContainerSessionRelated))
+            {
+                string json = File.ReadAllText(PathContainerSessionRelated);
+
+                JsonSerializerOptions options = new () 
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true,
+                };
+
+                SessionRelated sessionRelatedDeserialize = JsonSerializer.Deserialize<SessionRelated>(json, options);
+                SessionRelated.Instance.AllUsers = sessionRelatedDeserialize.AllUsers;
+                SessionRelated.Instance.DiccUserTokens = sessionRelatedDeserialize.DiccUserTokens;
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerSessionRelated);
                 return false;
             }
         }

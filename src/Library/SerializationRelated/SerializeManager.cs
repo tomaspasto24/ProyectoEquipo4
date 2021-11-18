@@ -10,6 +10,8 @@ namespace Bot
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
+        private const string PathContainerSessionRelated = @"..\..\..\..\..\docs\UserDataBase.json";
         private static SerializeManager instance;
 
         private SerializeManager() { }
@@ -43,8 +45,10 @@ namespace Bot
         {
             bool conditionCompanies = this.SerializeCompanies();
             bool conditionPublications = this.SerializePublications();
+            bool conditionToken = this.SerializeToken();
+            bool conditionSessionRelated = this.SerializeSessionRelated();
 
-            return conditionCompanies && conditionPublications;
+            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
         }
 
         private bool SerializeCompanies()
@@ -57,6 +61,7 @@ namespace Bot
             }
             else
             {
+                File.Create(PathContainerCompany);
                 return false;
             }
         }
@@ -71,6 +76,37 @@ namespace Bot
             }
             else
             {
+                File.Create(PathContainerPublication);
+                return false;   
+            }
+        }
+
+        private bool SerializeToken()
+        {
+            if (File.Exists(PathContainerToken))
+            {
+                string jsonToSave = TokenGenerator.Instance.ConvertObjectToSaveToJson();
+                File.WriteAllText(PathContainerToken, jsonToSave);
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerToken);
+                return false;   
+            }
+        }
+
+        private bool SerializeSessionRelated()
+        {
+            if (File.Exists(PathContainerSessionRelated))
+            {
+                string jsonToSave = SessionRelated.Instance.ConvertObjectToSaveToJson();
+                File.WriteAllText(PathContainerSessionRelated, jsonToSave);
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerSessionRelated);
                 return false;   
             }
         }

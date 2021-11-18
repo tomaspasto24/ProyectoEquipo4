@@ -34,6 +34,17 @@
             Clase para testear la clase CompanySet.
             </summary>
         </member>
+        <member name="M:BotTests.CompanySetTest.SetUp">
+            <summary>
+            SetUp, asigna valores a las variables companyTest1, companyTest2, companyTest3.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanySetTest.InstanceTest">
+            <summary>
+            Test que se encarga de comprobar que se cumpla el patrón Singleton en cuanto a que siempre se devuelva una
+            única instancia y que el constructor sea privado.
+            </summary>
+        </member>
         <member name="M:BotTests.CompanySetTest.AddCompanyTest">
             <summary>
             Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
@@ -46,9 +57,26 @@
             clases Empresa del sistema.
             </summary>
         </member>
+        <member name="M:BotTests.CompanySetTest.ReturnListElementsTest">
+            <summary>
+            ReturnListElementsTest testea que el string de la lista de Empresas funcione bien.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanySetTest.ContainsCompanyInListCompaniesTest">
+            <summary>
+            ContainsCompanyInListCompaniesTest comprueba que el funcionamiento de encontrar
+            si las clases Empresa se encuentran en el sistema con la condición del nombre de la Empresa (linea 118 
+            da <c>True</c> porque encuentra el nombre, como debe ser ya que no se admiten 2 empresas diferentes con mismo nombre.
+            </summary>
+        </member>
         <member name="T:BotTests.CompanyTest">
             <summary>
             Clase para testear la clase Company.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.SetUp">
+            <summary>
+            SetUp, asigna valores a las variables location, companyTest, initialMaterial.
             </summary>
         </member>
         <member name="M:BotTests.CompanyTest.InstanceTest">
@@ -72,6 +100,11 @@
             <summary>
             Test que se encarga de validar que los usuarios puedan añadirse a una clase Empresa y también
             puedan ser eliminados.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.ReturnContactTest">
+            <summary>
+            Testea que el método ReturnContactTest retorne la cadena de carácteres con la información correcta.
             </summary>
         </member>
         <member name="T:BotTests.GeoLocationTests">
@@ -123,19 +156,41 @@
         </member>
         <member name="T:BotTests.PublicationSetTest">
             <summary>
-            Clase para testear la clase CompanySet.
+            Clase para testear la clase PublicationSet
             </summary>
         </member>
-        <member name="M:BotTests.PublicationSetTest.AddCompanyTest">
+        <member name="M:BotTests.PublicationSetTest.SetUp">
             <summary>
-            Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
-            clases Empresa al sistema.
+            SetUp, asigna valores a las variables companyTest, initialMaterial, publicationTest1., publicationTest2, publicationTest3.
             </summary>
         </member>
-        <member name="M:BotTests.PublicationSetTest.DeleteCompanyTest">
+        <member name="M:BotTests.PublicationSetTest.AddPublicationTest">
             <summary>
-            Test que se encarga de testear el funcionamiento de la clase CompanySet de eliminar 
-            clases Empresa del sistema.
+            Test que se encarga de testear el funcionamiento de la clase PublicationSet de agregar
+            clases Publicación al sistema.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublicationSetTest.ContainsPublicationInListCompaniesTest">
+            <summary>
+            Test que se encarga de comprobar que el funcionamiento de ContainsPublicationInListPublications sea el 
+            correcto y que se puedan identificar las pbulicaciones contenidas.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublicationSetTest.DeletePublicationTest">
+            <summary>
+            Test que se encarga de testear el funcionamiento de la clase PublicationSet de eliminar 
+            clases Publicación del sistema.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublicationSetTest.ReturnListElementsTest">
+            <summary>
+            ReturnListElementsTest testea que el string de la lista de Publicaciones funcione bien.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublicationSetTest.ContainsCompanyInListPublicationsTest">
+            <summary>
+            ContainsPublicationInListCompaniesTest comprueba que el funcionamiento de encontrar
+            si las clases Publicación se encuentran en el sistema con la condición del nombre de la Publicación.
             </summary>
         </member>
         <member name="T:BotTests.PublishPublicationTests">
@@ -237,17 +292,17 @@
         </member>
         <member name="T:BotTests.RoleEntrepreneurTests">
             <summary>
-            Tests de los métodos de la clase RoleEntrepreneur
+            Tests de los métodos de la clase RoleEntrepreneur.
             </summary>
         </member>
         <member name="M:BotTests.RoleEntrepreneurTests.Setup">
             <summary>
-            Se crea una instancia de emprendedor que será usada para los tests de cada método
+            Se crea una instancia de emprendedor que será usada para los tests de cada método.
             </summary>
         </member>
         <member name="M:BotTests.RoleEntrepreneurTests.AddCertificationTest">
             <summary>
-            Test del método que le agrega una certificación al emprendedor
+            Test del método que le agrega una certificación al emprendedor.
             </summary>
         </member>
         <member name="M:BotTests.RoleEntrepreneurTests.AddSpecializationTest">
