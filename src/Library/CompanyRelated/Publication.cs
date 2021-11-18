@@ -116,11 +116,11 @@ namespace Bot
             }
         }
 
-        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de solo lectura con todos los materiales.
         /// </summary>
         /// <returns>Lista de solo lectura de Material.</returns>
+        [JsonInclude]
         public IReadOnlyList<Material> ListMaterials
         {
             get
@@ -129,11 +129,11 @@ namespace Bot
             }
         }
 
-        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de solo lectura de los string Habilitaciones.
         /// </summary>
         /// <value>Lista de solo lectura de cadena de caracteres.</value>
+        [JsonInclude]
         public IReadOnlyList<string> ListQualifications
         {
             get

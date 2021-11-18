@@ -91,12 +91,12 @@ namespace Bot
             }
         }
 
-        [JsonInclude]
         /// <summary>
         /// Obtiene el historial de publicaciones como una lista de solo lectura para que no se
         /// pueda agregar o quitar objetos Publication de la instancia obtenida.
         /// </summary>
         /// <returns>Lista Publications de solo lectura.</returns>
+        [JsonInclude]
         public IReadOnlyList<Publication> ListHistorialPublications
         {
             get
@@ -105,11 +105,11 @@ namespace Bot
             }
         }
 
-        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
         /// </summary>
         /// <returns>Lista Publitacions de solo lectura.</returns>
+        [JsonInclude]
         public IReadOnlyList<Publication> ListOwnPublications
         {
             get
@@ -118,11 +118,11 @@ namespace Bot
             }
         }
 
-        [JsonInclude]
         /// <summary>
         /// Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
         /// </summary>
         /// <returns>Lista User de solo lectura.</returns>
+        [JsonInclude]
         public IReadOnlyList<UserInfo> ListUsers
         {
             get

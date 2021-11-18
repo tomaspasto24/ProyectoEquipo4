@@ -21,6 +21,9 @@ namespace Bot
         private double price;
         private IList<string> keyWords = new List<string>(); // Palabras clave
 
+        /// <summary>
+        /// Constructor sin implementación para ser usado por JsonConstructor
+        /// </summary>
         [JsonConstructor]
         public Material() { }
         /// <summary>
