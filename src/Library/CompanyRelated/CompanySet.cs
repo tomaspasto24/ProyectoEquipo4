@@ -174,7 +174,7 @@ namespace Bot
         /// Método que convierte el propio objeto en formato JSON.
         /// </summary>
         /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
-        public string ConvertObjectToSaveToJson()
+        public string ConvertObjectToSave()
         {
             JsonSerializerOptions options = new () 
             {

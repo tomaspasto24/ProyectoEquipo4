@@ -41,7 +41,7 @@ namespace Bot
         /// Método para devolver a la clase encarga de serializar, la serialización del atributo tkn
         /// </summary>
         /// <returns></returns>
-        public string ConvertObjectToSaveToJson()
+        public string ConvertObjectToSave()
         {
             JsonSerializerOptions options = new () 
             {

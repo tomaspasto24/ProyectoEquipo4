@@ -174,7 +174,7 @@ namespace Bot
         /// Método que convierte la lista de la clase Publicación en formato JSON.
         /// </summary>
         /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
-        public string ConvertObjectToSaveToJson()
+        public string ConvertObjectToSave()
         {
             JsonSerializerOptions options = new () 
             {

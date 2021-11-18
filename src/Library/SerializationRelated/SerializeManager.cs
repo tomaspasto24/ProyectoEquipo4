@@ -56,7 +56,7 @@ namespace Bot
         {
             if (File.Exists(PathContainerCompany))
             {
-                string jsonToSave = CompanySet.Instance.ConvertObjectToSaveToJson();
+                string jsonToSave = CompanySet.Instance.ConvertObjectToSave();
                 File.WriteAllText(PathContainerCompany, jsonToSave);
                 return true;
             }
@@ -71,7 +71,7 @@ namespace Bot
         {
             if (File.Exists(PathContainerPublication))
             {
-                string jsonToSave = PublicationSet.Instance.ConvertObjectToSaveToJson();
+                string jsonToSave = PublicationSet.Instance.ConvertObjectToSave();
                 File.WriteAllText(PathContainerPublication, jsonToSave);
                 return true;
             }
@@ -86,7 +86,7 @@ namespace Bot
         {
             if (File.Exists(PathContainerToken))
             {
-                string jsonToSave = TokenGenerator.Instance.ConvertObjectToSaveToJson();
+                string jsonToSave = TokenGenerator.Instance.ConvertObjectToSave();
                 File.WriteAllText(PathContainerToken, jsonToSave);
                 return true;
             }
