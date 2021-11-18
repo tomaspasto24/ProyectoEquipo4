@@ -47,8 +47,10 @@ namespace Bot
         {
             bool conditionCompanies = this.DeserializeCompanies();
             bool conditionPublications = this.DeserializePublications();
+            bool conditionToken = this.DeserializeToken();
+            bool conditionSessionRelated = this.DeserializeSessionRelated();
 
-            return conditionCompanies && conditionPublications;
+            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
         }
 
         private bool DeserializeCompanies()

@@ -886,16 +886,6 @@
             Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
             </summary>
         </member>
-        <member name="F:Bot.SessionRelated.AllUsers">
-            <summary>
-            Lista de todos los usuarios
-            </summary>
-        </member>
-        <member name="F:Bot.SessionRelated.DiccUserTokens">
-            <summary>
-            Diccionario que contiene el token que se relaciona con la empresa
-            </summary>
-        </member>
         <member name="P:Bot.SessionRelated.Instance">
             <summary>
             Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
@@ -1328,6 +1318,12 @@
             Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
             </summary>
             <returns>El token generado.</returns>
+        </member>
+        <member name="M:Bot.TokenGenerator.ConvertObjectToSaveToJson">
+            <summary>
+            Método para devolver a la clase encarga de serializar, la serialización del atributo tkn
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bot.UserInfo">
             <summary>
