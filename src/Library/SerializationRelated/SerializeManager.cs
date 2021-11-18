@@ -11,7 +11,8 @@ namespace Bot
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
         private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
-        private const string PathContainerSessionRelated = @"..\..\..\..\..\docs\UserDataBase.json";
+        private const string PathContainerAllUsers = @"..\..\..\..\..\docs\UserDataBase.json";
+        private const string PathContainerDiccUserTokens = @"..\..\..\..\..\docs\DiccUserTokensDataBase.json";
         private static SerializeManager instance;
 
         private SerializeManager() { }
@@ -98,15 +99,17 @@ namespace Bot
 
         private bool SerializeSessionRelated()
         {
-            if (File.Exists(PathContainerSessionRelated))
+            if (File.Exists(PathContainerAllUsers) && File.Exists(PathContainerDiccUserTokens))
             {
-                string jsonToSave = SessionRelated.Instance.ConvertObjectToSaveToJson();
-                File.WriteAllText(PathContainerSessionRelated, jsonToSave);
+                string jsonAllUsersToSave;
+                string jsonDiccUserTokensToSave;
+                (jsonAllUsersToSave, jsonDiccUserTokensToSave) = SessionRelated.Instance.ConvertObjectToSaveToJson();
+                File.WriteAllText(PathContainerAllUsers, jsonAllUsersToSave);
+                File.WriteAllText(PathContainerDiccUserTokens, jsonDiccUserTokensToSave);
                 return true;
             }
             else
             {
-                File.Create(PathContainerSessionRelated);
                 return false;   
             }
         }

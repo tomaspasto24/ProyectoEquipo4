@@ -4,7 +4,7 @@ using System.IO;
 
 namespace BotTests
 {
-    public class SerializeManagerTests
+    public class DeserializeManagerTests
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
@@ -13,26 +13,29 @@ namespace BotTests
         GeoLocation locationTest = new GeoLocation("Universidad Católica", "Montevideo");
 
         [Test]
-        public void SerializeCompaniesTest()
+        public void DeserializeCompaniesTest()
         {
             Company companyTest1 = new Company("Test1", "TestItem1", locationTest, "TestContact");
             Company companyTest2 = new Company("Test2", "TestItem2", locationTest, "TestContact");
             Company companyTest3 = new Company("Test3", "TestItem3", locationTest, "TestContact");
-            string jsonTest = File.ReadAllText(PathContainerCompany);
 
             CompanySet.Instance.AddElement(companyTest1);
             CompanySet.Instance.AddElement(companyTest2);
             CompanySet.Instance.AddElement(companyTest3);
 
             SerializeManager.Instance.SerializeProgram();
+            
+            CompanySet.Instance.DeleteElement(companyTest1);
+            CompanySet.Instance.DeleteElement(companyTest2);
+            CompanySet.Instance.DeleteElement(companyTest3);
 
-            Assert.That(File.Exists(PathContainerCompany));
-            Assert.IsNotEmpty(jsonTest);
-            Assert.That(jsonTest is string);
+            bool conditionDeserialize = DeserializeManager.Instance.DeserializeProgram();
+
+            Assert.IsTrue(conditionDeserialize);
         }
 
         [Test]
-        public void SerializePublicationsTest()
+        public void DeserializePublicationsTest()
         {
             Company companyTest1 = new Company("Test1", "TestItem1", locationTest, "TestContact");
             Material Materialtest = new Material("Wood", 10, 0);
@@ -47,35 +50,30 @@ namespace BotTests
 
             SerializeManager.Instance.SerializeProgram();
 
-            Assert.That(File.Exists(PathContainerPublication));
-            Assert.IsNotEmpty(jsonTest);
-            Assert.That(jsonTest is string);
-            Assert.That(jsonTest.Contains("Test1"));
-            Assert.That(jsonTest.Contains("Test2"));
-            Assert.That(jsonTest.Contains("Test3"));
+            bool conditionDeserialize = DeserializeManager.Instance.DeserializeProgram();
+
+            Assert.IsTrue(conditionDeserialize);
         }
 
         [Test]
-        public void SerializeTokenTest()
+        public void DeserializeTokenTest()
         {
             int tokenTest1 = TokenGenerator.Instance.GenerateToken();
             SerializeManager.Instance.SerializeProgram();
-            string jsonTestToken = File.ReadAllText(PathContainerToken);
+            
+            bool conditionDeserialize = DeserializeManager.Instance.DeserializeProgram();
 
-            Assert.That(File.Exists(PathContainerToken));
-            Assert.IsNotNull(jsonTestToken);
-            Assert.IsNotEmpty(jsonTestToken);
+            Assert.IsTrue(conditionDeserialize);
         }
 
         [Test]
-        public void SerializeSessionRelated()
+        public void DeserializeSessionRelated()
         {
             SerializeManager.Instance.SerializeProgram();
-            string jsonTestSessionRelated = File.ReadAllText(PathContainerSessionRelated);
 
-            Assert.That(File.Exists(PathContainerSessionRelated));
-            Assert.IsNotNull(jsonTestSessionRelated);
-            Assert.IsNotEmpty(jsonTestSessionRelated);
+            bool conditionDeserialize = DeserializeManager.Instance.DeserializeProgram();
+
+            Assert.IsTrue(conditionDeserialize);
         }
     }
 }

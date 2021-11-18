@@ -15,7 +15,7 @@ namespace Bot
     /// <summary>
     /// Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
     /// </summary>
-    public class SessionRelated : IJsonConvertible
+    public class SessionRelated
     {
         [JsonInclude]
         /// <summary>
@@ -145,14 +145,14 @@ namespace Bot
             return null;
         }
 
-        public string ConvertObjectToSaveToJson()
+        public (string, string) ConvertObjectToSaveToJson()
         {
             JsonSerializerOptions options = new () 
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true,
             };
-            return JsonSerializer.Serialize(this, options);
+            return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
         }
     }
 }
