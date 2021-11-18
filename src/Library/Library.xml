@@ -555,7 +555,7 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
             </summary>
         </member>
-        <member name="M:Bot.CompanySet.ConvertObjectToSaveToJson">
+        <member name="M:Bot.CompanySet.ConvertObjectToSave">
             <summary>
             Método que convierte el propio objeto en formato JSON.
             </summary>
@@ -856,7 +856,7 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
             </summary>
         </member>
-        <member name="M:Bot.PublicationSet.ConvertObjectToSaveToJson">
+        <member name="M:Bot.PublicationSet.ConvertObjectToSave">
             <summary>
             Método que convierte la lista de la clase Publicación en formato JSON.
             </summary>
@@ -1215,7 +1215,7 @@
             Interfaz pública que define el tipo de los objetos que pueden ser serializados y deserializados.
             </summary>
         </member>
-        <member name="M:Bot.IJsonConvertible.ConvertObjectToSaveToJson">
+        <member name="M:Bot.IJsonConvertible.ConvertObjectToSave">
             <summary>
             Método que convierte el objeto a formato JSON en cadena de caraceteres.
             </summary>
@@ -1319,7 +1319,7 @@
             </summary>
             <returns>El token generado.</returns>
         </member>
-        <member name="M:Bot.TokenGenerator.ConvertObjectToSaveToJson">
+        <member name="M:Bot.TokenGenerator.ConvertObjectToSave">
             <summary>
             Método para devolver a la clase encarga de serializar, la serialización del atributo tkn
             </summary>

@@ -15,7 +15,7 @@ namespace Bot
         /// </summary>
         /// <typeparam name="Publication">Publicación.</typeparam>
         /// <returns>Coleción de tipo Publication.</returns>
-        private List<Publication> listHistorialPublications = new List<Publication>();
+        private IList<Publication> listHistorialPublications = new List<Publication>();
         private GeoLocation location;
         private SearchByLocation searchByLocation = new SearchByLocation();
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
@@ -24,8 +24,8 @@ namespace Bot
         /// Rubro.
         /// </summary>
         private string heading;
-        private List<string> certification = new List<string>();
-        private List<string> specializations = new List<string>();
+        private IList<string> certification = new List<string>();
+        private IList<string> specializations = new List<string>();
 
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
@@ -48,7 +48,7 @@ namespace Bot
         {
             get
             {
-                return this.certification;
+                return (this.certification as List<string>).AsReadOnly();
             }
         }
 
@@ -60,7 +60,7 @@ namespace Bot
         {
             get
             {
-                return this.specializations;
+                return (this.specializations as List<string>).AsReadOnly();
             }
         }
 
@@ -120,7 +120,7 @@ namespace Bot
         public IReadOnlyCollection<Publication> ReturnListHistorialPublications()
         {
             {
-                return this.listHistorialPublications.AsReadOnly();
+                return (this.listHistorialPublications as List<Publication>).AsReadOnly();
             }
         }
 
