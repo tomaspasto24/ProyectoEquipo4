@@ -7,6 +7,7 @@ namespace Bot
     /// sin cambiar el código de las que ya tenemos.
     /// También se cumple con el principio DIP porque se depende de una abstracción en lugar de directamente de una clase.
     /// </summary>
+    /// <typeparam name="T">Tipo Genérico.</typeparam>
     public interface ISearch<T>
     {
         /// <summary>

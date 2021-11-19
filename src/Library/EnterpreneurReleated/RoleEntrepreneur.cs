@@ -100,8 +100,8 @@ namespace Bot
         public IReadOnlyCollection<Publication> SearchingByLocation(string addresToSearch)
         {
             return this.searchByLocation.Search(addresToSearch);
-            //return new ReadOnlyCollection<Publication>(this.listPublications);
-
+            
+            // return new ReadOnlyCollection<Publication>(this.listPublications);
         }
 
         /// <summary>

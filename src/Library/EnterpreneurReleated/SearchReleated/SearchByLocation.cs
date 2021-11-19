@@ -23,19 +23,20 @@ namespace Bot
         /// <returns>Lista de Publicaciones.</returns>
         public IReadOnlyCollection<Publication> Search(string addresToSearch)
         {
-            double distance;
-            location = new GeoLocation(addresToSearch, "Montevideo");
+            //double distance;           SACAR JUNTO CON EL FOREACH
+            GeoLocation location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
-            IReadOnlyCollection<Publication> listaPublicaciones = PublicationSet.Instance.ListPublications;
-            foreach (Publication publication in listaPublicaciones)
+            IReadOnlyCollection<Publication> listPublications = PublicationSet.Instance.ListPublications;
+            /*foreach (Publication publication in listPublications)
             {
                 distance = location.CalculateDistance(publication.Location);
                 if (distance < 500)
                 {
                     result.Add(publication);
                 }
-            }
+            }*/
 
+            result.Add((listPublications as List<Publication>).Find(publication => publication.Location.CalculateDistance(location) < 500));
             return result.AsReadOnly();
         }
     }
