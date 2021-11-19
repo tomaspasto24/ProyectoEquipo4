@@ -6,7 +6,8 @@ namespace Bot
 {
     /// <summary>
     /// Clase que se encarga de administrar la deserialización, es decir, extraer todos las clases de los archivos JSON
-    /// y llevarlas al programa.
+    /// y llevarlas al programa. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
+    /// de que el único método publico es DeserializeProgram.
     /// </summary>
     public class DeserializeManager 
     {

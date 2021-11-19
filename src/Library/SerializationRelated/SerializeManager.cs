@@ -3,8 +3,9 @@ using System.IO;
 namespace Bot
 {
     /// <summary>
-    /// Clase que se encarga de administrar la serialización, es decir, guardar todos las clases que necesiten
-    /// persistencia en formato JSON en su respectivo archivo contenedor.
+    /// Clase que se encarga de administrar la Serialización, es decir, extraer las instancias a persistir
+    /// y grabarlas en archivos JSON. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
+    /// de que el único método publico es SerializeProgram.
     /// </summary>
     public class SerializeManager 
     {
