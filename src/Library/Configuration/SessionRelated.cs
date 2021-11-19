@@ -1,5 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace Bot
 {
@@ -15,15 +17,17 @@ namespace Bot
     /// </summary>
     public class SessionRelated
     {
+        [JsonInclude]
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
-        public List<UserInfo> AllUsers;
+        public IList<UserInfo> AllUsers;
 
+        [JsonInclude]
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public Dictionary<string, Company> DiccUserTokens;
+        public IDictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>
@@ -99,7 +103,7 @@ namespace Bot
         /// <returns>El usuario</returns>
         public UserInfo GetUserById(long id)
         {
-            return AllUsers.Find(user => user.Id == id);
+            return (AllUsers as List<UserInfo>).Find(user => user.Id == id);
         }
 
         /// <summary>
@@ -139,6 +143,16 @@ namespace Bot
                 }
             }
             return null;
+        }
+
+        public (string, string) ConvertObjectToSaveToJson()
+        {
+            JsonSerializerOptions options = new () 
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true,
+            };
+            return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Bot
         /// Se inicializa la lista globalQualificationList
         /// </summary>
         /// <returns></returns>
-        public static List<string> globalQualificationList = new List<string>();
+        public static IList<string> globalQualificationList = new List<string>();
 
         /// <summary>
         /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 

@@ -9,6 +9,6 @@ namespace Bot
         /// Método que convierte el objeto a formato JSON en cadena de caraceteres.
         /// </summary>
         /// <returns>Objeto convertido a JSON como una cadena de caracteres.</returns>
-        string ConvertObjectToSaveToJson();
+        string ConvertObjectToSave();
     }
 }

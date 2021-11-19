@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Bot
 {
     /// <summary>
@@ -10,6 +12,8 @@ namespace Bot
         public IRole UserRole { get; set; }
         public State HandlerState { get; set; }
 
+        [JsonConstructor]
+        public UserInfo() { }
         /// <summary>
         /// Método constructor de la clase User que se encarga de asignar los atributos
         /// name, id y role que usará la clase.

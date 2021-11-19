@@ -19,7 +19,7 @@ namespace Bot
         /// </summary>
         /// <typeparam name="string"></typeparam>
         /// <returns></returns>
-        private static List<string> entrepeneurCommandList = new List<string>()
+        private static IList<string> entrepeneurCommandList = new List<string>()
         {
             "/comandos",
             "/registro",
@@ -32,7 +32,7 @@ namespace Bot
             // TODO habilitaciones cuales tiene
         };
         
-        private static List<string> companyUserCommandList = new List<string>()
+        private static IList<string> companyUserCommandList = new List<string>()
         {
             "/comandos",
             "/hola",
@@ -42,7 +42,7 @@ namespace Bot
             // TODO crear el material y despues si, usar el publicar (sin material no puedo crear una publicacion) => Crear /materiales
         };
 
-        private static List<string> adminCommandList = new List<string>()
+        private static IList<string> adminCommandList = new List<string>()
         {
             "/comandos",
             "/hola",
@@ -51,7 +51,7 @@ namespace Bot
         };
 
 
-        private static List<string> defaultCommandList = new List<string>()
+        private static IList<string> defaultCommandList = new List<string>()
         {
             "/comandos",
             "/hola",
