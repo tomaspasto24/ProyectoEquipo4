@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 
 namespace Bot
 {
@@ -16,16 +17,26 @@ namespace Bot
         /// <typeparam name="Publication">Publicación.</typeparam>
         /// <returns>Coleción de tipo Publication.</returns>
         private List<Publication> listHistorialPublications = new List<Publication>();
-        private GeoLocation location;
+        public GeoLocation Location { get; private set; }
         private SearchByLocation searchByLocation = new SearchByLocation();
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
 
         /// <summary>
         /// Rubro.
         /// </summary>
-        private string heading;
+        public string Heading { get; private set; }
         private List<string> certification = new List<string>();
+
         private List<string> specializations = new List<string>();
+
+        private List<Permission> permissions = new List<Permission>(){
+            Permission.None,
+            Permission.Register,
+            Permission.MaterialSearch,
+            Permission.PurchasesReport,
+            Permission.ContactCompany,
+            Permission.Data,
+        };
 
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
@@ -36,8 +47,8 @@ namespace Bot
         /// <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
         public RoleEntrepreneur(string heading, GeoLocation geolocation)
         {
-            this.location = geolocation;
-            this.heading = heading;
+            this.Location = geolocation;
+            this.Heading = heading;
         }
 
         /// <summary>
@@ -87,7 +98,7 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch"></param>
         /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        public IReadOnlyCollection<Publication> SearchingByMaterials(string wordToSearch) 
+        public IReadOnlyCollection<Publication> SearchingByMaterials(string wordToSearch)
         {
             return this.searchByMaterial.Search(wordToSearch);
         }
@@ -138,9 +149,43 @@ namespace Bot
             return publication.Company.ReturnContact();
         }
 
+        public string GetCertifications()
+        {
+            if (certification.Count == 0)
+            {
+                return "Ninguna";
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (string text in certification)
+            {
+                sb.Append(text).Append("\n");
+            }
+            return sb.ToString().Trim();
+        }
+
+        public string GetSpecializations()
+        {
+            if (specializations.Count == 0)
+            {
+                return "Ninguna";
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (string text in specializations)
+            {
+                sb.Append(text).Append("\n");
+            }
+            return sb.ToString().Trim();
+            
+        }
+
         public override string ToString()
         {
             return "Emprendedor";
+        }
+
+        public bool HasPermission(Permission perm)
+        {
+            return this.permissions.Contains(perm);
         }
     }
 }

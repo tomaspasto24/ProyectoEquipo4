@@ -8,17 +8,16 @@ namespace Library
 {
     public class TelegramBot : AbstractBot
     {
-        // TODO ULTRA IMPORTANTE: EXCEPTION SE TIRA ANTES DE CHEQUEAR SI EL HANDLER PUEDE MANEJARLO
         private const string TELEBRAM_BOT_TOKEN = "2100960953:AAGqylH0OVd18h5dJOPPZ0orCZOk6T4Wf9s";
         private static TelegramBot instance;
-
+        //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CREAR CADENA NUEVA DE HANDLERS 
         private readonly IHandler handler =
             new CommandHandler(
                 new ContactHandler(
-                    new ConvertUserToEntrepreneurHandler(
+                    new UndertakeHandler(
                         new PublishHandler(
                             new RegisterHandler(
-                                new ReportHandler(
+                                new SalesReportHandler(
                                     new SearchHandler(
                                         new StartHandler(
                                             new TokenHandler(
@@ -40,7 +39,7 @@ namespace Library
             this.Client = new TelegramBotClient(TELEBRAM_BOT_TOKEN);
         }
 
-        public ITelegramBotClient Client { get; }
+        public ITelegramBotClient Client { get; private set; }
 
         private User BotInfo
         {
@@ -117,6 +116,8 @@ namespace Library
 
             // TODO Poder cancelar cosas en los handlers
             SendMessage(chatId, response);
+
+            // TODO request.Text = request.Text.Trim().ToLower(); para que todos los mensajes se trimeen y se vayan tolower
         }
     }
 }

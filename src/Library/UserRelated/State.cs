@@ -18,6 +18,7 @@ namespace Bot
         ConfirmingCompanyHeader,
         ConfirmingCompanyAdress,
         ConfirmingCompanyCity,
-        ConfirmingCompanyContact
+        ConfirmingCompanyContact,
+        AskingCompanyName,
     }
 }

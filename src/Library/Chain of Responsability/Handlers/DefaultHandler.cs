@@ -28,8 +28,14 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            // TODO
-            response = "Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo.";
+            if (request.Text.Trim().StartsWith("/"))
+            {
+                response = "Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo.";
+            }
+            else
+            {
+                response = "Disculpa, no te entiendo";
+            }
             return true;
         }
     }

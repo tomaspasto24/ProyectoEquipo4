@@ -11,33 +11,14 @@ namespace Bot
     /// <summary>
     /// Handler que se encarga del registro de un usuario
     /// </summary>
-    public class ReportHandler : AbstractHandler
+    public class SalesReportHandler : AbstractHandler
     {
-        /// <summary>
-        /// Indica los diferentes estados que puede tener el comando RegisterHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide el token de registro
-        /// - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
-        /// </summary>
-        public enum ReportState
-        {
-            /// Estado antes de mandar el token
-            Start,
-            /// Estado mientras el bot espera y confirma un token
-            ConfirmingToken,
-        }
-
-        /// <summary>
-        /// El estado del comando.
-        /// </summary>
-        public ReportState State { get; private set; }
-
         /// <summary>
         /// Constructor de la clase RegisterHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public ReportHandler(AbstractHandler succesor) : base(succesor)
+        public SalesReportHandler(AbstractHandler succesor) : base(succesor)
         {
-            State = ReportState.Start;
         }
 
         /// <summary>
@@ -49,32 +30,13 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (user.UserRole is RoleEntrepreneur && request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
+            if (!user.UserRole.HasPermission(Permission.PurchasesReport))
             {
-                StringBuilder report = new StringBuilder();
-                int contador = 0;
-
-                foreach (Publication publication in ((RoleEntrepreneur)user.UserRole).ReturnListHistorialPublications())
-                {
-                    if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
-                    && publication.IsClosed)
-                    {
-                        report.Append($"#{++contador} - {publication.Title} - {publication.ClosedDate} \n");
-                    }
-                }
-
-                if (report.Length > 0)
-                {
-                    response = $"Materiales consumidos en los ultimos 30 dias por el emprendedor: {user.Name} {report} ";
-                    return true;
-                }
-                else
-                {
-                    response = $"El emprendedor: {user.Name}, no tiene publicaciones asignadas en los ultimos 30 dias";
-                    return false;
-                }
+                response = string.Empty;
+                return false;
             }
-            else if (user.UserRole is RoleUserCompany && request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
+
+            if (request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
             {
                 StringBuilder report = new StringBuilder();
                 int contador = 0;
@@ -96,7 +58,7 @@ namespace Bot
                 else
                 {
                     response = $"No hay publicaciones cerradas en los ultimos 30 dias para la empresa: {((RoleUserCompany)user.UserRole).company.Name}";
-                    return false;
+                    return true;
                 }
             }
 

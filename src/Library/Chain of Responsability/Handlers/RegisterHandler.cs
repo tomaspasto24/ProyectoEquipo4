@@ -33,11 +33,10 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-
-
-            if (request.Text == null)
+            if (!user.UserRole.HasPermission(Permission.Register))
             {
-                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
+                response = string.Empty;
+                return false;
             }
 
             if ((user.HandlerState == Bot.State.Start) && (request.Text.Equals("/registro")))

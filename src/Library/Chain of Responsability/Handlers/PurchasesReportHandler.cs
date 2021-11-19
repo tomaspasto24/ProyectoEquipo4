@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Text;
 
 namespace Bot
 {
@@ -11,13 +11,14 @@ namespace Bot
     /// <summary>
     /// Handler que se encarga del registro de un usuario
     /// </summary>
-    public class ContactHandler : AbstractHandler
+    public class PurchasesReportHandler : AbstractHandler
     {
+
         /// <summary>
         /// Constructor de la clase RegisterHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public ContactHandler(AbstractHandler succesor) : base(succesor)
+        public PurchasesReportHandler(AbstractHandler succesor) : base(succesor)
         {
         }
 
@@ -30,35 +31,38 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!user.UserRole.HasPermission(Permission.ContactCompany))
+            if (!user.UserRole.HasPermission(Permission.PurchasesReport))
             {
                 response = string.Empty;
                 return false;
             }
-            
-            if (request.Text.ToLower().Equals("/contacto") && user.HandlerState == Bot.State.Start)
+
+            if (request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
             {
-                user.HandlerState = Bot.State.AskingCompanyName;
-                response = "Por favor dinos con que empresa te quieres contactar. \nEnvia \"/cancelar\" para cancelar la operación.";
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.AskingCompanyName)
-            {
-                Company company = SessionRelated.Instance.GetCompanyByName(request.Text);
-                if (company != null)
+                StringBuilder report = new StringBuilder();
+                int contador = 0;
+
+                foreach (Publication publication in ((RoleEntrepreneur)user.UserRole).ReturnListHistorialPublications())
                 {
-                    response = $"{company.ReturnContact()}";
-                    user.HandlerState = Bot.State.Start;
+                    if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
+                    && publication.IsClosed)
+                    {
+                        report.Append($"#{++contador} - {publication.Title} - {publication.ClosedDate} \n");
+                    }
+                }
+
+                if (report.Length > 0)
+                {
+                    response = $"Materiales consumidos en los ultimos 30 dias por el emprendedor: {user.Name} {report} ";
                     return true;
                 }
                 else
                 {
-                    response = "Disculpa, no encontramos esa Empresa";
-                    user.HandlerState = Bot.State.Start;
+                    response = $"El emprendedor: {user.Name}, no tiene publicaciones asignadas en los ultimos 30 dias";
                     return true;
                 }
             }
-            
+
             response = string.Empty;
             return false;
         }

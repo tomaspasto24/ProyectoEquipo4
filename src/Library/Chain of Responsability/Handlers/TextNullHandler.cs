@@ -1,3 +1,5 @@
+using System;
+
 namespace Bot
 {
     /*
@@ -9,13 +11,13 @@ namespace Bot
     /// <summary>
     /// Handler para saludar al usuario
     /// </summary>
-    public class StartHandler : AbstractHandler
+    public class TextNullHandler : AbstractHandler
     {
         /// <summary>
         /// Constructor de la clase StartHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public StartHandler(AbstractHandler succesor) : base(succesor) { }
+        public TextNullHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
@@ -24,15 +26,10 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            
-            if (request.Text.ToLower().Equals("/hola"))
+            if (request.Text.Equals(null))
             {
-                response = 
-                $"¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n {Command.GetCommands(user.Id)}";
-                return true;
+                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
             }
-
             response = string.Empty;
             return false;
         }

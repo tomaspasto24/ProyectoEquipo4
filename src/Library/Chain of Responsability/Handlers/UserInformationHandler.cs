@@ -29,12 +29,22 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            // TODO
-            if (request.Text == "/info")
+
+            if (!user.UserRole.HasPermission(Permission.Data))
             {
-                response = $"{user.UserRole}";
+                response = string.Empty;
+                return false;
+            }
+
+            if (request.Text == "/datos")
+            {
+                response = $"Estos son tus datos: \nNombre: {user.Name}"
+                            + $"\nRole: {user.UserRole}"
+                            + "\nUbicacion: " + ((RoleEntrepreneur)user.UserRole).Location.Address + ", " + ((RoleEntrepreneur)user.UserRole).Location.City
+                            + $"\nRubro: " + ((RoleEntrepreneur)user.UserRole).Heading
+                            + "\nEspecialidades: " + ((RoleEntrepreneur)user.UserRole).GetSpecializations()
+                            + "\nCertificaciones: " + ((RoleEntrepreneur)user.UserRole).GetCertifications();
                 return true;
-                //response = $"Tu info: \n Nombre: {user.Name}"
             }
 
             response = string.Empty;
