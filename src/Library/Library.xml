@@ -425,7 +425,7 @@
         </member>
         <member name="P:Bot.Company.Contact">
             <summary>
-            Obtiene nombre del rubro de la clase Empresa.
+            Obtiene el contacto de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
@@ -444,7 +444,7 @@
         </member>
         <member name="P:Bot.Company.ListUsers">
             <summary>
-            Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
+            Obtiene una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
             </summary>
             <returns>Lista User de solo lectura.</returns>
         </member>
@@ -462,7 +462,7 @@
         </member>
         <member name="M:Bot.Company.AddUser(System.Collections.Generic.IReadOnlyList{Bot.UserInfo})">
             <summary>
-            Sobrecarga del método AddUser, se encarga de agregar una lista de Usurios a listUsers.
+            Sobrecarga del método AddUser, se encarga de agregar una lista de Usuarios al conjunto de usuarios de la clase Empresa.
             </summary>
             <param name="listUsers"></param>
         </member>
@@ -477,7 +477,7 @@
             <summary>
             Método que se encarga de agregar una publicación propia de la empresa.
             </summary>
-            <param name="publication">Publicación.</param>
+            <param name="publication">Clase Publicación.</param>
         </member>
         <member name="M:Bot.Company.AddOwnPublication(System.Collections.Generic.IReadOnlyList{Bot.Publication})">
             <summary>
@@ -506,17 +506,16 @@
         </member>
         <member name="T:Bot.CompanySet">
             <summary>
-            Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general. Su constructor se encuentra 
-            privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
-            GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
+            Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general.
+            Cumple con el patrón de creación Singleton (Ver Readme).
             </summary>
         </member>
         <member name="P:Bot.CompanySet.Instance">
             <summary>
             Obtiene el acceso a la propia instancia de la clase CompanySet,
-            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-            siempre se use la misma variable instancia y se cumpla con Singleton.
+            en caso de que el atributo instance no este creado, lo crea y lo retorna. En caso 
+            contrario de que anteriormente este creado simplemente lo retorna, asi se asegura de que
+            siempre se use la misma instancia y se cumpla con Singleton.
             </summary>
             <returns>Instancia CompanySet.</returns>
         </member>
@@ -545,8 +544,7 @@
         </member>
         <member name="M:Bot.CompanySet.ReturnListElements">
             <summary>
-            Método que retorna la lista completa de Empresas en un string con sus respectivos
-            índices.
+            Método que retorna la lista completa de Empresas en una cadena de caracteres.
             </summary>
             <returns>String con el nombre de la Empresa y sus indices.</returns>
         </member>
@@ -555,7 +553,7 @@
             Método simple que se encarga de comprobar si una clase Empresa se encuentra
             en el sistema de Empresas.
             </summary>
-            <param name="element">Empresa.</param>
+            <param name="element">Clase Empresa.</param>
             <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
             contrario.</returns>
         </member>
@@ -577,7 +575,7 @@
             <summary>
             Método que convierte el propio objeto en formato JSON.
             </summary>
-            <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+            <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
         </member>
         <member name="T:Bot.ISetOfElement`1">
             <summary>
@@ -826,17 +824,16 @@
         </member>
         <member name="T:Bot.PublicationSet">
             <summary>
-            Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general. Su constructor se encuentra 
-            privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
-            GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
+            Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general.
+            Cumple con el patrón de creación Singleton (Ver Readme).
             </summary>
         </member>
         <member name="P:Bot.PublicationSet.Instance">
             <summary>
             Obtiene el acceso a la propia instancia de la clase PublicationSet,
-            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-            siempre se use la misma variable instancia y se cumpla con Singleton.
+            en caso de que el atributo instance no este creado, lo crea y lo retorna. En caso 
+            contrario de que anteriormente este creado simplemente lo retorna, asi se asegura de que
+            siempre se use la misma instancia y se cumpla con Singleton.
             </summary>
             <returns>Instancia PublicationSet.</returns>
         </member>
