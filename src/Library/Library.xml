@@ -387,7 +387,7 @@
         <member name="T:Bot.Company">
             <summary>
             Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
-            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
+            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación ya que tiene
             un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
             </summary>
         </member>
@@ -398,8 +398,7 @@
         </member>
         <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
             <summary>
-            Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
-            contador de empresas estático.
+            Constructor de la clase Empresa, inicializa los valores de los parámetros.
             </summary>
             <param name="name">Nombre de la Empresa.</param>
             <param name="item">Rubro de la Empresa.</param>

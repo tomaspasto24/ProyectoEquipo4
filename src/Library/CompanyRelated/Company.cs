@@ -8,7 +8,7 @@ namespace Bot
 {
     /// <summary>
     /// Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
-    /// Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
+    /// Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación ya que tiene
     /// un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
     /// </summary>
     public class Company
@@ -28,8 +28,7 @@ namespace Bot
         public Company() { }
 
         /// <summary>
-        /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
-        /// contador de empresas estático.
+        /// Constructor de la clase Empresa, inicializa los valores de los parámetros.
         /// </summary>
         /// <param name="name">Nombre de la Empresa.</param>
         /// <param name="item">Rubro de la Empresa.</param>
@@ -80,7 +79,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene nombre del rubro de la clase Empresa.
+        /// Obtiene el contacto de la clase Empresa.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
         public String Contact
@@ -119,7 +118,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
+        /// Obtiene una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
         /// </summary>
         /// <returns>Lista User de solo lectura.</returns>
         [JsonInclude]
@@ -156,7 +155,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Sobrecarga del método AddUser, se encarga de agregar una lista de Usurios a listUsers.
+        /// Sobrecarga del método AddUser, se encarga de agregar una lista de Usuarios al conjunto de usuarios de la clase Empresa.
         /// </summary>
         /// <param name="listUsers"></param>
         public void AddUser(IReadOnlyList<UserInfo> listUsers)
@@ -177,7 +176,7 @@ namespace Bot
         /// <summary>
         /// Método que se encarga de agregar una publicación propia de la empresa.
         /// </summary>
-        /// <param name="publication">Publicación.</param>
+        /// <param name="publication">Clase Publicación.</param>
         public void AddOwnPublication(Publication publication)
         {
             this.listOwnPublications.Add(publication);

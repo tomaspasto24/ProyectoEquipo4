@@ -8,9 +8,8 @@ using System.Text.Json.Serialization;
 namespace Bot
 {
     /// <summary>
-    /// Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general. Su constructor se encuentra 
-    /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
-    /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
+    /// Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general.
+    /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
     public class PublicationSet : ISetOfElement<Publication>, IJsonConvertible
     {
@@ -25,9 +24,9 @@ namespace Bot
 
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase PublicationSet,
-        /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-        /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-        /// siempre se use la misma variable instancia y se cumpla con Singleton.
+        /// en caso de que el atributo instance no este creado, lo crea y lo retorna. En caso 
+        /// contrario de que anteriormente este creado simplemente lo retorna, asi se asegura de que
+        /// siempre se use la misma instancia y se cumpla con Singleton.
         /// </summary>
         /// <returns>Instancia PublicationSet.</returns>
         public static PublicationSet Instance

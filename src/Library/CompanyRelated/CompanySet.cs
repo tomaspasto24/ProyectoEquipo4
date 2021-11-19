@@ -7,9 +7,8 @@ using System.Text.Json;
 namespace Bot
 {
     /// <summary>
-    /// Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general. Su constructor se encuentra 
-    /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
-    /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
+    /// Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general.
+    /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
     public class CompanySet : ISetOfElement<Company>, IJsonConvertible
     {
@@ -23,9 +22,9 @@ namespace Bot
 
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase CompanySet,
-        /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-        /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-        /// siempre se use la misma variable instancia y se cumpla con Singleton.
+        /// en caso de que el atributo instance no este creado, lo crea y lo retorna. En caso 
+        /// contrario de que anteriormente este creado simplemente lo retorna, asi se asegura de que
+        /// siempre se use la misma instancia y se cumpla con Singleton.
         /// </summary>
         /// <returns>Instancia CompanySet.</returns>
         public static CompanySet Instance
@@ -92,8 +91,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método que retorna la lista completa de Empresas en un string con sus respectivos
-        /// índices.
+        /// Método que retorna la lista completa de Empresas en una cadena de caracteres.
         /// </summary>
         /// <returns>String con el nombre de la Empresa y sus indices.</returns>
         public string ReturnListElements()
@@ -112,7 +110,7 @@ namespace Bot
         /// Método simple que se encarga de comprobar si una clase Empresa se encuentra
         /// en el sistema de Empresas.
         /// </summary>
-        /// <param name="element">Empresa.</param>
+        /// <param name="element">Clase Empresa.</param>
         /// <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
         /// contrario.</returns>
         public bool ContainsElementInListElements(Company element)
@@ -173,7 +171,7 @@ namespace Bot
         /// <summary>
         /// Método que convierte el propio objeto en formato JSON.
         /// </summary>
-        /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+        /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
         public string ConvertObjectToSave()
         {
             JsonSerializerOptions options = new () 
