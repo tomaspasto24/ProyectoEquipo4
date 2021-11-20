@@ -100,7 +100,7 @@ namespace Library
 
             if (userInfo == null)
             {
-                SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId, new RoleDefault()));
+                SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId, new RoleAdmin()));
             }
 
             string response;

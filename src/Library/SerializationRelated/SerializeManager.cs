@@ -1,4 +1,5 @@
 using System.IO;
+using System;
 
 namespace Bot
 {
@@ -9,11 +10,9 @@ namespace Bot
     /// </summary>
     public class SerializeManager 
     {
-        private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
-        private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
-        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
-        private const string PathContainerAllUsers = @"..\..\..\..\..\docs\UserDataBase.json";
-        private const string PathContainerDiccUserTokens = @"..\..\..\..\..\docs\DiccUserTokensDataBase.json";
+        private const string PathContainerPublication = @"..\..\docs\PublicationDataBase.json";
+        private const string PathContainerAllUsers = @"..\..\docs\UserDataBase.json";
+        private const string PathContainerDiccUserTokens = @"..\..\docs\DiccUserTokensDataBase.json";
         private static SerializeManager instance;
 
         private SerializeManager() { }
@@ -38,69 +37,9 @@ namespace Bot
             }
         }
 
-        /// <summary>
-        /// Método principal de la clase que se encarga de accionar los métodos de Serialización y obtener sus
-        /// resultados booleanos.
-        /// </summary>
-        /// <returns><c>True</c> en caso de que todo el proceso de serialización este correcto, <c>False</c> en caso contrario.</returns>
-        public bool SerializeProgram()
+        public bool SerializeSessionRelated()
         {
-            bool conditionCompanies = this.SerializeCompanies();
-            bool conditionPublications = this.SerializePublications();
-            bool conditionToken = this.SerializeToken();
-            bool conditionSessionRelated = this.SerializeSessionRelated();
-
-            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
-        }
-
-        private bool SerializeCompanies()
-        {
-            if (File.Exists(PathContainerCompany))
-            {
-                string jsonToSave = CompanySet.Instance.ConvertObjectToSave();
-                File.WriteAllText(PathContainerCompany, jsonToSave);
-                return true;
-            }
-            else
-            {
-                File.Create(PathContainerCompany);
-                return false;
-            }
-        }
-
-        private bool SerializePublications()
-        {
-            if (File.Exists(PathContainerPublication))
-            {
-                string jsonToSave = PublicationSet.Instance.ConvertObjectToSave();
-                File.WriteAllText(PathContainerPublication, jsonToSave);
-                return true;
-            }
-            else
-            {
-                File.Create(PathContainerPublication);
-                return false;   
-            }
-        }
-
-        private bool SerializeToken()
-        {
-            if (File.Exists(PathContainerToken))
-            {
-                string jsonToSave = TokenGenerator.Instance.ConvertObjectToSave();
-                File.WriteAllText(PathContainerToken, jsonToSave);
-                return true;
-            }
-            else
-            {
-                File.Create(PathContainerToken);
-                return false;   
-            }
-        }
-
-        private bool SerializeSessionRelated()
-        {
-            if (File.Exists(PathContainerAllUsers) && File.Exists(PathContainerDiccUserTokens))
+            try
             {
                 string jsonAllUsersToSave;
                 string jsonDiccUserTokensToSave;
@@ -109,9 +48,25 @@ namespace Bot
                 File.WriteAllText(PathContainerDiccUserTokens, jsonDiccUserTokensToSave);
                 return true;
             }
-            else
+            catch (Exception e)
             {
-                return false;   
+                System.Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        private bool SerializePublications()
+        {
+            try
+            {
+                string jsonToSave = PublicationSet.Instance.ConvertObjectToSave();
+                File.WriteAllText(PathContainerPublication, jsonToSave);
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+                return false;
             }
         }
     }

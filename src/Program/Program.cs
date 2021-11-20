@@ -18,6 +18,7 @@ namespace Bot
         /// </summary>
         public static void Main()
         {
+            DeserializeManager.Instance.DeserializeSessionRelated();
             // TODO HACER LOS COMENTARIOS DE TODO
             // ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
 
@@ -29,6 +30,7 @@ namespace Bot
 
             // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
             Console.ReadLine();
+            SerializeManager.Instance.SerializeSessionRelated();
         }
     }
 }

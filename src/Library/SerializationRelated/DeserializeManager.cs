@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System;
 
 namespace Bot
 {
@@ -11,11 +12,11 @@ namespace Bot
     /// </summary>
     public class DeserializeManager 
     {
-        private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
-        private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
-        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
-        private const string PathContainerAllUsers = @"..\..\..\..\..\docs\UserDataBase.json";
-        private const string PathContainerDiccUserTokens = @"..\..\..\..\..\docs\DiccUserTokensDataBase.json";
+        private const string PathContainerCompany = @"..\..\docs\CompanyDataBase.json";
+        private const string PathContainerPublication = @"..\..\docs\PublicationDataBase.json";
+        private const string PathContainerToken = @"..\..\docs\TokenDataBase.json";
+        private const string PathContainerAllUsers = @"..\..\docs\UserDataBase.json";
+        private const string PathContainerDiccUserTokens = @"..\..\docs\DiccUserTokensDataBase.json";
         private static DeserializeManager instance;
 
         private DeserializeManager() { }
@@ -40,51 +41,51 @@ namespace Bot
             }
         }
 
-        /// <summary>
-        /// Método principal de la clase que se encarga de accionar los métodos de Deserialización y obtener sus
-        /// resultados booleanos.
-        /// </summary>
-        /// <returns><c>True</c> en caso de que todo el proceso de deserialización este correcto, <c>False</c> en caso contrario.</returns>
-        public bool DeserializeProgram()
+        public bool DeserializeSessionRelated()
         {
-            bool conditionCompanies = this.DeserializeCompanies();
-            bool conditionPublications = this.DeserializePublications();
-            bool conditionToken = this.DeserializeToken();
-            bool conditionSessionRelated = this.DeserializeSessionRelated();
-
-            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
-        }
-
-        private bool DeserializeCompanies()
-        {
-            if (File.Exists(PathContainerCompany))
+            JsonSerializerOptions options = new () 
             {
-                string json = File.ReadAllText(PathContainerCompany);
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true,
+            };
 
-                JsonSerializerOptions options = new ()
-                {
-                    ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true,
-                };
+            try
+            {
+                string jsonUsers = File.ReadAllText(PathContainerAllUsers);
 
-                IList<Company> listCompanies = JsonSerializer.Deserialize<IList<Company>>(json, options);
-                foreach (Company company in listCompanies)
+                List<UserInfo> allUsersList = JsonSerializer.Deserialize<List<UserInfo>>(jsonUsers, options);
+                foreach (UserInfo user in allUsersList)
                 {
-                    CompanySet.Instance.AddElement(company);
+                    SessionRelated.Instance.AddNewUser(user);
                 }
-
-                return true;
             }
-            else
+            catch (Exception e)
             {
-                File.Create(PathContainerCompany);
+                System.Console.WriteLine(e.Message);
                 return false;
             }
+
+            try
+            {
+                string jsonDiccUserTokens = File.ReadAllText(PathContainerDiccUserTokens);
+                Dictionary<string, Company> diccUserTokens = JsonSerializer.Deserialize<Dictionary<string, Company>>(jsonDiccUserTokens, options);
+                foreach (string idKey in diccUserTokens.Keys)
+                {
+                    SessionRelated.Instance.DiccUserTokens.Add(idKey, diccUserTokens[idKey]);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+                return false;
+            }
+
+            return true;
         }
 
         private bool DeserializePublications()
         {
-            if (File.Exists(PathContainerPublication))
+            try
             {
                 string json = File.ReadAllText(PathContainerPublication);
 
@@ -102,57 +103,9 @@ namespace Bot
 
                 return true;
             }
-            else
+            catch (Exception e)
             {
-                File.Create(PathContainerPublication);
-                return false;
-            }
-        }
-
-        private bool DeserializeToken()
-        {
-            if (File.Exists(PathContainerToken))
-            {
-                string json = File.ReadAllText(PathContainerToken);
-
-                JsonSerializerOptions options = new () 
-                {
-                    ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true,
-                };
-
-                TokenGenerator tokenDeserialize = JsonSerializer.Deserialize<TokenGenerator>(json, options);
-                TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
-                return true;
-            }
-            else
-            {
-                File.Create(PathContainerToken);
-                return false;
-            }
-        }
-
-        private bool DeserializeSessionRelated()
-        {
-            if (File.Exists(PathContainerAllUsers) && File.Exists(PathContainerDiccUserTokens))
-            {
-                string jsonUsers = File.ReadAllText(PathContainerAllUsers);
-                string jsonDiccUserTokens = File.ReadAllText(PathContainerDiccUserTokens);
-
-                JsonSerializerOptions options = new () 
-                {
-                    ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true,
-                };
-
-                List<UserInfo> allUsersList = JsonSerializer.Deserialize<List<UserInfo>>(jsonUsers, options);
-                Dictionary<string, Company> diccUserTokens = JsonSerializer.Deserialize<Dictionary<string, Company>>(jsonDiccUserTokens, options);
-                SessionRelated.Instance.AllUsers = allUsersList;
-                SessionRelated.Instance.DiccUserTokens = diccUserTokens;
-                return true;
-            }
-            else
-            {
+                System.Console.WriteLine(e.Message);
                 return false;
             }
         }

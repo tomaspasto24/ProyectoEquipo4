@@ -21,13 +21,13 @@ namespace Bot
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
-        public IList<UserInfo> AllUsers;
+        public List<UserInfo> AllUsers;
 
         [JsonInclude]
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public IDictionary<string, Company> DiccUserTokens;
+        public Dictionary<string, Company> DiccUserTokens;
 
         private static SessionRelated instance;
         /// <summary>

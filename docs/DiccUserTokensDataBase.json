@@ -1,3 +1,49 @@
 {
-  "$ref": "18"
+  "$id": "6",
+  "0": {
+    "$id": "7",
+    "Name": "prueba",
+    "Item": "prueba",
+    "Location": {
+      "$id": "8",
+      "City": "prueba",
+      "Address": "prueba"
+    },
+    "Contact": "prueba",
+    "ListHistorialPublications": {
+      "$id": "9",
+      "$values": []
+    },
+    "ListOwnPublications": {
+      "$id": "10",
+      "$values": []
+    },
+    "ListUsers": {
+      "$id": "11",
+      "$values": []
+    }
+  },
+  "1": {
+    "$id": "12",
+    "Name": "prueba2",
+    "Item": "prueba2",
+    "Location": {
+      "$id": "13",
+      "City": "prueba2",
+      "Address": "prueba2"
+    },
+    "Contact": "prueba2",
+    "ListHistorialPublications": {
+      "$id": "14",
+      "$values": []
+    },
+    "ListOwnPublications": {
+      "$id": "15",
+      "$values": []
+    },
+    "ListUsers": {
+      "$id": "16",
+      "$values": []
+    }
+  }
 }
