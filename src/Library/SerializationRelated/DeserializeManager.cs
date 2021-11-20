@@ -6,12 +6,16 @@ namespace Bot
 {
     /// <summary>
     /// Clase que se encarga de administrar la deserialización, es decir, extraer todos las clases de los archivos JSON
-    /// y llevarlas al programa.
+    /// y llevarlas al programa. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
+    /// de que el único método publico es DeserializeProgram.
     /// </summary>
     public class DeserializeManager 
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
+        private const string PathContainerAllUsers = @"..\..\..\..\..\docs\UserDataBase.json";
+        private const string PathContainerDiccUserTokens = @"..\..\..\..\..\docs\DiccUserTokensDataBase.json";
         private static DeserializeManager instance;
 
         private DeserializeManager() { }
@@ -45,8 +49,10 @@ namespace Bot
         {
             bool conditionCompanies = this.DeserializeCompanies();
             bool conditionPublications = this.DeserializePublications();
+            bool conditionToken = this.DeserializeToken();
+            bool conditionSessionRelated = this.DeserializeSessionRelated();
 
-            return conditionCompanies && conditionPublications;
+            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
         }
 
         private bool DeserializeCompanies()
@@ -99,6 +105,54 @@ namespace Bot
             else
             {
                 File.Create(PathContainerPublication);
+                return false;
+            }
+        }
+
+        private bool DeserializeToken()
+        {
+            if (File.Exists(PathContainerToken))
+            {
+                string json = File.ReadAllText(PathContainerToken);
+
+                JsonSerializerOptions options = new () 
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true,
+                };
+
+                TokenGenerator tokenDeserialize = JsonSerializer.Deserialize<TokenGenerator>(json, options);
+                TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerToken);
+                return false;
+            }
+        }
+
+        private bool DeserializeSessionRelated()
+        {
+            if (File.Exists(PathContainerAllUsers) && File.Exists(PathContainerDiccUserTokens))
+            {
+                string jsonUsers = File.ReadAllText(PathContainerAllUsers);
+                string jsonDiccUserTokens = File.ReadAllText(PathContainerDiccUserTokens);
+
+                JsonSerializerOptions options = new () 
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true,
+                };
+
+                List<UserInfo> allUsersList = JsonSerializer.Deserialize<List<UserInfo>>(jsonUsers, options);
+                Dictionary<string, Company> diccUserTokens = JsonSerializer.Deserialize<Dictionary<string, Company>>(jsonDiccUserTokens, options);
+                SessionRelated.Instance.AllUsers = allUsersList;
+                SessionRelated.Instance.DiccUserTokens = diccUserTokens;
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }

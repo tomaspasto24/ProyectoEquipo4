@@ -387,7 +387,7 @@
         <member name="T:Bot.Company">
             <summary>
             Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
-            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
+            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación ya que tiene
             un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
             </summary>
         </member>
@@ -398,8 +398,7 @@
         </member>
         <member name="M:Bot.Company.#ctor(System.String,System.String,Bot.GeoLocation,System.String)">
             <summary>
-            Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
-            contador de empresas estático.
+            Constructor de la clase Empresa, inicializa los valores de los parámetros.
             </summary>
             <param name="name">Nombre de la Empresa.</param>
             <param name="item">Rubro de la Empresa.</param>
@@ -426,7 +425,7 @@
         </member>
         <member name="P:Bot.Company.Contact">
             <summary>
-            Obtiene nombre del rubro de la clase Empresa.
+            Obtiene el contacto de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
@@ -445,7 +444,7 @@
         </member>
         <member name="P:Bot.Company.ListUsers">
             <summary>
-            Obtiene una lista de los usuarios actuales de la empresa como una lista de solo lectura.
+            Obtiene una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
             </summary>
             <returns>Lista User de solo lectura.</returns>
         </member>
@@ -463,7 +462,7 @@
         </member>
         <member name="M:Bot.Company.AddUser(System.Collections.Generic.IReadOnlyList{Bot.UserInfo})">
             <summary>
-            Sobrecarga del método AddUser, se encarga de agregar una lista de Usurios a listUsers.
+            Sobrecarga del método AddUser, se encarga de agregar una lista de Usuarios al conjunto de usuarios de la clase Empresa.
             </summary>
             <param name="listUsers"></param>
         </member>
@@ -478,7 +477,7 @@
             <summary>
             Método que se encarga de agregar una publicación propia de la empresa.
             </summary>
-            <param name="publication">Publicación.</param>
+            <param name="publication">Clase Publicación.</param>
         </member>
         <member name="M:Bot.Company.AddOwnPublication(System.Collections.Generic.IReadOnlyList{Bot.Publication})">
             <summary>
@@ -507,17 +506,16 @@
         </member>
         <member name="T:Bot.CompanySet">
             <summary>
-            Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general. Su constructor se encuentra 
-            privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
-            GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
+            Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general.
+            Cumple con el patrón de creación Singleton (Ver Readme).
             </summary>
         </member>
         <member name="P:Bot.CompanySet.Instance">
             <summary>
             Obtiene el acceso a la propia instancia de la clase CompanySet,
-            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-            siempre se use la misma variable instancia y se cumpla con Singleton.
+            en caso de que el atributo instance no este creado, lo crea y lo retorna. En caso 
+            contrario de que anteriormente este creado simplemente lo retorna, asi se asegura de que
+            siempre se use la misma instancia y se cumpla con Singleton.
             </summary>
             <returns>Instancia CompanySet.</returns>
         </member>
@@ -546,8 +544,7 @@
         </member>
         <member name="M:Bot.CompanySet.ReturnListElements">
             <summary>
-            Método que retorna la lista completa de Empresas en un string con sus respectivos
-            índices.
+            Método que retorna la lista completa de Empresas en una cadena de caracteres.
             </summary>
             <returns>String con el nombre de la Empresa y sus indices.</returns>
         </member>
@@ -556,7 +553,7 @@
             Método simple que se encarga de comprobar si una clase Empresa se encuentra
             en el sistema de Empresas.
             </summary>
-            <param name="element">Empresa.</param>
+            <param name="element">Clase Empresa.</param>
             <returns><c>True</c> en caso de encontrarse en el sistema y <c>False</c> en caso
             contrario.</returns>
         </member>
@@ -574,11 +571,11 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
             </summary>
         </member>
-        <member name="M:Bot.CompanySet.ConvertObjectToSaveToJson">
+        <member name="M:Bot.CompanySet.ConvertObjectToSave">
             <summary>
             Método que convierte el propio objeto en formato JSON.
             </summary>
-            <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+            <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
         </member>
         <member name="T:Bot.ISetOfElement`1">
             <summary>
@@ -638,6 +635,11 @@
             datos internos que solo la clase Material conoce ya que es experta en lo que hace. En caso de que la clase Material no se hubiera creado, 
             la clase Publication tendría más de una responsabilidad y además imposibilitaría que el usuario pueda publicar más de un material a la vez rompiendo
             con el patron SRP.
+            </summary>
+        </member>
+        <member name="M:Bot.Material.#ctor">
+            <summary>
+            Constructor sin implementación para ser usado por JsonConstructor
             </summary>
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
@@ -822,17 +824,16 @@
         </member>
         <member name="T:Bot.PublicationSet">
             <summary>
-            Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general. Su constructor se encuentra 
-            privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
-            GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
+            Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general.
+            Cumple con el patrón de creación Singleton (Ver Readme).
             </summary>
         </member>
         <member name="P:Bot.PublicationSet.Instance">
             <summary>
             Obtiene el acceso a la propia instancia de la clase PublicationSet,
-            en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-            contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-            siempre se use la misma variable instancia y se cumpla con Singleton.
+            en caso de que el atributo instance no este creado, lo crea y lo retorna. En caso 
+            contrario de que anteriormente este creado simplemente lo retorna, asi se asegura de que
+            siempre se use la misma instancia y se cumpla con Singleton.
             </summary>
             <returns>Instancia PublicationSet.</returns>
         </member>
@@ -887,7 +888,7 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
             </summary>
         </member>
-        <member name="M:Bot.PublicationSet.ConvertObjectToSaveToJson">
+        <member name="M:Bot.PublicationSet.ConvertObjectToSave">
             <summary>
             Método que convierte la lista de la clase Publicación en formato JSON.
             </summary>
@@ -915,16 +916,6 @@
         <member name="T:Bot.SessionRelated">
             <summary>
             Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
-            </summary>
-        </member>
-        <member name="F:Bot.SessionRelated.AllUsers">
-            <summary>
-            Lista de todos los usuarios
-            </summary>
-        </member>
-        <member name="F:Bot.SessionRelated.DiccUserTokens">
-            <summary>
-            Diccionario que contiene el token que se relaciona con la empresa
             </summary>
         </member>
         <member name="P:Bot.SessionRelated.Instance">
@@ -1256,7 +1247,7 @@
             Interfaz pública que define el tipo de los objetos que pueden ser serializados y deserializados.
             </summary>
         </member>
-        <member name="M:Bot.IJsonConvertible.ConvertObjectToSaveToJson">
+        <member name="M:Bot.IJsonConvertible.ConvertObjectToSave">
             <summary>
             Método que convierte el objeto a formato JSON en cadena de caraceteres.
             </summary>
@@ -1359,6 +1350,12 @@
             Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
             </summary>
             <returns>El token generado.</returns>
+        </member>
+        <member name="M:Bot.TokenGenerator.ConvertObjectToSave">
+            <summary>
+            Método para devolver a la clase encarga de serializar, la serialización del atributo tkn
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bot.UserInfo">
             <summary>
