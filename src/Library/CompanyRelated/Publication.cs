@@ -19,8 +19,16 @@ namespace Bot
         private GeoLocation location;
         private Company company;
         private bool isClosed;
+        [JsonInclude]
         private IList<Material> listMaterials = new List<Material>();
+        [JsonInclude]
         private IList<string> listQualifications = new List<string>(); // Lista Habilitaciones
+
+        /// <summary>
+        /// Constructor ingresado en blanco para la implementación de la Serialización.
+        /// </summary>
+        [JsonConstructor]
+        public Publication() { }
 
         /// <summary>
         /// Constructor de Publicación, instancia la hora del sistema actual en donde se crea y setea nombreEmpresa, ubicacion, material y titulo de la publicacion.
@@ -29,7 +37,6 @@ namespace Bot
         /// <param name="company">Empresa.</param>
         /// <param name="location">Ubicación.</param>
         /// <param name="material">Material.</param>
-        [JsonConstructor]
         public Publication(String title, Company company, GeoLocation location, Material material)
         {
             this.title = title;

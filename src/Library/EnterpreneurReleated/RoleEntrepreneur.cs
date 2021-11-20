@@ -137,5 +137,10 @@ namespace Bot
             publication.SetInterestedPerson(this);
             return publication.Company.ReturnContact();
         }
+
+        public override string ToString()
+        {
+            return "Emprendedor";
+        }
     }
 }

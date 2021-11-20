@@ -42,7 +42,7 @@ namespace Bot
         /// </summary>
         /// <param name="id">Id del usuario con el que dialoga el bot</param>
         /// <param name="text">Mensaje que se quiere enviar al usuario</param>
-        public override void SendMessage(int id, string text)
+        public override void SendMessage(long id, string text)
         {
             System.Console.WriteLine(text);
         }

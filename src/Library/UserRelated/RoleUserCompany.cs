@@ -5,7 +5,7 @@ namespace Bot
     /// <summary>
     /// Clase RoleUserCompany se encarga de servir como representación de un usuario
     /// que forma parte de una empresa. 
-    /// </summary>
+    /// /// </summary>
     public class RoleUserCompany : IRole
     {
         /// <summary>
@@ -21,6 +21,11 @@ namespace Bot
         public RoleUserCompany(Company company)
         {
             this.company = company;
+        }
+
+        public override string ToString()
+        {
+            return "Usuario de compañia";
         }
     }
 }

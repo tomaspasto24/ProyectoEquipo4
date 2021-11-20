@@ -99,11 +99,6 @@ namespace Bot
                     return false;
                 }
             }
-            else if (user.UserRole is RoleAdmin && request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
-            {
-                response = "Disculpa, no eres un emprendedor o un usuario empresa";
-                return false;
-            }
 
             response = string.Empty;
             return false;

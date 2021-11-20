@@ -17,13 +17,18 @@ namespace Bot
         private string item;
         private GeoLocation location;
         private string contact;
-
-        // Las listas se declaran de tipo IList para que la lista dependa de una abstracción (Interfaz de List)
-        // cumpliendo con el patrón de diseño DIP. Además cumplen con ISP ya que las listas no dependen de un
-        // tipo que no usan y por esto no sobran métodos.
+        [JsonInclude]
         private IList<UserInfo> listUsers = new List<UserInfo>();
+        [JsonInclude]
         private IList<Publication> listOwnPublications = new List<Publication>();
+        [JsonInclude]
         private IList<Publication> listHistorialPublications = new List<Publication>();
+
+        /// <summary>
+        /// Constructor ingresado en blanco para la implementación de la Serialización.
+        /// </summary>
+        [JsonConstructor]
+        public Company() { }
 
         /// <summary>
         /// Constructor de la clase Empresa, setea los valores de los parámetros y suma un valor al
@@ -33,7 +38,6 @@ namespace Bot
         /// <param name="item">Rubro de la Empresa.</param>
         /// <param name="location">Ubicación establecida de la Empresa.</param>
         /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
-        [JsonConstructor]
         public Company(string name, string item, GeoLocation location, string contact)
         {
             this.name = name;

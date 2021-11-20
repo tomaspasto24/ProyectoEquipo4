@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.Json;
 
 namespace Bot
 {
@@ -10,12 +11,15 @@ namespace Bot
     /// privado para que no sea posible crear más de una instancia de la clase, para obtener la instancia se necesita llamar al método
     /// GetInstance que devuelve la única instancia que puede ser usada, cumpliendo así con el patrón de diseño Singleton.
     /// </summary>
-    public class CompanySet : ISetOfElement<Company>
+    public class CompanySet : ISetOfElement<Company>, IJsonConvertible
     {
         private static CompanySet instance;
-        private IList<Company> listCompanies = new List<Company>();
+        private IList<Company> listCompanies;
 
-        private CompanySet() { }
+        private CompanySet()
+        {
+            this.Initialize();
+        }
 
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase CompanySet,
@@ -69,7 +73,8 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema.
+        /// Método que se encarga de eliminar una Empresa de la lista de Empresas del sistema. El criterio usado es
+        /// por el nombre de la clase Empresa. Es decir, el programa no admite 2 clases Empresa con mismo nombre.
         /// </summary>
         /// <param name="element">Empresa.</param>
         /// <returns><c>True</c> en caso de que se haya eliminado correctamente y <c>False</c> en caso
@@ -78,8 +83,7 @@ namespace Bot
         {
             if (this.ContainsElementInListElements(element))
             {
-                this.listCompanies.Remove(element);
-                return true;
+                return this.listCompanies.Remove((this.listCompanies as List<Company>).Find(companyInList => companyInList.Name == element.Name));
             }
             else
             {
@@ -98,7 +102,7 @@ namespace Bot
 
             foreach (Company company in this.listCompanies)
             {
-                result.Append($"{company.Name} \n");
+                result.Append($"\t {company.Name} \n");
             }
 
             return result.ToString();
@@ -156,6 +160,28 @@ namespace Bot
             {
                 throw new ArgumentNullException(nameof(elementName));
             }
+        }
+
+        /// <summary>
+        /// Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
+        /// </summary>
+        public void Initialize()
+        {
+            this.listCompanies = new List<Company>();
+        }
+
+        /// <summary>
+        /// Método que convierte el propio objeto en formato JSON.
+        /// </summary>
+        /// <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
+        public string ConvertObjectToSaveToJson()
+        {
+            JsonSerializerOptions options = new () 
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true,
+            };
+            return JsonSerializer.Serialize(this.listCompanies, options);
         }
     }
 }

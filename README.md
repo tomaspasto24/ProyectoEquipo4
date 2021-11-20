@@ -19,3 +19,15 @@ Esta vez si utilizamos el Readme! :grin:
 
 **4. Comentarios sobre el trabajo en el proyecto:**
 - Como ya mencionamos, el enfoque que tiene el bot nos gustó, incluso tanto, que tratamos de hacer la adaptación con Telegram antes de tiempo y tal vez nos generó una complicación mas que una ayuda, pero pudimos superarlo sin problemas. :muscle:
+
+
+Patrones: 
+
+Las listas se declaran de tipo IList para que la lista dependa de una abstracción (Interfaz de List)
+cumpliendo con el patrón de diseño DIP. Además cumplen con ISP ya que las listas no dependen de un
+tipo que no usan y por esto no sobran métodos.
+
+Se usa la interfaz IJsonConvertible para definir el tipo de las clases que son Serializables y Deserializables, dentro de la interfaz
+se encuentra la operación para serializar el propio objeto ya que, por patrón Expert, la propia clase es la experta en serializarse a si misma porque
+tiene la responsabilidad de conocer todos sus atributos. En cambio la operación para deserializar se encuentra fuera porque no necesariamente
+las clases de tipo IJsonConvertible tienen que ser expertas en aplicarse una deserialización.

@@ -22,7 +22,7 @@ namespace Bot
         public string GenerateToken(Company company)
         {
             int newToken = TokenGenerator.Instance.GenerateToken();
-            SessionRelated.Instance.DiccUserTokens.Add(newToken, company);
+            SessionRelated.Instance.DiccUserTokens.Add(newToken.ToString(), company);
             return newToken.ToString();
         }
 
@@ -34,5 +34,10 @@ namespace Bot
         // {
         //     globalQualificationList.Remove(rating);
         // }
+
+        public override string ToString()
+        {
+            return "Admin";
+        }
     }
 }

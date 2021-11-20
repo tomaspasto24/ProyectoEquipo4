@@ -30,6 +30,13 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             // TODO
+            if (request.Text == "/info")
+            {
+                response = $"{user.UserRole}";
+                return true;
+                //response = $"Tu info: \n Nombre: {user.Name}"
+            }
+
             response = string.Empty;
             return false;
         }
