@@ -26,9 +26,7 @@ namespace Bot
         /// </summary>
         public string Heading { get; set; }
         private List<string> certification = new List<string>();
-
         private List<string> specializations = new List<string>();
-
         private List<Permission> permissions = new List<Permission>(){
             Permission.None,
             Permission.Register,
@@ -59,7 +57,7 @@ namespace Bot
         {
             get
             {
-                return this.certification;
+                return (this.certification as List<string>).AsReadOnly();
             }
         }
 
@@ -71,7 +69,7 @@ namespace Bot
         {
             get
             {
-                return this.specializations;
+                return (this.specializations as List<string>).AsReadOnly();
             }
         }
 
@@ -131,7 +129,7 @@ namespace Bot
         public IReadOnlyCollection<Publication> ReturnListHistorialPublications()
         {
             {
-                return this.listHistorialPublications.AsReadOnly();
+                return (this.listHistorialPublications as List<Publication>).AsReadOnly();
             }
         }
 

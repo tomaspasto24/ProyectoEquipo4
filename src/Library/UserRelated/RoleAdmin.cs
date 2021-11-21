@@ -12,7 +12,7 @@ namespace Bot
         /// Se inicializa la lista globalQualificationList
         /// </summary>
         /// <returns></returns>
-        public static List<string> globalQualificationList = new List<string>();
+        public static IList<string> globalQualificationList = new List<string>();
 
         private List<Permission> permissions = new List<Permission>(){
             Permission.None,
