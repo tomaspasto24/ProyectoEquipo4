@@ -16,6 +16,6 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch">String por el que se buscará.</param>
         /// <returns>Devuelve una lista con las publicaciónes que cumplan con la búsqueda.</returns>
-    IReadOnlyCollection<T> Search(string wordToSearch);
+        IReadOnlyCollection<T> Search(string wordToSearch);
     }
 }

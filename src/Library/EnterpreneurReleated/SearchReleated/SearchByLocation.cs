@@ -12,8 +12,6 @@ namespace Bot
     /// </summary>
     public class SearchByLocation : ISearch<Publication>
     {
-        GeoLocation location;
-
         /// <summary>
         /// Método que búsca todas las publicaciones que contienen la ubicación pasada por parámetro. Recorre todas las
         /// publicaciones y se fija si tiene la misma ubicación recibida. Si es igual, se agrega la publicación a la lista que 
