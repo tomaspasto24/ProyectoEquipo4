@@ -24,13 +24,11 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            Command commands = new Command();
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             
-            if (request.Text.ToLower().Equals("/hola"))
+            if (request.Text.Equals("/hola"))
             {
-                response = "¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n" 
-                            + "\n Si deseas salir, solo escribe Exit. Si quieres ver los comandos, escribe \"/Comandos\"";
+                response = $"¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n {Command.GetCommands(user.Id)}";
                 return true;
             }
 

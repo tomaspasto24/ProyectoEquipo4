@@ -46,7 +46,7 @@ namespace BotTests
             publicationToCompare.AddQualification("Habilitación de Prueba1");
             publicationToCompare.AddQualification("Habilitación de Prueba2");
 
-            Assert.That(publicationToCompare.Title == "PublicationTest");
+            Assert.That(publicationToCompare.Title.Equals("PublicationTest"));
 
             Assert.IsNotNull(publicationToCompare);
             Assert.IsNotNull(PublicationSet.Instance.ListPublications);

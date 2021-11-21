@@ -3,13 +3,17 @@ using System.IO;
 namespace Bot
 {
     /// <summary>
-    /// Clase que se encarga de administrar la serialización, es decir, guardar todos las clases que necesiten
-    /// persistencia en formato JSON en su respectivo archivo contenedor.
+    /// Clase que se encarga de administrar la Serialización, es decir, extraer las instancias a persistir
+    /// y grabarlas en archivos JSON. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
+    /// de que el único método publico es SerializeProgram.
     /// </summary>
     public class SerializeManager 
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
+        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
+        private const string PathContainerAllUsers = @"..\..\..\..\..\docs\UserDataBase.json";
+        private const string PathContainerDiccUserTokens = @"..\..\..\..\..\docs\DiccUserTokensDataBase.json";
         private static SerializeManager instance;
 
         private SerializeManager() { }
@@ -43,20 +47,23 @@ namespace Bot
         {
             bool conditionCompanies = this.SerializeCompanies();
             bool conditionPublications = this.SerializePublications();
+            bool conditionToken = this.SerializeToken();
+            bool conditionSessionRelated = this.SerializeSessionRelated();
 
-            return conditionCompanies && conditionPublications;
+            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
         }
 
         private bool SerializeCompanies()
         {
             if (File.Exists(PathContainerCompany))
             {
-                string jsonToSave = CompanySet.Instance.ConvertObjectToSaveToJson();
+                string jsonToSave = CompanySet.Instance.ConvertObjectToSave();
                 File.WriteAllText(PathContainerCompany, jsonToSave);
                 return true;
             }
             else
             {
+                File.Create(PathContainerCompany);
                 return false;
             }
         }
@@ -65,8 +72,41 @@ namespace Bot
         {
             if (File.Exists(PathContainerPublication))
             {
-                string jsonToSave = PublicationSet.Instance.ConvertObjectToSaveToJson();
+                string jsonToSave = PublicationSet.Instance.ConvertObjectToSave();
                 File.WriteAllText(PathContainerPublication, jsonToSave);
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerPublication);
+                return false;   
+            }
+        }
+
+        private bool SerializeToken()
+        {
+            if (File.Exists(PathContainerToken))
+            {
+                string jsonToSave = TokenGenerator.Instance.ConvertObjectToSave();
+                File.WriteAllText(PathContainerToken, jsonToSave);
+                return true;
+            }
+            else
+            {
+                File.Create(PathContainerToken);
+                return false;   
+            }
+        }
+
+        private bool SerializeSessionRelated()
+        {
+            if (File.Exists(PathContainerAllUsers) && File.Exists(PathContainerDiccUserTokens))
+            {
+                string jsonAllUsersToSave;
+                string jsonDiccUserTokensToSave;
+                (jsonAllUsersToSave, jsonDiccUserTokensToSave) = SessionRelated.Instance.ConvertObjectToSaveToJson();
+                File.WriteAllText(PathContainerAllUsers, jsonAllUsersToSave);
+                File.WriteAllText(PathContainerDiccUserTokens, jsonDiccUserTokensToSave);
                 return true;
             }
             else
