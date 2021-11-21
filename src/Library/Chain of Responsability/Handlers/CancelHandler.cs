@@ -11,13 +11,13 @@ namespace Bot
     /// <summary>
     /// Handler que se encarga del registro de un usuario
     /// </summary>
-    public class UserInformationHandler : AbstractHandler
+    public class CancelHandler : AbstractHandler
     {
         /// <summary>
         /// Constructor de la clase RegisterHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public UserInformationHandler(AbstractHandler succesor) : base(succesor)
+        public CancelHandler(AbstractHandler succesor) : base(succesor)
         {
         }
 
@@ -30,20 +30,10 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!user.UserRole.HasPermission(Permission.Data))
+            if (request.Text.Equals("/cancelar"))
             {
-                response = string.Empty;
-                return false;
-            }
-
-            if (request.Text.Equals("/datos"))
-            {
-                response = $"Estos son tus datos: \nNombre: {user.Name}"
-                            + $"\nRole: {user.UserRole}"
-                            + "\nUbicacion: " + ((RoleEntrepreneur)user.UserRole).Location.Address + ", " + ((RoleEntrepreneur)user.UserRole).Location.City
-                            + $"\nRubro: " + ((RoleEntrepreneur)user.UserRole).Heading
-                            + "\nEspecialidades: " + ((RoleEntrepreneur)user.UserRole).GetSpecializations()
-                            + "\nCertificaciones: " + ((RoleEntrepreneur)user.UserRole).GetCertifications();
+                user.HandlerState = Bot.State.Start;
+                response = "Operación cancelada.";
                 return true;
             }
 

@@ -103,6 +103,24 @@
             estado inicial.
             </summary>
         </member>
+        <member name="T:Bot.CancelHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.CancelHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.CancelHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.CommandHandler">
             <summary>
             Handler para mostrar los comandos que el usuario tiene acceso
@@ -113,30 +131,6 @@
             Constructor de la clase CommandHandler
             </summary>
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        </member>
-        <member name="M:Bot.CommandHandler.EntrepreneurCommandList">
-            <summary>
-            Metodo que retorna una lista de comandos para el emprendedor
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.CommandHandler.CompanyUserCommandList">
-            <summary>
-            Metodo que retorna una lista de comandos para el usuario empresa
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.CommandHandler.AdminCommandList">
-            <summary>
-            Metodo que retorna una lista de comnados para el admin
-            </summary>
-            <returns>Lista de comandos</returns>
-        </member>
-        <member name="M:Bot.CommandHandler.DefaultCommandList">
-            <summary>
-            Metodo que retorna una lista de comnados para el admin
-            </summary>
-            <returns>Lista de comandos</returns>
         </member>
         <member name="M:Bot.CommandHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
@@ -157,24 +151,6 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.ContactHandler.InternalHandle(Bot.Message,System.String@)">
-            <summary>
-            Metodo que se encarga de atender el handler.
-            </summary>
-            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-            <param name="response">La respuesta al mensaje procesado.</param>
-        </member>
-        <member name="T:Bot.ConvertUserToEntrepreneurHandler">
-            <summary>
-            Handler que se encarga del registro de un usuario
-            </summary>
-        </member>
-        <member name="M:Bot.ConvertUserToEntrepreneurHandler.#ctor(Bot.AbstractHandler)">
-            <summary>
-            Constructor de la clase RegisterHandler
-            </summary>
-            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        </member>
-        <member name="M:Bot.ConvertUserToEntrepreneurHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -225,6 +201,24 @@
             caso de error por ejemplo.
             </summary>
         </member>
+        <member name="T:Bot.ModifyEntrepreneurInformationHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.ModifyEntrepreneurInformationHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.ModifyEntrepreneurInformationHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.PublishHandler">
             <summary>
             Handler que se encarga del registro de un usuario
@@ -237,6 +231,24 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.PublishHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.PurchasesReportHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.PurchasesReportHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.PurchasesReportHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -276,36 +288,18 @@
             El token que se ingresa en el estado ConfirmingToken
             </summary>
         </member>
-        <member name="T:Bot.ReportHandler">
+        <member name="T:Bot.SalesReportHandler">
             <summary>
             Handler que se encarga del registro de un usuario
             </summary>
         </member>
-        <member name="T:Bot.ReportHandler.ReportState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando RegisterHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide el token de registro
-            - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
-            </summary>
-        </member>
-        <member name="F:Bot.ReportHandler.ReportState.Start">
-            Estado antes de mandar el token
-        </member>
-        <member name="F:Bot.ReportHandler.ReportState.ConfirmingToken">
-            Estado mientras el bot espera y confirma un token
-        </member>
-        <member name="P:Bot.ReportHandler.State">
-            <summary>
-            El estado del comando.
-            </summary>
-        </member>
-        <member name="M:Bot.ReportHandler.#ctor(Bot.AbstractHandler)">
+        <member name="M:Bot.SalesReportHandler.#ctor(Bot.AbstractHandler)">
             <summary>
             Constructor de la clase RegisterHandler
             </summary>
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
-        <member name="M:Bot.ReportHandler.InternalHandle(Bot.Message,System.String@)">
+        <member name="M:Bot.SalesReportHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -348,6 +342,24 @@
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
+        <member name="T:Bot.TextNullHandler">
+            <summary>
+            Handler para saludar al usuario
+            </summary>
+        </member>
+        <member name="M:Bot.TextNullHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase StartHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.TextNullHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.TokenHandler">
             <summary>
             Handler que se encarga del registro de un usuario
@@ -360,6 +372,24 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.TokenHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.UndertakeHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.UndertakeHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.UndertakeHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -387,7 +417,7 @@
         <member name="T:Bot.Company">
             <summary>
             Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
-            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación ya que tiene
+            Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación porque tiene
             un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
             </summary>
         </member>
@@ -571,11 +601,11 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
             </summary>
         </member>
-        <member name="M:Bot.CompanySet.ConvertObjectToSave">
+        <member name="M:Bot.CompanySet.ConvertObjectToSaveToJson">
             <summary>
             Método que convierte el propio objeto en formato JSON.
             </summary>
-            <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
+            <returns>Objeto convertido en JSON mediante una cadena de caracteres.</returns>
         </member>
         <member name="T:Bot.ISetOfElement`1">
             <summary>
@@ -635,11 +665,6 @@
             datos internos que solo la clase Material conoce ya que es experta en lo que hace. En caso de que la clase Material no se hubiera creado, 
             la clase Publication tendría más de una responsabilidad y además imposibilitaría que el usuario pueda publicar más de un material a la vez rompiendo
             con el patron SRP.
-            </summary>
-        </member>
-        <member name="M:Bot.Material.#ctor">
-            <summary>
-            Constructor sin implementación para ser usado por JsonConstructor
             </summary>
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
@@ -888,7 +913,7 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
             </summary>
         </member>
-        <member name="M:Bot.PublicationSet.ConvertObjectToSave">
+        <member name="M:Bot.PublicationSet.ConvertObjectToSaveToJson">
             <summary>
             Método que convierte la lista de la clase Publicación en formato JSON.
             </summary>
@@ -899,14 +924,7 @@
             Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
             </summary>
         </member>
-        <member name="F:Bot.Command.entrepeneurCommandList">
-            <summary>
-            Lista de comandos que un entrepeneur puede ejecutar.
-            </summary>
-            <typeparam name="string"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Bot.Command.ReturnCommands(System.Int64)">
+        <member name="M:Bot.Command.GetCommands(System.Int64)">
             <summary>
             Metodo para retornar la lista de comandos segun que usuario la pida.
             </summary>
@@ -977,7 +995,7 @@
             <typeparam name="Publication">Publicación.</typeparam>
             <returns>Coleción de tipo Publication.</returns>
         </member>
-        <member name="F:Bot.RoleEntrepreneur.heading">
+        <member name="P:Bot.RoleEntrepreneur.Heading">
             <summary>
             Rubro.
             </summary>
@@ -1247,7 +1265,7 @@
             Interfaz pública que define el tipo de los objetos que pueden ser serializados y deserializados.
             </summary>
         </member>
-        <member name="M:Bot.IJsonConvertible.ConvertObjectToSave">
+        <member name="M:Bot.IJsonConvertible.ConvertObjectToSaveToJson">
             <summary>
             Método que convierte el objeto a formato JSON en cadena de caraceteres.
             </summary>

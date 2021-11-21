@@ -1,25 +1,23 @@
 using System;
-using System.Collections.Generic;
 
 namespace Bot
 {
     /*
     Patrones y principios:
+    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
     También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
     A su vez, cumple con el patrón Chain of Responsability.
     */
     /// <summary>
-    /// Handler que se encarga del registro de un usuario
+    /// Handler para saludar al usuario
     /// </summary>
-    public class DefaultHandler : AbstractHandler
+    public class TextNullHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de la clase RegisterHandler
+        /// Constructor de la clase StartHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public DefaultHandler(AbstractHandler succesor) : base(succesor)
-        {
-        }
+        public TextNullHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
@@ -28,15 +26,14 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            if (request.Text.Trim().StartsWith("/"))
+            if (request.Text.Equals(null))
             {
-                response = "Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo.";
+                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
             }
-            else
-            {
-                response = "Disculpa, no te entiendo";
-            }
-            return true;
+
+            request.Text = request.Text.Trim().ToLower();
+            response = string.Empty;
+            return false;
         }
     }
 }

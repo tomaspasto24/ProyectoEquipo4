@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Bot
 {
@@ -14,6 +15,12 @@ namespace Bot
         /// <value></value>
         public Company company { private set; get; }
 
+        private List<Permission> permissions = new List<Permission>(){
+            Permission.None,
+            Permission.SalesReport,
+            Permission.Publish,
+        };
+
         /// <summary>
         /// Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
         /// </summary>
@@ -21,6 +28,11 @@ namespace Bot
         public RoleUserCompany(Company company)
         {
             this.company = company;
+        }
+
+        public bool HasPermission(Permission perm)
+        {
+            return this.permissions.Contains(perm);
         }
 
         public override string ToString()

@@ -16,8 +16,20 @@ namespace Bot
         ConfirmingAdressEntrepreneur,
         ConfirmingCompanyName,
         ConfirmingCompanyHeader,
-        ConfirmingCompanyAdress,
+        ConfirmingCompanyAddress,
         ConfirmingCompanyCity,
-        ConfirmingCompanyContact
+        ConfirmingCompanyContact,
+        AskingCompanyName,
+        AskingDataNumber,
+        ChangingUserUbication,
+        ChangingUserHeader,
+        ChangingUserSpecializations,
+        ChangingUserCertifications,
+        ChangingUserAddress,
+        ChangingUserCity,
+        AddingUserSpecializations,
+        DeletingUserSpecializations,
+        AddingUserCertification,
+        DeletingUserCertification
     }
 }

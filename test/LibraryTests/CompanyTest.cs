@@ -33,10 +33,10 @@ namespace BotTests
         public void InstanceTest()
         {
             Assert.IsNotNull(companyTest);
-            Assert.That(companyTest.Name == "Test");
-            Assert.That(companyTest.Item == "TestItem");
+            Assert.That(companyTest.Name.Equals("Test"));
+            Assert.That(companyTest.Item.Equals("TestItem"));
             Assert.That(companyTest.Location == location);
-            Assert.That(companyTest.Contact == "TestContact");
+            Assert.That(companyTest.Contact.Equals("TestContact"));
         }
         
         /// <summary>
