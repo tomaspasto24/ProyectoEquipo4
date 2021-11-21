@@ -30,7 +30,12 @@ namespace Bot
         {
             // TODO
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-
+            
+            if (!user.UserRole.HasPermission(Permission.Publish))
+            {
+                response = string.Empty;
+                return false;
+            }
             response = string.Empty;
             return false;
         }

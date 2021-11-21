@@ -56,10 +56,10 @@ namespace Bot
             IHandler handler =
                 new CommandHandler(
                     new ContactHandler(
-                        new ConvertUserToEntrepreneurHandler(
+                        new UndertakeHandler(
                             new PublishHandler(
                                 new RegisterHandler(
-                                    new ReportHandler(
+                                    new SalesReportHandler(
                                         new SearchHandler(
                                             new StartHandler(
                                                 new TokenHandler(

@@ -12,13 +12,13 @@ namespace Bot
     /// <summary>
     /// Handler para mostrar los comandos que el usuario tiene acceso
     /// </summary>
-    public class CommandHandler : AbstractHandler
+    public class ModifyUserHeaderHandler : AbstractHandler
     {
         /// <summary>
         /// Constructor de la clase CommandHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public CommandHandler(AbstractHandler succesor) : base(succesor) { }
+        public ModifyUserHeaderHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
@@ -27,9 +27,13 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            if (request.Text.Equals("/comandos"))
+            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            if (user.HandlerState == Bot.State.ChangingUserHeader)
             {
-                response = $"Estos son todos los comandos: \n" + Command.GetCommands(request.UserId);
+                ((RoleEntrepreneur)user.UserRole).Heading = request.Text;
+                response = "Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+                + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
+                user.HandlerState = Bot.State.AskingDataNumber;
                 return true;
             }
 

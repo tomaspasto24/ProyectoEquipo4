@@ -14,6 +14,10 @@ namespace Bot
         /// <returns></returns>
         public static IList<string> globalQualificationList = new List<string>();
 
+        private List<Permission> permissions = new List<Permission>(){
+            Permission.None,
+            Permission.GenerateToken,
+        };
         /// <summary>
         /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
         /// </summary>
@@ -34,6 +38,11 @@ namespace Bot
         // {
         //     globalQualificationList.Remove(rating);
         // }
+
+        public bool HasPermission(Permission perm)
+        {
+            return this.permissions.Contains(perm);
+        }
 
         public override string ToString()
         {
