@@ -37,7 +37,7 @@ namespace Bot
                 return false;
             }
 
-            if (request.Text.ToLower() == "/reporte" && user.HandlerState == Bot.State.Start)
+            if (request.Text.Equals("/reporte") && user.HandlerState == Bot.State.Start)
             {
                 StringBuilder report = new StringBuilder();
                 int contador = 0;

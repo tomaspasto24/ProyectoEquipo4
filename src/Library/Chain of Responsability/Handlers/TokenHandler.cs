@@ -38,7 +38,7 @@ namespace Bot
                 return false;
             }
 
-            if (user.HandlerState == Bot.State.Start && request.Text.ToLower().Equals("/crearinvitacion"))
+            if (user.HandlerState == Bot.State.Start && request.Text.Equals("/crearinvitacion"))
             {
                 user.HandlerState = Bot.State.ConfirmingCompanyName;
                 response = "Procedamos a crear la empresa para el token. \nDinos el nombre del empresa.\nEnvia \"/cancelar\" para cancelar la operación";
@@ -56,7 +56,7 @@ namespace Bot
                 else
                 {
                     this.dataPerUser.Remove(user);
-                    this.dataPerUser.Add(user, new TokenGenerationData(request.Text.ToLower()));
+                    this.dataPerUser.Add(user, new TokenGenerationData(request.Text));
                     response = "Genial, tenemos el nombre de la empresa. \nAhora dinos el rubro.\nEnvia \"/cancelar\" para cancelar la operación";
                     user.HandlerState = Bot.State.ConfirmingCompanyHeader;
                     return true;
@@ -65,7 +65,7 @@ namespace Bot
             else if (user.HandlerState == Bot.State.ConfirmingCompanyHeader)
             {
                 TokenGenerationData tgd = this.dataPerUser[user];
-                tgd.Heading = request.Text.ToLower();
+                tgd.Heading = request.Text;
                 response = "Genial, tenemos el rubro de la empresa. \nAhora dinos la ciudad donde se ubica la empresa.\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.ConfirmingCompanyCity;
                 return true;
@@ -73,15 +73,15 @@ namespace Bot
             else if (user.HandlerState == Bot.State.ConfirmingCompanyCity)
             {
                 TokenGenerationData tgd = this.dataPerUser[user];
-                tgd.City = request.Text.ToLower();
+                tgd.City = request.Text;
                 response = "Genial, tenemos la ciudad de la empresa. \nAhora dinos la direccion de la empresa.\nEnvia \"/cancelar\" para cancelar la operación";
-                user.HandlerState = Bot.State.ConfirmingCompanyAdress;
+                user.HandlerState = Bot.State.ConfirmingCompanyAddress;
                 return true;
             }
-            else if (user.HandlerState == Bot.State.ConfirmingCompanyAdress)
+            else if (user.HandlerState == Bot.State.ConfirmingCompanyAddress)
             {
                 TokenGenerationData tgd = this.dataPerUser[user];
-                tgd.Address = request.Text.ToLower();
+                tgd.Address = request.Text;
                 response = "Genial, tenemos la direccion de la empresa. \nAhora dinos el contacto de la empresa (e-mail o telefono).\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.ConfirmingCompanyContact;
                 return true;
@@ -92,7 +92,7 @@ namespace Bot
                 string token = TokenGenerator.Instance.GenerateToken().ToString();
                 user.HandlerState = Bot.State.Start;
                 response = $"Genial, tenemos el contacto de la empresa. \nEmpresa creada con exito. El token para esta empresa es: \n{token}";
-                Company company = new Company(tgd.Name, tgd.Heading, new GeoLocation(tgd.Address, tgd.City), request.Text.ToLower());
+                Company company = new Company(tgd.Name, tgd.Heading, new GeoLocation(tgd.Address, tgd.City), request.Text);
                 SessionRelated.Instance.DiccUserTokens.Add(token.ToString(), company);
                 this.dataPerUser.Remove(user);
                 return true;

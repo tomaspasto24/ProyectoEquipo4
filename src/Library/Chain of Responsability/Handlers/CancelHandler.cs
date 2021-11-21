@@ -30,7 +30,7 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (request.Text.ToLower().Equals("/cancelar"))
+            if (request.Text.Equals("/cancelar"))
             {
                 user.HandlerState = Bot.State.Start;
                 response = "Operación cancelada.";

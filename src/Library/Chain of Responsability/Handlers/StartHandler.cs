@@ -26,10 +26,9 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             
-            if (request.Text.ToLower().Equals("/hola"))
+            if (request.Text.Equals("/hola"))
             {
-                response = 
-                $"¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n {Command.GetCommands(user.Id)}";
+                response = $"¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n {Command.GetCommands(user.Id)}";
                 return true;
             }
 

@@ -113,11 +113,8 @@ namespace Library
                 SendMessage(chatId, $"Ha sucedido un error: {e.Message}");
                 return;
             }
-
-            // TODO Poder cancelar cosas en los handlers
+            
             SendMessage(chatId, response);
-
-            // TODO request.Text = request.Text.Trim().ToLower(); para que todos los mensajes se trimeen y se vayan tolower
         }
     }
 }

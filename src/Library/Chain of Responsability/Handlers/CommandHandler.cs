@@ -27,7 +27,7 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            if (request.Text.ToLower().Equals("/comandos"))
+            if (request.Text.Equals("/comandos"))
             {
                 response = $"Estos son todos los comandos: \n" + Command.GetCommands(request.UserId);
                 return true;

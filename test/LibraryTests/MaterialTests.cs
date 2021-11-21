@@ -21,7 +21,7 @@ namespace BotTests
 
             Assert.IsNotNull(Materialtest.Name);
             Assert.That(Materialtest.Name is string);
-            Assert.That(Materialtest.Name == "Wood");
+            Assert.That(Materialtest.Name.Equals("Wood"));
 
             Assert.IsNotNull(Materialtest.Price);
             Assert.That(Materialtest.Price == 0);

@@ -43,6 +43,10 @@ namespace Bot
             {
                 return this.city;
             }
+            set
+            {
+                this.city = value;
+            }
         }
 
         /// <summary>
@@ -54,6 +58,10 @@ namespace Bot
             get
             {
                 return this.address;
+            }
+            set
+            {
+                this.address = value;
             }
         }
 

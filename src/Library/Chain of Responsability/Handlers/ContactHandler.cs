@@ -36,7 +36,7 @@ namespace Bot
                 return false;
             }
             
-            if (request.Text.ToLower().Equals("/contacto") && user.HandlerState == Bot.State.Start)
+            if (request.Text.Equals("/contacto") && user.HandlerState == Bot.State.Start)
             {
                 user.HandlerState = Bot.State.AskingCompanyName;
                 response = "Por favor dinos con que empresa te quieres contactar. \nEnvia \"/cancelar\" para cancelar la operación.";

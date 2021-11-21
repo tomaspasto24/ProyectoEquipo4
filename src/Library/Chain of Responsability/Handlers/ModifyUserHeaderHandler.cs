@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 
 namespace Bot
@@ -9,29 +10,33 @@ namespace Bot
     A su vez, cumple con el patrón Chain of Responsability.
     */
     /// <summary>
-    /// Handler para saludar al usuario
+    /// Handler para mostrar los comandos que el usuario tiene acceso
     /// </summary>
-    public class TextNullHandler : AbstractHandler
+    public class ModifyUserHeaderHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de la clase StartHandler
+        /// Constructor de la clase CommandHandler
         /// </summary>
         /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        public TextNullHandler(AbstractHandler succesor) : base(succesor) { }
+        public ModifyUserHeaderHandler(AbstractHandler succesor) : base(succesor) { }
 
         /// <summary>
         /// Metodo que se encarga de atender el handler.
         /// </summary>
-        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+        /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            if (request.Text.Equals(null))
+            UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            if (user.HandlerState == Bot.State.ChangingUserHeader)
             {
-                throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
+                ((RoleEntrepreneur)user.UserRole).Heading = request.Text;
+                response = "Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+                + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
+                user.HandlerState = Bot.State.AskingDataNumber;
+                return true;
             }
 
-            request.Text = request.Text.Trim().ToLower();
             response = string.Empty;
             return false;
         }

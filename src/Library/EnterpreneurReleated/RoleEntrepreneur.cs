@@ -24,7 +24,7 @@ namespace Bot
         /// <summary>
         /// Rubro.
         /// </summary>
-        public string Heading { get; private set; }
+        public string Heading { get; set; }
         private List<string> certification = new List<string>();
 
         private List<string> specializations = new List<string>();
@@ -175,7 +175,7 @@ namespace Bot
                 sb.Append(text).Append("\n");
             }
             return sb.ToString().Trim();
-            
+
         }
 
         public override string ToString()
@@ -186,6 +186,25 @@ namespace Bot
         public bool HasPermission(Permission perm)
         {
             return this.permissions.Contains(perm);
+        }
+
+        public bool ContainsSpecialization(string specialization)
+        {
+            return this.specializations.Contains(specialization);
+        }
+
+        public bool ContainsCertification(string certification)
+        {
+            return this.certification.Contains(certification);
+        }
+
+        public void DeleteSpecialization(string specialization)
+        {
+            this.specializations.Remove(specialization);
+        }
+        public void DeleteCertification(string certification)
+        {
+            this.certification.Remove(certification);
         }
     }
 }

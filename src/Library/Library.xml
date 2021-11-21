@@ -157,24 +157,6 @@
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
-        <member name="T:Bot.ConvertUserToEntrepreneurHandler">
-            <summary>
-            Handler que se encarga del registro de un usuario
-            </summary>
-        </member>
-        <member name="M:Bot.ConvertUserToEntrepreneurHandler.#ctor(Bot.AbstractHandler)">
-            <summary>
-            Constructor de la clase RegisterHandler
-            </summary>
-            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
-        </member>
-        <member name="M:Bot.ConvertUserToEntrepreneurHandler.InternalHandle(Bot.Message,System.String@)">
-            <summary>
-            Metodo que se encarga de atender el handler.
-            </summary>
-            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
-            <param name="response">La respuesta al mensaje procesado.</param>
-        </member>
         <member name="T:Bot.DefaultHandler">
             <summary>
             Handler que se encarga del registro de un usuario
@@ -255,6 +237,24 @@
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
+        <member name="T:Bot.PurchasesReportHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.PurchasesReportHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.PurchasesReportHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.RegisterHandler">
             <summary>
             Handler que se encarga del registro de un usuario
@@ -288,36 +288,18 @@
             El token que se ingresa en el estado ConfirmingToken
             </summary>
         </member>
-        <member name="T:Bot.ReportHandler">
+        <member name="T:Bot.SalesReportHandler">
             <summary>
             Handler que se encarga del registro de un usuario
             </summary>
         </member>
-        <member name="T:Bot.ReportHandler.ReportState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando RegisterHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide el token de registro
-            - ConfirmingToken: Luego de pedir el token. En este estado el comando valida si el token ingresado existe y vuelve al estado Start.
-            </summary>
-        </member>
-        <member name="F:Bot.ReportHandler.ReportState.Start">
-            Estado antes de mandar el token
-        </member>
-        <member name="F:Bot.ReportHandler.ReportState.ConfirmingToken">
-            Estado mientras el bot espera y confirma un token
-        </member>
-        <member name="P:Bot.ReportHandler.State">
-            <summary>
-            El estado del comando.
-            </summary>
-        </member>
-        <member name="M:Bot.ReportHandler.#ctor(Bot.AbstractHandler)">
+        <member name="M:Bot.SalesReportHandler.#ctor(Bot.AbstractHandler)">
             <summary>
             Constructor de la clase RegisterHandler
             </summary>
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
-        <member name="M:Bot.ReportHandler.InternalHandle(Bot.Message,System.String@)">
+        <member name="M:Bot.SalesReportHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -390,6 +372,24 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.TokenHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.UndertakeHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.UndertakeHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.UndertakeHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
@@ -927,13 +927,6 @@
             <summary>
             Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
             </summary>
-        </member>
-        <member name="F:Bot.Command.entrepeneurCommandList">
-            <summary>
-            Lista de comandos que un entrepeneur puede ejecutar.
-            </summary>
-            <typeparam name="string"></typeparam>
-            <returns></returns>
         </member>
         <member name="M:Bot.Command.GetCommands(System.Int64)">
             <summary>

@@ -36,7 +36,7 @@ namespace Bot
                 return false;
             }
 
-            if (request.Text == "/datos")
+            if (request.Text.Equals("/datos"))
             {
                 response = $"Estos son tus datos: \nNombre: {user.Name}"
                             + $"\nRole: {user.UserRole}"

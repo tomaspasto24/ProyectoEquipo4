@@ -39,7 +39,7 @@ namespace Bot
                 return false;
             }
 
-            if (user.HandlerState == Bot.State.Start && request.Text.ToLower().Equals("/emprender"))
+            if (user.HandlerState == Bot.State.Start && request.Text.Equals("/emprender"))
             {
                 user.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
                 response = "Por favor, dinos tu rubro. \nEnvia \"/cancelar\" para cancelar la operación";
