@@ -147,7 +147,7 @@ namespace Bot
 
         public (string, string) ConvertObjectToSaveToJson()
         {
-            JsonSerializerOptions options = new () 
+            JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true,

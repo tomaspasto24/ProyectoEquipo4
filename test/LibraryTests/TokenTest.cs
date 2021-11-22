@@ -43,7 +43,7 @@ namespace BotTests
         public void TokenAddedTest()
         {
             String token = this.admin.GenerateToken(this.company);
-            Assert.Contains(token, TokenGenerator.tokenList);
+            Assert.AreEqual(token, TokenGenerator.Instance.GenerateToken());
         }
     }
 }

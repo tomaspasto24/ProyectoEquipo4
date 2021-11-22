@@ -3,13 +3,13 @@ using Bot;
 using NUnit.Framework;
 
 namespace BotTests
-{   
+{
     /// <summary>
     /// Tests de los métodos de la clase RoleEntrepreneur.
     /// </summary>
     public class RoleEntrepreneurTests
     {
-        RoleEntrepreneur emprendedor; 
+        RoleEntrepreneur emprendedor;
         GeoLocation ubicacionParaPruebas;
         string name;
         int id;
