@@ -12,7 +12,8 @@ namespace Bot
        Data,
        Publish,
        GenerateToken,
-       Undertake
+       Undertake,
+       AddMaterial
     
     }
 }

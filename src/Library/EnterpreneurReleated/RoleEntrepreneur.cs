@@ -17,17 +17,17 @@ namespace Bot
         /// <typeparam name="Publication">Publicación.</typeparam>
         /// <returns>Coleción de tipo Publication.</returns>
         private List<Publication> listHistorialPublications = new List<Publication>();
-        public GeoLocation Location { get; private set; }
+        
         private SearchByLocation searchByLocation = new SearchByLocation();
+
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
 
-        /// <summary>
-        /// Rubro.
-        /// </summary>
-        public string Heading { get; set; }
         private List<string> certification = new List<string>();
+
         private List<string> specializations = new List<string>();
-        private List<Permission> permissions = new List<Permission>(){
+
+        private List<Permission> permissions = new List<Permission>()
+        {
             Permission.None,
             Permission.Register,
             Permission.Search,
@@ -35,6 +35,18 @@ namespace Bot
             Permission.ContactCompany,
             Permission.Data,
         };
+
+        /// <summary>
+        /// Obtiene la ubicación.
+        /// </summary>
+        /// <value>Ubicación.</value>
+        public GeoLocation Location { get; private set; }
+
+        /// <summary>
+        /// Establece el Rubro.
+        /// </summary>
+        /// <value>Obtiene el rubro.</value>
+        public string Heading { get; set; }
 
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
