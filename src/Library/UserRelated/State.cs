@@ -39,6 +39,11 @@ namespace Bot
         AskingCompanyLocation,
         AskingMaterialName,
         AskingMaterialQuantity,
-        AskingMaterialPrice
+        AskingMaterialPrice,
+        AskingMaterialNameToAdd,
+        AskingMaterialQuantityToAdd,
+        AskingMaterialPriceToAdd,
+        AddingMaterial
+        
     }
 }

@@ -103,6 +103,24 @@
             estado inicial.
             </summary>
         </member>
+        <member name="T:Bot.AddMaterialHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.AddMaterialHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.AddMaterialHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.CancelHandler">
             <summary>
             Handler que se encarga del registro de un usuario
@@ -1108,10 +1126,17 @@
             <typeparam name="Publication">Publicación.</typeparam>
             <returns>Coleción de tipo Publication.</returns>
         </member>
+        <member name="P:Bot.RoleEntrepreneur.Location">
+            <summary>
+            Obtiene la ubicación.
+            </summary>
+            <value>Ubicación.</value>
+        </member>
         <member name="P:Bot.RoleEntrepreneur.Heading">
             <summary>
-            Rubro.
+            Establece el Rubro.
             </summary>
+            <value>Obtiene el rubro.</value>
         </member>
         <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation)">
             <summary>
