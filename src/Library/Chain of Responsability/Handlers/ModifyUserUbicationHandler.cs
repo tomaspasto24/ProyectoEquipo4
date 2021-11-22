@@ -39,7 +39,7 @@ namespace Bot
                 else if (request.Text.Equals("2"))
                 {
                     user.HandlerState = Bot.State.ChangingUserAddress;
-                    response = "En que ciudad vives ahora?\nEnvia \"/cancelar\" para cancelar la operación";
+                    response = "Cual es tu nueva direccion?\nEnvia \"/cancelar\" para cancelar la operación";
                     return true;
                 }
                 else

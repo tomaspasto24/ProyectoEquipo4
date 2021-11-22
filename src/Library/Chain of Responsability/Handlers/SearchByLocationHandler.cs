@@ -31,7 +31,7 @@ namespace Bot
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             if (request.Text.Equals("/porubicacion") && (user.HandlerState == Bot.State.Searching)) 
             {
-                response = "Ingresa la ubicación por la que quieres buscar.\nEnvia \"/cancelar\" para cancelar la operación";
+                response = "Ingresa la direccion por la que quieres buscar.\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.SearchingByLocation;
                 return true;
             }

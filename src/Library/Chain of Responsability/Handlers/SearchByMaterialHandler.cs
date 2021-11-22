@@ -38,7 +38,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.SearchingByMaterial)
             {
-                response = ((RoleEntrepreneur)user.UserRole).SearchingByMaterials(request.Text) + "\nSi te interesa alguna publicación: envía el \"Título\" " ;
+                response = $"Estas son las publicaciones que contienen {request.Text}\n" + ((RoleEntrepreneur)user.UserRole).SearchingByMaterials(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario /cancelar";
                 user.HandlerState = Bot.State.InterestedInPublication;
                 return true;
             }

@@ -12,29 +12,31 @@ namespace Library
         private static TelegramBot instance;
         //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CREAR CADENA NUEVA DE HANDLERS 
         private readonly IHandler handler =
-            new CommandHandler(
+                new TextNullHandler(
+                new CancelHandler(
+                new AddMaterialHandler(
                 new AdminHandler(
-                    new DefaultRoleHandler(
+                new CommandHandler(
                 new ContactHandler(
-                    new UndertakeHandler(
-                        new PublishHandler(
-                            new RegisterHandler(
-                                new SalesReportHandler(
-                                    new SearchHandler(
-                                        new StartHandler(
-                                            new TokenHandler(
-                                                new UserInformationHandler(
-                                                    new DefaultHandler(null)
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )));
+                new DefaultRoleHandler(
+                new ModifyEntrepreneurInformationHandler(
+                new ModifyUserUbicationHandler(
+                new ModifyUserHeaderHandler(
+                new ModifyUserSpecializationsHandler(
+                new ModifyUserCertificationsHandler(
+                new PublishHandler(
+                new PurchasesReportHandler(
+                new RegisterHandler(
+                new SalesReportHandler(
+                new SearchHandler(
+                new SearchByLocationHandler(
+                new SearchByMaterialHandler(
+                new StartHandler(
+                new TokenHandler(
+                new UndertakeHandler(
+                new UserInformationHandler(
+                new DefaultHandler(null)
+)))))))))))))))))))))));
 
         private TelegramBot()
         {
@@ -115,7 +117,7 @@ namespace Library
                 SendMessage(chatId, $"Ha sucedido un error: {e.Message}");
                 return;
             }
-            
+
             SendMessage(chatId, response);
         }
     }
