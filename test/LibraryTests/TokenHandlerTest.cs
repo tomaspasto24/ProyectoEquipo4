@@ -126,12 +126,25 @@ namespace BotTests
 
             result = tkhandler.Handle(testMessage, out response);
 
-            testMessage = new Message(5433261, null);
+            testMessage = new Message(5433261, null); //nulo
             user1.HandlerState = Bot.State.ConfirmingCompanyAddress;
             result = tkhandler.Handle(testMessage, out response);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response, Does.Contain("Genial, tenemos la direccion de la empresa. \nAhora dinos el contacto de la empresa (e-mail o telefono).\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(result, Is.Null);
+            //Assert.That(response, Does.Contain("falta adress de la empresa"));
+        }
+        [Test]
+        public void InternalHandleEmptyCompanyAddressTest()
+        {
+
+            result = tkhandler.Handle(testMessage, out response);
+
+            testMessage = new Message(5433261, "");  //string vacio
+            user1.HandlerState = Bot.State.ConfirmingCompanyAddress;
+            result = tkhandler.Handle(testMessage, out response);
+
+            Assert.That(result, Is.Null);
+            //Assert.That(response, Does.Contain("falta adress de la empresa"));
         }
 
         [Test]
