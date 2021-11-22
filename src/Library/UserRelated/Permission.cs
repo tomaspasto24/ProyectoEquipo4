@@ -5,13 +5,14 @@ namespace Bot
     {
        None,
        Register,
-       MaterialSearch,
+       Search,
        PurchasesReport,
        SalesReport,
        ContactCompany,
        Data,
        Publish,
        GenerateToken,
-       Undertake,
+       Undertake
+    
     }
 }

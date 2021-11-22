@@ -21,7 +21,7 @@ namespace Bot
         private bool isClosed;
         private IList<Material> listMaterials = new List<Material>();
         private IList<string> listQualifications = new List<string>(); // Lista Habilitaciones
-
+        
         /// <summary>
         /// Constructor ingresado en blanco para la implementación de la Serialización.
         /// </summary>
@@ -273,6 +273,15 @@ namespace Bot
         public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
         {
             this.InterestedPerson = interestedPerson;
+        }
+        public string ReturnPublication(Publication publication)
+        {
+            string x = publication.title +"\n"+ publication.Company.Name+ "\n" + "Materiales:\n";
+            foreach (Material mat in this.listMaterials)
+            {
+                x = x + mat.Name +" - "+ mat.Quantity +" - " + mat.Price;
+            }
+            return x;
         }
     }
 }
