@@ -121,6 +121,24 @@
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
+        <member name="T:Bot.AdminHandler">
+            <summary>
+            Handler para mostrar los comandos que el usuario tiene acceso
+            </summary>
+        </member>
+        <member name="M:Bot.AdminHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase CommandHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.AdminHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
         <member name="T:Bot.CancelHandler">
             <summary>
             Handler que se encarga del registro de un usuario
@@ -191,6 +209,24 @@
             Metodo que se encarga de atender el handler.
             </summary>
             <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.DefaultRoleHandler">
+            <summary>
+            Handler para mostrar los comandos que el usuario tiene acceso
+            </summary>
+        </member>
+        <member name="M:Bot.DefaultRoleHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase CommandHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.DefaultRoleHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
         </member>
         <member name="T:Bot.IHandler">
@@ -727,12 +763,6 @@
             Método que es llamado por el constructor privado para inicializar la lista de clases Empresa.
             </summary>
         </member>
-        <member name="M:Bot.CompanySet.ConvertObjectToSave">
-            <summary>
-            Método que convierte el propio objeto en formato JSON.
-            </summary>
-            <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
-        </member>
         <member name="T:Bot.ISetOfElement`1">
             <summary>
             Interfaz pública ISet que representa a las clases que se encargan de administrar objetos (Conjunto).
@@ -1043,12 +1073,6 @@
             <summary>
             Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
             </summary>
-        </member>
-        <member name="M:Bot.PublicationSet.ConvertObjectToSave">
-            <summary>
-            Método que convierte la lista de la clase Publicación en formato JSON.
-            </summary>
-            <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
         </member>
         <member name="T:Bot.Command">
             <summary>
@@ -1376,17 +1400,6 @@
             firma del metodo GiveReport
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:Bot.IJsonConvertible">
-            <summary>
-            Interfaz pública que define el tipo de los objetos que pueden ser serializados y deserializados.
-            </summary>
-        </member>
-        <member name="M:Bot.IJsonConvertible.ConvertObjectToSave">
-            <summary>
-            Método que convierte el objeto a formato JSON en cadena de caraceteres.
-            </summary>
-            <returns>Objeto convertido a JSON como una cadena de caracteres.</returns>
         </member>
         <member name="T:Bot.IRole">
             <summary>

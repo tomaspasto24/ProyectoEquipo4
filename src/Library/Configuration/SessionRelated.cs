@@ -145,14 +145,14 @@ namespace Bot
             return null;
         }
 
-        public (string, string) ConvertObjectToSaveToJson()
-        {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true,
-            };
-            return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
-        }
+        // public (string, string) ConvertObjectToSaveToJson()
+        // {
+        //     JsonSerializerOptions options = new()
+        //     {
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true,
+        //     };
+        //     return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
+        // }
     }
 }

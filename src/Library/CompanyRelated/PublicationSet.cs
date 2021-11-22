@@ -11,7 +11,7 @@ namespace Bot
     /// Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general.
     /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
-    public class PublicationSet : ISetOfElement<Publication>, IJsonConvertible
+    public class PublicationSet : ISetOfElement<Publication>//, //IJsonConvertible
     {
         private static PublicationSet instance;
         [JsonInclude]
@@ -169,18 +169,18 @@ namespace Bot
             this.listPublications = new List<Publication>();
         }
 
-        /// <summary>
-        /// Método que convierte la lista de la clase Publicación en formato JSON.
-        /// </summary>
-        /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
-        public string ConvertObjectToSave()
-        {
-            JsonSerializerOptions options = new () 
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true,
-            };
-            return JsonSerializer.Serialize(this.listPublications, options);
-        }
+        // /// <summary>
+        // /// Método que convierte la lista de la clase Publicación en formato JSON.
+        // /// </summary>
+        // /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
+        // public string ConvertObjectToSave()
+        // {
+        //     JsonSerializerOptions options = new () 
+        //     {
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true,
+        //     };
+        //     return JsonSerializer.Serialize(this.listPublications, options);
+        // }
     }
 }

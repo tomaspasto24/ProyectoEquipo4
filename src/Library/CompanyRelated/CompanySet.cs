@@ -10,7 +10,7 @@ namespace Bot
     /// Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general.
     /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
-    public class CompanySet : ISetOfElement<Company>, IJsonConvertible
+    public class CompanySet : ISetOfElement<Company>//, //IJsonConvertible
     {
         private static CompanySet instance;
         private IList<Company> listCompanies;
@@ -169,17 +169,17 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método que convierte el propio objeto en formato JSON.
-        /// </summary>
-        /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
-        public string ConvertObjectToSave()
-        {
-            JsonSerializerOptions options = new () 
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true,
-            };
-            return JsonSerializer.Serialize(this.listCompanies, options);
-        }
+        // /// Método que convierte el propio objeto en formato JSON.
+        // /// </summary>
+        // /// <returns>Lista convertida en JSON mediante una cadena de caracteres.</returns>
+        // public string ConvertObjectToSave()
+        // {
+        //     JsonSerializerOptions options = new () 
+        //     {
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true,
+        //     };
+        //     return JsonSerializer.Serialize(this.listCompanies, options);
+        // }
     }
 }
