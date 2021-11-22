@@ -10,7 +10,7 @@ namespace Bot
     /// Conjunto de Empresas, clase que se encarga de administrar la lista de Empresas en general.
     /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
-    public class CompanySet : ISetOfElement<Company>//, //IJsonConvertible
+    public class CompanySet : ISetOfElement<Company>
     {
         private static CompanySet instance;
         private IList<Company> listCompanies;
