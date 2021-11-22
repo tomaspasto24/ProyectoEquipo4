@@ -1,0 +1,95 @@
+{
+  "$id": "12",
+  "0": {
+    "$id": "13",
+    "location": {
+      "$id": "14",
+      "City": "prueba 4",
+      "Address": "prueba 4"
+    },
+    "Name": "prueba4",
+    "Item": "prueba4",
+    "Contact": "prueba4",
+    "ListHistorialPublications": {
+      "$id": "15",
+      "$values": []
+    },
+    "ListOwnPublications": {
+      "$id": "16",
+      "$values": []
+    },
+    "ListUsers": {
+      "$id": "17",
+      "$values": []
+    }
+  },
+  "1": {
+    "$id": "18",
+    "location": {
+      "$id": "19",
+      "City": "dda",
+      "Address": "dda"
+    },
+    "Name": "dda",
+    "Item": "dda",
+    "Contact": "ddaa",
+    "ListHistorialPublications": {
+      "$id": "20",
+      "$values": []
+    },
+    "ListOwnPublications": {
+      "$id": "21",
+      "$values": []
+    },
+    "ListUsers": {
+      "$id": "22",
+      "$values": []
+    }
+  },
+  "2": {
+    "$id": "23",
+    "location": {
+      "$id": "24",
+      "City": "oo",
+      "Address": "oo"
+    },
+    "Name": "oo",
+    "Item": "oo",
+    "Contact": "oo",
+    "ListHistorialPublications": {
+      "$id": "25",
+      "$values": []
+    },
+    "ListOwnPublications": {
+      "$id": "26",
+      "$values": []
+    },
+    "ListUsers": {
+      "$id": "27",
+      "$values": []
+    }
+  },
+  "3": {
+    "$id": "28",
+    "location": {
+      "$id": "29",
+      "City": "Prueba22",
+      "Address": "Prueba22"
+    },
+    "Name": "Prueba22",
+    "Item": "Prueba22",
+    "Contact": "Prueba22",
+    "ListHistorialPublications": {
+      "$id": "30",
+      "$values": []
+    },
+    "ListOwnPublications": {
+      "$id": "31",
+      "$values": []
+    },
+    "ListUsers": {
+      "$id": "32",
+      "$values": []
+    }
+  }
+}

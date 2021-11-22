@@ -27,14 +27,13 @@ namespace Bot
             }
         }
 
-        int tkn = 0;
-
         /// <summary>
         /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
         /// </summary>
         /// <returns>El token generado.</returns>
         public int GenerateToken()
         {
+            int tkn = SessionRelated.Instance.DiccUserTokens.Count;
             return tkn++;
         }
     }
