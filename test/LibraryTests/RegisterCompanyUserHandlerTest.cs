@@ -81,7 +81,7 @@ namespace BotTests
         public void TestTokenFound()
         {
             SessionRelated.Instance.DiccUserTokens.Add("IHaveAToken", company);
-            
+
             message.Text = "/registro";
             string response;
             handler.Handle(message, out response);

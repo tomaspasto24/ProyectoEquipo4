@@ -1,16 +1,17 @@
-using System.Text.Json;
+using System;
+using System.Collections.Generic;
 
 namespace Bot
 {
     /// <summary>
     /// Clase TokenGenerator.
     /// </summary>
-    public class TokenGenerator : IJsonConvertible
+    public class TokenGenerator
     {
         private static TokenGenerator instance;
 
         /// <summary>
-        /// Metodo para generar una instancia de token.
+        /// Metodo para generar una instancia de token. -singleton
         /// </summary>
         /// <value>Instancia del Token. </value>
         public static TokenGenerator Instance
@@ -26,7 +27,7 @@ namespace Bot
             }
         }
 
-        public int tkn = 0;
+        int tkn = 0;
 
         /// <summary>
         /// Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
@@ -35,20 +36,6 @@ namespace Bot
         public int GenerateToken()
         {
             return tkn++;
-        }
-
-        /// <summary>
-        /// Método para devolver a la clase encarga de serializar, la serialización del atributo tkn
-        /// </summary>
-        /// <returns></returns>
-        public string ConvertObjectToSave()
-        {
-            JsonSerializerOptions options = new () 
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true,
-            };
-            return JsonSerializer.Serialize(this, options);
         }
     }
 }

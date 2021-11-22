@@ -16,16 +16,15 @@ namespace Bot
             {"/comandos - Muestra la lista de comandos.", Permission.None},
             {"/hola - Saluda al bot.", Permission.None},
             {"/registro - Registrate como usuario de una empresa.", Permission.Register},
-            {"/busqueda - Buscar materiales.", Permission.MaterialSearch},
+            {"/busqueda - Buscar.", Permission.Search},
             {"/reporte - Obtener un reporte de las compras realizadas en los últimos 30 días.", Permission.PurchasesReport},
             {"/reporte - Obtener un reporte de las entregas realizadas en los últimos 30 días.", Permission.SalesReport},
             {"/contacto - Obtener el contacto de una Empresa.", Permission.ContactCompany},
             {"/datos - Gestionar los datos del Usuario.", Permission.Data},
             {"/modificardatos - Modifica los datos del Usuario.", Permission.Data},
-            {"/publicar - Crear una nueva publicación con un material existente.", Permission.Publish},
+            {"/publicar - Crear una nueva publicación con un material o varios.", Permission.Publish},
             {"/crearinvitacion - Genera un nueva nueva invitación para una Empresa.", Permission.GenerateToken},
             {"/emprender - Registrate como un Emprendedor", Permission.Undertake},
-
         };
 
         /// <summary>
