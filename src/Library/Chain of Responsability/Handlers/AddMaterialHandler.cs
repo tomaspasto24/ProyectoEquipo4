@@ -78,7 +78,8 @@ namespace Bot
                         publication.AddMaterial(material);
                     }
                 }
-                response = "Se ha agregado el material a la publicación.";
+                response = "Se ha agregado el material a la publicación. Si quieres agregar otro material envía \"/agregarmaterial\".\nEnvía \"/cancelar\" para cancelar la operación.";
+                user.HandlerState = Bot.State.Start;
                 return true;
             }
             response = string.Empty;
