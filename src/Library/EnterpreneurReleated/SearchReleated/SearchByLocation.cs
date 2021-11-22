@@ -34,7 +34,7 @@ namespace Bot
                 }
             }*/
 
-            result.Add((listPublications as List<Publication>).Find(publication => publication.Location.CalculateDistance(location) < 500));
+            result.Add((listPublications as List<Publication>).Find(publication => publication.location.CalculateDistance(location) < 500));
             return result.AsReadOnly();
         }
     }

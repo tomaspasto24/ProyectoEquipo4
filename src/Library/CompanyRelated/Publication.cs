@@ -16,7 +16,7 @@ namespace Bot
         private string title;
         private DateTime date;
         private DateTime closedDate;
-        private GeoLocation location;
+        public GeoLocation location {get; set;}
         private Company company;
         private bool isClosed;
         private IList<Material> listMaterials = new List<Material>();
@@ -46,6 +46,16 @@ namespace Bot
             this.isClosed = false;
             this.InterestedPerson = null;
         }
+        public Publication(String title, Company company, GeoLocation location)
+        {
+            this.title = title;
+            this.company = company;
+            this.date = DateTime.Now;
+            this.closedDate = DateTime.MinValue;
+            this.location = location;
+            this.isClosed = false;
+            this.InterestedPerson = null;
+        }
 
         /// <summary>
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
@@ -64,6 +74,10 @@ namespace Bot
             {
                 return this.title;
             }
+            set
+            {
+                this.title = value;
+            }
         }
 
         /// <summary>
@@ -76,19 +90,27 @@ namespace Bot
             {
                 return this.company;
             }
+            set
+            {
+                this.company = value;
+            }
         }
 
         /// <summary>
         /// Obtiene la ubicación de la publicación.
         /// </summary>
         /// <value>GeoLocation.</value>
-        public GeoLocation Location
-        {
-            get
-            {
-                return this.location;
-            }
-        }
+        // public GeoLocation Location
+        // {
+        //     get
+        //     {
+        //         return this.location;
+        //     }
+        //     set
+        //     {
+        //         this.location = value;
+        //     }
+        // }
 
         /// <summary>
         /// Obtiene el atributo Date que devuelve la hora en la que se crea la clase Publicacación.
@@ -100,6 +122,10 @@ namespace Bot
             get
             {
                 return this.date;
+            }
+            set
+            {
+                this.date = value;
             }
         }
 
@@ -114,6 +140,10 @@ namespace Bot
             {
                 return this.closedDate;
             }
+            set
+            {
+                this.closedDate = value;
+            }
         }
 
         /// <summary>
@@ -126,6 +156,10 @@ namespace Bot
             get
             {
                 return new ReadOnlyCollection<Material>(this.listMaterials);
+            }
+            set
+            {
+                this.listMaterials = value as List<Material>;
             }
         }
 
@@ -140,6 +174,10 @@ namespace Bot
             {
                 return new ReadOnlyCollection<string>(this.listQualifications);
             }
+            set
+            {
+                this.listQualifications = value as List<string>;
+            }
         }
 
         /// <summary>
@@ -151,6 +189,10 @@ namespace Bot
             get
             {
                 return this.isClosed;
+            }
+            set
+            {
+                this.isClosed = value;
             }
         }
 

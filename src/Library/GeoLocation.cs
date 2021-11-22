@@ -1,5 +1,6 @@
 using System;
 using Ucu.Poo.Locations.Client;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -12,6 +13,9 @@ namespace Bot
         private string city;
         private string address;
         private Location location;
+
+        [JsonConstructor]
+        public GeoLocation() { }
 
         /// <summary>
         /// Constructor de la clase Geolocation, llama a un método privado asincrono y después se valida la propiedad Found.

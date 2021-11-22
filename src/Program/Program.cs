@@ -21,6 +21,8 @@ namespace Bot
             // TODO HACER LOS COMENTARIOS DE TODO
             // ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
 
+            PublicationSet.Instance.LoadFromJson(); // Deserializar.
+
             TelegramBot botardo = TelegramBot.Instance;
 
             botardo.StartCommunication();
@@ -29,6 +31,22 @@ namespace Bot
 
             // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
             Console.ReadLine();
+
+            //Prueba
+            // GeoLocation location = new GeoLocation("Universidad Católica", "Montevideo");
+            // Company companyTest = new Company("Prueba1", "Prueba", location, "0922877272");
+            // Material material = new Material("MaterialTest", 12, 0);
+            // Publication publicationTest1 = new Publication("Prueba1", companyTest, location, material);
+            // PublicationSet.Instance.AddElement(publicationTest1);
+
+            foreach(Publication item in PublicationSet.Instance.ListPublications)
+            {
+                System.Console.WriteLine(item.Title);
+            }
+            //Prueba
+
+            PublicationSet.Instance.ConvertToJson(); // Serializar.
         }
     }
 }
+

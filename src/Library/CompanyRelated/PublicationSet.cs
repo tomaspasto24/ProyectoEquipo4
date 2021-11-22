@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Bot
 {
@@ -11,12 +12,12 @@ namespace Bot
     /// Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general.
     /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
-    public class PublicationSet : ISetOfElement<Publication>
+    public class PublicationSet : ISetOfElement<Publication>, IJsonConvertible
     {
         private static PublicationSet instance;
         [JsonInclude]
         private IList<Publication> listPublications;
-        
+        [JsonConstructor]
         private PublicationSet()
         {
             this.Initialize();
@@ -42,6 +43,7 @@ namespace Bot
             }
         }
     
+        [JsonInclude]
         /// <summary>
         /// Obtiene la lista de Publicaciones.
         /// </summary>
@@ -167,6 +169,51 @@ namespace Bot
         public void Initialize()
         {
             this.listPublications = new List<Publication>();
+        }
+
+        public void ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(this.listPublications as List<Publication>, options);
+
+            try
+            {
+                File.WriteAllText(@"..\..\docs\PublicationDataBase.json", json);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void LoadFromJson()
+        {
+            try
+            {
+                string jsonData = File.ReadAllText(@"..\..\docs\PublicationDataBase.json");
+                JsonSerializerOptions options = new()
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true
+                };
+
+                // List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(jsonData, options);
+                List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(jsonData, options);
+
+                foreach (Publication item in listPublicationsFromJson)
+                {
+                    this.AddElement(item);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

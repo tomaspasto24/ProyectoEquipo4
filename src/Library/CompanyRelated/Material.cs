@@ -49,8 +49,13 @@ namespace Bot
             {
                 return this.name;
             }
+            set
+            {
+                this.name = value;
+            }
         }
 
+        [JsonInclude]
         /// <summary>
         /// Obtiene todas las Palabras Clave que contiene el Material.
         /// </summary>
@@ -73,6 +78,10 @@ namespace Bot
             {
                 return this.quantity;
             }
+            set
+            {
+                this.quantity = value;
+            }
         }
 
         /// <summary>
@@ -84,6 +93,10 @@ namespace Bot
             get
             {
                 return this.price;
+            }
+            set
+            {
+                this.price = value;
             }
         }
 

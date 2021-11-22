@@ -15,7 +15,7 @@ namespace Bot
     {
         private string name;
         private string item;
-        private GeoLocation location;
+        public GeoLocation location {get; set;}
         private string contact;
         private IList<UserInfo> listUsers = new List<UserInfo>();
         private IList<Publication> listOwnPublications = new List<Publication>();
@@ -52,6 +52,10 @@ namespace Bot
             {
                 return this.name;
             }
+            set
+            {
+                this.name = value;
+            }
         }
 
         /// <summary>
@@ -64,19 +68,23 @@ namespace Bot
             {
                 return this.item;
             }
-        }
-
-        /// <summary>
-        /// Obtiene la ubicación de la clase Empresa.
-        /// </summary>
-        /// <value>Cadena de caracteres.</value>
-        public GeoLocation Location
-        {
-            get
+            set
             {
-                return this.location;
+                this.item = value;
             }
         }
+
+        // /// <summary>
+        // /// Obtiene la ubicación de la clase Empresa.
+        // /// </summary>
+        // /// <value>Cadena de caracteres.</value>
+        // public GeoLocation Location
+        // {
+        //     get
+        //     {
+        //         return this.location;
+        //     }
+        // }
 
         /// <summary>
         /// Obtiene el contacto de la clase Empresa.
@@ -87,6 +95,10 @@ namespace Bot
             get
             {
                 return this.contact;
+            }
+            set
+            {
+                this.contact = value;
             }
         }
 
