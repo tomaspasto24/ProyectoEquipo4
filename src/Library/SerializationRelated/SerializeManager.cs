@@ -7,7 +7,7 @@ namespace Bot
     /// y grabarlas en archivos JSON. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
     /// de que el único método publico es SerializeProgram.
     /// </summary>
-    public class SerializeManager 
+    public class SerializeManager
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
@@ -17,7 +17,7 @@ namespace Bot
         private static SerializeManager instance;
 
         private SerializeManager() { }
-        
+
         /// <summary>
         /// Obtiene el acceso a la propia instancia de la clase SerializeManager,
         /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
@@ -79,7 +79,7 @@ namespace Bot
             else
             {
                 File.Create(PathContainerPublication);
-                return false;   
+                return false;
             }
         }
 
@@ -87,14 +87,14 @@ namespace Bot
         {
             if (File.Exists(PathContainerToken))
             {
-                string jsonToSave = TokenGenerator.Instance.ConvertObjectToSave();
-                File.WriteAllText(PathContainerToken, jsonToSave);
+                // string jsonToSave = TokenGenerator.Instance.ConvertObjectToSave();
+                // File.WriteAllText(PathContainerToken, jsonToSave);
                 return true;
             }
             else
             {
                 File.Create(PathContainerToken);
-                return false;   
+                return false;
             }
         }
 
@@ -111,7 +111,7 @@ namespace Bot
             }
             else
             {
-                return false;   
+                return false;
             }
         }
     }

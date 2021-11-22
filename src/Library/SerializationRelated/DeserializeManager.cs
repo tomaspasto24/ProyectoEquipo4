@@ -9,7 +9,7 @@ namespace Bot
     /// y llevarlas al programa. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
     /// de que el único método publico es DeserializeProgram.
     /// </summary>
-    public class DeserializeManager 
+    public class DeserializeManager
     {
         private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
         private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
@@ -61,7 +61,7 @@ namespace Bot
             {
                 string json = File.ReadAllText(PathContainerCompany);
 
-                JsonSerializerOptions options = new ()
+                JsonSerializerOptions options = new()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
                     WriteIndented = true,
@@ -88,7 +88,7 @@ namespace Bot
             {
                 string json = File.ReadAllText(PathContainerPublication);
 
-                JsonSerializerOptions options = new () 
+                JsonSerializerOptions options = new()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
                     WriteIndented = true,
@@ -115,14 +115,14 @@ namespace Bot
             {
                 string json = File.ReadAllText(PathContainerToken);
 
-                JsonSerializerOptions options = new () 
+                JsonSerializerOptions options = new()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
                     WriteIndented = true,
                 };
 
                 TokenGenerator tokenDeserialize = JsonSerializer.Deserialize<TokenGenerator>(json, options);
-                TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
+                // TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
                 return true;
             }
             else
@@ -139,7 +139,7 @@ namespace Bot
                 string jsonUsers = File.ReadAllText(PathContainerAllUsers);
                 string jsonDiccUserTokens = File.ReadAllText(PathContainerDiccUserTokens);
 
-                JsonSerializerOptions options = new () 
+                JsonSerializerOptions options = new()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
                     WriteIndented = true,
