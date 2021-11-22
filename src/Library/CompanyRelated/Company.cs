@@ -74,18 +74,6 @@ namespace Bot
             }
         }
 
-        // /// <summary>
-        // /// Obtiene la ubicación de la clase Empresa.
-        // /// </summary>
-        // /// <value>Cadena de caracteres.</value>
-        // public GeoLocation Location
-        // {
-        //     get
-        //     {
-        //         return this.location;
-        //     }
-        // }
-
         /// <summary>
         /// Obtiene el contacto de la clase Empresa.
         /// </summary>
