@@ -19,6 +19,7 @@ namespace Bot
             Permission.None,
             Permission.SalesReport,
             Permission.Publish,
+            Permission.AddMaterial,
         };
 
         /// <summary>
