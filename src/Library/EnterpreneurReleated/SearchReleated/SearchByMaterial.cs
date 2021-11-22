@@ -39,6 +39,7 @@ namespace Bot
                     }
                 }                 
             }
+            
             return result.AsReadOnly();
         }
     }
