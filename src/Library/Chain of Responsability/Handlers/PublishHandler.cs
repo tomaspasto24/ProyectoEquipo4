@@ -36,6 +36,61 @@ namespace Bot
                 response = string.Empty;
                 return false;
             }
+            if (request.Text.Equals("/publicar") && (user.HandlerState == Bot.State.Start)) 
+            {
+                response = "Envía el título de la nueva publicación \nEnvía \"/cancelar\" para cancelar la operación";
+                user.HandlerState = Bot.State.AskingPublicationName;
+                return true;
+            }
+            else if (user.HandlerState == Bot.State.AskingPublicationName)
+            {
+                string título = request.Text;
+                response = "Envía el nombre empresa \nEnvía \"/cancelar\" para cancelar la operación";
+                user.HandlerState = Bot.State.AskingCompanyName;
+                return true;
+            }
+            else if (user.HandlerState == Bot.State.AskingCompanyName)
+            {
+                Company publishingCompany = new Company();
+                foreach (Company company in CompanySet.Instance.ListCompanies)
+                {
+                    if (company.Name == request.Text)
+                    {
+                        publishingCompany = company;
+                    }
+                }
+                response = "Envía la ubicación de la empresa \nEnvía \"/cancelar\" para cancelar la operación";
+                user.HandlerState = Bot.State.AskingCompanyLocation;
+                return true;
+            }
+            else if (user.HandlerState == Bot.State.AskingCompanyLocation)
+            {
+                GeoLocation locationCompany = new GeoLocation(request.Text, "Montevideo");
+                response = "Envía el nombre del material";
+                user.HandlerState = Bot.State.AskingMaterialName;
+                return true;
+            }
+            else if (user.HandlerState == Bot.State.AskingMaterialName)
+            {
+                string materialName =request.Text;
+                response = "Envía la cantidad del material";
+                user.HandlerState = Bot.State.AskingMaterialQuantity;
+            }
+            else if (user.HandlerState == Bot.State.AskingMaterialQuantity)
+            {
+                //int materialQuantity = request;
+                response = "Envía el precio del material";
+                user.HandlerState = Bot.State.AskingMaterialPrice;
+            }
+            else if (user.HandlerState == Bot.State.AskingMaterialPrice)
+            {
+                //int materialQuantity = request;
+                response = "";
+                //user.HandlerState = Start;
+                //TODO crear publicacion con datos adquiridos
+            }
+
+
             response = string.Empty;
             return false;
         }

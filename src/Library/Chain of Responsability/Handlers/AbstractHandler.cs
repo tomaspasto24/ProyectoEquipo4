@@ -55,7 +55,7 @@ namespace Bot
         /// <returns></returns>
         public IHandler Handle(Message request, out string response)
         {
-            if (this.(request, out response))
+            if (this.InternalHandle(request, out response))
             {
                 return this;
             }

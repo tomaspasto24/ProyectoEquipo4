@@ -30,7 +30,7 @@ namespace Bot
         private List<Permission> permissions = new List<Permission>(){
             Permission.None,
             Permission.Register,
-            Permission.MaterialSearch,
+            Permission.Search,
             Permission.PurchasesReport,
             Permission.ContactCompany,
             Permission.Data,
@@ -96,21 +96,30 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch"></param>
         /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        public IReadOnlyCollection<Publication> SearchingByMaterials(string wordToSearch)
+        public string SearchingByMaterials(string wordToSearch)
         {
-            return this.searchByMaterial.Search(wordToSearch);
+            string publications = string.Empty;
+            foreach (Publication publication in (this.searchByMaterial.Search(wordToSearch)))
+            {
+                publications = publications + publication.ReturnPublication(publication);
+            }
+            return publications;
         }
+
 
         /// <summary>
         /// Buscar publicaciones por ubicación.
         /// </summary>
         /// <param name="addresToSearch">Palabra clave como ubicación.</param>
         /// <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
-        public IReadOnlyCollection<Publication> SearchingByLocation(string addresToSearch)
+        public string SearchingByLocation(string addresToSearch)
         {
-            return this.searchByLocation.Search(addresToSearch);
-            
-            // return new ReadOnlyCollection<Publication>(this.listPublications);
+            string publications = string.Empty;
+            foreach (Publication publication in (this.searchByLocation.Search(addresToSearch)))
+            {
+                publications = publications + publication.ReturnPublication(publication);
+            }
+            return publications;
         }
 
         /// <summary>

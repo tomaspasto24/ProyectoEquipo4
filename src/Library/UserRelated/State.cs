@@ -30,6 +30,15 @@ namespace Bot
         AddingUserSpecializations,
         DeletingUserSpecializations,
         AddingUserCertification,
-        DeletingUserCertification
+        DeletingUserCertification,
+        Searching,
+        SearchingByMaterial,
+        SearchingByLocation,
+        InterestedInPublication,
+        AskingPublicationName,
+        AskingCompanyLocation,
+        AskingMaterialName,
+        AskingMaterialQuantity,
+        AskingMaterialPrice
     }
 }
