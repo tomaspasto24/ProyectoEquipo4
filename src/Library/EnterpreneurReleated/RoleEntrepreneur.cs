@@ -113,7 +113,7 @@ namespace Bot
             string publications = string.Empty;
             foreach (Publication publication in (this.searchByMaterial.Search(wordToSearch)))
             {
-                publications = publications + publication.ReturnPublication(publication);
+                publications = publications + publication.ReturnPublication();
             }
             return publications;
         }
@@ -129,7 +129,7 @@ namespace Bot
             string publications = string.Empty;
             foreach (Publication publication in (this.searchByLocation.Search(addresToSearch)))
             {
-                publications = publications + publication.ReturnPublication(publication);
+                publications = publications + publication.ReturnPublication();
             }
             return publications;
         }
