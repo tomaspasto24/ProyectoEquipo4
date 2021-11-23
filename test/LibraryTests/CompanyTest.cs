@@ -35,7 +35,7 @@ namespace BotTests
             Assert.IsNotNull(companyTest);
             Assert.That(companyTest.Name.Equals("Test"));
             Assert.That(companyTest.Item.Equals("TestItem"));
-            Assert.That(companyTest.Location == location);
+            Assert.That(companyTest.location == location);
             Assert.That(companyTest.Contact.Equals("TestContact"));
         }
         

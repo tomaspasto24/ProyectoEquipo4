@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.IO;
 
 namespace Bot
 {
@@ -43,11 +43,11 @@ namespace Bot
             }
         }
     
-        [JsonInclude]
         /// <summary>
         /// Obtiene la lista de Publicaciones.
         /// </summary>
         /// <value>Lista de solo lectura de clase Publicación.</value>
+        [JsonInclude]
         public IReadOnlyCollection<Publication> ListPublications
         {
             get
@@ -171,12 +171,16 @@ namespace Bot
             this.listPublications = new List<Publication>();
         }
 
+        /// <summary>
+        /// Método que se encarga de convertir en JSON las publicaciones creadas y escribirlas en su
+        /// correspondiente archivo JSON.
+        /// </summary>
         public void ConvertToJson()
         {
-            JsonSerializerOptions options = new()
+            JsonSerializerOptions options = new ()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
+                WriteIndented = true,
             };
 
             string json = JsonSerializer.Serialize(this.listPublications as List<Publication>, options);
@@ -185,21 +189,24 @@ namespace Bot
             {
                 File.WriteAllText(@"..\..\docs\PublicationDataBase.json", json);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de leer el archivo JSON donde se guardan las publicaciones y deserializarlo.
+        /// </summary>
         public void LoadFromJson()
         {
             try
             {
                 string jsonData = File.ReadAllText(@"..\..\docs\PublicationDataBase.json");
-                JsonSerializerOptions options = new()
+                JsonSerializerOptions options = new ()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true
+                    WriteIndented = true,
                 };
 
                 // List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(jsonData, options);
@@ -210,7 +217,7 @@ namespace Bot
                     this.AddElement(item);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

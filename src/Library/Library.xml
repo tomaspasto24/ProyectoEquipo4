@@ -783,7 +783,7 @@
         </member>
         <member name="M:Bot.Material.#ctor">
             <summary>
-            Constructor sin implementación para ser usado por JsonConstructor
+            Constructor sin implementación para ser usado por JsonConstructor.
             </summary>
         </member>
         <member name="M:Bot.Material.#ctor(System.String,System.Int32,System.Int32)">
@@ -796,19 +796,25 @@
         </member>
         <member name="P:Bot.Material.Name">
             <summary>
-            Obtiene nombre del la clase Material.
+            Obtiene o establece nombre del la clase Material.
             </summary>
             <value>String.</value>
         </member>
+        <member name="P:Bot.Material.KeyWords">
+            <summary>
+            Obtiene todas las Palabras Clave que contiene el Material.
+            </summary>
+            <returns>Cadena de caracteres.</returns>
+        </member>
         <member name="P:Bot.Material.Quantity">
             <summary>
-            Obtiene cantidad del la clase Material.
+            Obtiene o establece cantidad del la clase Material.
             </summary>
             <value>Entero.</value>
         </member>
         <member name="P:Bot.Material.Price">
             <summary>
-            Obtiene precio del la clase Material.
+            Obtiene o establece precio del la clase Material.
             </summary>
             <value>Entero.</value>
         </member>
@@ -854,48 +860,54 @@
             </summary>
             <value>Rol Emprendedor.</value>
         </member>
+        <member name="P:Bot.Publication.Location">
+            <summary>
+            Obtiene o establece ubicación dada de la clase Publicación.
+            </summary>
+            <value>Ubicación.</value>
+        </member>
         <member name="P:Bot.Publication.Title">
             <summary>
-            Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
+            Obtiene o establece titulo que representa la publicación. Más que nada para poder retornar una lista
             identificando por título.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Publication.Company">
             <summary>
-            Obtiene clase Empresa dueña de la clase Publicación. Get público.
+            Obtiene o establece clase Empresa dueña de la clase Publicación. Get público.
             </summary>
             <value>Empresa.</value>
         </member>
         <member name="P:Bot.Publication.Date">
             <summary>
-            Obtiene el atributo Date que devuelve la hora en la que se crea la clase Publicacación.
+            Obtiene o establece el atributo Date que devuelve la hora en la que se crea la clase Publicacación.
             Es decir, cuando el constructor de la clase se ejecuta.
             </summary>
             <value>DateTime.</value>
         </member>
         <member name="P:Bot.Publication.ClosedDate">
             <summary>
-            Obtiene el atributo Date que devuelve la hora en la que se cierra la clase Publicacación.
+            Obtiene o establece el atributo Date que devuelve la hora en la que se cierra la clase Publicacación.
             Es decir, cuando el método ClosePublication es ejecutado.
             </summary>
             <value>DateTime.</value>
         </member>
         <member name="P:Bot.Publication.ListMaterials">
             <summary>
-            Obtiene una lista de solo lectura con todos los materiales.
+            Obtiene o establece una lista de solo lectura con todos los materiales.
             </summary>
             <returns>Lista de solo lectura de Material.</returns>
         </member>
         <member name="P:Bot.Publication.ListQualifications">
             <summary>
-            Obtiene una lista de solo lectura de los string Habilitaciones.
+            Obtiene o establece una lista de solo lectura de los string Habilitaciones.
             </summary>
             <value>Lista de solo lectura de cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Publication.IsClosed">
             <summary>
-            Obtiene un valor que indica si el estado de la publicación es abierto o cerrado.
+            Obtiene o establece un valor que indica si el estado de la publicación es abierto o cerrado.
             </summary>
             <value>Booleano.</value>
         </member>
@@ -969,6 +981,12 @@
             </summary>
             <returns>Instancia PublicationSet.</returns>
         </member>
+        <member name="P:Bot.PublicationSet.ListPublications">
+            <summary>
+            Obtiene la lista de Publicaciones.
+            </summary>
+            <value>Lista de solo lectura de clase Publicación.</value>
+        </member>
         <member name="M:Bot.PublicationSet.AddElement(Bot.Publication)">
             <summary>
             Método que se encarga de agregar una Publicación a la lista de Publicaciones del sistema.
@@ -1012,6 +1030,17 @@
         <member name="M:Bot.PublicationSet.Initialize">
             <summary>
             Método que es llamado por el constructor privado para inicializar la lista de clases Publicación.
+            </summary>
+        </member>
+        <member name="M:Bot.PublicationSet.ConvertToJson">
+            <summary>
+            Método que se encarga de convertir en JSON las publicaciones creadas y escribirlas en su
+            correspondiente archivo JSON.
+            </summary>
+        </member>
+        <member name="M:Bot.PublicationSet.LoadFromJson">
+            <summary>
+            Método que se encarga de leer el archivo JSON donde se guardan las publicaciones y deserializarlo.
             </summary>
         </member>
         <member name="T:Bot.Command">
@@ -1223,6 +1252,11 @@
             Clase que depende de la API Location de la UCU.
             </summary>
         </member>
+        <member name="M:Bot.GeoLocation.#ctor">
+            <summary>
+            Constructor sin implementación para la etiqueta JsonConstructor.
+            </summary>
+        </member>
         <member name="M:Bot.GeoLocation.#ctor(System.String,System.String)">
             <summary>
             Constructor de la clase Geolocation, llama a un método privado asincrono y después se valida la propiedad Found.
@@ -1233,13 +1267,13 @@
         </member>
         <member name="P:Bot.GeoLocation.City">
             <summary>
-            Obtiene ciudad ingresada como parámetro no obligatorio para crear instancia Location.
+            Obtiene o establece ciudad ingresada como parámetro no obligatorio para crear instancia Location.
             </summary>
             <value>String que representa ciudad.</value>
         </member>
         <member name="P:Bot.GeoLocation.Address">
             <summary>
-            Obtiene dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
+            Obtiene o establece dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>

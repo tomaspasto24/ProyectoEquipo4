@@ -16,7 +16,6 @@ namespace Bot
         private string title;
         private DateTime date;
         private DateTime closedDate;
-        public GeoLocation location {get; set;}
         private Company company;
         private bool isClosed;
         private IList<Material> listMaterials = new List<Material>();
@@ -41,18 +40,8 @@ namespace Bot
             this.company = company;
             this.date = DateTime.Now;
             this.closedDate = DateTime.MinValue;
-            this.location = location;
+            this.Location = location;
             this.AddMaterial(material);
-            this.isClosed = false;
-            this.InterestedPerson = null;
-        }
-        public Publication(String title, Company company, GeoLocation location)
-        {
-            this.title = title;
-            this.company = company;
-            this.date = DateTime.Now;
-            this.closedDate = DateTime.MinValue;
-            this.location = location;
             this.isClosed = false;
             this.InterestedPerson = null;
         }
@@ -64,7 +53,18 @@ namespace Bot
         public RoleEntrepreneur InterestedPerson { get; private set; }
 
         /// <summary>
-        /// Obtiene titulo que representa la publicación. Más que nada para poder retornar una lista
+        /// Obtiene o establece ubicación dada de la clase Publicación.
+        /// </summary>
+        /// <value>Ubicación.</value>
+        public GeoLocation Location
+        {
+            get;
+
+            set;
+        }
+
+        /// <summary>
+        /// Obtiene o establece titulo que representa la publicación. Más que nada para poder retornar una lista
         /// identificando por título.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
@@ -74,6 +74,7 @@ namespace Bot
             {
                 return this.title;
             }
+
             set
             {
                 this.title = value;
@@ -81,7 +82,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene clase Empresa dueña de la clase Publicación. Get público.
+        /// Obtiene o establece clase Empresa dueña de la clase Publicación. Get público.
         /// </summary>
         /// <value>Empresa.</value>
         public Company Company
@@ -90,6 +91,7 @@ namespace Bot
             {
                 return this.company;
             }
+
             set
             {
                 this.company = value;
@@ -97,23 +99,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene la ubicación de la publicación.
-        /// </summary>
-        /// <value>GeoLocation.</value>
-        // public GeoLocation Location
-        // {
-        //     get
-        //     {
-        //         return this.location;
-        //     }
-        //     set
-        //     {
-        //         this.location = value;
-        //     }
-        // }
-
-        /// <summary>
-        /// Obtiene el atributo Date que devuelve la hora en la que se crea la clase Publicacación.
+        /// Obtiene o establece el atributo Date que devuelve la hora en la que se crea la clase Publicacación.
         /// Es decir, cuando el constructor de la clase se ejecuta.
         /// </summary>
         /// <value>DateTime.</value>
@@ -123,6 +109,7 @@ namespace Bot
             {
                 return this.date;
             }
+
             set
             {
                 this.date = value;
@@ -130,7 +117,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene el atributo Date que devuelve la hora en la que se cierra la clase Publicacación.
+        /// Obtiene o establece el atributo Date que devuelve la hora en la que se cierra la clase Publicacación.
         /// Es decir, cuando el método ClosePublication es ejecutado.
         /// </summary>
         /// <value>DateTime.</value>
@@ -140,6 +127,7 @@ namespace Bot
             {
                 return this.closedDate;
             }
+
             set
             {
                 this.closedDate = value;
@@ -147,7 +135,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene una lista de solo lectura con todos los materiales.
+        /// Obtiene o establece una lista de solo lectura con todos los materiales.
         /// </summary>
         /// <returns>Lista de solo lectura de Material.</returns>
         [JsonInclude]
@@ -157,6 +145,7 @@ namespace Bot
             {
                 return new ReadOnlyCollection<Material>(this.listMaterials);
             }
+
             set
             {
                 this.listMaterials = value as List<Material>;
@@ -164,7 +153,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene una lista de solo lectura de los string Habilitaciones.
+        /// Obtiene o establece una lista de solo lectura de los string Habilitaciones.
         /// </summary>
         /// <value>Lista de solo lectura de cadena de caracteres.</value>
         [JsonInclude]
@@ -174,6 +163,7 @@ namespace Bot
             {
                 return new ReadOnlyCollection<string>(this.listQualifications);
             }
+
             set
             {
                 this.listQualifications = value as List<string>;
@@ -181,7 +171,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene un valor que indica si el estado de la publicación es abierto o cerrado.
+        /// Obtiene o establece un valor que indica si el estado de la publicación es abierto o cerrado.
         /// </summary>
         /// <value>Booleano.</value>
         public Boolean IsClosed
@@ -190,6 +180,7 @@ namespace Bot
             {
                 return this.isClosed;
             }
+
             set
             {
                 this.isClosed = value;
@@ -316,13 +307,15 @@ namespace Bot
         {
             this.InterestedPerson = interestedPerson;
         }
+
         public string ReturnPublication(Publication publication)
         {
-            string x = publication.title +"\n"+ publication.Company.Name+ "\n" + "Materiales:\n";
+            string x = publication.title + "\n" + publication.Company.Name + "\n" + "Materiales:\n";
             foreach (Material mat in this.listMaterials)
             {
-                x = x + mat.Name +" - "+ mat.Quantity +" - " + mat.Price;
+                x = x + mat.Name + " - " + mat.Quantity + " - " + mat.Price;
             }
+
             return x;
         }
     }
