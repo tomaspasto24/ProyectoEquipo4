@@ -122,7 +122,7 @@ namespace Bot
                 };
 
                 TokenGenerator tokenDeserialize = JsonSerializer.Deserialize<TokenGenerator>(json, options);
-                // TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
+                //TokenGenerator.Instance.tkn = tokenDeserialize.tkn;
                 return true;
             }
             else

@@ -1337,7 +1337,7 @@
         </member>
         <member name="M:Bot.EntrepreneurReport.GiveReport">
             <summary>
-            metodo para entregar el reporte del emprendedor.
+            Metodo para entregar el reporte del emprendedor.
             </summary>
             <returns>El reporte del emprendedor.</returns>
         </member>
@@ -1475,13 +1475,13 @@
         </member>
         <member name="P:Bot.TokenGenerator.Instance">
             <summary>
-            Metodo para generar una instancia de token. -singleton
+            Metodo para generar una instancia de token. Cumple con el patrón Singleton debido a que solamente hay una unica instancia de este.
             </summary>
             <value>Instancia del Token. </value>
         </member>
         <member name="M:Bot.TokenGenerator.GenerateToken">
             <summary>
-            Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
+            Metodo para generar el token. Incrementa la variable tkn y la devuelve por cada token que genera.
             </summary>
             <returns>El token generado.</returns>
         </member>

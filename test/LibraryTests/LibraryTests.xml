@@ -365,7 +365,12 @@
         </member>
         <member name="M:BotTests.StartHandlerTest.StartHandlerWrongTextTest">
             <summary>
-            Se testea que el StartHandler no 
+            Se testea que el StartHandler no envie el mensaje dado en caso de que el comando que se ingresa sea diferente al esperado.
+            </summary>
+        </member>
+        <member name="T:BotTests.TextNullHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
         <member name="T:BotTests.TokenHandlerTest">
@@ -378,47 +383,47 @@
             Se inicializan las variables que se van a usar en los test. 
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleNoPermissionTokenTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleNoPermissionTokenTest">
             <summary>
             Se testea que el RoleDefault no tenga el permiso de generar el token a través del handler.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandlePermissionTokenTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandlePermissionTokenTest">
             <summary>
             Se testea que el RoleAdmin tenga el permiso para generar el token a través del handler.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleInvitationTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleInvitationTest">
             <summary>
             Se testea que el TokenHandler pueda crear la invitacion para una empresa 
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleNoCompanyTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleNoCompanyTest">
             <summary>
             Se testea que se le pase una compañia ya registrada y debe devolver el mensaje correspondiente.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleCompanyTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyTest">
             <summary>
             Se testea que asigne el nombre de la compañia que se le pasa.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleCompanyHeadingTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyHeadingTest">
             <summary>
             Se testea que se asigne correctamente el rubro de la empresa.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleCompanyCityTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyCityTest">
             <summary>
             Se testea que se le asigne correctamente la ciudad donde está ubicada la empresa.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleCompanyAddressTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyAddressTest">
             <summary>
             Se testea que se le asigne correctamente la direccion de la empresa.
             </summary>
         </member>
-        <member name="M:BotTests.TokenHandlerTest.InternalHandleCompanyContactTest">
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyContactTest">
             <summary>
             Se testea que se le asigne el contacto de la empresa y para llegar a este punto debe pasar por las condiciones anteriores.
             </summary>
