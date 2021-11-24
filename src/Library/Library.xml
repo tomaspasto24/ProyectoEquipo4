@@ -177,7 +177,7 @@
         </member>
         <member name="T:Bot.IHandler">
             <summary>
-            Interfaz para los handlers de Chain of Responsability
+            Interfaz para los handlers de Chain of Responsibility
             </summary>
         </member>
         <member name="P:Bot.IHandler.Succesor">
@@ -372,6 +372,42 @@
             <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
         </member>
         <member name="M:Bot.SalesReportHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.SearchByLocationHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.SearchByLocationHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.SearchByLocationHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Metodo que se encarga de atender el handler.
+            </summary>
+            <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="T:Bot.SearchByMaterialHandler">
+            <summary>
+            Handler que se encarga del registro de un usuario
+            </summary>
+        </member>
+        <member name="M:Bot.SearchByMaterialHandler.#ctor(Bot.AbstractHandler)">
+            <summary>
+            Constructor de la clase RegisterHandler
+            </summary>
+            <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        </member>
+        <member name="M:Bot.SearchByMaterialHandler.InternalHandle(Bot.Message,System.String@)">
             <summary>
             Metodo que se encarga de atender el handler.
             </summary>
