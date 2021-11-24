@@ -16,7 +16,7 @@ namespace Bot
     /// <summary>
     /// Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
     /// </summary>
-    public class SessionRelated : IJsonConvertible
+    public class SessionRelated
     {
         [JsonInclude]
         /// <summary>
@@ -144,80 +144,6 @@ namespace Bot
                 }
             }
             return null;
-        }
-
-        public void ConvertToJson()
-        {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
-            /* ALLUSERS
-
-            string jsonAllUsers = JsonSerializer.Serialize(this.AllUsers as List<UserInfo>, options);
-
-            try
-            {
-                File.WriteAllText(@"..\..\docs\AllUsersDataBase.json", jsonAllUsers);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            */
-            string jsonDiccUserTokens = JsonSerializer.Serialize(this.DiccUserTokens as Dictionary<string, Company>, options);
-                
-            try
-            {
-                File.WriteAllText(@"..\..\docs\UserTokensDataBase.json", jsonDiccUserTokens);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        public void LoadFromJson()
-        {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
-            /* ALLUSERS
-            try
-            {
-                string jsonData = File.ReadAllText(@"..\..\docs\AllUsersDataBase.json");
-
-                List<UserInfo> listAllUsersFromJson = JsonSerializer.Deserialize<List<UserInfo>>(jsonData, options);
-
-                foreach (UserInfo item in listAllUsersFromJson)
-                {
-                    this.AllUsers.Add(item);
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            */
-
-            try
-            {
-                string jsonDataDiccUserTokens = File.ReadAllText(@"..\..\docs\UserTokensDataBase.json");
-
-                Dictionary<string, Company> diccUserTokensFromJson = JsonSerializer.Deserialize<Dictionary<string, Company>>(jsonDataDiccUserTokens, options);
-
-                foreach (string key in diccUserTokensFromJson.Keys)
-                {
-                    this.DiccUserTokens.Add(key, diccUserTokensFromJson[key]);
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
         }
     }
 }

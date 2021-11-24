@@ -12,11 +12,11 @@ namespace Bot
     /// Conjunto de Publicaciones, clase que se encarga de administrar la lista de Publicaciones en general.
     /// Cumple con el patrón de creación Singleton (Ver Readme).
     /// </summary>
-    public class PublicationSet : ISetOfElement<Publication>, IJsonConvertible
+    public class PublicationSet : ISetOfElement<Publication>
     {
         private static PublicationSet instance;
         [JsonInclude]
-        private IList<Publication> listPublications;
+        private List<Publication> listPublications;
         [JsonConstructor]
         private PublicationSet()
         {
@@ -48,11 +48,15 @@ namespace Bot
         /// </summary>
         /// <value>Lista de solo lectura de clase Publicación.</value>
         [JsonInclude]
-        public IReadOnlyCollection<Publication> ListPublications
+        public List<Publication> ListPublications
         {
             get
             {
-                return new ReadOnlyCollection<Publication>(this.listPublications);
+                return this.listPublications;
+            }
+            set
+            {
+                this.listPublications = value;
             }
         }
 
@@ -171,56 +175,45 @@ namespace Bot
             this.listPublications = new List<Publication>();
         }
 
-        /// <summary>
-        /// Método que se encarga de convertir en JSON las publicaciones creadas y escribirlas en su
-        /// correspondiente archivo JSON.
-        /// </summary>
-        public void ConvertToJson()
-        {
-            JsonSerializerOptions options = new ()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true,
-            };
+        // /// <summary>
+        // /// Método que se encarga de convertir en JSON las publicaciones creadas y escribirlas en su
+        // /// correspondiente archivo JSON.
+        // /// </summary>
+        // public string ConvertToJson()
+        // {
+        //     JsonSerializerOptions options = new ()
+        //     {
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true,
+        //     };
 
-            string json = JsonSerializer.Serialize(this.listPublications as List<Publication>, options);
+        //     return JsonSerializer.Serialize(this.listPublications as List<Publication>, options);
+        // }
 
-            try
-            {
-                File.WriteAllText(@"..\..\docs\PublicationDataBase.json", json);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
+        // /// <summary>
+        // /// Método que se encarga de leer el archivo JSON donde se guardan las publicaciones y deserializarlo.
+        // /// </summary>
+        // public void LoadFromJson(string json)
+        // {
+        //     try
+        //     {
+        //         JsonSerializerOptions options = new ()
+        //         {
+        //             ReferenceHandler = MyReferenceHandler.Instance,
+        //             WriteIndented = true,
+        //         };
 
-        /// <summary>
-        /// Método que se encarga de leer el archivo JSON donde se guardan las publicaciones y deserializarlo.
-        /// </summary>
-        public void LoadFromJson()
-        {
-            try
-            {
-                string jsonData = File.ReadAllText(@"..\..\docs\PublicationDataBase.json");
-                JsonSerializerOptions options = new ()
-                {
-                    ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true,
-                };
+        //         List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(json, options);
 
-                // List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(jsonData, options);
-                List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(jsonData, options);
-
-                foreach (Publication item in listPublicationsFromJson)
-                {
-                    this.AddElement(item);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
+        //         foreach (Publication item in listPublicationsFromJson)
+        //         {
+        //             this.AddElement(item);
+        //         }
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e.Message);
+        //     }
+        // }
     }
 }

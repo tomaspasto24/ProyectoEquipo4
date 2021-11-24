@@ -260,5 +260,40 @@
             Test del reporte emprendedor en caso de que la publicacion no este cerrada.
             </summary>
         </member>
+        <member name="T:BotTests.StartHandlerTest">
+            <summary>
+            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler.
+            </summary>
+        </member>
+        <member name="T:BotTests.TokenHandlerTest">
+            <summary>
+            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler.
+            </summary>
+        </member>
+        <member name="T:BotTests.TokenTest">
+            <summary>
+            Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
+            </summary>
+        </member>
+        <member name="F:BotTests.TokenTest.admin">
+            <summary>
+            Defino la variable afuera para que sea global y adentro del metodo la instancio.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenType">
+            <summary>
+            Test del token para ver si lo que retorna es de tipo int.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenAddedTest">
+            <summary>
+            Test para agregar el token generado a la lista de globalRatingsList.
+            </summary>
+        </member>
     </members>
 </doc>
