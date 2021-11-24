@@ -11,10 +11,45 @@ namespace Bot
     /// </summary>
     public class SerializeManager
     {
+        private const string Path = @"..\..\docs\DataBase.json";
+        private static JsonSerializerOptions options = new ()
+        {
+            ReferenceHandler = MyReferenceHandler.Instance,
+            WriteIndented = true,
+        };
         private static SerializeManager instance;
         private List<Publication> listPublicationsToSerialize = new List<Publication>();
         private Dictionary<string, Company> diccUserCompanyTokensToSerialize = new Dictionary<string, Company>();
-        private string Path = @"..\..\docs\DataBase.json";
+
+
+        /// <summary>
+        /// Constructor sin implementación y público (a diferencia de las demás clases Singleton) para poder ser usado por
+        /// el atributo JsonConstructor.
+        /// </summary>
+        [JsonConstructor]
+        public SerializeManager() { }
+
+        /// <summary>
+        /// Obtiene o establece la instancia de la clase SerializeManager para cumplir con el patrón creacional Singleton (Ver Readme).
+        /// </summary>
+        /// <value>Instancia SerializeManager.</value>
+        public static SerializeManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SerializeManager();
+                }
+
+                return instance;
+            }
+
+            set
+            {
+                instance = value;
+            }
+        }
 
         /// <summary>
         /// Obtiene o establece la lista de publicaciones calco a la lista de publicaciones de PublicationSet, para ser Serializada/Deserializada.
@@ -36,7 +71,7 @@ namespace Bot
         /// <summary>
         /// Obtiene o establece el diccionario de tokens y empresas, para ser Serializada/Deserializada.
         /// </summary>
-        /// <value></value>
+        /// <value>Diccionario string, Company.</value>
         [JsonInclude]
         public Dictionary<string, Company> DiccUserCompanyTokensToSerialize
         {
@@ -44,44 +79,12 @@ namespace Bot
             {
                 return this.diccUserCompanyTokensToSerialize;
             }
+
             set
             {
                 this.diccUserCompanyTokensToSerialize = value;
             }
         }
-        private static JsonSerializerOptions options = new ()
-        {
-            ReferenceHandler = MyReferenceHandler.Instance,
-            WriteIndented = true,
-        };
-
-        /// <summary>
-        /// Obtiene o establece la instancia de la clase SerializeManager para cumplir con el patrón creacional Singleton (Ver Readme).
-        /// </summary>
-        /// <value>Instancia SerializeManager</value>
-        public static SerializeManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new SerializeManager();
-                }
-
-                return instance;
-            }
-
-            set
-            {
-                instance = value;
-            }
-        }
-        /// <summary>
-        /// Constructor sin implementación y público (a diferencia de las demás clases Singleton) para poder ser usado por
-        /// el atributo JsonConstructor.
-        /// </summary>
-        [JsonConstructor]
-        public SerializeManager() { }
 
         /// <summary>
         /// Método que se encarga de traer los objetos que se desean persistir para poder guardarlos en el archivo DataBase.json
@@ -96,7 +99,7 @@ namespace Bot
                 this.listPublicationsToSerialize = PublicationSet.Instance.ListPublications as List<Publication>;
                 this.diccUserCompanyTokensToSerialize = SessionRelated.Instance.DiccUserTokens as Dictionary<string, Company>;
                 string json = JsonSerializer.Serialize(SerializeManager.Instance, options);
-                File.WriteAllText(this.Path, json);
+                File.WriteAllText(Path, json);
             }
             catch (ArgumentException e)
             {
@@ -110,8 +113,8 @@ namespace Bot
         /// </summary>
         public void DeserializeObjects()
         {
-            string json = File.ReadAllText(this.Path);
-            if (json == string.Empty)
+            string json = File.ReadAllText(Path);
+            if (string.IsNullOrEmpty(json))
             {
                 System.Console.WriteLine("No hay ningún dato en el archivo JSON correspondiente, la deserialización no se ejecuta.");
             }
@@ -126,14 +129,12 @@ namespace Bot
                     PublicationSet.Instance.ListPublications = manager.listPublicationsToSerialize;
                     Console.WriteLine(manager.listPublicationsToSerialize.Count);
                     SessionRelated.Instance.DiccUserTokens = manager.diccUserCompanyTokensToSerialize;
-
                 }
                 catch (ArgumentNullException e)
                 {
                     Console.WriteLine($"Un argumento ingresado es de tipo null, error: {e.Message}");
                 }
             }
-
         }
     }
 }

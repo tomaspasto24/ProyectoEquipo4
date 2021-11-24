@@ -174,46 +174,5 @@ namespace Bot
         {
             this.listPublications = new List<Publication>();
         }
-
-        // /// <summary>
-        // /// Método que se encarga de convertir en JSON las publicaciones creadas y escribirlas en su
-        // /// correspondiente archivo JSON.
-        // /// </summary>
-        // public string ConvertToJson()
-        // {
-        //     JsonSerializerOptions options = new ()
-        //     {
-        //         ReferenceHandler = MyReferenceHandler.Instance,
-        //         WriteIndented = true,
-        //     };
-
-        //     return JsonSerializer.Serialize(this.listPublications as List<Publication>, options);
-        // }
-
-        // /// <summary>
-        // /// Método que se encarga de leer el archivo JSON donde se guardan las publicaciones y deserializarlo.
-        // /// </summary>
-        // public void LoadFromJson(string json)
-        // {
-        //     try
-        //     {
-        //         JsonSerializerOptions options = new ()
-        //         {
-        //             ReferenceHandler = MyReferenceHandler.Instance,
-        //             WriteIndented = true,
-        //         };
-
-        //         List<Publication> listPublicationsFromJson = JsonSerializer.Deserialize<List<Publication>>(json, options);
-
-        //         foreach (Publication item in listPublicationsFromJson)
-        //         {
-        //             this.AddElement(item);
-        //         }
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         Console.WriteLine(e.Message);
-        //     }
-        // }
     }
 }

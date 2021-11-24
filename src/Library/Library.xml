@@ -547,12 +547,6 @@
             un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
             </summary>
         </member>
-        <member name="P:Bot.Company.location">
-            <summary>
-            Atributo location el cual es público por motivos de incompatibilidad con la implementación de la Serialización.
-            </summary>
-            <value>GeoLocation.</value>
-        </member>
         <member name="M:Bot.Company.#ctor">
             <summary>
             Constructor ingresado en blanco para la implementación de la Serialización.
@@ -567,40 +561,46 @@
             <param name="location">Ubicación establecida de la Empresa.</param>
             <param name="contact">Contacto (Teléfono) de la Empresa.</param>
         </member>
+        <member name="P:Bot.Company.Location">
+            <summary>
+            Obtiene o establece location el cual es público por motivos de incompatibilidad con la implementación de la Serialización.
+            </summary>
+            <value>GeoLocation.</value>
+        </member>
         <member name="P:Bot.Company.Name">
             <summary>
-            Obtiene nombre de la clase Empresa.
+            Obtiene o establece nombre de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Company.Item">
             <summary>
-            Obtiene nombre del rubro de la clase Empresa.
+            Obtiene o establece nombre del rubro de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Company.Contact">
             <summary>
-            Obtiene el contacto de la clase Empresa.
+            Obtiene o establece el contacto de la clase Empresa.
             </summary>
             <value>Cadena de caracteres.</value>
         </member>
         <member name="P:Bot.Company.ListHistorialPublications">
             <summary>
-            Obtiene el historial de publicaciones como una lista de solo lectura para que no se
+            Obtiene o establece el historial de publicaciones como una lista de solo lectura para que no se
             pueda agregar o quitar objetos Publication de la instancia obtenida.
             </summary>
             <returns>Lista Publications de solo lectura.</returns>
         </member>
         <member name="P:Bot.Company.ListOwnPublications">
             <summary>
-            Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
+            Obtiene o establece una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
             </summary>
             <returns>Lista Publitacions de solo lectura.</returns>
         </member>
         <member name="P:Bot.Company.ListUsers">
             <summary>
-            Obtiene una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
+            Obtiene o establece una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
             </summary>
             <returns>Lista User de solo lectura.</returns>
         </member>
@@ -1375,6 +1375,18 @@
             Clase serializadora de los objetos que se desean persistir fuera del bot.
             </summary>
         </member>
+        <member name="M:Bot.SerializeManager.#ctor">
+            <summary>
+            Constructor sin implementación y público (a diferencia de las demás clases Singleton) para poder ser usado por
+            el atributo JsonConstructor.
+            </summary>
+        </member>
+        <member name="P:Bot.SerializeManager.Instance">
+            <summary>
+            Obtiene o establece la instancia de la clase SerializeManager para cumplir con el patrón creacional Singleton (Ver Readme).
+            </summary>
+            <value>Instancia SerializeManager.</value>
+        </member>
         <member name="P:Bot.SerializeManager.ListPublicationsToSerialize">
             <summary>
             Obtiene o establece la lista de publicaciones calco a la lista de publicaciones de PublicationSet, para ser Serializada/Deserializada.
@@ -1385,19 +1397,7 @@
             <summary>
             Obtiene o establece el diccionario de tokens y empresas, para ser Serializada/Deserializada.
             </summary>
-            <value></value>
-        </member>
-        <member name="P:Bot.SerializeManager.Instance">
-            <summary>
-            Obtiene o establece la instancia de la clase SerializeManager para cumplir con el patrón creacional Singleton (Ver Readme).
-            </summary>
-            <value>Instancia SerializeManager</value>
-        </member>
-        <member name="M:Bot.SerializeManager.#ctor">
-            <summary>
-            Constructor sin implementación y público (a diferencia de las demás clases Singleton) para poder ser usado por
-            el atributo JsonConstructor.
-            </summary>
+            <value>Diccionario string, Company.</value>
         </member>
         <member name="M:Bot.SerializeManager.SerializeObjects">
             <summary>

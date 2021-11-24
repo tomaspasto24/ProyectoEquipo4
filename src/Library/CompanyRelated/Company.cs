@@ -15,11 +15,6 @@ namespace Bot
     {
         private string name;
         private string item;
-        /// <summary>
-        /// Atributo location el cual es público por motivos de incompatibilidad con la implementación de la Serialización.
-        /// </summary>
-        /// <value>GeoLocation.</value>
-        public GeoLocation location {get; set;}
         private string contact;
         private List<UserInfo> listUsers = new List<UserInfo>();
         private List<Publication> listOwnPublications = new List<Publication>();
@@ -42,12 +37,22 @@ namespace Bot
         {
             this.name = name;
             this.item = item;
-            this.location = location;
+            this.Location = location;
             this.contact = contact;
         }
 
         /// <summary>
-        /// Obtiene nombre de la clase Empresa.
+        /// Obtiene o establece location el cual es público por motivos de incompatibilidad con la implementación de la Serialización.
+        /// </summary>
+        /// <value>GeoLocation.</value>
+        public GeoLocation Location
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Obtiene o establece nombre de la clase Empresa.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
         public String Name
@@ -56,6 +61,7 @@ namespace Bot
             {
                 return this.name;
             }
+
             set
             {
                 this.name = value;
@@ -63,7 +69,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene nombre del rubro de la clase Empresa.
+        /// Obtiene o establece nombre del rubro de la clase Empresa.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
         public String Item
@@ -72,6 +78,7 @@ namespace Bot
             {
                 return this.item;
             }
+
             set
             {
                 this.item = value;
@@ -79,7 +86,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene el contacto de la clase Empresa.
+        /// Obtiene o establece el contacto de la clase Empresa.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
         public String Contact
@@ -88,6 +95,7 @@ namespace Bot
             {
                 return this.contact;
             }
+
             set
             {
                 this.contact = value;
@@ -95,7 +103,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene el historial de publicaciones como una lista de solo lectura para que no se
+        /// Obtiene o establece el historial de publicaciones como una lista de solo lectura para que no se
         /// pueda agregar o quitar objetos Publication de la instancia obtenida.
         /// </summary>
         /// <returns>Lista Publications de solo lectura.</returns>
@@ -106,18 +114,23 @@ namespace Bot
             {
                 return this.listHistorialPublications;
             }
+
             set
             {
-                if(!(value.Count == 0))
+                if (!(value.Count == 0) || value != null)
                 {
                     this.ListHistorialPublications.Clear();
                     this.ListHistorialPublications.AddRange(value);
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(value));
                 }
             }
         }
 
         /// <summary>
-        /// Obtiene una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
+        /// Obtiene o establece una lista de las publicaciones actuales de la empresa como una lista de solo lectura.
         /// </summary>
         /// <returns>Lista Publitacions de solo lectura.</returns>
         [JsonInclude]
@@ -127,9 +140,10 @@ namespace Bot
             {
                 return this.listOwnPublications;
             }
+
             set
             {
-                if(!(value.Count == 0))
+                if (!(value.Count == 0))
                 {
                     this.listOwnPublications.Clear();
                     this.listOwnPublications.AddRange(value);
@@ -138,7 +152,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
+        /// Obtiene o establece una lista de los usuarios actuales de la Empresa como una lista de solo lectura.
         /// </summary>
         /// <returns>Lista User de solo lectura.</returns>
         [JsonInclude]
@@ -148,9 +162,10 @@ namespace Bot
             {
                 return this.listUsers;
             }
+
             set
             {
-                if(!(value.Count == 0))
+                if (!(value.Count == 0))
                 {
                     this.listUsers.Clear();
                     this.listUsers.AddRange(value);
