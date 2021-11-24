@@ -31,7 +31,7 @@ namespace Bot
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             // TODO
             
-            if (!user.UserRole.HasPermission(Permission.Search))
+            if (!user.HasPermission(Permission.Search))
             {   
                 response = string.Empty;
                 return false;

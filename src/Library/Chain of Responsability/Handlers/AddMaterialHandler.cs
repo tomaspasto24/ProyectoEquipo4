@@ -36,7 +36,7 @@ namespace Bot
             Material material = null;
             string publicationTitle = string.Empty;
             
-            if (!user.UserRole.HasPermission(Permission.AddMaterial))
+            if (!user.HasPermission(Permission.AddMaterial))
             {
                 response = string.Empty;
                 return false;

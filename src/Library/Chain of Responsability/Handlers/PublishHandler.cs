@@ -37,7 +37,7 @@ namespace Bot
             GeoLocation locationCompany = null;
             Material material = null;
             
-            if (!user.UserRole.HasPermission(Permission.Publish))
+            if (!user.HasPermission(Permission.Publish))
             {
                 response = string.Empty;
                 return false;

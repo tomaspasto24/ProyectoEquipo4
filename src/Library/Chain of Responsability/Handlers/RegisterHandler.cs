@@ -33,7 +33,9 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            if (!user.UserRole.HasPermission(Permission.Register))
+            
+
+            if (!user.HasPermission(Permission.Register))
             {
                 response = string.Empty;
                 return false;
@@ -51,7 +53,8 @@ namespace Bot
                 {
                     user.HandlerState = Bot.State.Start;
                     this.Data.Token = request.Text;
-                    user.UserRole = new RoleUserCompany(SessionRelated.Instance.GetCompanyByToken(request.Text));
+                    user.Permissions = UserInfo.UserCompanyPermissions;
+                    /*user.UserRole = new UserCompanyInfo(SessionRelated.Instance.GetCompanyByToken(request.Text)); */ // TODO revisar esto
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }

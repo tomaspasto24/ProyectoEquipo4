@@ -30,8 +30,9 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
 
-            if (!user.UserRole.HasPermission(Permission.PurchasesReport))
+            if (!user.HasPermission(Permission.PurchasesReport))
             {
                 response = string.Empty;
                 return false;
@@ -42,7 +43,7 @@ namespace Bot
                 StringBuilder report = new StringBuilder();
                 int contador = 0;
 
-                foreach (Publication publication in ((RoleEntrepreneur)user.UserRole).ReturnListHistorialPublications())
+                foreach (Publication publication in entrepreneurInfo.ReturnListHistorialPublications())
                 {
                     if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                     && publication.IsClosed)

@@ -9,8 +9,9 @@ namespace Bot
     /// En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
     /// su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
     /// </summary>
-    public class RoleEntrepreneur : IRole
+    public class EntrepreneurInfo
     {
+        // TODO resolver donde guardar todo lo de entrepreneur
         /// <summary>
         /// Lista de las publiaciones adquiridas por el emprendedor.
         /// </summary>
@@ -22,19 +23,11 @@ namespace Bot
 
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
 
+
+        // TODO puede ser una clase aparte
         private List<string> certification = new List<string>();
 
         private List<string> specializations = new List<string>();
-
-        private List<Permission> permissions = new List<Permission>()
-        {
-            Permission.None,
-            Permission.Register,
-            Permission.Search,
-            Permission.PurchasesReport,
-            Permission.ContactCompany,
-            Permission.Data,
-        };
 
         /// <summary>
         /// Obtiene la ubicación.
@@ -55,7 +48,7 @@ namespace Bot
         /// <param name="heading">Rubro.</param>
         /// <param name="geolocation">Ubicación.</param>
         /// <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
-        public RoleEntrepreneur(string heading, GeoLocation geolocation)
+        public EntrepreneurInfo(string heading, GeoLocation geolocation)
         {
             this.Location = geolocation;
             this.Heading = heading;
@@ -200,11 +193,6 @@ namespace Bot
         public override string ToString()
         {
             return "Emprendedor";
-        }
-
-        public bool HasPermission(Permission perm)
-        {
-            return this.permissions.Contains(perm);
         }
 
         public bool ContainsSpecialization(string specialization)

@@ -29,6 +29,8 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
+
             if (request.Text.Equals("/porubicacion") && (user.HandlerState == Bot.State.Searching)) 
             {
                 response = "Ingresa la direccion por la que quieres buscar.\nEnvia \"/cancelar\" para cancelar la operación";
@@ -37,7 +39,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.SearchingByLocation)
             {
-                response = ((RoleEntrepreneur)user.UserRole).SearchingByLocation(request.Text) + "\nSi te interesa alguna publicación: envía el \"Título\" " ;
+                response = entrepreneurInfo.SearchingByLocation(request.Text) + "\nSi te interesa alguna publicación: envía el \"Título\" " ;
                 user.HandlerState = Bot.State.InterestedInPublication;
                 return true;
             }

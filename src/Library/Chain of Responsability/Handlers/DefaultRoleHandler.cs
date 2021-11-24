@@ -31,7 +31,7 @@ namespace Bot
 
             if (request.Text.Equals("/default"))
             {
-                user.UserRole = new RoleDefault();
+                user.Permissions = UserInfo.DefaultPermissions;
                 response = "ahora eres default";
                 return true;
             }

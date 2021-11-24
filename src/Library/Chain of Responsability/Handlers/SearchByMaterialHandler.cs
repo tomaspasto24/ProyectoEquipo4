@@ -29,6 +29,7 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
             
             if (request.Text.Equals("/pormaterial") && (user.HandlerState == Bot.State.Searching)) 
             {
@@ -38,7 +39,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.SearchingByMaterial)
             {
-                response = $"Estas son las publicaciones que contienen {request.Text}\n" + ((RoleEntrepreneur)user.UserRole).SearchingByMaterials(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario /cancelar";
+                response = $"Estas son las publicaciones que contienen {request.Text}\n" + entrepreneurInfo.SearchingByMaterials(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario /cancelar";
                 user.HandlerState = Bot.State.InterestedInPublication;
                 return true;
             }

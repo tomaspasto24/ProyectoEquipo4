@@ -30,7 +30,7 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!user.UserRole.HasPermission(Permission.ContactCompany))
+            if (!user.HasPermission(Permission.ContactCompany))
             {
                 response = string.Empty;
                 return false;

@@ -31,7 +31,7 @@ namespace Bot
 
             if (request.Text.Equals("/admin"))
             {
-                user.UserRole = new RoleAdmin();
+                user.Permissions = UserInfo.AdminPermissions;
                 response = "Ahora eres admin";
                 return true;
             }
