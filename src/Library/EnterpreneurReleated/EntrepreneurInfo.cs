@@ -101,15 +101,15 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch"></param>
         /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        public string SearchingByMaterials(string wordToSearch)
-        {
-            string publications = string.Empty;
-            foreach (Publication publication in (this.searchByMaterial.Search(wordToSearch)))
-            {
-                publications = publications + publication.ReturnPublication(publication);
-            }
-            return publications;
-        }
+        // public string SearchingByMaterials(string wordToSearch)
+        // {
+        //     string publications = string.Empty;
+        //     foreach (Publication publication in (this.searchByMaterial.Search(wordToSearch)))
+        //     {
+        //         publications = publications + publication.ReturnPublication(publication);
+        //     }
+        //     return publications;
+        // }
 
 
         /// <summary>
@@ -117,15 +117,15 @@ namespace Bot
         /// </summary>
         /// <param name="addresToSearch">Palabra clave como ubicación.</param>
         /// <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
-        public string SearchingByLocation(string addresToSearch)
-        {
-            string publications = string.Empty;
-            foreach (Publication publication in (this.searchByLocation.Search(addresToSearch)))
-            {
-                publications = publications + publication.ReturnPublication(publication);
-            }
-            return publications;
-        }
+        // public string SearchingByLocation(string addresToSearch)
+        // {
+        //     string publications = string.Empty;
+        //     foreach (Publication publication in (this.searchByLocation.Search(addresToSearch)))
+        //     {
+        //         publications = publications + publication.ReturnPublication(publication);
+        //     }
+        //     return publications;
+        // }
 
         /// <summary>
         /// Método público que guarda las Publicaciones adquiridas por el emprendedor.

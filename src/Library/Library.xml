@@ -1001,7 +1001,7 @@
             <param name="qualification">Índice de la Habilitación.</param>
             <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
         </member>
-        <member name="M:Bot.Publication.SetInterestedPerson(Bot.RoleEntrepreneur)">
+        <member name="M:Bot.Publication.SetInterestedPerson(Bot.EntrepreneurInfo)">
             <summary>
             Método que setea a la persona interesada (RolEmprendedor) en el atributo InterestedPerson.
             Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
@@ -1137,32 +1137,32 @@
             <param name="token">Token que el usuario inserta</param>
             <returns></returns>
         </member>
-        <member name="T:Bot.RoleEntrepreneur">
+        <member name="T:Bot.EntrepreneurInfo">
             <summary>
             En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
             su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
             </summary>
         </member>
-        <member name="F:Bot.RoleEntrepreneur.listHistorialPublications">
+        <member name="F:Bot.EntrepreneurInfo.listHistorialPublications">
             <summary>
             Lista de las publiaciones adquiridas por el emprendedor.
             </summary>
             <typeparam name="Publication">Publicación.</typeparam>
             <returns>Coleción de tipo Publication.</returns>
         </member>
-        <member name="P:Bot.RoleEntrepreneur.Location">
+        <member name="P:Bot.EntrepreneurInfo.Location">
             <summary>
             Obtiene la ubicación.
             </summary>
             <value>Ubicación.</value>
         </member>
-        <member name="P:Bot.RoleEntrepreneur.Heading">
+        <member name="P:Bot.EntrepreneurInfo.Heading">
             <summary>
             Establece el Rubro.
             </summary>
             <value>Obtiene el rubro.</value>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.#ctor(System.String,Bot.GeoLocation)">
+        <member name="M:Bot.EntrepreneurInfo.#ctor(System.String,Bot.GeoLocation)">
             <summary>
             Constructor de la clase Entrepreneur, setea los valores de los parámetros
             y suma un valor al contador de emprendedores estático.
@@ -1171,57 +1171,43 @@
             <param name="geolocation">Ubicación.</param>
             <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
         </member>
-        <member name="P:Bot.RoleEntrepreneur.ReturnCertification">
+        <member name="P:Bot.EntrepreneurInfo.ReturnCertification">
             <summary>
             Obtiene la lista de certificaciones del emprendedor.
             </summary>
             <returns>Lista de certificaciones.</returns>
         </member>
-        <member name="P:Bot.RoleEntrepreneur.ReturnSpecialization">
+        <member name="P:Bot.EntrepreneurInfo.ReturnSpecialization">
             <summary>
             Obtiene la lista de especializaciones del emprendedor.
             </summary>
             <returns>Lista de especializaciones.</returns>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.AddCertification(System.String)">
+        <member name="M:Bot.EntrepreneurInfo.AddCertification(System.String)">
             <summary>
             Método para agregarle certificaciones al emprendedor.
             </summary>
             <param name="certification">Certificación.</param>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.AddSpecialization(System.String)">
+        <member name="M:Bot.EntrepreneurInfo.AddSpecialization(System.String)">
             <summary>
             Método para agregarle espcializaciones al emprendedor.
             </summary>
             <param name="specialization">Especialización.</param>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.SearchingByMaterials(System.String)">
-            <summary>
-            Buscar publicaciones por material.
-            </summary>
-            <param name="wordToSearch"></param>
-            <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.SearchingByLocation(System.String)">
-            <summary>
-            Buscar publicaciones por ubicación.
-            </summary>
-            <param name="addresToSearch">Palabra clave como ubicación.</param>
-            <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
-        </member>
-        <member name="M:Bot.RoleEntrepreneur.AddHistorialPublication(Bot.Publication)">
+        <member name="M:Bot.EntrepreneurInfo.AddHistorialPublication(Bot.Publication)">
             <summary>
             Método público que guarda las Publicaciones adquiridas por el emprendedor.
             </summary>
             <param name="publication">Publicación.</param>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.ReturnListHistorialPublications">
+        <member name="M:Bot.EntrepreneurInfo.ReturnListHistorialPublications">
             <summary>
             Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
             </summary>
             <returns>Lista de publicaciones.</returns>
         </member>
-        <member name="M:Bot.RoleEntrepreneur.ContactCompany(Bot.Publication)">
+        <member name="M:Bot.EntrepreneurInfo.ContactCompany(Bot.Publication)">
             <summary>
             Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
             como InterestedPerson de la clase Publication que prefiera. El método termina devolviendo
@@ -1378,7 +1364,7 @@
             clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. esta clase tambien implementa la interfaz IReport y cumple con el patron ISP.
             </summary>
         </member>
-        <member name="M:Bot.EntrepreneurReport.#ctor(Bot.RoleEntrepreneur)">
+        <member name="M:Bot.EntrepreneurReport.#ctor(Bot.EntrepreneurInfo)">
             <summary>
             constructor de la clase emprendedor.
             </summary>
@@ -1401,51 +1387,16 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Bot.IRole">
-            <summary>
-            Interfaz que representa los roles
-            </summary>
-        </member>
-        <member name="T:Bot.RoleAdmin">
+        <member name="T:Bot.AdminInfo">
             <summary>
             Clase RoleAdmin que implementa la interfaz IRole
             </summary>
         </member>
-        <member name="F:Bot.RoleAdmin.globalQualificationList">
+        <member name="F:Bot.AdminInfo.globalQualificationList">
             <summary>
             Se inicializa la lista globalQualificationList
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Bot.RoleAdmin.GenerateToken(Bot.Company)">
-            <summary>
-            Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
-            </summary>
-            <param name="company"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Bot.RoleDefault">
-            <summary>
-            Clase RoleAdmin que implementa la interfaz IRole
-            </summary>
-        </member>
-        <member name="T:Bot.RoleUserCompany">
-            <summary>
-            Clase RoleUserCompany se encarga de servir como representación de un usuario
-            que forma parte de una empresa. 
-            /// </summary>
-        </member>
-        <member name="P:Bot.RoleUserCompany.company">
-            <summary>
-            Representa la clase Empresa a la cual es añadido.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:Bot.RoleUserCompany.#ctor(Bot.Company)">
-            <summary>
-            Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
-            </summary>
-            <param name="company">Empresa</param>
         </member>
         <member name="T:Bot.State">
             <summary>
@@ -1477,12 +1428,30 @@
             </summary>
             <returns>El token generado.</returns>
         </member>
+        <member name="T:Bot.UserCompanyInfo">
+            <summary>
+            Clase RoleUserCompany se encarga de servir como representación de un usuario
+            que forma parte de una empresa. 
+            /// </summary>
+        </member>
+        <member name="P:Bot.UserCompanyInfo.company">
+            <summary>
+            Representa la clase Empresa a la cual es añadido.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">
+            <summary>
+            Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
+            </summary>
+            <param name="company">Empresa</param>
+        </member>
         <member name="T:Bot.UserInfo">
             <summary>
             Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert.
             </summary>
         </member>
-        <member name="M:Bot.UserInfo.#ctor(System.String,System.Int64,Bot.IRole)">
+        <member name="M:Bot.UserInfo.#ctor(System.String,System.Int64)">
             <summary>
             Método constructor de la clase User que se encarga de asignar los atributos
             name, id y role que usará la clase.

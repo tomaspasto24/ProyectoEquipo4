@@ -65,9 +65,10 @@ namespace Bot
             {
                 user.HandlerState = Bot.State.Start;
                 EntrepeneurData ed = this.entrepreneurData[user];
-                response = "Direccion registrada. Ahora eres un emprendedor!";
+                response = "Direccion registrada. \nAhora eres un emprendedor!";
                 EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo(ed.Heading, new GeoLocation(request.Text, ed.City));
                 user.Permissions = UserInfo.EntrepreneurPermissions;
+                SessionRelated.Instance.DiccEntrepreneurInfo.Add(user, entrepreneurInfo);
                 return true;
             }
 

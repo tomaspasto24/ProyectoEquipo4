@@ -54,7 +54,7 @@ namespace Bot
                     user.HandlerState = Bot.State.Start;
                     this.Data.Token = request.Text;
                     user.Permissions = UserInfo.UserCompanyPermissions;
-                    /*user.UserRole = new UserCompanyInfo(SessionRelated.Instance.GetCompanyByToken(request.Text)); */ // TODO revisar esto
+                    SessionRelated.Instance.DiccUserCompanyInfo.Add(user, new UserCompanyInfo(SessionRelated.Instance.GetCompanyByToken(request.Text)));
                     response = "Token verificado, ahora eres un usuario empresa! :)";
                     return true;
                 }

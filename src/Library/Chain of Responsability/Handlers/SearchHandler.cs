@@ -29,7 +29,6 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            // TODO
             
             if (!user.HasPermission(Permission.Search))
             {   
@@ -39,7 +38,7 @@ namespace Bot
 
             if (request.Text.Equals("/busqueda") && (user.HandlerState == Bot.State.Start))
             {
-                response = "Por favor dinos por qué quieres buscar. \n Envía \"/pormaterial\" para buscar por material. \nEnvia \"/porubicacion\" para buscar por ubicación. \nEnvia \"/cancelar\" para cancelar la operación";
+                response = "Por favor dinos el metodo de busqueda que quieres usar. \nEnvía \"/pormaterial\" para buscar por material. \nEnvia \"/porubicacion\" para buscar por ubicación. \nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.Searching;
                 return true;
             }

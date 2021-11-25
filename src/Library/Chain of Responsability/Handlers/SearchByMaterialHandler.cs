@@ -30,8 +30,8 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
-            
-            if (request.Text.Equals("/pormaterial") && (user.HandlerState == Bot.State.Searching)) 
+
+            if (request.Text.Equals("/pormaterial") && (user.HandlerState == Bot.State.Searching))
             {
                 response = "Ingresa el nombre del material que quieres buscar.\nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.SearchingByMaterial;
@@ -39,9 +39,17 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.SearchingByMaterial)
             {
-                response = $"Estas son las publicaciones que contienen {request.Text}\n" + entrepreneurInfo.SearchingByMaterials(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario /cancelar";
-                user.HandlerState = Bot.State.InterestedInPublication;
-                return true;
+                if (SearchByMaterial.Instance.Search(request.Text).Equals(string.Empty))
+                {
+                    response = $"No hay publicaciones que contengan {request.Text}. \nIntenta con un material distinto o en caso de que quieras salir: \"/cancelar\"";
+                    return true;
+                }
+                else
+                {
+                    response = $"Estas son las publicaciones que contienen {request.Text}\n" + SearchByMaterial.Instance.Search(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario \"/cancelar\"";
+                    user.HandlerState = Bot.State.InterestedInPublication;
+                    return true;
+                }
             }
             else if ((user.HandlerState == Bot.State.InterestedInPublication))
             {
@@ -49,8 +57,9 @@ namespace Bot
                 foreach (Publication publication in PublicationSet.Instance.ListPublications)
                 {
                     if (publication.Title == request.Text)
-                    {   
-                        PublicationSet.Instance.DeleteElement(publication);
+                    {
+                        publication.SetInterestedPerson(entrepreneurInfo);
+                        publication.ClosePublication();
                         response = "Si se quiere contactar con la empresa envíe \"/contacto\" \nEnvia \"/cancelar\" para cancelar la operación";
                         user.HandlerState = Bot.State.AskingCompanyName;
                         return true;
