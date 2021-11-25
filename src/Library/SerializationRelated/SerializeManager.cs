@@ -125,9 +125,7 @@ namespace Bot
                 try
                 {
                     SerializeManager manager = JsonSerializer.Deserialize<SerializeManager>(json, options);
-                    Console.WriteLine(manager.listPublicationsToSerialize.Count);
                     PublicationSet.Instance.ListPublications = manager.listPublicationsToSerialize;
-                    Console.WriteLine(manager.listPublicationsToSerialize.Count);
                     SessionRelated.Instance.DiccUserTokens = manager.diccUserCompanyTokensToSerialize;
                 }
                 catch (ArgumentNullException e)

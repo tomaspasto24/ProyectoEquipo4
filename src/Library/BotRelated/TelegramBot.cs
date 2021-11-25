@@ -13,8 +13,8 @@ namespace Library
         //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CREAR CADENA NUEVA DE HANDLERS 
         private readonly IHandler handler =
             new CommandHandler(
-                new AdminHandler(
-                    new DefaultRoleHandler(
+                // new AdminHandler(
+                //     new DefaultRoleHandler(
                 new ContactHandler(
                     new UndertakeHandler(
                         new PublishHandler(
@@ -34,7 +34,7 @@ namespace Library
                         )
                     )
                 )
-            )));
+            );// ))
 
         private TelegramBot()
         {
