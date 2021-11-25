@@ -29,7 +29,7 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            // TODO
+            
             if (!user.UserRole.HasPermission(Permission.Data))
             {
                 response = string.Empty;
