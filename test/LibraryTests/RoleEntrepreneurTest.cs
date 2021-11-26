@@ -35,28 +35,30 @@ namespace BotTests
         /// <summary>
         /// Test del método que le agrega una certificación al emprendedor.
         /// </summary>
-        [Test]
+    /*    [Test]
         public void AddCertificationTest()
         {
             certification = "Manejar explosivos";
             emprendedor.AddCertification(certification);
             // Assert.AreEqual("Manejar explosivos", emprendedor.ReturnCertification()[1]);
         }
+*/
+
         /// <summary>
         /// Test del método que le agrega una especialización al emprendedor
         /// </summary>
-        [Test]
-        public void AddSpecializationTest()
+  /*      public void AddSpecializationTest()
         {
             specialization = "Quimica";
             emprendedor.AddSpecialization(specialization);
             // Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
         }
+*/
         /// <summary>
         /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
         /// y se fija que la lista no esté vacía
         /// </summary>
-        [Test]
+/*        [Test]
         public void AddListHistorialPublicationsTest1()
         {
             RoleEntrepreneur emprendedor2 = new RoleEntrepreneur("Industria", ubicacionParaPruebas);
@@ -66,6 +68,7 @@ namespace BotTests
             emprendedor.AddHistorialPublication(publicacion);
             Assert.IsNotEmpty(emprendedor.ReturnListHistorialPublications());
         }
+*/
         /// <summary>
         /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
         /// y se fija la lista sea la correcta

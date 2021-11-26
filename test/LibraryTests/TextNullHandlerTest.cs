@@ -16,6 +16,9 @@ namespace BotTests
         String response;
         IHandler result;
 
+        /// <summary>
+        /// Se encarga de testear la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
+        /// </summary>
         [Test]
         public void TextNullHandlerTest1()
         {

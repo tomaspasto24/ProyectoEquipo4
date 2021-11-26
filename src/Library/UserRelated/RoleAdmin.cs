@@ -29,16 +29,11 @@ namespace Bot
             SessionRelated.Instance.DiccUserTokens.Add(newToken.ToString(), company);
             return newToken.ToString();
         }
-
-        // /// <summary>
-        // /// Metodo para eliminar las habilitaciones a la lista "globalRatingsList" 
-        // /// </summary>
-        // /// <param name="rating"></param>
-        // public void DeleteRating(string rating)
-        // {
-        //     globalQualificationList.Remove(rating);
-        // }
-
+        /// <summary>
+        /// Metodo que se encarga de chequear si el usuario tiene determinado permiso.
+        /// </summary>
+        /// <param name="perm"></param>
+        /// <returns>True en caso de contener el permiso.</returns>
         public bool HasPermission(Permission perm)
         {
             return this.permissions.Contains(perm);

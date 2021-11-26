@@ -28,8 +28,14 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            // TODO
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            string materialName = string.Empty;
+            int materialQuantity = 0;
+            int materialPrice = 0;
+            string title = string.Empty;
+            Company publishingCompany = null;
+            GeoLocation locationCompany = null;
+            Material material = null;
             
             if (!user.UserRole.HasPermission(Permission.Publish))
             {
@@ -44,53 +50,49 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AskingPublicationName)
             {
-                string título = request.Text;
+                title = request.Text;
                 response = "Envía el nombre empresa \nEnvía \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingCompanyName;
                 return true;
             }
             else if (user.HandlerState == Bot.State.AskingCompanyName)
             {
-                Company publishingCompany = new Company();
-                foreach (Company company in CompanySet.Instance.ListCompanies)
-                {
-                    if (company.Name == request.Text)
-                    {
-                        publishingCompany = company;
-                    }
-                }
+                publishingCompany = new Company();
+                publishingCompany = SessionRelated.Instance.GetCompanyByName(request.Text);
                 response = "Envía la ubicación de la empresa \nEnvía \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingCompanyLocation;
                 return true;
             }
             else if (user.HandlerState == Bot.State.AskingCompanyLocation)
             {
-                GeoLocation locationCompany = new GeoLocation(request.Text, "Montevideo");
+                locationCompany = new GeoLocation(request.Text, "Montevideo");
                 response = "Envía el nombre del material";
                 user.HandlerState = Bot.State.AskingMaterialName;
                 return true;
             }
             else if (user.HandlerState == Bot.State.AskingMaterialName)
             {
-                string materialName =request.Text;
+                materialName =request.Text;
                 response = "Envía la cantidad del material";
                 user.HandlerState = Bot.State.AskingMaterialQuantity;
+                return true;
             }
             else if (user.HandlerState == Bot.State.AskingMaterialQuantity)
             {
-                //int materialQuantity = request;
+                materialQuantity = Int32.Parse(request.Text);
                 response = "Envía el precio del material";
                 user.HandlerState = Bot.State.AskingMaterialPrice;
+                return true;
             }
             else if (user.HandlerState == Bot.State.AskingMaterialPrice)
             {
-                //int materialQuantity = request;
-                response = "";
-                //user.HandlerState = Start;
-                //TODO crear publicacion con datos adquiridos
+                materialPrice = Int32.Parse(request.Text);
+                material = new Material(materialName, materialQuantity, materialPrice);
+                Publication publication = new Publication(title, publishingCompany, locationCompany, material);
+                response = "Se ha creado la publicación con el material. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"cancelar\" si quiere terminar la publicación.";
+                user.HandlerState = Bot.State.Start;
+                return true;
             }
-
-
             response = string.Empty;
             return false;
         }

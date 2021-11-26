@@ -29,46 +29,6 @@
             Test para probar los comandos que tiene un Emprendedor
             </summary>
         </member>
-        <member name="T:BotTests.CompanySetTest">
-            <summary>
-            Clase para testear la clase CompanySet.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.SetUp">
-            <summary>
-            SetUp, asigna valores a las variables companyTest1, companyTest2, companyTest3.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.InstanceTest">
-            <summary>
-            Test que se encarga de comprobar que se cumpla el patrón Singleton en cuanto a que siempre se devuelva una
-            única instancia y que el constructor sea privado.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.AddCompanyTest">
-            <summary>
-            Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
-            clases Empresa al sistema.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.DeleteCompanyTest">
-            <summary>
-            Test que se encarga de testear el funcionamiento de la clase CompanySet de eliminar 
-            clases Empresa del sistema.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.ReturnListElementsTest">
-            <summary>
-            ReturnListElementsTest testea que el string de la lista de Empresas funcione bien.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.ContainsCompanyInListCompaniesTest">
-            <summary>
-            ContainsCompanyInListCompaniesTest comprueba que el funcionamiento de encontrar
-            si las clases Empresa se encuentran en el sistema con la condición del nombre de la Empresa (linea 118 
-            da <c>True</c> porque encuentra el nombre, como debe ser ya que no se admiten 2 empresas diferentes con mismo nombre.
-            </summary>
-        </member>
         <member name="T:BotTests.CompanyTest">
             <summary>
             Clase para testear la clase Company.
@@ -300,22 +260,6 @@
             Se crea una instancia de emprendedor que será usada para los tests de cada método.
             </summary>
         </member>
-        <member name="M:BotTests.RoleEntrepreneurTests.AddCertificationTest">
-            <summary>
-            Test del método que le agrega una certificación al emprendedor.
-            </summary>
-        </member>
-        <member name="M:BotTests.RoleEntrepreneurTests.AddSpecializationTest">
-            <summary>
-            Test del método que le agrega una especialización al emprendedor
-            </summary>
-        </member>
-        <member name="M:BotTests.RoleEntrepreneurTests.AddListHistorialPublicationsTest1">
-            <summary>
-            Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
-            y se fija que la lista no esté vacía
-            </summary>
-        </member>
         <member name="M:BotTests.RoleEntrepreneurTests.AddHistorialPublicationTest2">
             <summary>
             Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
@@ -371,6 +315,11 @@
         <member name="T:BotTests.TextNullHandlerTest">
             <summary>
             Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.TextNullHandlerTest.TextNullHandlerTest1">
+            <summary>
+            Se encarga de testear la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
             </summary>
         </member>
         <member name="T:BotTests.TokenHandlerTest">

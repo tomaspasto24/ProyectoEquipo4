@@ -25,6 +25,7 @@ namespace Bot
             {"/publicar - Crear una nueva publicación con un material o varios.", Permission.Publish},
             {"/crearinvitacion - Genera un nueva nueva invitación para una Empresa.", Permission.GenerateToken},
             {"/emprender - Registrate como un Emprendedor", Permission.Undertake},
+            {"/agregarmaterial - Agregar un material a una publicación existente", Permission.AddMaterial}
         };
 
         /// <summary>

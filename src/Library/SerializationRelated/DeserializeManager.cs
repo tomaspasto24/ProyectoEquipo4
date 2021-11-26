@@ -70,7 +70,7 @@ namespace Bot
                 IList<Company> listCompanies = JsonSerializer.Deserialize<IList<Company>>(json, options);
                 foreach (Company company in listCompanies)
                 {
-                    CompanySet.Instance.AddElement(company);
+                    //       CompanySet.Instance.AddElement(company);
                 }
 
                 return true;
