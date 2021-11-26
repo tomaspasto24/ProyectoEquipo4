@@ -2,6 +2,7 @@ using Bot;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 
 namespace BotTests
@@ -41,11 +42,11 @@ namespace BotTests
         public void SearchByMaterialTest()
         {        
             bool test1 = PublicationSet.Instance.AddElement(publicacion);     
-            IReadOnlyCollection<Publication> resultadoBusqueda = new List<Publication>();
+            List<Publication> resultadoBusqueda = new List<Publication>();
             string keyWord = "alambre";
             material2.AddKeyWord(keyWord);
             SearchByMaterial s = new SearchByMaterial();
-            resultadoBusqueda = s.Search("alambre"); 
+            resultadoBusqueda = (List<Publication>) s.Search("alambre"); 
             
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
             // Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
