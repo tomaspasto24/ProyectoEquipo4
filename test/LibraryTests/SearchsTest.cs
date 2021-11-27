@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
+
 namespace BotTests
 {
     /// <summary>
@@ -22,10 +23,9 @@ namespace BotTests
         public void Setup()
         {
             location = new GeoLocation("Av. Italia", "Montevideo");
-
             emprendedor = new RoleEntrepreneur("herrería", location);
 
-            material = new Material("Alambre", 800, 200);
+            material = new Material("Alambre", 2000, 200);
             material2 = new Material("Alambre2", 1000, 300);
             Company empresa = new Company("Ferretería Mdeo", "herramientas", location, "091234567");
             publicacion = new Publication("Publicacion especial", empresa, location, material);
@@ -43,7 +43,6 @@ namespace BotTests
             string keyWord = "alambre";
             material2.AddKeyWord(keyWord);
             // resultadoBusqueda = emprendedor.SearchingByMaterials("alambre"); 
-
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
             // Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
         }
