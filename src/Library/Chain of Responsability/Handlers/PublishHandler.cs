@@ -86,9 +86,9 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AskingMaterialPrice)
             {
+
                 PublishData pd = this.publishData[user];
                 pd.MaterialPrice = Int32.Parse(request.Text);
-
                 pd.Material = new Material(pd.MaterialName, pd.MaterialQuantity, pd.MaterialPrice);
                 Publication publication = new Publication(pd.Title, pd.PublishingCompany, pd.LocationCompany, pd.Material);
                 PublicationSet.Instance.AddElement(publication);

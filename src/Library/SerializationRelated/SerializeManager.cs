@@ -1,30 +1,38 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
     /// <summary>
-    /// Clase que se encarga de administrar la Serialización, es decir, extraer las instancias a persistir
-    /// y grabarlas en archivos JSON. Cumple con el patrón de diseño SRP porque es la única responsabilidad de la clase, a tal punto
-    /// de que el único método publico es SerializeProgram.
+    /// Clase serializadora de los objetos que se desean persistir fuera del bot.
     /// </summary>
     public class SerializeManager
     {
-        private const string PathContainerCompany = @"..\..\..\..\..\docs\CompanyDataBase.json";
-        private const string PathContainerPublication = @"..\..\..\..\..\docs\PublicationDataBase.json";
-        private const string PathContainerToken = @"..\..\..\..\..\docs\TokenDataBase.json";
-        private const string PathContainerAllUsers = @"..\..\..\..\..\docs\UserDataBase.json";
-        private const string PathContainerDiccUserTokens = @"..\..\..\..\..\docs\DiccUserTokensDataBase.json";
+        private const string Path = @"..\..\docs\DataBase.json";
+        private static JsonSerializerOptions options = new ()
+        {
+            ReferenceHandler = MyReferenceHandler.Instance,
+            WriteIndented = true,
+        };
         private static SerializeManager instance;
+        private List<Publication> listPublicationsToSerialize = new List<Publication>();
+        private SessionRelated sessionRelatedToSerialize;
 
-        private SerializeManager() { }
 
         /// <summary>
-        /// Obtiene el acceso a la propia instancia de la clase SerializeManager,
-        /// en caso de que la variable _instance no este creada, la crea y la retorna. En caso 
-        /// contrario de que anteriormente este creada simplemente la retorna, asi se asegura de que
-        /// siempre se use la misma variable instancia.
+        /// Constructor sin implementación y público (a diferencia de las demás clases Singleton) para poder ser usado por
+        /// el atributo JsonConstructor.
         /// </summary>
-        /// <returns>Instancia Deserialize.</returns>
+        [JsonConstructor]
+        public SerializeManager() { }
+
+        /// <summary>
+        /// Obtiene o establece la instancia de la clase SerializeManager para cumplir con el patrón creacional Singleton (Ver Readme).
+        /// </summary>
+        /// <value>Instancia SerializeManager.</value>
         public static SerializeManager Instance
         {
             get
@@ -36,82 +44,92 @@ namespace Bot
 
                 return instance;
             }
+
+            set
+            {
+                instance = value;
+            }
         }
 
         /// <summary>
-        /// Método principal de la clase que se encarga de accionar los métodos de Serialización y obtener sus
-        /// resultados booleanos.
+        /// Obtiene o establece la lista de publicaciones calco a la lista de publicaciones de PublicationSet, para ser Serializada/Deserializada.
         /// </summary>
-        /// <returns><c>True</c> en caso de que todo el proceso de serialización este correcto, <c>False</c> en caso contrario.</returns>
-        public bool SerializeProgram()
+        /// <value>Lista Publicación.</value>
+        [JsonInclude]
+        public List<Publication> ListPublicationsToSerialize
         {
-            bool conditionCompanies = this.SerializeCompanies();
-            bool conditionPublications = this.SerializePublications();
-            bool conditionToken = this.SerializeToken();
-            bool conditionSessionRelated = this.SerializeSessionRelated();
-
-            return conditionCompanies && conditionPublications && conditionToken && conditionSessionRelated;
-        }
-
-        private bool SerializeCompanies()
-        {
-            if (File.Exists(PathContainerCompany))
+            get
             {
-                // string jsonToSave = CompanySet.Instance.ConvertObjectToSave();
-                //File.WriteAllText(PathContainerCompany, jsonToSave);
-                return true;
+                return this.listPublicationsToSerialize;
             }
-            else
+            set
             {
-                File.Create(PathContainerCompany);
-                return false;
+                this.listPublicationsToSerialize = value;
             }
         }
 
-        private bool SerializePublications()
+        /// <summary>
+        /// Obtiene o establece el diccionario de tokens y empresas, para ser Serializada/Deserializada.
+        /// </summary>
+        /// <value>Diccionario string, Company.</value>
+        [JsonInclude]
+        public SessionRelated SessionRelatedToSerialize
         {
-            if (File.Exists(PathContainerPublication))
+            get
             {
-                //string jsonToSave = PublicationSet.Instance.ConvertObjectToSave();
-                //File.WriteAllText(PathContainerPublication, jsonToSave);
-                return true;
+                return this.sessionRelatedToSerialize;
             }
-            else
+
+            set
             {
-                File.Create(PathContainerPublication);
-                return false;
+                this.sessionRelatedToSerialize = value;
             }
         }
 
-        private bool SerializeToken()
+        /// <summary>
+        /// Método que se encarga de traer los objetos que se desean persistir para poder guardarlos en el archivo DataBase.json
+        /// contenida en la carpeta Docs.
+        /// </summary>
+        public void SerializeObjects()
         {
-            if (File.Exists(PathContainerToken))
+            this.listPublicationsToSerialize.Clear();
+            try
             {
-                // string jsonToSave = TokenGenerator.Instance.ConvertObjectToSave();
-                // File.WriteAllText(PathContainerToken, jsonToSave);
-                return true;
+                this.listPublicationsToSerialize = PublicationSet.Instance.ListPublications as List<Publication>;
+                this.sessionRelatedToSerialize = SessionRelated.Instance;
+                string json = JsonSerializer.Serialize(SerializeManager.Instance, options);
+                File.WriteAllText(Path, json);
             }
-            else
+            catch (ArgumentException e)
             {
-                File.Create(PathContainerToken);
-                return false;
+                Console.WriteLine($"Un argumento ingresado no es compatible, error: {e.Message}");
             }
         }
 
-        private bool SerializeSessionRelated()
+        /// <summary>
+        /// Método que se encarga de leer el archivo DataBase.json y deserializar los objetos que se quieren persistir para setear
+        /// en sus clases respectivas.
+        /// </summary>
+        public void DeserializeObjects()
         {
-            if (File.Exists(PathContainerAllUsers) && File.Exists(PathContainerDiccUserTokens))
+            string json = File.ReadAllText(Path);
+            if (string.IsNullOrEmpty(json))
             {
-                string jsonAllUsersToSave;
-                string jsonDiccUserTokensToSave;
-                (jsonAllUsersToSave, jsonDiccUserTokensToSave) = SessionRelated.Instance.ConvertObjectToSaveToJson();
-                File.WriteAllText(PathContainerAllUsers, jsonAllUsersToSave);
-                File.WriteAllText(PathContainerDiccUserTokens, jsonDiccUserTokensToSave);
-                return true;
+                System.Console.WriteLine("No hay ningún dato en el archivo JSON correspondiente, la deserialización no se ejecuta.");
             }
             else
             {
-                return false;
+                this.listPublicationsToSerialize.Clear();
+                try
+                {
+                    SerializeManager manager = JsonSerializer.Deserialize<SerializeManager>(json, options);
+                    PublicationSet.Instance.ListPublications = manager.listPublicationsToSerialize;
+                    SessionRelated.Instance = manager.sessionRelatedToSerialize;
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine($"Un argumento ingresado es de tipo null, error: {e.Message}");
+                }
             }
         }
     }
