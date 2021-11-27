@@ -13,6 +13,8 @@ namespace Bot
     /// </summary>
     public class AddMaterialHandler : AbstractHandler
     {
+        private Dictionary<UserInfo, MaterialData> materialData = new Dictionary<UserInfo, MaterialData>();
+        
         /// <summary>
         /// Constructor de la clase RegisterHandler
         /// </summary>
@@ -30,11 +32,6 @@ namespace Bot
         {
             //TODO Cambiar con un administrador de datos para el handler
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            string materialName = string.Empty;
-            int materialQuantity = 0;
-            int materialPrice = 0;
-            Material material = null;
-            string publicationTitle = string.Empty;
             
             if (!user.HasPermission(Permission.AddMaterial))
             {
@@ -49,34 +46,39 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AddingMaterial)
             {
-                publicationTitle = request.Text;
+                this.materialData.Remove(user);
+                this.materialData.Add(user, new MaterialData(request.Text));
                 response = "Envía el nombre del material";
                 user.HandlerState = Bot.State.AskingMaterialNameToAdd;
                 return true;
             }
             else if (user.HandlerState == Bot.State.AskingMaterialNameToAdd)
             {
-                materialName =request.Text;
+                MaterialData md = this.materialData[user];
+                md.MaterialName = request.Text;
                 response = "Envía la cantidad del material";
                 user.HandlerState = Bot.State.AskingMaterialQuantityToAdd;
                 return true;
             }
             else if ((user.HandlerState == Bot.State.AskingMaterialQuantityToAdd))
             {
-                materialQuantity = Int32.Parse(request.Text);
+                MaterialData md = this.materialData[user];
+                md.MaterialQuantity = Int32.Parse(request.Text);
                 response = "Envía el precio del material";
                 user.HandlerState = Bot.State.AskingMaterialPriceToAdd;
                 return true;
             }
             else if (user.HandlerState == Bot.State.AskingMaterialPriceToAdd)
             {
-                materialPrice = Int32.Parse(request.Text);
-                material = new Material(materialName, materialQuantity, materialPrice);
+                MaterialData md = this.materialData[user];
+                md.MaterialPrice = Int32.Parse(request.Text);
+                
+                md.Material = new Material(md.MaterialName, md.MaterialQuantity, md.MaterialPrice);
                 foreach (Publication publication in PublicationSet.Instance.ListPublications)
                 {
-                    if (publication.Title == publicationTitle)
+                    if (publication.Title == md.PublicationTitle)
                     {
-                        publication.AddMaterial(material);
+                        publication.AddMaterial(md.Material);
                     }
                 }
                 response = "Se ha agregado el material a la publicación. Si quieres agregar otro material envía \"/agregarmaterial\".\nEnvía \"/cancelar\" para cancelar la operación.";
@@ -85,6 +87,18 @@ namespace Bot
             }
             response = string.Empty;
             return false;
+        }
+        class MaterialData
+        {
+            public string MaterialName { get; set; }
+            public int MaterialQuantity { get; set; }
+            public int MaterialPrice { get; set; }
+            public Material Material { get; set; }
+            public string PublicationTitle { get; set; } 
+            public MaterialData(string publicationTitle)
+            {
+                this.PublicationTitle = publicationTitle;
+            }
         }
     }
 }
