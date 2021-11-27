@@ -86,12 +86,12 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AskingMaterialPrice)
             {
-
                 PublishData pd = this.publishData[user];
                 pd.MaterialPrice = Int32.Parse(request.Text);
                 pd.Material = new Material(pd.MaterialName, pd.MaterialQuantity, pd.MaterialPrice);
                 Publication publication = new Publication(pd.Title, pd.PublishingCompany, pd.LocationCompany, pd.Material);
                 PublicationSet.Instance.AddElement(publication);
+                (pd.PublishingCompany).AddOwnPublication(publication);
                 response = "Se ha creado la publicación con el material indicado. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"cancelar\" si quiere terminar la publicación.";
                 user.HandlerState = Bot.State.Start;
                 return true;
