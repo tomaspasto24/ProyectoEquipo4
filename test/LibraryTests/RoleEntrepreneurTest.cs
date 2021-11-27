@@ -24,35 +24,31 @@ namespace BotTests
         {
             name = "Alejandra";
             id = 1;
-            heading = string.Empty;
-            GeoLocation ubicacionParaPruebas = new GeoLocation("8 de OCtubre", "Blanqueada");
-            certification = string.Empty;
-            specialization = string.Empty;
-
+            heading = "metalurgica";
+            GeoLocation ubicacionParaPruebas = new GeoLocation("8 de OCtubre", "Montevideo");
             emprendedor = new RoleEntrepreneur(heading, ubicacionParaPruebas);
         }
 
         /// <summary>
         /// Test del método que le agrega una certificación al emprendedor.
         /// </summary>
-    /*    [Test]
+        [Test]
         public void AddCertificationTest()
         {
-            certification = "Manejar explosivos";
+            certification = "soldadora";
             emprendedor.AddCertification(certification);
-            Assert.AreEqual("Manejar explosivos", emprendedor.ReturnCertification()[1]);
+            Assert.AreEqual("soldadora", emprendedor.ReturnCertification);
         }
-*/
+
 
         /// <summary>
         /// Test del método que le agrega una especialización al emprendedor
         /// </summary>
-        [Test]
   /*      public void AddSpecializationTest()
         {
             specialization = "Quimica";
             emprendedor.AddSpecialization(specialization);
-            Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
+            // Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
         }
 */
         /// <summary>

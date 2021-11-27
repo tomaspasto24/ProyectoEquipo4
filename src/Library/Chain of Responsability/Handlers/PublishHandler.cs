@@ -58,13 +58,7 @@ namespace Bot
             else if (user.HandlerState == Bot.State.AskingCompanyName)
             {
                 publishingCompany = new Company();
-                foreach (Company company in CompanySet.Instance.ListCompanies)
-                {
-                    if (company.Name == request.Text)
-                    {
-                        publishingCompany = company;
-                    }
-                }
+                publishingCompany = SessionRelated.Instance.GetCompanyByName(request.Text);
                 response = "Envía la ubicación de la empresa \nEnvía \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingCompanyLocation;
                 return true;

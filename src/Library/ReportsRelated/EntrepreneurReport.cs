@@ -20,7 +20,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// metodo para entregar el reporte del emprendedor.
+        /// Metodo para entregar el reporte del emprendedor.
         /// </summary>
         /// <returns>El reporte del emprendedor.</returns>
         public String GiveReport()

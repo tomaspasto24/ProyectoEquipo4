@@ -26,7 +26,7 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
-            if (request.Text.Equals(null))
+            if (request.Text == null)
             {
                 throw new NullReferenceException("El mensaje no puede estar vacio, ni ser una imagen o video");
             }
