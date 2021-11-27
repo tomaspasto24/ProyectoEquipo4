@@ -50,7 +50,7 @@ namespace Bot
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
         /// <value>Rol Emprendedor.</value>
-        public RoleEntrepreneur InterestedPerson { get; private set; }
+        public EntrepreneurInfo InterestedPerson { get; private set; }
 
         /// <summary>
         /// Obtiene o establece ubicación dada de la clase Publicación.
@@ -223,7 +223,7 @@ namespace Bot
         /// de la clase conjunto publicaciones, además de esto retorna la persona que estuvo interesada.
         /// </summary>
         /// <returns>Usuario que estuvo interesado en adquirir el producto.</returns>
-        public RoleEntrepreneur ClosePublication()
+        public EntrepreneurInfo ClosePublication()
         {
             this.isClosed = true;
             this.closedDate = DateTime.Now;
@@ -246,7 +246,7 @@ namespace Bot
         /// <param name="qualification">String.</param>
         public void AddQualification(string qualification)
         {
-            if (RoleAdmin.globalQualificationList.Contains(qualification))
+            if (AdminInfo.globalQualificationList.Contains(qualification))
             {
                 this.listQualifications.Add(qualification);
             }
@@ -267,7 +267,7 @@ namespace Bot
                 bool adminCondition = true;
                 foreach (string qualification in listQualifications)
                 {
-                    if (!RoleAdmin.globalQualificationList.Contains(qualification))
+                    if (!AdminInfo.globalQualificationList.Contains(qualification))
                     {
                         adminCondition = false;
                     }
@@ -303,7 +303,7 @@ namespace Bot
         /// Debe ser llamado por el método ContactCompany de la clase RolEmprendedor.
         /// </summary>
         /// <param name="interestedPerson">InterestedPerson.</param>
-        public void SetInterestedPerson(RoleEntrepreneur interestedPerson)
+        public void SetInterestedPerson(EntrepreneurInfo interestedPerson)
         {
             this.InterestedPerson = interestedPerson;
         }

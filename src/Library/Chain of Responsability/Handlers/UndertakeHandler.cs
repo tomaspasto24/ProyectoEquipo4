@@ -33,7 +33,7 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
 
-            if (!user.UserRole.HasPermission(Permission.Undertake))
+            if (!user.HasPermission(Permission.Undertake))
             {
                 response = string.Empty;
                 return false;
@@ -65,9 +65,10 @@ namespace Bot
             {
                 user.HandlerState = Bot.State.Start;
                 EntrepeneurData ed = this.entrepreneurData[user];
-                response = "Direccion registrada. Ahora eres un emprendedor!";
-                RoleEntrepreneur roleEntrepreneur = new RoleEntrepreneur(ed.Heading, new GeoLocation(request.Text, ed.City));
-                user.UserRole = roleEntrepreneur;
+                response = "Direccion registrada. \nAhora eres un emprendedor!";
+                EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo(ed.Heading, new GeoLocation(request.Text, ed.City));
+                user.Permissions = UserInfo.EntrepreneurPermissions;
+                SessionRelated.Instance.DiccEntrepreneurInfo.Add(user, entrepreneurInfo);
                 return true;
             }
 

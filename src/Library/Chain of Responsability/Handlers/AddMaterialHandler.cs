@@ -28,6 +28,7 @@ namespace Bot
         /// <param name="response">La respuesta al mensaje procesado.</param>
         protected override bool InternalHandle(Message request, out string response)
         {
+            //TODO Cambiar con un administrador de datos para el handler
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             string materialName = string.Empty;
             int materialQuantity = 0;
@@ -35,7 +36,7 @@ namespace Bot
             Material material = null;
             string publicationTitle = string.Empty;
             
-            if (!user.UserRole.HasPermission(Permission.AddMaterial))
+            if (!user.HasPermission(Permission.AddMaterial))
             {
                 response = string.Empty;
                 return false;
