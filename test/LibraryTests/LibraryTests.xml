@@ -29,46 +29,6 @@
             Test para probar los comandos que tiene un Emprendedor
             </summary>
         </member>
-        <member name="T:BotTests.CompanySetTest">
-            <summary>
-            Clase para testear la clase CompanySet.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.SetUp">
-            <summary>
-            SetUp, asigna valores a las variables companyTest1, companyTest2, companyTest3.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.InstanceTest">
-            <summary>
-            Test que se encarga de comprobar que se cumpla el patrón Singleton en cuanto a que siempre se devuelva una
-            única instancia y que el constructor sea privado.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.AddCompanyTest">
-            <summary>
-            Test que se encarga de testear el funcionamiento de la clase CompanySet de agregar
-            clases Empresa al sistema.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.DeleteCompanyTest">
-            <summary>
-            Test que se encarga de testear el funcionamiento de la clase CompanySet de eliminar 
-            clases Empresa del sistema.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.ReturnListElementsTest">
-            <summary>
-            ReturnListElementsTest testea que el string de la lista de Empresas funcione bien.
-            </summary>
-        </member>
-        <member name="M:BotTests.CompanySetTest.ContainsCompanyInListCompaniesTest">
-            <summary>
-            ContainsCompanyInListCompaniesTest comprueba que el funcionamiento de encontrar
-            si las clases Empresa se encuentran en el sistema con la condición del nombre de la Empresa (linea 118 
-            da <c>True</c> porque encuentra el nombre, como debe ser ya que no se admiten 2 empresas diferentes con mismo nombre.
-            </summary>
-        </member>
         <member name="T:BotTests.CompanyTest">
             <summary>
             Clase para testear la clase Company.
@@ -105,6 +65,11 @@
         <member name="M:BotTests.CompanyTest.ReturnContactTest">
             <summary>
             Testea que el método ReturnContactTest retorne la cadena de carácteres con la información correcta.
+            </summary>
+        </member>
+        <member name="T:BotTests.ContactHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
         <member name="T:BotTests.GeoLocationTests">
@@ -230,6 +195,36 @@
             a si misma y de setar y devolver a la persona interesada.
             </summary>
         </member>
+        <member name="T:BotTests.RegisterCompanyUserHandlerTest">
+            <summary>
+            Clase para testear el RegisterCompanyUserHandler
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.SetUp">
+            <summary>
+            Metodo SetUp para los tests
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestRegisterHandled">
+            <summary>
+            Test para probar que el RegisterHandler actua
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestNoTokenFound">
+            <summary>
+            Test para probar que pasa cuando no se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestTokenFound">
+            <summary>
+            Test para probar que pasa cuando se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestCancel">
+            <summary>
+            Test para probar el Cancel del handler
+            </summary>
+        </member>
         <member name="T:BotTests.ReportTest">
             <summary>
             Clase ReportTest la cual se encarga de testear las funcionalidades de la clase EntrepreneurReport y CompanyReport.
@@ -258,6 +253,168 @@
         <member name="M:BotTests.ReportTest.EntrepreneurReportPublicationNotClosedTest">
             <summary>
             Test del reporte emprendedor en caso de que la publicacion no este cerrada.
+            </summary>
+        </member>
+        <member name="T:BotTests.RoleEntrepreneurTests">
+            <summary>
+            Tests de los métodos de la clase RoleEntrepreneur.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.Setup">
+            <summary>
+            Se crea una instancia de emprendedor que será usada para los tests de cada método.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddHistorialPublicationTest2">
+            <summary>
+            Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+            y se fija la lista sea la correcta
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.ContactCompanyTest">
+            <summary>
+            Verifica que la ubicación que se le devuelve al emprendedor sea efectivamente la correcta
+            </summary>
+        </member>
+        <member name="T:BotTests.SearchHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="T:BotTests.SearchTests">
+            <summary>
+            Tests del método Search de las clases SearchByMaterial y SearchByLocation
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.Setup">
+            <summary>
+            Se crean dos instancias de Material y una de Company para poder crear una de Publication y usarlas en los dos test
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.SearchByMaterialTest">
+            <summary>
+            El resultado de la búsqueda es una lista con la publicación y esta contiene al material buscado,
+            cada material tiene una lista de palabras claves
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchTests.SearchByLocationTest">
+            <summary>
+            El resultado de la búsqueda es una lista con la publicación de igual ubicación a la buscada
+            </summary>
+        </member>
+        <member name="T:BotTests.StartHandlerTest">
+            <summary>
+            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.StartHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables.
+            </summary>
+        </member>
+        <member name="M:BotTests.StartHandlerTest.StartHandlerHelloTest">
+            <summary>
+            Se testea que el StartHandler responda al comando /hola.
+            </summary>
+        </member>
+        <member name="M:BotTests.StartHandlerTest.StartHandlerWrongTextTest">
+            <summary>
+            Se testea que el StartHandler no envie el mensaje dado en caso de que el comando que se ingresa sea diferente al esperado.
+            </summary>
+        </member>
+        <member name="T:BotTests.TextNullHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.TextNullHandlerTest.TextNullHandlerTest1">
+            <summary>
+            Se encarga de testear la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
+            </summary>
+        </member>
+        <member name="T:BotTests.TokenHandlerTest">
+            <summary>
+            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a usar en los test. 
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleNoPermissionTokenTest">
+            <summary>
+            Se testea que el RoleDefault no tenga el permiso de generar el token a través del handler.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandlePermissionTokenTest">
+            <summary>
+            Se testea que el RoleAdmin tenga el permiso para generar el token a través del handler.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleInvitationTest">
+            <summary>
+            Se testea que el TokenHandler pueda crear la invitacion para una empresa 
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleNoCompanyTest">
+            <summary>
+            Se testea que se le pase una compañia ya registrada y debe devolver el mensaje correspondiente.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyTest">
+            <summary>
+            Se testea que asigne el nombre de la compañia que se le pasa.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyHeadingTest">
+            <summary>
+            Se testea que se asigne correctamente el rubro de la empresa.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyCityTest">
+            <summary>
+            Se testea que se le asigne correctamente la ciudad donde está ubicada la empresa.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyAddressTest">
+            <summary>
+            Se testea que se le asigne correctamente la direccion de la empresa.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyContactTest">
+            <summary>
+            Se testea que se le asigne el contacto de la empresa y para llegar a este punto debe pasar por las condiciones anteriores.
+            </summary>
+        </member>
+        <member name="T:BotTests.TokenTest">
+            <summary>
+            Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
+            </summary>
+        </member>
+        <member name="F:BotTests.TokenTest.admin">
+            <summary>
+            Defino la variable afuera para que sea global y adentro del metodo la instancio.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenType">
+            <summary>
+            Test del token para ver si lo que retorna es de tipo int.
+            </summary>
+        </member>
+        <member name="M:BotTests.TokenTest.TokenAddedTest">
+            <summary>
+            Test para agregar el token generado a la lista de globalRatingsList.
+            </summary>
+        </member>
+        <member name="T:BotTests.UserInformationHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
     </members>

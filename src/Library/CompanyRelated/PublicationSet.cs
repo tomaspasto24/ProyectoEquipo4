@@ -16,7 +16,7 @@ namespace Bot
         private static PublicationSet instance;
         [JsonInclude]
         private IList<Publication> listPublications;
-        
+
         private PublicationSet()
         {
             this.Initialize();
@@ -33,15 +33,15 @@ namespace Bot
         {
             get
             {
-            if (instance == null)
-            {
-                instance = new PublicationSet();
-            }
+                if (instance == null)
+                {
+                    instance = new PublicationSet();
+                }
 
-            return instance;
+                return instance;
             }
         }
-    
+
         /// <summary>
         /// Obtiene la lista de Publicaciones.
         /// </summary>
@@ -133,7 +133,7 @@ namespace Bot
                 throw new ArgumentNullException(nameof(element));
             }
         }
-        
+
         /// <summary>
         /// Sobrecarga de ContainsElementInListElements, se encarga de comprobar si el nombre de una clase Publicación se encuentra
         /// en la lista de Publicaciones.

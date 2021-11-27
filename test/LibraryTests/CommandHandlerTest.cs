@@ -10,7 +10,6 @@ namespace BotTests
     public class CommandHandlerTest
     {
         UserInfo user;
-        IRole role;
         SessionRelated sessionRelated;
         Message message;
         CommandHandler handler;
@@ -31,8 +30,9 @@ namespace BotTests
         [Test]
         public void TestAdminCommandHandler()
         {
-            role = new RoleAdmin();
-            user = new UserInfo("Admin", 1, role);
+            user = new UserInfo("Admin", 1);
+            user.Permissions = UserInfo.AdminPermissions;
+            sessionRelated.DiccAdminInfo.Add(user, new AdminInfo());
             sessionRelated.AddNewUser(user);
 
             message = new Message(user.Id, "/comandos");
@@ -52,8 +52,9 @@ namespace BotTests
         {
             GeoLocation location = new GeoLocation("adress", "city");
             Company company = new Company("nombre", "rubro", location, "contacto");
-            role = new RoleUserCompany(company);
-            user = new UserInfo("UserCompany", 2, role);
+            user = new UserInfo("UserCompany", 2);
+            user.Permissions = UserInfo.UserCompanyPermissions;
+            sessionRelated.DiccUserCompanyInfo.Add(user, new UserCompanyInfo(company));
             sessionRelated.AddNewUser(user);
 
             message = new Message(user.Id, "/comandos");
@@ -72,8 +73,8 @@ namespace BotTests
         public void TestRoleEntrepreneurCommandHandler()
         {
             GeoLocation location = new GeoLocation("adress", "city");
-            role = new RoleEntrepreneur("heading", location);
-            user = new UserInfo("Entrepreneur", 3, role);
+            user = new UserInfo("Entrepreneur", 3);
+            sessionRelated.DiccEntrepreneurInfo.Add(user, new EntrepreneurInfo("heading", location));
             sessionRelated.AddNewUser(user);
 
             message = new Message(user.Id, "/comandos");

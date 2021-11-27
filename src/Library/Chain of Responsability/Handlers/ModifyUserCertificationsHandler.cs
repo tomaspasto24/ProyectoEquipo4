@@ -28,6 +28,8 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
+
             if (user.HandlerState == Bot.State.ChangingUserCertifications)
             {
                 if (request.Text.Equals("1"))
@@ -51,7 +53,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AddingUserCertification)
             {
-                if (((RoleEntrepreneur)user.UserRole).ContainsCertification(request.Text))
+                if (entrepreneurInfo.ContainsCertification(request.Text))
                 {
                     response = "Esta certificacion ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
@@ -60,7 +62,7 @@ namespace Bot
                 }
                 else
                 {
-                    ((RoleEntrepreneur)user.UserRole).AddCertification(request.Text);
+                    entrepreneurInfo.AddCertification(request.Text);
                     response = "Certificacion agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                     user.HandlerState = Bot.State.AskingDataNumber;
@@ -69,9 +71,9 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.DeletingUserCertification)
             {
-                if (((RoleEntrepreneur)user.UserRole).ContainsCertification(request.Text))
+                if (entrepreneurInfo.ContainsCertification(request.Text))
                 {
-                    ((RoleEntrepreneur)user.UserRole).DeleteCertification(request.Text);
+                    entrepreneurInfo.DeleteCertification(request.Text);
                     response = "Certificacion eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                     user.HandlerState = Bot.State.AskingDataNumber;

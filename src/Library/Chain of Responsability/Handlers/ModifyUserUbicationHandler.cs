@@ -28,6 +28,8 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
+
             if (user.HandlerState == Bot.State.ChangingUserUbication)
             {
                 if (request.Text.Equals("1"))
@@ -39,7 +41,7 @@ namespace Bot
                 else if (request.Text.Equals("2"))
                 {
                     user.HandlerState = Bot.State.ChangingUserAddress;
-                    response = "En que ciudad vives ahora?\nEnvia \"/cancelar\" para cancelar la operación";
+                    response = "Cual es tu nueva direccion?\nEnvia \"/cancelar\" para cancelar la operación";
                     return true;
                 }
                 else
@@ -51,7 +53,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.ChangingUserAddress)
             {
-                ((RoleEntrepreneur)user.UserRole).Location.Address = request.Text;
+                entrepreneurInfo.Location.Address = request.Text;
                 response = "Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingDataNumber;
@@ -59,7 +61,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.ChangingUserCity)
             {
-                ((RoleEntrepreneur)user.UserRole).Location.City = request.Text;
+                entrepreneurInfo.Location.City = request.Text;
                 response = "Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingDataNumber;

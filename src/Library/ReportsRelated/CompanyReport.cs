@@ -11,7 +11,7 @@ namespace Bot
         /// <summary>
         /// atributo de la clase.
         /// </summary>
-        private Company company; // arraylist con la data para generar el reporte.
+        private Company company;
 
         /// <summary>
         /// Constructor de la clase CompanyReport.

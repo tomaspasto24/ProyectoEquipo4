@@ -30,7 +30,7 @@ namespace Bot
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             
-            if (!user.UserRole.HasPermission(Permission.Search))
+            if (!user.HasPermission(Permission.Search))
             {   
                 response = string.Empty;
                 return false;
@@ -38,7 +38,7 @@ namespace Bot
 
             if (request.Text.Equals("/busqueda") && (user.HandlerState == Bot.State.Start))
             {
-                response = "Por favor dinos por qué quieres buscar. \n Envía \"/pormaterial\" para buscar por material. \nEnvia \"/porubicacion\" para buscar por ubicación. \nEnvia \"/cancelar\" para cancelar la operación";
+                response = "Por favor dinos el metodo de busqueda que quieres usar. \nEnvía \"/pormaterial\" para buscar por material. \nEnvia \"/porubicacion\" para buscar por ubicación. \nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.Searching;
                 return true;
             }
