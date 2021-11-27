@@ -15,7 +15,6 @@ namespace BotTests
         GeoLocation location;
         Company companyTest;
         Material initialMaterial;
-        RoleEntrepreneur entrepreneur;
 
         /// <summary>
         /// Método que crea y asgina las instancias a los atributos location, companyTest, initialMaterial,
@@ -28,7 +27,6 @@ namespace BotTests
             companyTest = new Company("Test", "itemTest", location, "093929434");
             initialMaterial = new Material("Wood", 15, 0);
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            entrepreneur = new RoleEntrepreneur("carpintero", entrepreneurLocation);
 
         }
 
@@ -81,23 +79,6 @@ namespace BotTests
             Assert.IsNull(publicationToCompare.ClosePublication());
             Assert.IsTrue(publicationToCompare.IsClosed);
             Assert.IsNotNull(publicationToCompare.ClosedDate);
-        }
-
-        /// <summary>
-        /// Test que se encarga de comprobar el funcionamiento de la clase de cerrarse
-        /// a si misma y de setar y devolver a la persona interesada.
-        /// </summary>
-        [Test]
-        public void TestPublicationClosedWithInterestedPerson()
-        {
-            Publication publicationToCompare;
-            publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", location);
-
-            entrepreneur.ContactCompany(publicationToCompare);
-            Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
-
-            Assert.IsNotNull(publicationToCompare.InterestedPerson);
         }
     }
 }
