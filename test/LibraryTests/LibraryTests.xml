@@ -255,11 +255,6 @@
             Test del reporte emprendedor en caso de que la publicacion no este cerrada.
             </summary>
         </member>
-<<<<<<< HEAD
-        <member name="T:BotTests.StartHandlerTest">
-            <summary>
-            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler.
-=======
         <member name="T:BotTests.RoleEntrepreneurTests">
             <summary>
             Tests de los métodos de la clase RoleEntrepreneur.
@@ -335,14 +330,10 @@
         <member name="M:BotTests.TextNullHandlerTest.TextNullHandlerTest1">
             <summary>
             Se encarga de testear la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
->>>>>>> master
             </summary>
         </member>
         <member name="T:BotTests.TokenHandlerTest">
             <summary>
-<<<<<<< HEAD
-            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler.
-=======
             Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
@@ -394,7 +385,6 @@
         <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyContactTest">
             <summary>
             Se testea que se le asigne el contacto de la empresa y para llegar a este punto debe pasar por las condiciones anteriores.
->>>>>>> master
             </summary>
         </member>
         <member name="T:BotTests.TokenTest">
@@ -422,13 +412,10 @@
             Test para agregar el token generado a la lista de globalRatingsList.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="T:BotTests.UserInformationHandlerTest">
             <summary>
             Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
->>>>>>> master
     </members>
 </doc>

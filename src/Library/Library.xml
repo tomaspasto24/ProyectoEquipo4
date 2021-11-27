@@ -1423,26 +1423,13 @@
             </summary>
             <value>Instancia SerializeManager.</value>
         </member>
-<<<<<<< HEAD
         <member name="P:Bot.SerializeManager.ListPublicationsToSerialize">
-=======
-        <member name="M:Bot.IJsonConvertible.ConvertToJson">
->>>>>>> master
             <summary>
             Obtiene o establece la lista de publicaciones calco a la lista de publicaciones de PublicationSet, para ser Serializada/Deserializada.
             </summary>
             <value>Lista Publicación.</value>
         </member>
-<<<<<<< HEAD
         <member name="P:Bot.SerializeManager.DiccUserCompanyTokensToSerialize">
-=======
-        <member name="M:Bot.IJsonConvertible.LoadFromJson">
-            <summary>
-            Método que carga el archivo JSON y lo inicializa.
-            </summary>
-        </member>
-        <member name="T:Bot.SerializeManager">
->>>>>>> master
             <summary>
             Obtiene o establece el diccionario de tokens y empresas, para ser Serializada/Deserializada.
             </summary>
@@ -1533,11 +1520,7 @@
         </member>
         <member name="P:Bot.TokenGenerator.Instance">
             <summary>
-<<<<<<< HEAD
             Metodo para generar una instancia de token. -singleton
-=======
-            Metodo para generar una instancia de token. Cumple con el patrón Singleton debido a que solamente hay una unica instancia de este.
->>>>>>> master
             </summary>
             <value>Instancia del Token. </value>
         </member>
