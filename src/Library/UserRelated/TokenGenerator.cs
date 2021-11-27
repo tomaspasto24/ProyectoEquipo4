@@ -27,14 +27,13 @@ namespace Bot
             }
         }
 
-        int tkn = 0;
-
         /// <summary>
         /// Metodo para generar el token. Incrementa la variable tkn y la devuelve por cada token que genera.
         /// </summary>
         /// <returns>El token generado.</returns>
         public int GenerateToken()
         {
+            int tkn = SessionRelated.Instance.DiccUserTokens.Count;
             return tkn++;
         }
     }

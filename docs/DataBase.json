@@ -1,0 +1,108 @@
+{
+  "$id": "1",
+  "ListPublicationsToSerialize": {
+    "$id": "2",
+    "$values": []
+  },
+  "SessionRelatedToSerialize": {
+    "$id": "3",
+    "DiccUserTokensToSerialize": {
+      "$id": "4",
+      "$values": [
+        {
+          "Key": "0",
+          "Value": {
+            "$id": "5",
+            "Location": {
+              "$id": "6",
+              "City": "pruebaempresa",
+              "Address": "pruebaempresa"
+            },
+            "Name": "pruebaempresa",
+            "Item": "pruebaempresa",
+            "Contact": "pruebaempresa",
+            "ListHistorialPublications": {
+              "$id": "7",
+              "$values": []
+            },
+            "ListOwnPublications": {
+              "$id": "8",
+              "$values": []
+            },
+            "ListUsers": {
+              "$id": "9",
+              "$values": []
+            }
+          }
+        }
+      ]
+    },
+    "DiccEntrepreneurInfoToSerialize": {
+      "$id": "10",
+      "$values": [
+        {
+          "Key": {
+            "$id": "11",
+            "Permissions": {
+              "$id": "12",
+              "$values": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                6
+              ]
+            },
+            "Name": "Tomas",
+            "Id": 1772641058,
+            "HandlerState": 0
+          },
+          "Value": {
+            "$id": "13",
+            "Location": null,
+            "Heading": "emprendedor",
+            "ListHistorialPublications": {
+              "$id": "14",
+              "$values": []
+            },
+            "Certifications": {
+              "$id": "15",
+              "$values": []
+            },
+            "Specializations": {
+              "$id": "16",
+              "$values": []
+            }
+          }
+        }
+      ]
+    },
+    "DiccAdminInfoToSerialize": {
+      "$id": "17",
+      "$values": []
+    },
+    "DiccUserCompanyInfoToSerialize": {
+      "$id": "18",
+      "$values": [
+        {
+          "Key": {
+            "$ref": "11"
+          },
+          "Value": {
+            "$id": "19",
+            "company": null
+          }
+        }
+      ]
+    },
+    "AllUsers": {
+      "$id": "20",
+      "$values": [
+        {
+          "$ref": "11"
+        }
+      ]
+    }
+  }
+}

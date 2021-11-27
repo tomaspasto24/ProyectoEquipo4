@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -15,8 +16,8 @@ namespace Bot
     {
         private static PublicationSet instance;
         [JsonInclude]
-        private IList<Publication> listPublications;
-
+        private List<Publication> listPublications;
+        [JsonConstructor]
         private PublicationSet()
         {
             this.Initialize();
@@ -46,11 +47,16 @@ namespace Bot
         /// Obtiene la lista de Publicaciones.
         /// </summary>
         /// <value>Lista de solo lectura de clase Publicación.</value>
-        public IReadOnlyCollection<Publication> ListPublications
+        [JsonInclude]
+        public List<Publication> ListPublications
         {
             get
             {
-                return new ReadOnlyCollection<Publication>(this.listPublications);
+                return this.listPublications;
+            }
+            set
+            {
+                this.listPublications = value;
             }
         }
 

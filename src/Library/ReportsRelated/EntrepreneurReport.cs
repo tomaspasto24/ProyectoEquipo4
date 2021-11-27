@@ -29,7 +29,7 @@ namespace Bot
             String result;
             int contador = 0;
 
-            foreach (Publication publication in this.entrepreneur.ReturnListHistorialPublications())
+            foreach (Publication publication in this.entrepreneur.ListHistorialPublications)
             {
                 if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)

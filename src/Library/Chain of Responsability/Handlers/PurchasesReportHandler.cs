@@ -43,7 +43,7 @@ namespace Bot
                 StringBuilder report = new StringBuilder();
                 int contador = 0;
 
-                foreach (Publication publication in entrepreneurInfo.ReturnListHistorialPublications())
+                foreach (Publication publication in entrepreneurInfo.ListHistorialPublications)
                 {
                     if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                     && publication.IsClosed)

@@ -22,10 +22,11 @@ namespace Bot
         private IList<string> keyWords = new List<string>(); // Palabras clave
 
         /// <summary>
-        /// Constructor sin implementación para ser usado por JsonConstructor
+        /// Constructor sin implementación para ser usado por JsonConstructor.
         /// </summary>
         [JsonConstructor]
         public Material() { }
+
         /// <summary>
         /// Método de la clase Material que se encarga de asignar valores a los atributos name, quantity y price. Construye el Material. En caso de no tener precio, se asigna 0 a su atributo.
         /// </summary>
@@ -40,7 +41,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene nombre del la clase Material.
+        /// Obtiene o establece nombre del la clase Material.
         /// </summary>
         /// <value>String.</value>
         public string Name
@@ -49,12 +50,18 @@ namespace Bot
             {
                 return this.name;
             }
+
+            set
+            {
+                this.name = value;
+            }
         }
 
         /// <summary>
         /// Obtiene todas las Palabras Clave que contiene el Material.
         /// </summary>
         /// <returns>Cadena de caracteres.</returns>
+        [JsonInclude]
         public IReadOnlyList<string> KeyWords
         {
             get
@@ -64,7 +71,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene cantidad del la clase Material.
+        /// Obtiene o establece cantidad del la clase Material.
         /// </summary>
         /// <value>Entero.</value>
         public int Quantity
@@ -73,10 +80,15 @@ namespace Bot
             {
                 return this.quantity;
             }
+
+            set
+            {
+                this.quantity = value;
+            }
         }
 
         /// <summary>
-        /// Obtiene precio del la clase Material.
+        /// Obtiene o establece precio del la clase Material.
         /// </summary>
         /// <value>Entero.</value>
         public double Price
@@ -84,6 +96,11 @@ namespace Bot
             get
             {
                 return this.price;
+            }
+
+            set
+            {
+                this.price = value;
             }
         }
 
