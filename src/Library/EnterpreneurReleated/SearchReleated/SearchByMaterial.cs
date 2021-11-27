@@ -29,7 +29,7 @@ namespace Bot
                 {
                     if (mat.Name == wordToSearch)
                     {
-                        publications = publications + publication.ReturnPublication(publication);
+                        publications = publications + publication.ReturnPublication();
                     }
                 }
             }

@@ -7,7 +7,6 @@ namespace BotTests
 
     public class CancelHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         String response;
@@ -18,9 +17,9 @@ namespace BotTests
         public void CancelHandlerMessageTest()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
-            SessionRelated.Instance.AddNewUser(user1); ;
+            user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.EntrepreneurPermissions;
+            SessionRelated.Instance.AddNewUser(user1);
             CancelHandler cancelHandler = new CancelHandler(null);
             testMessage = new Message(5433261, "/cancelar");
 
@@ -32,9 +31,9 @@ namespace BotTests
         public void CancelHandlerWrongTextTest()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
-            SessionRelated.Instance.AddNewUser(user1); ;
+            user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.EntrepreneurPermissions;
+            SessionRelated.Instance.AddNewUser(user1);
             CancelHandler cancelHandler = new CancelHandler(null);
             testMessage = new Message(5433261, "/WrongText");
 

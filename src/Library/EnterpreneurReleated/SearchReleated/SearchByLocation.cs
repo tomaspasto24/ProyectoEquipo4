@@ -32,7 +32,7 @@ namespace Bot
                 distance = location.CalculateDistance(publication.Location);
                 if (distance < 10000)
                 {
-                    publications = publications + publication.ReturnPublication(publication);
+                    publications = publications + publication.ReturnPublication();
                 }
             }
 
