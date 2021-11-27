@@ -35,12 +35,12 @@ namespace Bot
         /// /// <returns>Lista de comandos</returns>
         public static string GetCommands(long userId)
         {
-            IRole role = SessionRelated.Instance.GetUserById(userId).UserRole;
+            UserInfo user = SessionRelated.Instance.GetUserById(userId);
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
             foreach (string cmd in commands.Keys)
             {
-                if (role.HasPermission(commands[cmd]))
+                if (user.HasPermission(commands[cmd]))
                 {
                     sb.Append(cmd).Append("\n");
                 }

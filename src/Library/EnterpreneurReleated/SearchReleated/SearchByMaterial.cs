@@ -20,27 +20,34 @@ namespace Bot
         /// </summary>
         /// <param name="wordToSearch"></param>
         /// <returns>Lista de publicaciones.</returns>
-        public IReadOnlyCollection<Publication> Search(String wordToSearch)
+        public string Search(string wordToSearch)
         {
-            List<Publication> result = new List<Publication>();
-            IReadOnlyCollection<Publication> listPublications = PublicationSet.Instance.ListPublications;
-            bool exitPublication = false;   // Variable para salir de la publicación cuando se encontró el material buscado
-            foreach (Publication publication in listPublications)
+            string publications = string.Empty;
+            foreach (Publication publication in (PublicationSet.Instance.ListPublications))
             {
-                while (!exitPublication)
-                {       
-                    foreach (Material material in publication.ListMaterials)
+                foreach (Material mat in (publication.ListMaterials as List<Material>))
+                {
+                    if (mat.Name == wordToSearch)
                     {
-                        if (material.KeyWords.Contains(wordToSearch))
-                        {
-                            result.Add(publication);
-                            exitPublication = true; 
-                        } 
+                        publications = publications + publication.ReturnPublication(publication);
                     }
-                }                 
+                }
             }
-            
-            return result.AsReadOnly();
+            return publications;
+        }
+
+        private static SearchByMaterial instance;
+
+        public static SearchByMaterial Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SearchByMaterial();
+                }
+                return instance;
+            }
         }
     }
 }

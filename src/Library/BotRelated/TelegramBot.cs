@@ -12,31 +12,31 @@ namespace Library
         private static TelegramBot instance;
         //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CREAR CADENA NUEVA DE HANDLERS 
         private readonly IHandler handler =
-                        new TextNullHandler(
-                        new CancelHandler(
-                        new AddMaterialHandler(
-                        
-                        new CommandHandler(
-                        new ContactHandler(
-                        
-                        new ModifyEntrepreneurInformationHandler(
-                        new ModifyUserUbicationHandler(
-                        new ModifyUserHeaderHandler(
-                        new ModifyUserSpecializationsHandler(
-                        new ModifyUserCertificationsHandler(
-                        new PublishHandler(
-                        new PurchasesReportHandler(
-                        new RegisterHandler(
-                        new SalesReportHandler(
-                        new SearchHandler(
-                        new SearchByLocationHandler(
-                        new SearchByMaterialHandler(
-                        new StartHandler(
-                        new TokenHandler(
-                        new UndertakeHandler(
-                        new UserInformationHandler(
-                        new DefaultHandler(null)
-        )))))))))))))))))))));
+                new TextNullHandler(
+                new CancelHandler(
+                new AddMaterialHandler(
+                new AdminHandler(
+                new CommandHandler(
+                new ContactHandler(
+                new DefaultRoleHandler(
+                new ModifyEntrepreneurInformationHandler(
+                new ModifyUserUbicationHandler(
+                new ModifyUserHeaderHandler(
+                new ModifyUserSpecializationsHandler(
+                new ModifyUserCertificationsHandler(
+                new PublishHandler(
+                new PurchasesReportHandler(
+                new RegisterHandler(
+                new SalesReportHandler(
+                new SearchHandler(
+                new SearchByLocationHandler(
+                new SearchByMaterialHandler(
+                new StartHandler(
+                new TokenHandler(
+                new UndertakeHandler(
+                new UserInformationHandler(
+                new DefaultHandler(null)
+)))))))))))))))))))))));
 
         private TelegramBot()
         {
@@ -94,6 +94,7 @@ namespace Library
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
+            // TODO VOLVER A PONER LOS TESTS EN LA CARPETA
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
             Bot.Message msg = new Bot.Message(chatId, message.Text);
@@ -103,7 +104,7 @@ namespace Library
 
             if (userInfo == null)
             {
-                SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId, new RoleDefault()));
+                SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId));
             }
 
             string response;
@@ -115,6 +116,7 @@ namespace Library
             catch (System.Exception e)
             {
                 SendMessage(chatId, $"Ha sucedido un error: {e.Message}");
+                System.Console.WriteLine(e.StackTrace);
                 return;
             }
 

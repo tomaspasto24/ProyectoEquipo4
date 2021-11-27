@@ -19,23 +19,38 @@ namespace Bot
         /// </summary>
         /// <param name="addresToSearch">Dirección para buscar.</param>
         /// <returns>Lista de Publicaciones.</returns>
-        public IReadOnlyCollection<Publication> Search(string addresToSearch)
+        public string Search(string addresToSearch)
         {
-            //double distance;           SACAR JUNTO CON EL FOREACH
+            string publications = string.Empty;
+            double distance = 0;
             GeoLocation location = new GeoLocation(addresToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
             IReadOnlyCollection<Publication> listPublications = PublicationSet.Instance.ListPublications;
-            /*foreach (Publication publication in listPublications)
+
+            foreach (Publication publication in listPublications)
             {
                 distance = location.CalculateDistance(publication.Location);
-                if (distance < 500)
+                if (distance < 10000)
                 {
-                    result.Add(publication);
+                    publications = publications + publication.ReturnPublication(publication);
                 }
-            }*/
+            }
 
-            result.Add((listPublications as List<Publication>).Find(publication => publication.Location.CalculateDistance(location) < 10000));
-            return result.AsReadOnly();
+            return publications;
+        }
+
+        private static SearchByLocation instance;
+
+        public static SearchByLocation Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SearchByLocation();
+                }
+                return instance;
+            }
         }
     }
 }

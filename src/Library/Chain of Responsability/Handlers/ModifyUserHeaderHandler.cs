@@ -28,9 +28,11 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
+
             if (user.HandlerState == Bot.State.ChangingUserHeader)
             {
-                ((RoleEntrepreneur)user.UserRole).Heading = request.Text;
+                entrepreneurInfo.Heading = request.Text;
                 response = "Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingDataNumber;

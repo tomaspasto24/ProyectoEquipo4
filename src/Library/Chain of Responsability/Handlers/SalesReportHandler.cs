@@ -29,8 +29,9 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            UserCompanyInfo userCompanyInfo = SessionRelated.Instance.GetUserCompanyByUserInfo(user);
 
-            if (!user.UserRole.HasPermission(Permission.SalesReport))
+            if (!user.HasPermission(Permission.PurchasesReport))
             {
                 response = string.Empty;
                 return false;
@@ -41,7 +42,7 @@ namespace Bot
                 StringBuilder report = new StringBuilder();
                 int contador = 0;
 
-                foreach (Publication publication in ((RoleUserCompany)user.UserRole).company.ListHistorialPublications)
+                foreach (Publication publication in userCompanyInfo.company.ListHistorialPublications)
                 {
                     if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                     && publication.IsClosed)
@@ -52,12 +53,12 @@ namespace Bot
 
                 if (report.Length > 0)
                 {
-                    response = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {((RoleUserCompany)user.UserRole).company.Name} \n  {report.ToString()}";
+                    response = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {userCompanyInfo.company.Name} \n  {report.ToString()}";
                     return true;
                 }
                 else
                 {
-                    response = $"No hay publicaciones cerradas en los ultimos 30 dias para la empresa: {((RoleUserCompany)user.UserRole).company.Name}";
+                    response = $"No hay publicaciones cerradas en los ultimos 30 dias para la empresa: {userCompanyInfo.company.Name}";
                     return true;
                 }
             }

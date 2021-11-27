@@ -8,13 +8,13 @@ namespace Bot
     /// </summary>
     public class EntrepreneurReport : IReport
     {
-        private RoleEntrepreneur entrepreneur;
+        private EntrepreneurInfo entrepreneur;
 
         /// <summary>
         /// constructor de la clase emprendedor.
         /// </summary>
         /// <param name="entrepreneur">El nombre del emprendedor.</param>
-        public EntrepreneurReport(RoleEntrepreneur entrepreneur)
+        public EntrepreneurReport(EntrepreneurInfo entrepreneur)
         {
             this.entrepreneur = entrepreneur;
         }
