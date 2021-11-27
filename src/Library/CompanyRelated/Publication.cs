@@ -307,16 +307,18 @@ namespace Bot
         {
             this.InterestedPerson = interestedPerson;
         }
-
-        public string ReturnPublication(Publication publication)
+        /// <summary>
+        /// Método que devuelve una publicación como tipo string.
+        /// </summary>
+        /// <returns>String publication.</returns>
+        public string ReturnPublication()
         {
-            string x = publication.title + "\n" + publication.Company.Name + "\n" + "Materiales:\n";
-            foreach (Material mat in this.listMaterials)
+            string publication = this.title +"\n"+ this.Company.Name+ "\n" + "Materiales:\n";
+            foreach (Material material in this.listMaterials)
             {
-                x = x + mat.Name + " - " + mat.Quantity + " - " + mat.Price;
+                publication = publication + material.Name +" - "+ material.Quantity +" - " + material.Price;
             }
-
-            return x;
+            return publication;
         }
     }
 }

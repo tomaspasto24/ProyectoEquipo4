@@ -1391,7 +1391,7 @@
         </member>
         <member name="M:Bot.EntrepreneurReport.GiveReport">
             <summary>
-            metodo para entregar el reporte del emprendedor.
+            Metodo para entregar el reporte del emprendedor.
             </summary>
             <returns>El reporte del emprendedor.</returns>
         </member>
@@ -1423,13 +1423,26 @@
             </summary>
             <value>Instancia SerializeManager.</value>
         </member>
+<<<<<<< HEAD
         <member name="P:Bot.SerializeManager.ListPublicationsToSerialize">
+=======
+        <member name="M:Bot.IJsonConvertible.ConvertToJson">
+>>>>>>> master
             <summary>
             Obtiene o establece la lista de publicaciones calco a la lista de publicaciones de PublicationSet, para ser Serializada/Deserializada.
             </summary>
             <value>Lista Publicación.</value>
         </member>
+<<<<<<< HEAD
         <member name="P:Bot.SerializeManager.DiccUserCompanyTokensToSerialize">
+=======
+        <member name="M:Bot.IJsonConvertible.LoadFromJson">
+            <summary>
+            Método que carga el archivo JSON y lo inicializa.
+            </summary>
+        </member>
+        <member name="T:Bot.SerializeManager">
+>>>>>>> master
             <summary>
             Obtiene o establece el diccionario de tokens y empresas, para ser Serializada/Deserializada.
             </summary>
@@ -1469,6 +1482,13 @@
             </summary>
             <param name="company"></param>
             <returns></returns>
+        </member>
+        <member name="M:Bot.RoleAdmin.HasPermission(Bot.Permission)">
+            <summary>
+            Metodo que se encarga de chequear si el usuario tiene determinado permiso.
+            </summary>
+            <param name="perm"></param>
+            <returns>True en caso de contener el permiso.</returns>
         </member>
         <member name="T:Bot.RoleDefault">
             <summary>
@@ -1513,13 +1533,17 @@
         </member>
         <member name="P:Bot.TokenGenerator.Instance">
             <summary>
+<<<<<<< HEAD
             Metodo para generar una instancia de token. -singleton
+=======
+            Metodo para generar una instancia de token. Cumple con el patrón Singleton debido a que solamente hay una unica instancia de este.
+>>>>>>> master
             </summary>
             <value>Instancia del Token. </value>
         </member>
         <member name="M:Bot.TokenGenerator.GenerateToken">
             <summary>
-            Metodo para generar el token. verifica si existe en la lista, si existe, intenta genera uno nuevo si no existe lo agrega en la lista de globalRatings 
+            Metodo para generar el token. Incrementa la variable tkn y la devuelve por cada token que genera.
             </summary>
             <returns>El token generado.</returns>
         </member>
