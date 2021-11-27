@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 using System.Text;
 
 namespace Bot
@@ -25,7 +25,7 @@ namespace Bot
 
 
         // TODO puede ser una clase aparte
-        private List<string> certification = new List<string>();
+        private List<string> certifications = new List<string>();
 
         private List<string> specializations = new List<string>();
 
@@ -41,6 +41,9 @@ namespace Bot
         /// <value>Obtiene el rubro.</value>
         public string Heading { get; set; }
 
+        [JsonConstructor]
+        public EntrepreneurInfo() { }
+
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
         /// y suma un valor al contador de emprendedores estático.
@@ -55,14 +58,44 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene la lista de certificaciones del emprendedor.
+        /// Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
         /// </summary>
-        /// <returns>Lista de certificaciones.</returns>
-        public IReadOnlyCollection<string> ReturnCertification
+        /// <returns>Lista de publicaciones.</returns>
+        [JsonInclude]
+        public List<Publication> ListHistorialPublications
         {
             get
             {
-                return (this.certification as List<string>).AsReadOnly();
+                return this.listHistorialPublications;
+            }
+            set
+            {
+                if (!(value.Count == 0))
+                {
+                    this.listHistorialPublications.Clear();
+                    this.listHistorialPublications.AddRange(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la lista de certificaciones del emprendedor.
+        /// </summary>
+        /// <returns>Lista de certificaciones.</returns>
+        [JsonInclude]
+        public List<string> Certifications
+        {
+            get
+            {
+                return this.certifications;
+            }
+            set
+            {
+                if (!(value.Count == 0))
+                {
+                    this.certifications.Clear();
+                    this.certifications.AddRange(value);
+                }
             }
         }
 
@@ -70,11 +103,20 @@ namespace Bot
         /// Obtiene la lista de especializaciones del emprendedor.
         /// </summary>
         /// <returns>Lista de especializaciones.</returns>
-        public IReadOnlyCollection<string> ReturnSpecialization
+        [JsonInclude]
+        public List<string> Specializations
         {
             get
             {
-                return (this.specializations as List<string>).AsReadOnly();
+                return this.specializations;
+            }
+            set
+            {
+                if (!(value.Count == 0))
+                {
+                    this.specializations.Clear();
+                    this.specializations.AddRange(value);
+                }
             }
         }
 
@@ -84,7 +126,7 @@ namespace Bot
         /// <param name="certification">Certificación.</param>
         public void AddCertification(string certification)
         {
-            this.certification.Add(certification);
+            this.certifications.Add(certification);
         }
 
         /// <summary>
@@ -137,17 +179,6 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
-        /// </summary>
-        /// <returns>Lista de publicaciones.</returns>
-        public IReadOnlyCollection<Publication> ReturnListHistorialPublications()
-        {
-            {
-                return (this.listHistorialPublications as List<Publication>).AsReadOnly();
-            }
-        }
-
-        /// <summary>
         /// Método que se encarga de llamar al método SetInterestedPerson para que este lo fije
         /// como InterestedPerson de la clase Publication que prefiera. El método termina devolviendo
         /// el contacto de la empresa dueña de la publicación.
@@ -163,12 +194,12 @@ namespace Bot
 
         public string GetCertifications()
         {
-            if (certification.Count == 0)
+            if (certifications.Count == 0)
             {
                 return "Ninguna";
             }
             StringBuilder sb = new StringBuilder();
-            foreach (string text in certification)
+            foreach (string text in certifications)
             {
                 sb.Append(text).Append("\n");
             }
@@ -202,7 +233,7 @@ namespace Bot
 
         public bool ContainsCertification(string certification)
         {
-            return this.certification.Contains(certification);
+            return this.certifications.Contains(certification);
         }
 
         public void DeleteSpecialization(string specialization)
@@ -211,7 +242,7 @@ namespace Bot
         }
         public void DeleteCertification(string certification)
         {
-            this.certification.Remove(certification);
+            this.certifications.Remove(certification);
         }
     }
 }

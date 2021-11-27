@@ -8,12 +8,14 @@ namespace Bot
     /// </summary>
     public class UserInfo
     {
+        [JsonInclude]
         public static List<Permission> AdminPermissions = new List<Permission>()
         {
             Permission.None,
             Permission.GenerateToken,
         };
 
+        [JsonInclude]
         public static List<Permission> DefaultPermissions = new List<Permission>()
         {
             Permission.None,
@@ -21,6 +23,7 @@ namespace Bot
             Permission.Undertake,
         };
 
+        [JsonInclude]
         public static List<Permission> UserCompanyPermissions = new List<Permission>()
         {
             Permission.None,
@@ -29,6 +32,7 @@ namespace Bot
             Permission.AddMaterial,
         };
 
+        [JsonInclude]
         public static List<Permission> EntrepreneurPermissions = new List<Permission>()
         {
             Permission.None,
@@ -39,6 +43,7 @@ namespace Bot
             Permission.Data,
         };
 
+        [JsonInclude]
         public List<Permission> Permissions { get; set; } = new List<Permission>();
         public string Name { get; set; }
         public long Id { get; set; }
@@ -46,6 +51,7 @@ namespace Bot
 
         [JsonConstructor]
         public UserInfo() { }
+
         /// <summary>
         /// Método constructor de la clase User que se encarga de asignar los atributos
         /// name, id y role que usará la clase.

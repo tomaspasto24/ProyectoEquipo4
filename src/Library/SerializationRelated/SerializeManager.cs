@@ -19,7 +19,7 @@ namespace Bot
         };
         private static SerializeManager instance;
         private List<Publication> listPublicationsToSerialize = new List<Publication>();
-        private Dictionary<string, Company> diccUserCompanyTokensToSerialize = new Dictionary<string, Company>();
+        private SessionRelated sessionRelatedToSerialize;
 
 
         /// <summary>
@@ -73,16 +73,16 @@ namespace Bot
         /// </summary>
         /// <value>Diccionario string, Company.</value>
         [JsonInclude]
-        public Dictionary<string, Company> DiccUserCompanyTokensToSerialize
+        public SessionRelated SessionRelatedToSerialize
         {
             get
             {
-                return this.diccUserCompanyTokensToSerialize;
+                return this.sessionRelatedToSerialize;
             }
 
             set
             {
-                this.diccUserCompanyTokensToSerialize = value;
+                this.sessionRelatedToSerialize = value;
             }
         }
 
@@ -93,11 +93,10 @@ namespace Bot
         public void SerializeObjects()
         {
             this.listPublicationsToSerialize.Clear();
-            this.diccUserCompanyTokensToSerialize.Clear();
             try
             {
                 this.listPublicationsToSerialize = PublicationSet.Instance.ListPublications as List<Publication>;
-                this.diccUserCompanyTokensToSerialize = SessionRelated.Instance.DiccUserTokens as Dictionary<string, Company>;
+                this.sessionRelatedToSerialize = SessionRelated.Instance;
                 string json = JsonSerializer.Serialize(SerializeManager.Instance, options);
                 File.WriteAllText(Path, json);
             }
@@ -121,12 +120,11 @@ namespace Bot
             else
             {
                 this.listPublicationsToSerialize.Clear();
-                this.diccUserCompanyTokensToSerialize.Clear();
                 try
                 {
                     SerializeManager manager = JsonSerializer.Deserialize<SerializeManager>(json, options);
                     PublicationSet.Instance.ListPublications = manager.listPublicationsToSerialize;
-                    SessionRelated.Instance.DiccUserTokens = manager.diccUserCompanyTokensToSerialize;
+                    SessionRelated.Instance = manager.sessionRelatedToSerialize;
                 }
                 catch (ArgumentNullException e)
                 {

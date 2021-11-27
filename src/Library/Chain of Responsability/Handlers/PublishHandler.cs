@@ -89,7 +89,7 @@ namespace Bot
                 materialPrice = Int32.Parse(request.Text);
                 material = new Material(materialName, materialQuantity, materialPrice);
                 Publication publication = new Publication(title, publishingCompany, locationCompany, material);
-                response = "Se ha creado la publicación con el material. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"cancelar\" si quiere terminar la publicación.";
+                response = "Se ha creado la publicación con el material. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"/cancelar\" si quiere terminar la publicación.";
                 user.HandlerState = Bot.State.Start;
                 return true;
             }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System;
-using System.IO;
+using System.Linq;
 
 namespace Bot
 {
@@ -22,19 +22,44 @@ namespace Bot
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
-        public IList<UserInfo> AllUsers;
+        public IList<UserInfo> AllUsers = new List<UserInfo>();
 
-        [JsonInclude]
         /// <summary>
         /// Diccionario que contiene el token que se relaciona con la empresa
         /// </summary>
-        public IDictionary<string, Company> DiccUserTokens;
+        public IDictionary<string, Company> DiccUserTokens = new Dictionary<string, Company>();
 
-        public IDictionary<UserInfo, EntrepreneurInfo> DiccEntrepreneurInfo;
-        public IDictionary<UserInfo, AdminInfo> DiccAdminInfo;
-        public IDictionary<UserInfo, UserCompanyInfo> DiccUserCompanyInfo;
+        public Dictionary<UserInfo, EntrepreneurInfo> DiccEntrepreneurInfo = new Dictionary<UserInfo, EntrepreneurInfo>();
+        public IDictionary<UserInfo, AdminInfo> DiccAdminInfo = new Dictionary<UserInfo, AdminInfo>();
+        public IDictionary<UserInfo, UserCompanyInfo> DiccUserCompanyInfo = new Dictionary<UserInfo, UserCompanyInfo>();
 
         private static SessionRelated instance;
+
+        [JsonInclude]
+        public List<KeyValuePair<string, Company>> DiccUserTokensToSerialize
+        {
+            get { return this.DiccUserTokens.ToList(); }
+            set { this.DiccUserTokens = value.ToDictionary(x => x.Key, x => x.Value); }
+        }
+
+        [JsonInclude]
+        public List<KeyValuePair<UserInfo, EntrepreneurInfo>> DiccEntrepreneurInfoToSerialize
+        {
+            get { return this.DiccEntrepreneurInfo.ToList(); }
+            set { this.DiccEntrepreneurInfo = value.ToDictionary(x => x.Key, x => x.Value); }
+        }
+        [JsonInclude]
+        public List<KeyValuePair<UserInfo, AdminInfo>> DiccAdminInfoToSerialize
+        {
+            get { return this.DiccAdminInfo.ToList(); }
+            set { this.DiccAdminInfo = value.ToDictionary(x => x.Key, x => x.Value); }
+        }
+        [JsonInclude]
+        public List<KeyValuePair<UserInfo, UserCompanyInfo>> DiccUserCompanyInfoToSerialize
+        {
+            get { return this.DiccUserCompanyInfo.ToList(); }
+            set { this.DiccUserCompanyInfo = value.ToDictionary(x => x.Key, x => x.Value); }
+        }
         /// <summary>
         /// Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
         /// </summary>
@@ -49,19 +74,18 @@ namespace Bot
                 }
                 return instance;
             }
+            set
+            {
+                instance = value;
+            }
         }
 
         /// <summary>
-        /// Constructor de la clase SessionRelated
+        /// Constructor de la clase SessionRelated sin implementación y de acceso publico para poder ser usado por 
+        /// la etiqueta JsonConstructor.
         /// </summary>
-        private SessionRelated()
-        {
-            AllUsers = new List<UserInfo>();
-            DiccUserTokens = new Dictionary<string, Company>();
-            DiccEntrepreneurInfo = new Dictionary<UserInfo, EntrepreneurInfo>();
-            DiccAdminInfo = new Dictionary<UserInfo, AdminInfo>();
-            DiccUserCompanyInfo = new Dictionary<UserInfo, UserCompanyInfo>();
-        }
+        [JsonConstructor]
+        public SessionRelated() { }
 
         /// <summary>
         /// Metodo para agregar un nuevo usuario

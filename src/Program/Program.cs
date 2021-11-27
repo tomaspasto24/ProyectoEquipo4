@@ -37,7 +37,7 @@ namespace Bot
             // Publication publicationTest1 = new Publication("Prueba1", companyTest, location, material);
             // publicationTest1.AddMaterial(new Material("Material2", 20, 2020));
             // PublicationSet.Instance.AddElement(publicationTest1);
-            // System.Console.WriteLine("Publicacion:");
+            System.Console.WriteLine("Publicacion:");
             foreach(Publication item in PublicationSet.Instance.ListPublications)
             {
                 System.Console.WriteLine(item.Title);
