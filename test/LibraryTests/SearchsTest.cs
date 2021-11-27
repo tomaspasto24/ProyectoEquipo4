@@ -22,8 +22,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            location = new GeoLocation("Av. Italia 2738", "Montevideo");
-            
+            location = new GeoLocation("Av. Italia", "Montevideo");
             emprendedor = new RoleEntrepreneur("herrería", location);
 
             material = new Material("Alambre", 2000, 200);
@@ -39,14 +38,11 @@ namespace BotTests
         /// </summary>
         [Test]
         public void SearchByMaterialTest()
-        {        
-            bool test1 = PublicationSet.Instance.AddElement(publicacion);     
-            IReadOnlyCollection<Publication> resultadoBusqueda = new List<Publication>();
+        {
+            List<Publication> resultadoBusqueda = new List<Publication>();
             string keyWord = "alambre";
             material2.AddKeyWord(keyWord);
-            SearchByMaterial s = new SearchByMaterial();
-            resultadoBusqueda = s.Search("alambre"); 
-            
+            // resultadoBusqueda = emprendedor.SearchingByMaterials("alambre"); 
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
             // Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
         }
@@ -55,10 +51,10 @@ namespace BotTests
         /// El resultado de la búsqueda es una lista con la publicación de igual ubicación a la buscada
         /// </summary>
         public void SearchByLocationTest()
-        {             
+        {
             List<Publication> resultadoBusqueda = new List<Publication>();
-            resultadoBusqueda = emprendedor.SearchingByLocation("Av.Italia");
-            
+            // resultadoBusqueda = emprendedor.SearchingByLocation("Av.Italia");
+
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
         }
     }

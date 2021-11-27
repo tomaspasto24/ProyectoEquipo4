@@ -44,12 +44,11 @@ namespace BotTests
         /// <summary>
         /// Test del método que le agrega una especialización al emprendedor
         /// </summary>
-        [Test]
   /*      public void AddSpecializationTest()
         {
             specialization = "Quimica";
             emprendedor.AddSpecialization(specialization);
-            Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
+            // Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
         }
 */
         /// <summary>
