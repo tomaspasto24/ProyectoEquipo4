@@ -57,12 +57,11 @@ namespace Bot
         {
             this.Name = name;
             this.Id = id;
+            this.Permissions = UserInfo.DefaultPermissions;
         }
         public bool HasPermission(Permission permission)
         {
             return this.Permissions.Contains(permission);
         }
-
-        // TODO crear clases de cada "rol" y ahi meter metodos en cada handler 
     }
 }

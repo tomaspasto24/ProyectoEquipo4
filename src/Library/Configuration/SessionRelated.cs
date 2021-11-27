@@ -58,6 +58,8 @@ namespace Bot
             AllUsers = new List<UserInfo>();
             DiccUserTokens = new Dictionary<string, Company>();
             DiccEntrepreneurInfo = new Dictionary<UserInfo, EntrepreneurInfo>();
+            DiccAdminInfo = new Dictionary<UserInfo, AdminInfo>();
+            DiccUserCompanyInfo = new Dictionary<UserInfo, UserCompanyInfo>();
         }
 
         /// <summary>

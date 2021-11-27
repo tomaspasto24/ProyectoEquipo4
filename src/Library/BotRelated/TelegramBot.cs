@@ -94,6 +94,7 @@ namespace Library
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
+            // TODO VOLVER A PONER LOS TESTS EN LA CARPETA
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
             Bot.Message msg = new Bot.Message(chatId, message.Text);
@@ -104,7 +105,6 @@ namespace Library
             if (userInfo == null)
             {
                 SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId));
-                userInfo.Permissions = UserInfo.DefaultPermissions;
             }
 
             string response;
@@ -116,6 +116,7 @@ namespace Library
             catch (System.Exception e)
             {
                 SendMessage(chatId, $"Ha sucedido un error: {e.Message}");
+                System.Console.WriteLine(e.StackTrace);
                 return;
             }
 
