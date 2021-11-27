@@ -29,6 +29,10 @@ namespace Bot
         /// </summary>
         public IDictionary<string, Company> DiccUserTokens;
 
+        public IDictionary<UserInfo, EntrepreneurInfo> DiccEntrepreneurInfo;
+        public IDictionary<UserInfo, AdminInfo> DiccAdminInfo;
+        public IDictionary<UserInfo, UserCompanyInfo> DiccUserCompanyInfo;
+
         private static SessionRelated instance;
         /// <summary>
         /// Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
@@ -53,6 +57,9 @@ namespace Bot
         {
             AllUsers = new List<UserInfo>();
             DiccUserTokens = new Dictionary<string, Company>();
+            DiccEntrepreneurInfo = new Dictionary<UserInfo, EntrepreneurInfo>();
+            DiccAdminInfo = new Dictionary<UserInfo, AdminInfo>();
+            DiccUserCompanyInfo = new Dictionary<UserInfo, UserCompanyInfo>();
         }
 
         /// <summary>
@@ -145,14 +152,43 @@ namespace Bot
             return null;
         }
 
-        public (string, string) ConvertObjectToSaveToJson()
+        public EntrepreneurInfo GetEntrepreneurInfoByUserInfo(UserInfo user)
         {
-            JsonSerializerOptions options = new()
+            EntrepreneurInfo entrepreneur;
+            if (DiccEntrepreneurInfo.TryGetValue(user, out entrepreneur))
             {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true,
-            };
-            return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
+                return entrepreneur;
+            }
+            return null;
         }
+
+        public AdminInfo GetAdminInfoByUserInfo(UserInfo user)
+        {
+            AdminInfo admin;
+            if (DiccAdminInfo.TryGetValue(user, out admin))
+            {
+                return admin;
+            }
+            return null;
+        }
+
+        public UserCompanyInfo GetUserCompanyByUserInfo(UserInfo user)
+        {
+            UserCompanyInfo userCompany;
+            if (DiccUserCompanyInfo.TryGetValue(user, out userCompany))
+            {
+                return userCompany;
+            }
+            return null;
+        }
+        // public (string, string) ConvertObjectToSaveToJson()
+        // {
+        //     JsonSerializerOptions options = new()
+        //     {
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true,
+        //     };
+        //     return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
+        // }
     }
 }

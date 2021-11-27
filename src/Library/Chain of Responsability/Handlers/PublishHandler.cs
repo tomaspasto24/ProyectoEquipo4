@@ -32,7 +32,7 @@ namespace Bot
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             
             
-            if (!user.UserRole.HasPermission(Permission.Publish))
+            if (!user.HasPermission(Permission.Publish))
             {
                 response = string.Empty;
                 return false;

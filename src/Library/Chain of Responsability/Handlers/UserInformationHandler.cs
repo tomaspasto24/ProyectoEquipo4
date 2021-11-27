@@ -29,8 +29,9 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
 
-            if (!user.UserRole.HasPermission(Permission.Data))
+            if (!user.HasPermission(Permission.Data))
             {
                 response = string.Empty;
                 return false;
@@ -39,11 +40,10 @@ namespace Bot
             if (request.Text.Equals("/datos"))
             {
                 response = $"Estos son tus datos: \nNombre: {user.Name}"
-                            + $"\nRole: {user.UserRole}"
-                            + "\nUbicacion: " + ((RoleEntrepreneur)user.UserRole).Location.Address + ", " + ((RoleEntrepreneur)user.UserRole).Location.City
-                            + $"\nRubro: " + ((RoleEntrepreneur)user.UserRole).Heading
-                            + "\nEspecialidades: " + ((RoleEntrepreneur)user.UserRole).GetSpecializations()
-                            + "\nCertificaciones: " + ((RoleEntrepreneur)user.UserRole).GetCertifications();
+                            + "\nUbicacion: " + entrepreneurInfo.Location.Address + ", " + entrepreneurInfo.Location.City
+                            + $"\nRubro: " + entrepreneurInfo.Heading
+                            + "\nEspecialidades: " + entrepreneurInfo.GetSpecializations()
+                            + "\nCertificaciones: " + entrepreneurInfo.GetCertifications();
                 return true;
             }
 

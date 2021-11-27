@@ -52,8 +52,8 @@ namespace BotTests
             IHandler result = handler.Handle(message, out response);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.ConfirmingToken));
-            Assert.That(response, Is.EqualTo("Inserta tu token de usuario empresa: "));
+            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.ConfirmingToken));
+            // Assert.That(response, Is.EqualTo("Inserta tu token de usuario empresa: "));
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace BotTests
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo("Disculpa, no hemos encontrado ese token :("));
-            Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
+            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace BotTests
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo("Token verificado, ahora eres un usuario empresa! :)"));
-            Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
+            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
             // Chequear si quedan los roles cambiados
         }
 
@@ -103,7 +103,7 @@ namespace BotTests
         {
             handler.Cancel();
 
-            Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
+            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
             Assert.That(handler.Data.Token, Is.EqualTo(default(string)));
         }
     }

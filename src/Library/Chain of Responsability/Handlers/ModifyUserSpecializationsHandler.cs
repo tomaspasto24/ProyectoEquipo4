@@ -28,6 +28,8 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            EntrepreneurInfo entrepreneurInfo = SessionRelated.Instance.GetEntrepreneurInfoByUserInfo(user);
+
             if (user.HandlerState == Bot.State.ChangingUserSpecializations)
             {
                 if (request.Text.Equals("1"))
@@ -51,7 +53,7 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AddingUserSpecializations)
             {
-                if (((RoleEntrepreneur)user.UserRole).ContainsSpecialization(request.Text))
+                if (entrepreneurInfo.ContainsSpecialization(request.Text))
                 {
                     response = "Esta especialidad ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
@@ -60,7 +62,7 @@ namespace Bot
                 }
                 else
                 {
-                    ((RoleEntrepreneur)user.UserRole).AddSpecialization(request.Text);
+                    entrepreneurInfo.AddSpecialization(request.Text);
                     response = "Especialidad agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                     user.HandlerState = Bot.State.AskingDataNumber;
@@ -69,9 +71,9 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.DeletingUserSpecializations)
             {
-                if (((RoleEntrepreneur)user.UserRole).ContainsSpecialization(request.Text))
+                if (entrepreneurInfo.ContainsSpecialization(request.Text))
                 {
-                    ((RoleEntrepreneur)user.UserRole).DeleteSpecialization(request.Text);
+                    entrepreneurInfo.DeleteSpecialization(request.Text);
                     response = "Especialidad eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación";
                     user.HandlerState = Bot.State.AskingDataNumber;
