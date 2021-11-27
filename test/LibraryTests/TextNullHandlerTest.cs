@@ -27,9 +27,25 @@ namespace BotTests
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             TextNullHandler textNullHandler = new TextNullHandler(null);
             testMessage = new Message(5433261, null);
-            result = textNullHandler.Handle(testMessage, out response);
 
-            //Assert.That(result, Is.Not.Null);
+            NullReferenceException ex = Assert.Throws<NullReferenceException>(() => textNullHandler.Handle(testMessage, out response));
+            Assert.That(ex.Message, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
+
+            //Assert.That(result, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
+        }
+        [Test]
+        public void TextNoNullHandlerTest()
+        {
+            role = new RoleDefault();
+            user1 = new UserInfo("name1", 5433261, role);
+            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            TextNullHandler textNullHandler = new TextNullHandler(null);
+            testMessage = new Message(5433261, "PrueBa ");
+
+            result = textNullHandler.Handle(testMessage, out response);
+            Assert.That(result, Is.Null);
+            Assert.That(response, Is.EqualTo(String.Empty));
+            Assert.That(testMessage.Text, Is.EqualTo("prueba"));
             //Assert.That(result, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
         }
     }

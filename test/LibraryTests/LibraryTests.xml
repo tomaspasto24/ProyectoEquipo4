@@ -67,6 +67,11 @@
             Testea que el método ReturnContactTest retorne la cadena de carácteres con la información correcta.
             </summary>
         </member>
+        <member name="T:BotTests.ContactHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
         <member name="T:BotTests.GeoLocationTests">
             <summary>
             GeoLocationTests se encarga de testear los atributos y las funcionalidades de la clase
@@ -271,6 +276,11 @@
             Verifica que la ubicación que se le devuelve al emprendedor sea efectivamente la correcta
             </summary>
         </member>
+        <member name="T:BotTests.SearchHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
         <member name="T:BotTests.SearchTests">
             <summary>
             Tests del método Search de las clases SearchByMaterial y SearchByLocation
@@ -400,6 +410,11 @@
         <member name="M:BotTests.TokenTest.TokenAddedTest">
             <summary>
             Test para agregar el token generado a la lista de globalRatingsList.
+            </summary>
+        </member>
+        <member name="T:BotTests.UserInformationHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
     </members>
