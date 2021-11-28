@@ -21,8 +21,7 @@ namespace Bot
         private SearchByLocation searchByLocation = new SearchByLocation();
 
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
-        private List<string> certification = new List<string>();
-
+        private List<string> certifications = new List<string>();
         private List<string> specializations = new List<string>();
 
         /// <summary>
@@ -83,14 +82,14 @@ namespace Bot
         {
             get
             {
-                return this.certification;
+                return this.certifications;
             }
             set
             {
                 if (!(value.Count == 0))
                 {
-                    this.certification.Clear();
-                    this.certification.AddRange(value);
+                    this.certifications.Clear();
+                    this.certifications.AddRange(value);
                 }
             }
         }
@@ -122,7 +121,7 @@ namespace Bot
         /// <param name="certification">Certificación.</param>
         public void AddCertification(string certification)
         {
-            this.certification.Add(certification);
+            this.certifications.Add(certification);
         }
 
         /// <summary>
@@ -190,12 +189,12 @@ namespace Bot
 
         public string GetCertifications()
         {
-            if (certification.Count == 0)
+            if (certifications.Count == 0)
             {
                 return "Ninguna";
             }
             StringBuilder sb = new StringBuilder();
-            foreach (string text in certification)
+            foreach (string text in certifications)
             {
                 sb.Append(text).Append("\n");
             }
@@ -229,7 +228,7 @@ namespace Bot
 
         public bool ContainsCertification(string certification)
         {
-            return this.certification.Contains(certification);
+            return this.certifications.Contains(certification);
         }
 
         public void DeleteSpecialization(string specialization)
@@ -238,7 +237,7 @@ namespace Bot
         }
         public void DeleteCertification(string certification)
         {
-            this.certification.Remove(certification);
+            this.certifications.Remove(certification);
         }
     }
 }
