@@ -21,7 +21,7 @@ namespace Bot
         private SearchByLocation searchByLocation = new SearchByLocation();
 
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
-        private List<string> certification = new List<string>();
+        private List<string> certifications = new List<string>();
         private List<string> specializations = new List<string>();
 
         /// <summary>
