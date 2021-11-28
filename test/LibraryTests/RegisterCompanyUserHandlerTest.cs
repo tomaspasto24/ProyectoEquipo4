@@ -10,13 +10,12 @@ namespace BotTests
     public class RegisterCompanyUserHandlerTest
     {
         UserInfo user;
-        IRole role;
         Company company;
         GeoLocation location;
         SessionRelated sessionRelated;
         Message message;
         RegisterHandler handler;
-        RoleUserCompany newRole;
+        UserCompanyInfo userCompanyInfo;
 
         /// <summary>
         /// Metodo SetUp para los tests
@@ -27,11 +26,8 @@ namespace BotTests
             location = new GeoLocation("8 de octubre", "Montevideo");
             company = new Company("Test", "itemTest", location, "093929434");
 
-            newRole = new RoleUserCompany(company);
-
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            role = new RoleEntrepreneur("carpintero", entrepreneurLocation);
-            user = new UserInfo("Seba", 123, role);
+            user = new UserInfo("Seba", 123);
 
             sessionRelated = SessionRelated.Instance;
             sessionRelated.AddNewUser(user);

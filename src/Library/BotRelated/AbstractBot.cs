@@ -1,32 +1,23 @@
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
-    */
     /// <summary>
-    /// Bot abstracto del cual heredarán los bots concretos.
+    /// Clase abstracta que debe implementar cualquier clase de bot para ser utilizada en esta aplicacion.
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
     /// </summary>
     public abstract class AbstractBot
     {
         /// <summary>
-        /// Constructor de la clase AbstractBot
-        /// </summary>
-        protected AbstractBot()
-        {
-        }
-
-        /// <summary>
-        /// Metodo publico y abstracto para comenzar la comunicacion entre el usuario y el canal y el bot o la consola.
+        /// Comienza la comunicacion entre el bot y los usuarios.
         /// </summary>
         public abstract void StartCommunication();
 
         /// <summary>
-        /// Metodo para enviar el mensaje por el canal donde se esta comunicando
+        /// Envia un mensaje al usuario con el bot como emisor.
         /// </summary>
-        /// <param name="id">id del usuario con el que dialoga el bot</param>
-        /// <param name="text">mensaje que se quiere enviar al usuario</param>
+        /// <param name="id">Id del usuario destinatario</param>
+        /// <param name="text">Mensaje a enviar</param>
         public abstract void SendMessage(long id, string text);
     }
 }

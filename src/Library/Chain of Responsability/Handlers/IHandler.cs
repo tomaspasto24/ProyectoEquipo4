@@ -1,28 +1,28 @@
 namespace Bot
 {
     /// <summary>
-    /// Interfaz para los handlers de Chain of Responsibility
+    /// Interfaz para ser utilizada en cada uno de los handlers.
     /// </summary>
     public interface IHandler
     {
         /// <summary>
-        /// Obtiene el próximo "handler".
+        /// El siguiente handler en caso de que el actual no cumpla la condicion.
         /// </summary>
-        /// <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
+        /// <value>Siguiente handler</value>
         IHandler Succesor { get; set; }
 
         /// <summary>
-        /// Procesa el mensaje o la pasa al siguiente "handler" si existe.
+        /// Procesa el mensaje o la pasa al siguiente handler si está definido o no es nulo.
         /// </summary>
-        /// <param name="message">El mensaje a procesar.</param>
-        /// <param name="response">La respuesta al mensaje procesado.</param>
-        /// <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
-        IHandler Handle(Message message, out string response);
+        /// <param name="request">El mensaje a procesar.</param>
+        /// <param name="response">La respuesta al mensaje.</param>
+        /// <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor</returns>
+        IHandler Handle(Message request, out string response);
 
         /// <summary>
-        /// Retorna este "handler" al estado inicial y cancela el próximo "handler" si existe. Es utilizado para que los
-        /// "handlers" que procesan varios mensajes cambiando de estado entre mensajes puedan volver al estado inicial en
-        /// caso de error por ejemplo.
+        /// Retorna este handler al estado inicial y cancela el próximo handler si existe. 
+        /// Utilizado para que los handlers que procesan varios mensajes cambiando de estado 
+        /// entre mensajes puedan volver al estado inicial en caso de error por ejemplo.
         /// </summary>
         void Cancel();
 

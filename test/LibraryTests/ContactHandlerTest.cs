@@ -10,7 +10,6 @@ namespace BotTests
     /// </summary>
     public class ContactHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         String response;
@@ -21,8 +20,7 @@ namespace BotTests
         [Test]
         public void ContactHandlerNoHasPermissionTest()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             ContactHandler contactHandler = new ContactHandler(null);
             testMessage = new Message(5433261, "");
@@ -35,8 +33,8 @@ namespace BotTests
         public void ContactHandlerHasPermissionTest()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", PruebaLocation));
             SessionRelated.Instance.AddNewUser(user1);
             ContactHandler contactHandler = new ContactHandler(null);
             testMessage = new Message(5433261, "/contacto");
@@ -51,8 +49,8 @@ namespace BotTests
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", entrepreneurLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", entrepreneurLocation));
             SessionRelated.Instance.AddNewUser(user1);
             SessionRelated.Instance.DiccUserTokens.Add("5433261", company);
             user1.HandlerState = Bot.State.AskingCompanyName;
@@ -66,8 +64,8 @@ namespace BotTests
         public void ContactHandlerCompanyNoFoundTest()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", PruebaLocation));
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.AskingCompanyName;
             ContactHandler contactHandler = new ContactHandler(null);
@@ -82,8 +80,8 @@ namespace BotTests
         public void ContactHandlerCompanyWrongHandlerState()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", PruebaLocation));
             SessionRelated.Instance.AddNewUser(user1);
             //user1.HandlerState = Bot.State.AskingCompanyName;
             user1.HandlerState = Bot.State.AskingDataNumber;

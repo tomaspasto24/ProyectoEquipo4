@@ -2,13 +2,11 @@ using System.Collections.Generic;
 
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
-    */
     /// <summary>
-    /// Clase Command que se ocupa de guardar las listas de comandos segun el rol del usuario
+    /// Clase encargada de guardar todos los comandos existentes en el ChatBot y sus respectivos permisos necesarios para utilizar a cada uno de ellos.
+    ///     Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
     /// </summary>
     public class Command
     {
@@ -29,10 +27,10 @@ namespace Bot
         };
 
         /// <summary>
-        /// Metodo para retornar la lista de comandos segun que usuario la pida.
+        /// Obtiene la lista de comandos visibles para un usuario dado
         /// </summary>
-        /// <param name="userId">Id del usuario que pide la lista de comandos</param>
-        /// /// <returns>Lista de comandos</returns>
+        /// <param name="userId">Id del usuario en cuestión</param>
+        /// <returns>Lista de comandos que este usuario puede utilizar</returns>
         public static string GetCommands(long userId)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(userId);

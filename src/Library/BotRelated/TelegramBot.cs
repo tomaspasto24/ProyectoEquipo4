@@ -6,11 +6,20 @@ using Bot;
 
 namespace Library
 {
+
+    /// <summary>
+    /// Implementacion de AbstractBot que utiliza Telegram como interfaz de comunicacion
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa los métodos polimórficos StartCommunication y SendMessage.
+    /// Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
+    /// un acceso global a esta instancia.
+    /// </summary>
     public class TelegramBot : AbstractBot
     {
         private const string TELEBRAM_BOT_TOKEN = "2100960953:AAGqylH0OVd18h5dJOPPZ0orCZOk6T4Wf9s";
         private static TelegramBot instance;
-        //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CREAR CADENA NUEVA DE HANDLERS 
         private readonly IHandler handler =
                 new TextNullHandler(
                 new CancelHandler(
@@ -38,12 +47,16 @@ namespace Library
                 new DefaultHandler(null)
 )))))))))))))))))))))));
 
+        /// <summary>
+        /// Constructor por defecto, privado para facilitar la implementación del patron Singleton.
+        /// Crea una nueva instancia de esta clase, creando una nueva instancia dentro de la API de telegram.
+        /// </summary>
         private TelegramBot()
         {
             this.Client = new TelegramBotClient(TELEBRAM_BOT_TOKEN);
         }
 
-        public ITelegramBotClient Client { get; private set; }
+        private ITelegramBotClient Client { get; set; }
 
         private User BotInfo
         {
@@ -53,22 +66,10 @@ namespace Library
             }
         }
 
-        public int BotId
-        {
-            get
-            {
-                return this.BotInfo.Id;
-            }
-        }
-
-        public string BotName
-        {
-            get
-            {
-                return this.BotInfo.FirstName;
-            }
-        }
-
+        /// <summary>
+        /// Obtiene la única instancia de esta clase.
+        /// </summary>
+        /// <value>La única instancia de esta clase.</value>
         public static TelegramBot Instance
         {
             get
@@ -80,13 +81,21 @@ namespace Library
                 return instance;
             }
         }
-
+        
+        /// <summary>
+        /// Comienza la comunicacion entre el bot y los usuarios.
+        /// </summary>
         public override void StartCommunication()
         {
             Client.OnMessage += OnMessage;
             Client.StartReceiving();
         }
 
+        /// <summary>
+        /// Envia un mensaje al usuario con el bot como emisor.
+        /// </summary>
+        /// <param name="id">Id del usuario destinatario</param>
+        /// <param name="text">Mensaje a enviar</param>
         public override void SendMessage(long id, string text)
         {
             Client.SendTextMessageAsync(id, text);
@@ -94,7 +103,6 @@ namespace Library
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
-            // TODO VOLVER A PONER LOS TESTS EN LA CARPETA
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
             Bot.Message msg = new Bot.Message(chatId, message.Text);

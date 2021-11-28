@@ -1,25 +1,23 @@
 using System;
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
-    Cumple con Polymorphism porque usa los métodos polimórficos StartCommunication.
-    Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
-    un acceso global a esta instancia.
-    */
     /// <summary>
-    /// Bot concreto de consola que hereda de AbstractBot
+    /// Implementacion de AbstractBot que utiliza la consola como interfaz de comunicacion
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa los métodos polimórficos StartCommunication y SendMessage.
+    /// Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
+    /// un acceso global a esta instancia.
     /// </summary>
     public class ConsoleBot : AbstractBot
     {
         private static ConsoleBot instance;
 
         /// <summary>
-        /// Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
+        /// Obtiene la única instancia de esta clase.
         /// </summary>
-        /// <value>La instancia inicializada</value>
+        /// <value>La única instancia de esta clase.</value>
         public static ConsoleBot Instance
         {
             get
@@ -32,24 +30,22 @@ namespace Bot
             }
         }
         /// <summary>
-        /// Constructor de ConsoleBot que utiliza el constructor de AbstractBot
+        /// Constructor por defecto, privado para facilitar la implementación del patron Singleton.
         /// </summary>
-        /// <returns></returns>
         private ConsoleBot() : base() { }
 
         /// <summary>
-        /// Manda un mensaje, en este caso, por consola.
+        /// Envia un mensaje al usuario con el bot como emisor.
         /// </summary>
-        /// <param name="id">Id del usuario con el que dialoga el bot</param>
-        /// <param name="text">Mensaje que se quiere enviar al usuario</param>
+        /// <param name="id">Id del usuario destinatario</param>
+        /// <param name="text">Mensaje a enviar</param>
         public override void SendMessage(long id, string text)
         {
             System.Console.WriteLine(text);
         }
 
         /// <summary>
-        /// Metodo StartCommunication, publico que hace override del metodo declarado en AbstractBot
-        /// Es el metodo que da comienzo a la conversacion entre el usuario y el bot concreto o consola.
+        /// Comienza la comunicacion entre el bot y los usuarios.
         /// </summary>
         public override void StartCommunication()
         {
