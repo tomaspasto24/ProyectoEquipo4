@@ -110,7 +110,12 @@
         </member>
         <member name="T:Bot.AddMaterialHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de agregar un material a una publicación
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.AddMaterialHandler.#ctor(Bot.AbstractHandler)">
@@ -129,7 +134,12 @@
         </member>
         <member name="T:Bot.AdminHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de cambiar el rol del usuario a Admin (solo es utilizado en la demostración)
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.AdminHandler.#ctor(Bot.AbstractHandler)">
@@ -148,7 +158,12 @@
         </member>
         <member name="T:Bot.CancelHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de cancelar la operación que este realizando un usuario.
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.CancelHandler.#ctor(Bot.AbstractHandler)">
@@ -167,7 +182,12 @@
         </member>
         <member name="T:Bot.CommandHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de mostrar la lista de comandos, segun los permisos que tenga el usuario
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.CommandHandler.#ctor(Bot.AbstractHandler)">
@@ -186,7 +206,12 @@
         </member>
         <member name="T:Bot.ContactHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de otorgar el contacto de una empresa, a un emprendedor que la solicita
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.ContactHandler.#ctor(Bot.AbstractHandler)">
@@ -205,7 +230,12 @@
         </member>
         <member name="T:Bot.DefaultHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de enviar un mensaje de advertencia en caso de que el usuario envie un comando que no existe o que no tiene permiso, o si ingreso algo incorrecto.
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.DefaultHandler.#ctor(Bot.AbstractHandler)">
@@ -224,7 +254,12 @@
         </member>
         <member name="T:Bot.DefaultRoleHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de cambiar el rol del usuario a Default (solo es utilizado en la demostración)
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.DefaultRoleHandler.#ctor(Bot.AbstractHandler)">
@@ -269,7 +304,12 @@
         </member>
         <member name="T:Bot.ModifyEntrepreneurInformationHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de comenzar el proceso de modificación de información de un emprendedor
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.ModifyEntrepreneurInformationHandler.#ctor(Bot.AbstractHandler)">
@@ -288,7 +328,12 @@
         </member>
         <member name="T:Bot.ModifyUserCertificationsHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de modificar la lista de certificaciones de un emprendedor
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.ModifyUserCertificationsHandler.#ctor(Bot.AbstractHandler)">
@@ -307,7 +352,12 @@
         </member>
         <member name="T:Bot.ModifyUserHeaderHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de modificar el campo del rubro de un emprendedor
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.ModifyUserHeaderHandler.#ctor(Bot.AbstractHandler)">
@@ -326,7 +376,12 @@
         </member>
         <member name="T:Bot.ModifyUserSpecializationsHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de modificar la lista de especializaciones de un emprendedor
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.ModifyUserSpecializationsHandler.#ctor(Bot.AbstractHandler)">
@@ -345,7 +400,12 @@
         </member>
         <member name="T:Bot.ModifyUserUbicationHandler">
             <summary>
-            Handler para mostrar los comandos que el usuario tiene acceso
+            Handler que se encarga de modificar la ubicación de un emprendedor
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.ModifyUserUbicationHandler.#ctor(Bot.AbstractHandler)">
@@ -364,7 +424,12 @@
         </member>
         <member name="T:Bot.PublishHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de crear una publicación para una empresa
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.PublishHandler.#ctor(Bot.AbstractHandler)">
@@ -383,7 +448,12 @@
         </member>
         <member name="T:Bot.PurchasesReportHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de otorgar, a un emprendedor, las compras realizadas anteriormente
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.PurchasesReportHandler.#ctor(Bot.AbstractHandler)">
@@ -404,8 +474,9 @@
             <summary>
             Handler que se encarga del registro de un usuario
             Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
             También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
-            Polimorfismo     
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
             A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
@@ -425,7 +496,12 @@
         </member>
         <member name="T:Bot.SalesReportHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de otorgar, a un usuario de empresa, las ventas realizadas anteriormente
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.SalesReportHandler.#ctor(Bot.AbstractHandler)">
@@ -444,7 +520,12 @@
         </member>
         <member name="T:Bot.SearchByLocationHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de realizar una búsqueda de publicaciones con el filtro de localización
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.SearchByLocationHandler.#ctor(Bot.AbstractHandler)">
@@ -463,7 +544,12 @@
         </member>
         <member name="T:Bot.SearchByMaterialHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de realizar una búsqueda de publicaciones con el filtro de material
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.SearchByMaterialHandler.#ctor(Bot.AbstractHandler)">
@@ -482,7 +568,12 @@
         </member>
         <member name="T:Bot.SearchHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de comenzar el proceso de búsqueda de publicaciones
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.SearchHandler.#ctor(Bot.AbstractHandler)">
@@ -501,7 +592,12 @@
         </member>
         <member name="T:Bot.StartHandler">
             <summary>
-            Handler para saludar al usuario
+            Handler que se encarga de saludar al usuario
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.StartHandler.#ctor(Bot.AbstractHandler)">
@@ -520,7 +616,12 @@
         </member>
         <member name="T:Bot.TextNullHandler">
             <summary>
-            Handler para saludar al usuario
+            Handler que se encarga de enviar una excepción en caso de que ingrese un mensaje nulo
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.TextNullHandler.#ctor(Bot.AbstractHandler)">
@@ -539,7 +640,12 @@
         </member>
         <member name="T:Bot.TokenHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de crear un token para una empresa
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.TokenHandler.#ctor(Bot.AbstractHandler)">
@@ -558,7 +664,12 @@
         </member>
         <member name="T:Bot.UndertakeHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de convertir un usuario Default en Entrepreneur
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="F:Bot.UndertakeHandler.entrepreneurData">
@@ -605,7 +716,12 @@
         </member>
         <member name="T:Bot.UserInformationHandler">
             <summary>
-            Handler que se encarga del registro de un usuario
+            Handler que se encarga de mostrar los datos de un emprendedor
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+            A su vez, cumple con el patrón Chain of Responsability.
             </summary>
         </member>
         <member name="M:Bot.UserInformationHandler.#ctor(Bot.AbstractHandler)">
@@ -624,7 +740,7 @@
         </member>
         <member name="T:Bot.Company">
             <summary>
-            Clase que se encarga de representar una Empresa. Cumple con el patrón de diseño Creator porque la clase
+            Clase que se encarga de representar una Compañía. Cumple con el patrón de diseño Creator porque la clase
             Empresa tiene la responsabilidad de crear instancias de la clase Usuario y Publicación ya que tiene
             un contenedor capaz de almacenar instancias de ambas y las usa de forma muy cercana.
             </summary>
@@ -741,6 +857,13 @@
             Sobrecarga del método AddListHistorialPublication, se encarga de agregar una lista de Publicaciones a listHistorialPublications.
             </summary>
             <param name="listPublications"></param>
+        </member>
+        <member name="M:Bot.Company.ContainsPublication(System.String)">
+            <summary>
+            Verifica si la compañía contiene la publicación ingresada por parametro
+            </summary>
+            <param name="publicationTitle">Titulo de la publicación en cuestión</param>
+            <returns>True si la contiene, false en caso contrario</returns>
         </member>
         <member name="T:Bot.ISetOfElement`1">
             <summary>
@@ -1062,9 +1185,11 @@
         <member name="T:Bot.Command">
             <summary>
             Clase encargada de guardar todos los comandos existentes en el ChatBot y sus respectivos permisos necesarios para utilizar a cada uno de ellos.
-                Patrones y principios:
-            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
-            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+            Patrones y principios:
+            Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP. Éste motivo podría ser, cambiar la forma de
+            almacenar los comandos.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase, la cuál es el
+            almacenamiento de los comandos con sus respectivas descripciones y permisos.
             </summary>
         </member>
         <member name="M:Bot.Command.GetCommands(System.Int64)">
@@ -1079,16 +1204,65 @@
             Clase SessionRelated que se ocupa de administrar la lista de usuarios y sus respectivos id's.
             </summary>
         </member>
+        <member name="F:Bot.SessionRelated.AllUsers">
+            <summary>
+            Lista de todos los usuarios
+            </summary>
+        </member>
         <member name="F:Bot.SessionRelated.DiccUserTokens">
             <summary>
-            Diccionario que contiene el token que se relaciona con la empresa
+            Diccionario que contiene el token que se relacion con la compañía
+            </summary>
+            <typeparam name="string">El token en cuestión</typeparam>
+            <typeparam name="Company">La compañía en cuestión</typeparam>
+        </member>
+        <member name="F:Bot.SessionRelated.DiccEntrepreneurInfo">
+            <summary>
+            Diccionario que contiene la UserInfo que se relaciona con la EntrepreneurInfo
+            </summary>
+            <typeparam name="UserInfo">El UserInfo</typeparam>
+            <typeparam name="EntrepreneurInfo">La EntrepreneurInfo</typeparam>
+        </member>
+        <member name="F:Bot.SessionRelated.DiccAdminInfo">
+            <summary>
+            Diccionario que contiene la UserInfo que se relaciona con la AdminInfo
+            </summary>
+            <typeparam name="UserInfo">La UserInfo</typeparam>
+            <typeparam name="AdminInfo">La AdminInfo</typeparam>
+        </member>
+        <member name="F:Bot.SessionRelated.DiccUserCompanyInfo">
+            <summary>
+            Diccionario que contiene la UserInfo que se relaciona con la UserCompanyInfo
+            </summary>
+            <typeparam name="UserInfo">La UserInfo</typeparam>
+            <typeparam name="UserCompanyInfo">La UserCompanyInfo</typeparam>
+            <returns></returns>
+        </member>
+        <member name="P:Bot.SessionRelated.DiccUserTokensToSerialize">
+            <summary>
+            Obtiene DiccUserTokens como una lista
+            </summary>
+        </member>
+        <member name="P:Bot.SessionRelated.DiccEntrepreneurInfoToSerialize">
+            <summary>
+            Obtiene DiccEntrepreneurInfo como una lista
+            </summary>
+        </member>
+        <member name="P:Bot.SessionRelated.DiccAdminInfoToSerialize">
+            <summary>
+            Obtiene DiccAdminInfo como una lista
+            </summary>
+        </member>
+        <member name="P:Bot.SessionRelated.DiccUserCompanyInfoToSerialize">
+            <summary>
+            Obtiene DiccUserCompanyInfo como una lista
             </summary>
         </member>
         <member name="P:Bot.SessionRelated.Instance">
             <summary>
-            Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
+            Obtiene una única instancia de esta clase
             </summary>
-            <value>La instancia inicializada</value>
+            <value>La única instancia de esta clase.</value>
         </member>
         <member name="M:Bot.SessionRelated.#ctor">
             <summary>
@@ -1098,28 +1272,26 @@
         </member>
         <member name="M:Bot.SessionRelated.AddNewUser(Bot.UserInfo)">
             <summary>
-            Metodo para agregar un nuevo usuario
+            Agrega un nuevo usuario en caso de que no exista
             </summary>
-            <param name="name">Nombre del usuario</param>
-            <param name="id">Id del usuario</param>
-            <param name="role">Role del usuariro</param>
+            <param name="user">El usuario en cuestión</param>
         </member>
         <member name="M:Bot.SessionRelated.DeleteUser(Bot.UserInfo)">
             <summary>
-            Metodo para borrar un usuario
+            Elimina un usuario
             </summary>
             <param name="user">Usuaurio a borrar</param>
         </member>
         <member name="M:Bot.SessionRelated.UsernameExists(System.Int64)">
             <summary>
-            Metodo para verificar si existe un usuario
+            Verifica si existe un usuario
             </summary>
             <param name="id">Id del usuario a verificar</param>
-            <returns>true o false</returns>
+            <returns>True si existe el usuario, false en caso contrario</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetUserById(System.Int64)">
             <summary>
-            Metodo para obtener el usuario relacionado al id.
+            Obtiene el usuario a partir de un id
             </summary>
             <param name="id">Id del usuario</param>
             <returns>El usuario</returns>
@@ -1129,7 +1301,42 @@
             Metodo para retornar la Company asociada al token generado
             </summary>
             <param name="token">Token que el usuario inserta</param>
-            <returns></returns>
+            <returns>La compañía relacionada al token o nulo en caso de que no haya una compañía con ese token</returns>
+        </member>
+        <member name="M:Bot.SessionRelated.GetCompanyByName(System.String)">
+            <summary>
+            Obtiene la compañía a partir del nombre
+            </summary>
+            <param name="companyName">El nombre de la compañía</param>
+            <returns>Si existe, la compañía. Nulo en caso contrario</returns>
+        </member>
+        <member name="M:Bot.SessionRelated.GetTokenByCompany(Bot.Company)">
+            <summary>
+            Obtiene un token a partir de la compañía
+            </summary>
+            <param name="company">La compañía en cuestión</param>
+            <returns>Si existe, el token. Nulo en caso contrario</returns>
+        </member>
+        <member name="M:Bot.SessionRelated.GetEntrepreneurInfoByUserInfo(Bot.UserInfo)">
+            <summary>
+            Obtiene una EntrepreneurInfo a partir de un UserInfo
+            </summary>
+            <param name="user">El UserInfo en cuestión</param>
+            <returns>En caso de que exista, la EntrepreneurInfo asociada a la UserInfo. Nulo en caso contrario</returns>
+        </member>
+        <member name="M:Bot.SessionRelated.GetAdminInfoByUserInfo(Bot.UserInfo)">
+            <summary>
+            Obtiene una AdminInfo a partir de un UserInfo
+            </summary>
+            <param name="user">El UserInfo en cuestión</param>
+            <returns>En caso de que exista, la AdminInfo asociada a la UserInfo. Nulo en caso contrario</returns>
+        </member>
+        <member name="M:Bot.SessionRelated.GetUserCompanyByUserInfo(Bot.UserInfo)">
+            <summary>
+            Obtiene una UserCompanyInfo a partir de un UserInfo
+            </summary>
+            <param name="user">El UserInfo en cuestión</param>
+            <returns>En caso de que exista, la UserCompanyInfo asociada a la UserInfo. Nulo en caso contrario</returns>
         </member>
         <member name="T:Bot.EntrepreneurInfo">
             <summary>
@@ -1137,39 +1344,33 @@
             su información y de llamar a las clases que hace falta para cumplir con sus requerimientos (llamar a las búsquedas, acceder al contacto de empresas).
             </summary>
         </member>
-        <member name="F:Bot.EntrepreneurInfo.listHistorialPublications">
-            <summary>
-            Lista de las publiaciones adquiridas por el emprendedor.
-            </summary>
-            <typeparam name="Publication">Publicación.</typeparam>
-            <returns>Coleción de tipo Publication.</returns>
-        </member>
         <member name="P:Bot.EntrepreneurInfo.Location">
             <summary>
-            Obtiene la ubicación.
+            Localización del emprendedor
             </summary>
-            <value>Ubicación.</value>
         </member>
         <member name="P:Bot.EntrepreneurInfo.Heading">
             <summary>
-            Establece el Rubro.
+            Rubro del emprendedor
             </summary>
-            <value>Obtiene el rubro.</value>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.#ctor">
+            <summary>
+            Constructor sin implementación para la etiqueta JsonConstructor.
+            </summary>
         </member>
         <member name="M:Bot.EntrepreneurInfo.#ctor(System.String,Bot.GeoLocation)">
             <summary>
-            Constructor de la clase Entrepreneur, setea los valores de los parámetros
-            y suma un valor al contador de emprendedores estático.
+            Crea una nueva instancia de la clase EntrepreneurInfo, asignando el rubro y la localización del emprendedor
             </summary>
-            <param name="heading">Rubro.</param>
-            <param name="geolocation">Ubicación.</param>
-            <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
+            <param name="heading">Rubro del emprendedor</param>
+            <param name="geolocation">Ubicación del emprendedor</param>
         </member>
         <member name="P:Bot.EntrepreneurInfo.ListHistorialPublications">
             <summary>
-            Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
-            </summary>
-            <returns>Lista de publicaciones.</returns>
+            Obtiene la lista de publicaciones adquiridas por el emprendedor
+            /// </summary>
+            <returns>Lista de publicaciones adquiridas.</returns>
         </member>
         <member name="P:Bot.EntrepreneurInfo.Certifications">
             <summary>
@@ -1185,21 +1386,21 @@
         </member>
         <member name="M:Bot.EntrepreneurInfo.AddCertification(System.String)">
             <summary>
-            Método para agregarle certificaciones al emprendedor.
+            Agrega una certificación al emprendedor
             </summary>
-            <param name="certification">Certificación.</param>
+            <param name="certification">Certificación en cuestión</param>
         </member>
         <member name="M:Bot.EntrepreneurInfo.AddSpecialization(System.String)">
             <summary>
-            Método para agregarle espcializaciones al emprendedor.
+            Agrega una especialización al emprendedor
             </summary>
-            <param name="specialization">Especialización.</param>
+            <param name="specialization">Especialización en cuestión</param>
         </member>
         <member name="M:Bot.EntrepreneurInfo.AddHistorialPublication(Bot.Publication)">
             <summary>
-            Método público que guarda las Publicaciones adquiridas por el emprendedor.
+            Agrega una publicación al historial de publicaciones adquiridas
             </summary>
-            <param name="publication">Publicación.</param>
+            <param name="publication">Publicación en cuestión</param>
         </member>
         <member name="M:Bot.EntrepreneurInfo.ContactCompany(Bot.Publication)">
             <summary>
@@ -1209,6 +1410,44 @@
             </summary>
             <param name="publication">Publicación de la cual se requiere saber el contacto.</param>
             <returns>Contacto de la empresa de la publicación como un string.</returns>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.GetCertifications">
+            <summary>
+            Obtiene todas las certificaciones que tiene el emprendedor
+            </summary>
+            <returns>Las certificaciones</returns>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.GetSpecializations">
+            <summary>
+            Obtiene todas las especializaciones que tiene el emprendedor
+            </summary>
+            <returns>Las especializaciones</returns>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.ContainsSpecialization(System.String)">
+            <summary>
+            Verifica si el emprendedor tiene o no una especialización
+            </summary>
+            <param name="specialization">Especialización a verificar</param>
+            <returns>True si contiene la especialización, false en caso contrario</returns>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.ContainsCertification(System.String)">
+            <summary>
+            Verifica si el emprendedor tiene o no una certificación
+            </summary>
+            <param name="certification">Certificación a verificar</param>
+            <returns>True si contiene la certificación, false en caso contrario</returns>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.DeleteSpecialization(System.String)">
+            <summary>
+            Elimina una especialización del emprendedor
+            </summary>
+            <param name="specialization">Especialización en cuestión</param>
+        </member>
+        <member name="M:Bot.EntrepreneurInfo.DeleteCertification(System.String)">
+            <summary>
+            Elimina una certificación del emprendedor
+            </summary>
+            <param name="certification">Certificación en cuestión</param>
         </member>
         <member name="T:Bot.ISearch`1">
             <summary>
@@ -1228,6 +1467,8 @@
         </member>
         <member name="T:Bot.SearchByLocation">
             <summary>
+            Clase que implementa la búsqueda de una publicación, en este caso la búsqueda por ubicación.
+            Patrones y prrincipios:
             Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por ubicación. Además,
             cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación con la ubicación que se le indica.
             </summary>
@@ -1241,8 +1482,16 @@
             <param name="addresToSearch">Dirección para buscar.</param>
             <returns>Lista de Publicaciones.</returns>
         </member>
+        <member name="P:Bot.SearchByLocation.Instance">
+            <summary>
+            Obtiene una única instancia de esta clase
+            </summary>
+            <value>La única instancia de esta clase.</value>
+        </member>
         <member name="T:Bot.SearchByMaterial">
             <summary>
+            Clase que implementa la búsqueda de una publicación, en este caso la búsqueda por material.
+            Patrones y principios:
             Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por material. Además, 
             cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación 
             que contenga al material que se le indica.
@@ -1257,6 +1506,12 @@
             </summary>
             <param name="wordToSearch"></param>
             <returns>Lista de publicaciones.</returns>
+        </member>
+        <member name="P:Bot.SearchByMaterial.Instance">
+            <summary>
+            Obtiene una única instancia de esta clase
+            </summary>
+            <value>La única instancia de esta clase.</value>
         </member>
         <member name="T:Bot.GeoLocation">
             <summary>
@@ -1316,19 +1571,24 @@
         </member>
         <member name="T:Bot.Message">
             <summary>
-            Clase Message que guarda el mensaje enviado por el usuario y además, su id.
+            Clase encargada de almacenar el mensaje y el id de un usuario.
+            Patrones y principios:
+            Debido a que se identifica una sola razón de cambio, esta clase cumple con SRP, esta razón podría ser
+            cambiar la forma que se almacena el mensaje y el id.
+            También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase
+            la cual es almacenar un mensaje con su id respectivo.
             </summary>
         </member>
         <member name="M:Bot.Message.#ctor(System.Int64,System.String)">
             <summary>
-            Constructor de la clase Message
+            Crea una nueva instancia de la clase Message, asignando el mensaje y el id del usuario
             </summary>
-            <param name="id">Id del usuario que envía el mensaje</param>
-            <param name="message">Contenido del mensaje</param>
+            <param name="id">Id del usuario en cuestión</param>
+            <param name="message">Mensaje del usuario en cuestión</param>
         </member>
         <member name="P:Bot.Message.UserId">
             <summary>
-            Id del usuario que esta charlando
+            Id del usuario
             </summary>
         </member>
         <member name="P:Bot.Message.Text">
@@ -1386,6 +1646,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:Bot.MyReferenceHandler.Instance">
+            <summary>
+            Obtiene una única instancia de esta clase
+            </summary>
+            <value>La única instancia de esta clase.</value>
+        </member>
         <member name="T:Bot.SerializeManager">
             <summary>
             Clase serializadora de los objetos que se desean persistir fuera del bot.
@@ -1429,18 +1695,27 @@
         </member>
         <member name="T:Bot.AdminInfo">
             <summary>
-            Clase RoleAdmin que implementa la interfaz IRole
+            Clase contenedora de la información manejada por el Admin
+            Patrones y principios:
+            Esta cumple con el patron SRP, ya que la unica razon de cambio que podría tener la clase, sería cambiar la forma
+            de almacenar la lista de certificaciones globales.
+            Cumple con Expert ya que, es experta en el manejo de la responsabilidad otorgada que es, manejar la lista de certificaiones globales.
             </summary>
         </member>
         <member name="F:Bot.AdminInfo.globalQualificationList">
             <summary>
-            Se inicializa la lista globalQualificationList
+            Lista de certifaciones para los usuarios y las publicaciones
             </summary>
-            <returns></returns>
+        </member>
+        <member name="M:Bot.AdminInfo.#ctor">
+            <summary>
+            Constructor de la clase AdminInfo sin implementación y de acceso publico para poder ser usado por 
+            la etiqueta JsonConstructor.
+            </summary>
         </member>
         <member name="T:Bot.Permission">
             <summary>
-            Indica los diferentes permisos que requiere un comando y a su vez, los permisos que tienen los diferentes usuarios
+            Indica los diferentes permisos que requiere un comando y a su vez, los permisos que pueden tener los diferentes usuarios
             </summary>
         </member>
         <member name="F:Bot.Permission.None">
@@ -1680,43 +1955,59 @@
         </member>
         <member name="T:Bot.TokenGenerator">
             <summary>
-            Clase TokenGenerator.
-            </summary>
+            Clase encargada de generar los tokens para las distintas compañías
+            Patrones y principios:
+            Cumple con SRP, ya que se identifica una única razón de cambio. Ésta podría ser, cambiar la forma de generar los tokens.
+            Cumple con Expert, porque posee todo lo necesario para cumplir con la responsabilidad otorgada a la clase, 
+            la cuál es la generación de tokens.
+            Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
+            un acceso global a esta instancia.
+            /// </summary>
         </member>
         <member name="P:Bot.TokenGenerator.Instance">
             <summary>
-            Metodo para generar una instancia de token. Cumple con el patrón Singleton debido a que solamente hay una unica instancia de este.
+            Obtiene una única instancia de esta clase
             </summary>
-            <value>Instancia del Token. </value>
+            <value>La única instancia de esta clase.</value>
         </member>
         <member name="M:Bot.TokenGenerator.GenerateToken">
             <summary>
-            Metodo para generar el token. Incrementa la variable tkn y la devuelve por cada token que genera.
+            Genera un nuevo token para una compañía.
             </summary>
             <returns>El token generado.</returns>
         </member>
         <member name="T:Bot.UserCompanyInfo">
             <summary>
-            Clase RoleUserCompany se encarga de servir como representación de un usuario
-            que forma parte de una empresa. 
-            /// </summary>
+            Clase contenedora de la información de un usuario de una compañía
+            Patrones y principios:
+            Esta cumple con el patron SRP, ya que la unica razon de cambio que podría tener la clase, sería cambiar la forma
+            de guardar la información del usuario de la compañía.
+            Cumple con Expert ya que, es experta en el manejo de la información de un usuario de una compañía.
+            </summary>
         </member>
         <member name="P:Bot.UserCompanyInfo.company">
             <summary>
-            Representa la clase Empresa a la cual es añadido.
+            Compañía a la cuál pertenece el usuario
             </summary>
-            <value></value>
+        </member>
+        <member name="M:Bot.UserCompanyInfo.#ctor">
+            <summary>
+            Constructor sin implementación para la etiqueta JsonConstructor.
+            </summary>
         </member>
         <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">
             <summary>
-            Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
+            Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario
             </summary>
-            <param name="company">Empresa</param>
+            <param name="company">Compañía en cuestión</param>
         </member>
         <member name="T:Bot.UserInfo">
             <summary>
             Clase contenedora de la información del usuario.
-            Esta cumple con el patron SRP y Expert.
+            Patrones y principios:
+            Esta cumple con el patron SRP, ya que la unica razon de cambio que podría tener la clase, sería cambiar la forma
+            de guardar la información del usuario.
+            Cumple con Expert ya que, es experta en el manejo de la información de un usuario.
             </summary>
         </member>
         <member name="F:Bot.UserInfo.AdminPermissions">
@@ -1765,9 +2056,14 @@
             Estado del usuario que cambia según los comandos que utilice
             </summary>
         </member>
+        <member name="M:Bot.UserInfo.#ctor">
+            <summary>
+            Constructor sin implementación para la etiqueta JsonConstructor.
+            </summary>
+        </member>
         <member name="M:Bot.UserInfo.#ctor(System.String,System.Int64)">
             <summary>
-            Crea una nueva instancia de la clase UserInfo y asignando su nombre y el id.
+            Crea una nueva instancia de la clase UserInfo, asignando su nombre y el id.
             </summary>
             <param name="name">Nombre del usuario en cuestión</param>
             <param name="id">Id del usuario en cuestión</param>

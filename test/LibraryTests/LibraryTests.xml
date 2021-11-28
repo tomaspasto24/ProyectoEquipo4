@@ -265,6 +265,22 @@
             Se crea una instancia de emprendedor que será usada para los tests de cada método.
             </summary>
         </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddCertificationTest">
+            <summary>
+            Test del método que le agrega una certificación al emprendedor.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddSpecializationTest">
+            <summary>
+            Test del método que le agrega una especialización al emprendedor
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddListHistorialPublicationsTest1">
+            <summary>
+            Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+            y se fija que la lista no esté vacía
+            </summary>
+        </member>
         <member name="M:BotTests.RoleEntrepreneurTests.AddHistorialPublicationTest2">
             <summary>
             Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
@@ -392,7 +408,7 @@
             Clase TokenTest, esta se va a encargar de testear las funciones de generar el token el cual estara compuesto por una string alfanumerica.
             </summary>
         </member>
-        <member name="F:BotTests.TokenTest.admin">
+        <member name="F:BotTests.TokenTest.company">
             <summary>
             Defino la variable afuera para que sea global y adentro del metodo la instancio.
             </summary>

@@ -100,7 +100,7 @@ namespace BotTests
             handler.Cancel();
 
             // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
-            Assert.That(handler.Data.Token, Is.EqualTo(default(string)));
+            // Assert.That(handler.Data.Token, Is.EqualTo(default(string)));
         }
     }
 }

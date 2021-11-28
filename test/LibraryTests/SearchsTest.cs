@@ -12,7 +12,7 @@ namespace BotTests
     /// </summary>
     public class SearchTests
     {
-        RoleEntrepreneur emprendedor;
+        EntrepreneurInfo entrepreneurInfo;
         Material material;
         Material material2;
         Publication publicacion;
@@ -24,7 +24,7 @@ namespace BotTests
         public void Setup()
         {
             location = new GeoLocation("Av. Italia", "Montevideo");
-            emprendedor = new RoleEntrepreneur("herrería", location);
+            entrepreneurInfo = new EntrepreneurInfo("herrería", location);
 
             material = new Material("Alambre", 2000, 200);
             material2 = new Material("Alambre2", 1000, 300);
@@ -41,13 +41,13 @@ namespace BotTests
         public void SearchByMaterialTest()
         {        
             bool test1 = PublicationSet.Instance.AddElement(publicacion);     
-            List<Publication> resultadoBusqueda = new List<Publication>();
+            string resultadoBusqueda = string.Empty;
             string keyWord = "alambre";
             material2.AddKeyWord(keyWord);
             SearchByMaterial s = new SearchByMaterial();
-            resultadoBusqueda = (List<Publication>) s.Search("alambre"); 
+            resultadoBusqueda = s.Search("alambre"); 
  
-            Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
+            Assert.IsTrue(resultadoBusqueda.Contains(publicacion.Title));
             // Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
         }
 

@@ -34,8 +34,7 @@ namespace BotTests
         [Test]
         public void TextNoNullHandlerTest()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             TextNullHandler textNullHandler = new TextNullHandler(null);
             testMessage = new Message(5433261, "PrueBa ");

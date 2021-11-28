@@ -9,7 +9,7 @@ namespace BotTests
     /// </summary>
     public class RoleEntrepreneurTests
     {
-        RoleEntrepreneur emprendedor;
+        EntrepreneurInfo emprendedor;
         GeoLocation ubicacionParaPruebas;
         string name;
         int id;
@@ -26,7 +26,7 @@ namespace BotTests
             id = 1;
             heading = "metalurgica";
             GeoLocation ubicacionParaPruebas = new GeoLocation("8 de OCtubre", "Montevideo");
-            emprendedor = new RoleEntrepreneur(heading, ubicacionParaPruebas);
+            emprendedor = new EntrepreneurInfo(heading, ubicacionParaPruebas);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace BotTests
         {
             certification = "soldadora";
             emprendedor.AddCertification(certification);
-            Assert.AreEqual("soldadora", emprendedor.ReturnCertification);
+            Assert.AreEqual("soldadora", emprendedor.GetCertifications());
         }
 
 
@@ -59,12 +59,12 @@ namespace BotTests
         [Test]
         public void AddListHistorialPublicationsTest1()
         {
-            RoleEntrepreneur emprendedor2 = new RoleEntrepreneur("Industria", ubicacionParaPruebas);
+            EntrepreneurInfo emprendedor2 = new EntrepreneurInfo("Industria", ubicacionParaPruebas);
             Company empresaDeVidrios = new Company("vidrioglass", "vidrio", ubicacionParaPruebas, "vidrioglas@correo.com");
             Material vidrio = new Material("Vidrio", 100, 850);
             Publication publicacion = new Publication("Publicación de vidrio", empresaDeVidrios, ubicacionParaPruebas, vidrio);
             emprendedor.AddHistorialPublication(publicacion);
-            Assert.IsNotEmpty(emprendedor.ReturnListHistorialPublications());
+            Assert.IsNotEmpty(emprendedor2.ListHistorialPublications);
         }
 
         /// <summary>
@@ -74,14 +74,14 @@ namespace BotTests
         [Test]
         public void AddHistorialPublicationTest2()
         {
-            RoleEntrepreneur emprendedor3 = new RoleEntrepreneur("Construcción", ubicacionParaPruebas);
+            EntrepreneurInfo emprendedor3 = new EntrepreneurInfo("Construcción", ubicacionParaPruebas);
             Company pvcCompany = new Company("pvCompany", "plasticos", ubicacionParaPruebas, "pvcventas@correo.com");
             Material pvc = new Material("PVC", 200, 500);
             Publication publicacion = new Publication("Publicación de plástico", pvcCompany, ubicacionParaPruebas, pvc);
             emprendedor.AddHistorialPublication(publicacion);
             List<Publication> listaPublicacionesEsperada = new List<Publication>();
             listaPublicacionesEsperada.Add(publicacion);
-            Assert.AreEqual(listaPublicacionesEsperada, emprendedor.ReturnListHistorialPublications());
+            Assert.AreEqual(listaPublicacionesEsperada, emprendedor.ListHistorialPublications);
         }
         /// <summary>
         /// Verifica que la ubicación que se le devuelve al emprendedor sea efectivamente la correcta
