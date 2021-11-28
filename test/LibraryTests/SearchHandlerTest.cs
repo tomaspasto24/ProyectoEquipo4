@@ -10,7 +10,6 @@ namespace BotTests
     /// </summary>
     public class SearchHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         String response;
@@ -21,21 +20,21 @@ namespace BotTests
         [Test]
         public void SearchHandlerNoHasPermissionTest()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             SearchHandler searchHandler = new SearchHandler(null);
-            testMessage = new Message(5433261, "");
+            testMessage = new Message(5433261, "/busqueda");
 
             result = searchHandler.Handle(testMessage, out response);
+            Assert.That(response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
             Assert.That(result, Is.Null);
         }
         [Test]
         public void SearchHandlerCommandTest()
         {
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", entrepreneurLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("heading", entrepreneurLocation));
             SessionRelated.Instance.AddNewUser(user1);
             SearchHandler searchHandler = new SearchHandler(null);
             user1.HandlerState = Bot.State.Start;
@@ -48,9 +47,9 @@ namespace BotTests
         [Test]
         public void SearchHandlerWrongCommandTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("heading", entrepreneurLocation));
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.Start;
             SearchHandler searchHandler = new SearchHandler(null);

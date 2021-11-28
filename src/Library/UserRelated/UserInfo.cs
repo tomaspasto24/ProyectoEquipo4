@@ -4,10 +4,15 @@ using System.Collections.Generic;
 namespace Bot
 {
     /// <summary>
-    /// Clase encargada de representar al usuario (componiendo name, id y role). Esta cumple con el patron SRP y Expert.
+    /// Clase contenedora de la información del usuario.
+    /// Esta cumple con el patron SRP y Expert.
     /// </summary>
     public class UserInfo
     {
+        /// <summary>
+        /// Lista de permisos que tiene un administrador
+        /// </summary>
+        /// <typeparam name="Permission">Permisos</typeparam>
         [JsonInclude]
         public static List<Permission> AdminPermissions = new List<Permission>()
         {
@@ -15,6 +20,10 @@ namespace Bot
             Permission.GenerateToken,
         };
 
+        /// <summary>
+        /// Lista de permisos que tiene un usuario default
+        /// </summary>
+        /// <typeparam name="Permission">Permisos</typeparam>
         [JsonInclude]
         public static List<Permission> DefaultPermissions = new List<Permission>()
         {
@@ -23,6 +32,10 @@ namespace Bot
             Permission.Undertake,
         };
 
+        /// <summary>
+        /// Lista de permisos que tiene un usuario de empresa
+        /// </summary>
+        /// <typeparam name="Permission">Permisos</typeparam>
         [JsonInclude]
         public static List<Permission> UserCompanyPermissions = new List<Permission>()
         {
@@ -32,39 +45,59 @@ namespace Bot
             Permission.AddMaterial,
         };
 
+        /// <summary>
+        /// Lista de permisos que tiene un emprendedor
+        /// </summary>
+        /// <typeparam name="Permission">Permisos</typeparam>
         [JsonInclude]
         public static List<Permission> EntrepreneurPermissions = new List<Permission>()
         {
             Permission.None,
-            Permission.Register, // TODO preguntar cambio de emprendedor -> userCompany
             Permission.Search,
             Permission.PurchasesReport,
             Permission.ContactCompany,
             Permission.Data,
         };
 
+        /// <summary>
+        /// Lista que contiene los permisos que tiene el usuario
+        /// </summary>
+        /// <typeparam name="Permission">Permisos</typeparam>
         [JsonInclude]
         public List<Permission> Permissions { get; set; } = new List<Permission>();
+        /// <summary>
+        /// Nombre del usuario
+        /// </summary>
+        /// <value></value>
         public string Name { get; set; }
+        /// <summary>
+        /// Id del usuario
+        /// </summary>
         public long Id { get; set; }
+        /// <summary>
+        /// Estado del usuario que cambia según los comandos que utilice
+        /// </summary>
         public State HandlerState { get; set; }
 
         [JsonConstructor]
         public UserInfo() { }
 
         /// <summary>
-        /// Método constructor de la clase User que se encarga de asignar los atributos
-        /// name, id y role que usará la clase.
+        /// Crea una nueva instancia de la clase UserInfo y asignando su nombre y el id.
         /// </summary>
-        /// <param name="name">El nombre del usuario.</param>
-        /// <param name="id">El id del usuario.</param>
-        /// <param name="role">El role del usuario</param>
+        /// <param name="name">Nombre del usuario en cuestión</param>
+        /// <param name="id">Id del usuario en cuestión</param>
         public UserInfo(string name, long id)
         {
             this.Name = name;
             this.Id = id;
             this.Permissions = UserInfo.DefaultPermissions;
         }
+        /// <summary>
+        /// Verifica si un usuario tiene o no cierto permiso
+        /// </summary>
+        /// <param name="permission">El permiso en cuestión</param>
+        /// <returns>true si tiene el permiso, falso en caso contrario</returns>
         public bool HasPermission(Permission permission)
         {
             return this.Permissions.Contains(permission);
