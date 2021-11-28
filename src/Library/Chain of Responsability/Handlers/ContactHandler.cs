@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
-    A su vez, cumple con el patrón Chain of Responsability.
-    */
     /// <summary>
-    /// Handler que se encarga del registro de un usuario
+    /// Handler que se encarga de otorgar el contacto de una empresa, a un emprendedor que la solicita
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+    /// A su vez, cumple con el patrón Chain of Responsability.
     /// </summary>
     public class ContactHandler : AbstractHandler
     {
@@ -36,7 +36,7 @@ namespace Bot
                 response = string.Empty;
                 return false;
             }
-            
+
             if (request.Text.Equals("/contacto") && user.HandlerState == Bot.State.Start)
             {
                 user.HandlerState = Bot.State.AskingCompanyName;
@@ -59,7 +59,7 @@ namespace Bot
                     return true;
                 }
             }
-            
+
             response = string.Empty;
             return false;
         }

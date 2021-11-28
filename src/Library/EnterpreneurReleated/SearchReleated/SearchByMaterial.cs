@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 namespace Bot
 {
     /// <summary>
+    /// Clase que implementa la búsqueda de una publicación, en este caso la búsqueda por material.
+    /// Patrones y principios:
     /// Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por material. Además, 
     /// cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación 
     /// que contenga al material que se le indica.
@@ -37,7 +39,10 @@ namespace Bot
         }
 
         private static SearchByMaterial instance;
-
+        /// <summary>
+        /// Obtiene una única instancia de esta clase
+        /// </summary>
+        /// <value>La única instancia de esta clase.</value>
         public static SearchByMaterial Instance
         {
             get

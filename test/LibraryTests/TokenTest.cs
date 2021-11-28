@@ -12,7 +12,6 @@ namespace BotTests
         /// <summary>
         /// Defino la variable afuera para que sea global y adentro del metodo la instancio.
         /// </summary>
-        RoleAdmin admin;
         Company company;
 
         /// <summary>
@@ -21,7 +20,6 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            this.admin = new RoleAdmin();
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
             this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
         }
@@ -32,7 +30,8 @@ namespace BotTests
         [Test]
         public void TokenType()
         {
-            String token = this.admin.GenerateToken(this.company);
+            TokenGenerator.Instance.GenerateToken();
+            String token = TokenGenerator.Instance.GenerateToken().ToString();
             Assert.AreEqual(8, token.GetType());
         }
 
@@ -42,7 +41,7 @@ namespace BotTests
         [Test]
         public void TokenAddedTest()
         {
-            String token = this.admin.GenerateToken(this.company);
+            String token = TokenGenerator.Instance.GenerateToken().ToString();
             Assert.AreEqual(token, TokenGenerator.Instance.GenerateToken());
         }
     }

@@ -7,6 +7,8 @@ using Nito.AsyncEx;
 namespace Bot
 {
     /// <summary>
+    /// Clase que implementa la búsqueda de una publicación, en este caso la búsqueda por ubicación.
+    /// Patrones y prrincipios:
     /// Esta clase cumple con en patrón Expert porque es experta en cómo hacer una búsqueda por ubicación. Además,
     /// cumple con el principio SRP dado que su única razón de cambio es cómo buscar una publicación con la ubicación que se le indica.
     /// </summary>
@@ -40,7 +42,10 @@ namespace Bot
         }
 
         private static SearchByLocation instance;
-
+        /// <summary>
+        /// Obtiene una única instancia de esta clase
+        /// </summary>
+        /// <value>La única instancia de esta clase.</value>
         public static SearchByLocation Instance
         {
             get

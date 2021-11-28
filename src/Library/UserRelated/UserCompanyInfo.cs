@@ -3,15 +3,17 @@ using System.Text.Json.Serialization;
 namespace Bot
 {
     /// <summary>
-    /// Clase RoleUserCompany se encarga de servir como representación de un usuario
-    /// que forma parte de una empresa. 
-    /// /// </summary>
+    /// Clase contenedora de la información de un usuario de una compañía
+    /// Patrones y principios:
+    /// Esta cumple con el patron SRP, ya que la unica razon de cambio que podría tener la clase, sería cambiar la forma
+    /// de guardar la información del usuario de la compañía.
+    /// Cumple con Expert ya que, es experta en el manejo de la información de un usuario de una compañía.
+    /// </summary>
     public class UserCompanyInfo
     {
         /// <summary>
-        /// Representa la clase Empresa a la cual es añadido.
+        /// Compañía a la cuál pertenece el usuario
         /// </summary>
-        /// <value></value>
         public Company company { private set; get; }
 
         /// <summary>
@@ -21,9 +23,9 @@ namespace Bot
         public UserCompanyInfo() { }
 
         /// <summary>
-        /// Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
+        /// Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario
         /// </summary>
-        /// <param name="company">Empresa</param>
+        /// <param name="company">Compañía en cuestión</param>
         public UserCompanyInfo(Company company)
         {
             this.company = company;
