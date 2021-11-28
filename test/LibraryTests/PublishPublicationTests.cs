@@ -13,10 +13,10 @@ namespace BotTests
     /// </summary>
     public class PublishPublicationTests
     {
+        UserInfo user;
         GeoLocation location;
         Company companyTest;
         Material initialMaterial;
-        RoleEntrepreneur entrepreneur;
 
         /// <summary>
         /// Método que crea y asgina las instancias a los atributos location, companyTest, initialMaterial,
@@ -29,7 +29,6 @@ namespace BotTests
             companyTest = new Company("Test", "itemTest", location, "093929434");
             initialMaterial = new Material("Wood", 15, 0);
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            entrepreneur = new RoleEntrepreneur("carpintero", entrepreneurLocation);
 
         }
 
@@ -91,12 +90,15 @@ namespace BotTests
         [Test]
         public void TestPublicationClosedWithInterestedPerson()
         {
+            user = new UserInfo("name", 1234);
+            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("Heading", location);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user, entrepreneurInfo);
             Publication publicationToCompare;
             publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
-            RoleEntrepreneur entrepreneur = new RoleEntrepreneur("Prueba", location);
 
-            entrepreneur.ContactCompany(publicationToCompare);
-            Assert.IsInstanceOf(typeof(RoleEntrepreneur), publicationToCompare.ClosePublication()); 
+            entrepreneurInfo.ContactCompany(publicationToCompare);
+
+            Assert.IsInstanceOf(typeof(EntrepreneurInfo), publicationToCompare.ClosePublication()); 
 
             Assert.IsNotNull(publicationToCompare.InterestedPerson);
         }

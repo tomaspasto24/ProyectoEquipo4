@@ -12,7 +12,8 @@ namespace BotTests
     {
         Publication publicationTest;
         Company company;
-        RoleEntrepreneur entrepreneur;
+        UserInfo userInfo;
+        EntrepreneurInfo entrepreneurInfo;
 
         /// <summary>
         /// Método que crea y asgina las instancias a los atributos que seran utilizados para ejecutar los test.
@@ -20,14 +21,18 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            userInfo = new UserInfo("Usuario", 1234);
+            userInfo.Permissions = UserInfo.EntrepreneurPermissions;
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
-            String title = "Madera de pino";
-            Material materialTest = new Material(title, 500, 9000);
-            publicationTest = new Publication(title, company, companyLocation, materialTest);
+            entrepreneurInfo = new EntrepreneurInfo("carpintero", entrepreneurLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(userInfo, entrepreneurInfo);
+            SessionRelated.Instance.AllUsers.Add(userInfo);
+
+            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
+            Material materialTest = new Material("Madera de pino", 500, 9000);
+            publicationTest = new Publication("Madera de Pino", company, companyLocation, materialTest);
             PublicationSet.Instance.AddElement(publicationTest);
-            entrepreneur = new RoleEntrepreneur("carpintero", entrepreneurLocation);
         }
 
         /// <summary>
@@ -36,8 +41,8 @@ namespace BotTests
         [Test]
         public void CompanyReportClosedPublicationTest()
         {
-            this.entrepreneur.ContactCompany(this.publicationTest);
-            this.publicationTest.ClosePublication();
+            entrepreneurInfo.ContactCompany(this.publicationTest);
+            publicationTest.ClosePublication();
             CompanyReport reporte = new CompanyReport(this.company);
             String expected = "Publicaciones cerradas de los ultimos 30 dias de la empresa: Las Acacias";
 
@@ -61,9 +66,9 @@ namespace BotTests
         [Test]
         public void EntrepreneurReportClosedPublicationTest()
         {
-            this.entrepreneur.ContactCompany(this.publicationTest);
-            this.publicationTest.ClosePublication();
-            EntrepreneurReport reporte = new EntrepreneurReport(this.entrepreneur);
+            entrepreneurInfo.ContactCompany(publicationTest);
+            publicationTest.ClosePublication();
+            EntrepreneurReport reporte = new EntrepreneurReport(entrepreneurInfo);
             String expected = "Materiales consumidos en los ultimos 30 dias por el emprendedor: emprendedor1 #1 - Madera de pino";
             StringAssert.Contains(expected, reporte.GiveReport());
             //Assert.AreEqual(expected, reporte.GiveReport());
@@ -75,7 +80,7 @@ namespace BotTests
         [Test]
         public void EntrepreneurReportPublicationNotClosedTest()
         {
-            EntrepreneurReport reporte = new EntrepreneurReport(this.entrepreneur);
+            EntrepreneurReport reporte = new EntrepreneurReport(entrepreneurInfo);
             String expected = $"El emprendedor: emprendedor1, no tiene publicaciones asignadas en los ultimos 30 dias";
             // StringAssert.Contains(expected, reporte.GiveReport());
             Assert.AreEqual(expected, reporte.GiveReport());

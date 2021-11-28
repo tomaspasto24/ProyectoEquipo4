@@ -24,8 +24,6 @@ namespace BotTests
         {
             user1 = new UserInfo("name1", 5433261);
             user1.Permissions = UserInfo.DefaultPermissions;
-            SessionRelated.Instance.AddNewUser(user1);
-            stHandler = new StartHandler(null);
         }
         /// <summary>
         /// Se testea que el StartHandler responda al comando /hola.

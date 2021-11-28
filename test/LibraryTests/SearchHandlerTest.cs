@@ -33,9 +33,10 @@ namespace BotTests
         {
             user1.Permissions = UserInfo.DefaultPermissions;
             SearchHandler searchHandler = new SearchHandler(null);
-            testMessage = new Message(5433261, "");
+            testMessage = new Message(5433261, "/busqueda");
 
             result = searchHandler.Handle(testMessage, out response);
+            Assert.That(response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
             Assert.That(result, Is.Null);
         }
         /// <summary>

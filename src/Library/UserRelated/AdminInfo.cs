@@ -8,8 +8,6 @@ namespace Bot
     /// </summary>
     public class AdminInfo
     {
-        // TODO Resolver donde guardar estas qualifications
-
         /// <summary>
         /// Se inicializa la lista globalQualificationList
         /// </summary>
@@ -17,6 +15,9 @@ namespace Bot
         [JsonInclude]
         public static IList<string> globalQualificationList = new List<string>();
 
+        /// <summary>
+        /// Constructor AdminInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
+        /// </summary>
         [JsonConstructor]
         public AdminInfo() { }
     }
