@@ -1,7 +1,7 @@
 namespace Bot
 {
     /// <summary>
-    /// Indica los diferentes permisos que requiere un comando y a su vez, los permisos que tienen los diferentes usuarios
+    /// Indica los diferentes permisos que requiere un comando y a su vez, los permisos que pueden tener los diferentes usuarios
     /// </summary>
     public enum Permission
     {

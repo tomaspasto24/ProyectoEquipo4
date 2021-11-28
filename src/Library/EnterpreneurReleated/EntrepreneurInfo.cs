@@ -11,13 +11,8 @@ namespace Bot
     /// </summary>
     public class EntrepreneurInfo
     {
-        /// <summary>
-        /// Lista de las publiaciones adquiridas por el emprendedor.
-        /// </summary>
-        /// <typeparam name="Publication">Publicación.</typeparam>
-        /// <returns>Coleción de tipo Publication.</returns>
         private List<Publication> listHistorialPublications = new List<Publication>();
-        
+
         private SearchByLocation searchByLocation = new SearchByLocation();
 
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
@@ -25,27 +20,26 @@ namespace Bot
         private List<string> specializations = new List<string>();
 
         /// <summary>
-        /// Obtiene la ubicación.
+        /// Localización del emprendedor
         /// </summary>
-        /// <value>Ubicación.</value>
         public GeoLocation Location { get; private set; }
 
         /// <summary>
-        /// Establece el Rubro.
+        /// Rubro del emprendedor
         /// </summary>
-        /// <value>Obtiene el rubro.</value>
         public string Heading { get; set; }
 
+        /// <summary>
+        /// Constructor sin implementación para la etiqueta JsonConstructor.
+        /// </summary>
         [JsonConstructor]
         public EntrepreneurInfo() { }
 
         /// <summary>
-        /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
-        /// y suma un valor al contador de emprendedores estático.
+        /// Crea una nueva instancia de la clase EntrepreneurInfo, asignando el rubro y la localización del emprendedor
         /// </summary>
-        /// <param name="heading">Rubro.</param>
-        /// <param name="geolocation">Ubicación.</param>
-        /// <returns>No se devuelve, se procede con la inicialización de la instancia de clase.</returns>
+        /// <param name="heading">Rubro del emprendedor</param>
+        /// <param name="geolocation">Ubicación del emprendedor</param>
         public EntrepreneurInfo(string heading, GeoLocation geolocation)
         {
             this.Location = geolocation;
@@ -53,9 +47,9 @@ namespace Bot
         }
 
         /// <summary>
-        /// Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
-        /// </summary>
-        /// <returns>Lista de publicaciones.</returns>
+        /// Obtiene la lista de publicaciones adquiridas por el emprendedor
+        /// /// </summary>
+        /// <returns>Lista de publicaciones adquiridas.</returns>
         [JsonInclude]
         public List<Publication> ListHistorialPublications
         {
@@ -116,58 +110,27 @@ namespace Bot
         }
 
         /// <summary>
-        /// Método para agregarle certificaciones al emprendedor.
+        /// Agrega una certificación al emprendedor
         /// </summary>
-        /// <param name="certification">Certificación.</param>
+        /// <param name="certification">Certificación en cuestión</param>
         public void AddCertification(string certification)
         {
             this.certifications.Add(certification);
         }
 
         /// <summary>
-        /// Método para agregarle espcializaciones al emprendedor.
+        /// Agrega una especialización al emprendedor
         /// </summary>
-        /// <param name="specialization">Especialización.</param>
+        /// <param name="specialization">Especialización en cuestión</param>
         public void AddSpecialization(string specialization)
         {
             this.specializations.Add(specialization);
         }
 
         /// <summary>
-        /// Buscar publicaciones por material.
+        /// Agrega una publicación al historial de publicaciones adquiridas
         /// </summary>
-        /// <param name="wordToSearch"></param>
-        /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        // public string SearchingByMaterials(string wordToSearch)
-        // {
-        //     string publications = string.Empty;
-        //     foreach (Publication publication in (this.searchByMaterial.Search(wordToSearch)))
-        //     {
-        //         publications = publications + publication.ReturnPublication(publication);
-        //     }
-        //     return publications;
-        // }
-
-
-        /// <summary>
-        /// Buscar publicaciones por ubicación.
-        /// </summary>
-        /// <param name="addresToSearch">Palabra clave como ubicación.</param>
-        /// <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
-        // public string SearchingByLocation(string addresToSearch)
-        // {
-        //     string publications = string.Empty;
-        //     foreach (Publication publication in (this.searchByLocation.Search(addresToSearch)))
-        //     {
-        //         publications = publications + publication.ReturnPublication(publication);
-        //     }
-        //     return publications;
-        // }
-
-        /// <summary>
-        /// Método público que guarda las Publicaciones adquiridas por el emprendedor.
-        /// </summary>
-        /// <param name="publication">Publicación.</param>
+        /// <param name="publication">Publicación en cuestión</param>
         public void AddHistorialPublication(Publication publication)
         {
             this.listHistorialPublications.Add(publication);
@@ -187,6 +150,10 @@ namespace Bot
             return publication.Company.ReturnContact();
         }
 
+        /// <summary>
+        /// Obtiene todas las certificaciones que tiene el emprendedor
+        /// </summary>
+        /// <returns>Las certificaciones</returns>
         public string GetCertifications()
         {
             if (certifications.Count == 0)
@@ -201,6 +168,10 @@ namespace Bot
             return sb.ToString().Trim();
         }
 
+        /// <summary>
+        /// Obtiene todas las especializaciones que tiene el emprendedor
+        /// </summary>
+        /// <returns>Las especializaciones</returns>
         public string GetSpecializations()
         {
             if (specializations.Count == 0)
@@ -216,25 +187,37 @@ namespace Bot
 
         }
 
-        public override string ToString()
-        {
-            return "Emprendedor";
-        }
-
+        /// <summary>
+        /// Verifica si el emprendedor tiene o no una especialización
+        /// </summary>
+        /// <param name="specialization">Especialización a verificar</param>
+        /// <returns>True si contiene la especialización, false en caso contrario</returns>
         public bool ContainsSpecialization(string specialization)
         {
             return this.specializations.Contains(specialization);
         }
-
+        /// <summary>
+        /// Verifica si el emprendedor tiene o no una certificación
+        /// </summary>
+        /// <param name="certification">Certificación a verificar</param>
+        /// <returns>True si contiene la certificación, false en caso contrario</returns>
         public bool ContainsCertification(string certification)
         {
             return this.certifications.Contains(certification);
         }
 
+        /// <summary>
+        /// Elimina una especialización del emprendedor
+        /// </summary>
+        /// <param name="specialization">Especialización en cuestión</param>
         public void DeleteSpecialization(string specialization)
         {
             this.specializations.Remove(specialization);
         }
+        /// <summary>
+        /// Elimina una certificación del emprendedor
+        /// </summary>
+        /// <param name="certification">Certificación en cuestión</param>
         public void DeleteCertification(string certification)
         {
             this.certifications.Remove(certification);

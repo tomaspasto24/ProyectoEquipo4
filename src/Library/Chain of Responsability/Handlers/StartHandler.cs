@@ -1,13 +1,12 @@
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
-    A su vez, cumple con el patrón Chain of Responsability.
-    */
     /// <summary>
-    /// Handler para saludar al usuario
+    /// Handler que se encarga de saludar al usuario
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+    /// A su vez, cumple con el patrón Chain of Responsability.
     /// </summary>
     public class StartHandler : AbstractHandler
     {
@@ -26,7 +25,7 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            
+
             if (request.Text.Equals("/hola"))
             {
                 response = $"¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?:\n {Command.GetCommands(user.Id)}";
