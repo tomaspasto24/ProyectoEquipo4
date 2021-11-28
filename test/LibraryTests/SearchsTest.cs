@@ -46,7 +46,7 @@ namespace BotTests
             material2.AddKeyWord(keyWord);
             SearchByMaterial s = new SearchByMaterial();
             resultadoBusqueda = (List<Publication>) s.Search("alambre"); 
- 
+            
             Assert.IsTrue(resultadoBusqueda.Contains(publicacion));
             // Assert.IsTrue(publicacion.ReturnListMaterials().Contains(material2));
         }
