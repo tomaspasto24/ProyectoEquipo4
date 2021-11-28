@@ -261,5 +261,22 @@ namespace Bot
         {
             ((List<Publication>)this.listHistorialPublications).AddRange(listPublications);
         }
+
+        /// <summary>
+        /// Verifica si la compañía contiene la publicación ingresada por parametro
+        /// </summary>
+        /// <param name="publicationTitle">Titulo de la publicación en cuestión</param>
+        /// <returns>True si la contiene, false en caso contrario</returns>
+        public bool ContainsPublication(string publicationTitle)
+        {
+            foreach (Publication publication in this.ListOwnPublications)
+            {
+                if (publication.Title.Equals(publicationTitle))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

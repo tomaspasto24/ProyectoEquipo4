@@ -31,8 +31,8 @@ namespace Bot
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
-            //TODO Cambiar con un administrador de datos para el handler
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
+            UserCompanyInfo userCompanyInfo = SessionRelated.Instance.GetUserCompanyByUserInfo(user);
 
             if (!user.HasPermission(Permission.AddMaterial))
             {
@@ -47,6 +47,10 @@ namespace Bot
             }
             else if (user.HandlerState == Bot.State.AddingMaterial)
             {
+                if (!userCompanyInfo.company.ContainsPublication(request.Text))
+                {
+                    throw new ArgumentException("No existe una publicación con ese nombre");
+                }
                 this.materialData.Remove(user);
                 this.materialData.Add(user, new MaterialData(request.Text));
                 response = "Envía el nombre del material";

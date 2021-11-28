@@ -32,7 +32,7 @@ namespace Bot
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
             UserCompanyInfo userCompanyInfo = SessionRelated.Instance.GetUserCompanyByUserInfo(user);
 
-            if (!user.HasPermission(Permission.PurchasesReport))
+            if (!user.HasPermission(Permission.SalesReport))
             {
                 response = string.Empty;
                 return false;
@@ -40,21 +40,13 @@ namespace Bot
 
             if (request.Text.Equals("/reporte") && user.HandlerState == Bot.State.Start)
             {
-                StringBuilder report = new StringBuilder();
-                int contador = 0;
-
-                foreach (Publication publication in userCompanyInfo.company.ListHistorialPublications)
-                {
-                    if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
-                    && publication.IsClosed)
-                    {
-                        report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");
-                    }
-                }
+                string report = string.Empty;
+                CompanyReport companyReport = new CompanyReport(userCompanyInfo.company);
+                report = companyReport.GiveReport();
 
                 if (report.Length > 0)
                 {
-                    response = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {userCompanyInfo.company.Name} \n  {report.ToString()}";
+                    response = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {userCompanyInfo.company.Name} \n  {report}";
                     return true;
                 }
                 else

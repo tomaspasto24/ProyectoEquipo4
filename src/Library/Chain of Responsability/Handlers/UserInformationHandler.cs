@@ -34,6 +34,7 @@ namespace Bot
 
             if (!user.HasPermission(Permission.Data))
             {
+                // TODO poner exception en todos los handlers
                 response = string.Empty;
                 return false;
             }
