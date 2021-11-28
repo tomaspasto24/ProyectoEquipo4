@@ -83,7 +83,7 @@ namespace Bot
         public State HandlerState { get; set; }
 
         /// <summary>
-        /// Constructor sin implementación para la etiqueta JsonConstructor.
+        /// Constructor UserInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
         /// </summary>
         [JsonConstructor]
         public UserInfo() { }

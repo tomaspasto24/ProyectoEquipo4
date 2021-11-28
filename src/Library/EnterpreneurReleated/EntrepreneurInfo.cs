@@ -34,7 +34,7 @@ namespace Bot
         /// </summary>
         [JsonConstructor]
         public EntrepreneurInfo() { }
-
+        
         /// <summary>
         /// Crea una nueva instancia de la clase EntrepreneurInfo, asignando el rubro y la localización del emprendedor
         /// </summary>

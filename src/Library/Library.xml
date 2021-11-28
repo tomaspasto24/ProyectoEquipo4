@@ -1713,6 +1713,11 @@
             la etiqueta JsonConstructor.
             </summary>
         </member>
+        <member name="M:Bot.AdminInfo.#ctor">
+            <summary>
+            Constructor AdminInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
+            </summary>
+        </member>
         <member name="T:Bot.Permission">
             <summary>
             Indica los diferentes permisos que requiere un comando y a su vez, los permisos que pueden tener los diferentes usuarios
@@ -1995,6 +2000,11 @@
             Constructor sin implementación para la etiqueta JsonConstructor.
             </summary>
         </member>
+        <member name="M:Bot.UserCompanyInfo.#ctor">
+            <summary>
+            Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
+            </summary>
+        </member>
         <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">
             <summary>
             Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario
@@ -2058,7 +2068,7 @@
         </member>
         <member name="M:Bot.UserInfo.#ctor">
             <summary>
-            Constructor sin implementación para la etiqueta JsonConstructor.
+            Constructor UserInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
             </summary>
         </member>
         <member name="M:Bot.UserInfo.#ctor(System.String,System.Int64)">
