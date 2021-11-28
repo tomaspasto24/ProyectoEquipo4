@@ -12,6 +12,7 @@ namespace BotTests
     /// </summary>
     public class PublishPublicationTests
     {
+        UserInfo user;
         GeoLocation location;
         Company companyTest;
         Material initialMaterial;
@@ -79,6 +80,26 @@ namespace BotTests
             Assert.IsNull(publicationToCompare.ClosePublication());
             Assert.IsTrue(publicationToCompare.IsClosed);
             Assert.IsNotNull(publicationToCompare.ClosedDate);
+        }
+
+        /// <summary>
+        /// Test que se encarga de comprobar el funcionamiento de la clase de cerrarse
+        /// a si misma y de setar y devolver a la persona interesada.
+        /// </summary>
+        [Test]
+        public void TestPublicationClosedWithInterestedPerson()
+        {
+            user = new UserInfo("name", 1234);
+            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("Heading", location);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user, entrepreneurInfo);
+            Publication publicationToCompare;
+            publicationToCompare = new Publication("PublicationTest", companyTest, location, initialMaterial);
+
+            entrepreneurInfo.ContactCompany(publicationToCompare);
+
+            Assert.IsInstanceOf(typeof(EntrepreneurInfo), publicationToCompare.ClosePublication()); 
+
+            Assert.IsNotNull(publicationToCompare.InterestedPerson);
         }
     }
 }
