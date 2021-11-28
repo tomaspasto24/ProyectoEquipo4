@@ -14,6 +14,9 @@ namespace Bot
         /// <value></value>
         public Company company { private set; get; }
 
+        /// <summary>
+        /// Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
+        /// </summary>
         [JsonConstructor]
         public UserCompanyInfo() { }
 
