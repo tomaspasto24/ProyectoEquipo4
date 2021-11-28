@@ -38,7 +38,7 @@ namespace Bot
 
         [JsonConstructor]
         public EntrepreneurInfo() { }
-
+        
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
         /// y suma un valor al contador de emprendedores estático.
@@ -132,37 +132,6 @@ namespace Bot
         {
             this.specializations.Add(specialization);
         }
-
-        /// <summary>
-        /// Buscar publicaciones por material.
-        /// </summary>
-        /// <param name="wordToSearch"></param>
-        /// <returns>Lista de publicaciones con el material buscado, si hay alguna que lo contenga.</returns>
-        // public string SearchingByMaterials(string wordToSearch)
-        // {
-        //     string publications = string.Empty;
-        //     foreach (Publication publication in (this.searchByMaterial.Search(wordToSearch)))
-        //     {
-        //         publications = publications + publication.ReturnPublication(publication);
-        //     }
-        //     return publications;
-        // }
-
-
-        /// <summary>
-        /// Buscar publicaciones por ubicación.
-        /// </summary>
-        /// <param name="addresToSearch">Palabra clave como ubicación.</param>
-        /// <returns>Lista de publicaciones con la ubicación indicada, si hay alguna.</returns>
-        // public string SearchingByLocation(string addresToSearch)
-        // {
-        //     string publications = string.Empty;
-        //     foreach (Publication publication in (this.searchByLocation.Search(addresToSearch)))
-        //     {
-        //         publications = publications + publication.ReturnPublication(publication);
-        //     }
-        //     return publications;
-        // }
 
         /// <summary>
         /// Método público que guarda las Publicaciones adquiridas por el emprendedor.
