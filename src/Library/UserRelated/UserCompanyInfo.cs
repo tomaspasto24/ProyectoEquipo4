@@ -14,7 +14,7 @@ namespace Bot
         /// <summary>
         /// Compañía a la cuál pertenece el usuario
         /// </summary>
-        public Company company { private set; get; }
+        public Company company { set; get; }
 
         /// <summary>
         /// Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
