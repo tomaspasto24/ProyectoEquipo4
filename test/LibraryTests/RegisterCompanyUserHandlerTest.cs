@@ -76,13 +76,13 @@ namespace BotTests
         [Test]
         public void TestTokenFound()
         {
-            SessionRelated.Instance.DiccUserTokens.Add("IHaveAToken", company);
+            SessionRelated.Instance.DiccUserTokens.Add("ThisIsAToken", new Company("TestCompany", "TestHeader", new GeoLocation("TestAdress", "TestCity"),"TestContact"));
 
             message.Text = "/registro";
             string response;
             handler.Handle(message, out response);
 
-            message.Text = "IHaveAToken";
+            message.Text = "ThisIsAToken";
             IHandler result = handler.Handle(message, out response);
 
             Assert.That(result, Is.Not.Null);

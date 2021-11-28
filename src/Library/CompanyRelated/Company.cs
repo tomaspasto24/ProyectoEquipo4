@@ -14,7 +14,7 @@ namespace Bot
     public class Company
     {
         private string name;
-        private string item;
+        private string header;
         private string contact;
         private List<UserInfo> listUsers = new List<UserInfo>();
         private List<Publication> listOwnPublications = new List<Publication>();
@@ -30,13 +30,13 @@ namespace Bot
         /// Constructor de la clase Empresa, inicializa los valores de los parámetros.
         /// </summary>
         /// <param name="name">Nombre de la Empresa.</param>
-        /// <param name="item">Rubro de la Empresa.</param>
+        /// <param name="header">Rubro de la Empresa.</param>
         /// <param name="location">Ubicación establecida de la Empresa.</param>
         /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
-        public Company(string name, string item, GeoLocation location, string contact)
+        public Company(string name, string header, GeoLocation location, string contact)
         {
             this.name = name;
-            this.item = item;
+            this.header = header;
             this.Location = location;
             this.contact = contact;
         }
@@ -76,12 +76,12 @@ namespace Bot
         {
             get
             {
-                return this.item;
+                return this.header;
             }
 
             set
             {
-                this.item = value;
+                this.header = value;
             }
         }
 
@@ -182,7 +182,7 @@ namespace Bot
             StringBuilder resultado = new StringBuilder("Contacto: \n");
 
             resultado.Append($"Empresa: {this.name} \n");
-            resultado.Append($"Rubro: {this.item} \n");
+            resultado.Append($"Rubro: {this.header} \n");
             resultado.Append($"Contacto: {this.contact} \n");
 
             return resultado.ToString();

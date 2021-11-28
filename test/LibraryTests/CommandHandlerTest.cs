@@ -41,14 +41,14 @@ namespace BotTests
             IHandler result = handler.Handle(message, out response);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos\n/hola\nexit\n/generartoken\n"));
+            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos - Muestra la lista de comandos.\n/hola - Saluda al bot.\n/crearinvitacion - Genera una nueva invitación para una Empresa.\n"));
         }
 
         /// <summary>
         /// Test para probar los comandos que tiene un UserCompany
         /// </summary>
         [Test]
-        public void TestRoleUserCompanyCommandHandler()
+        public void TestUserCompanyCommandHandler()
         {
             GeoLocation location = new GeoLocation("adress", "city");
             Company company = new Company("nombre", "rubro", location, "contacto");
@@ -63,17 +63,18 @@ namespace BotTests
             IHandler result = handler.Handle(message, out response);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos\n/hola\nexit\n/reporte\n/publicar\n"));
+            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos - Muestra la lista de comandos.\n/hola - Saluda al bot.\n/reporte - Obtener un reporte de las entregas realizadas en los últimos 30 días.\n/publicar - Crear una nueva publicación con un material o varios.\n/agregarmaterial - Agregar un material a una publicación existente.\n"));
         }
 
         /// <summary>
         /// Test para probar los comandos que tiene un Emprendedor
         /// </summary>
         [Test]
-        public void TestRoleEntrepreneurCommandHandler()
+        public void TestEntrepreneurCommandHandler()
         {
             GeoLocation location = new GeoLocation("adress", "city");
             user = new UserInfo("Entrepreneur", 3);
+            user.Permissions = UserInfo.EntrepreneurPermissions;
             sessionRelated.DiccEntrepreneurInfo.Add(user, new EntrepreneurInfo("heading", location));
             sessionRelated.AddNewUser(user);
 
@@ -83,7 +84,24 @@ namespace BotTests
             IHandler result = handler.Handle(message, out response);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos\n/registro\n/hola\nexit\n/busqueda\n/reporte\n/contacto\n/infoemprendedor\n"));
+            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos - Muestra la lista de comandos.\n/hola - Saluda al bot.\n/busqueda - Buscar.\n/reporte - Obtener un reporte de las compras realizadas en los últimos 30 días.\n/contacto - Obtener el contacto de una Empresa.\n/datos - Gestionar los datos del Usuario.\n/modificardatos - Modifica los datos del Usuario.\n"));
+        }
+        /// <summary>
+        /// Test para probar los comandos que tiene un usuario Default
+        /// </summary>
+        [Test]
+        public void TestDefaultCommandHandler()
+        {
+            user = new UserInfo("Default", 4);
+            sessionRelated.AddNewUser(user);
+
+            message = new Message(user.Id, "/comandos");
+            string response;
+
+            IHandler result = handler.Handle(message, out response);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(response, Is.EqualTo("Estos son todos los comandos: \n/comandos - Muestra la lista de comandos.\n/hola - Saluda al bot.\n/registro - Registrate como usuario de una empresa.\n/emprender - Registrate como un Emprendedor.\n"));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Bot
         /// <summary>
         /// Localización del emprendedor
         /// </summary>
-        public GeoLocation Location { get; private set; }
+        public GeoLocation Location { get; set; }
 
         /// <summary>
         /// Rubro del emprendedor

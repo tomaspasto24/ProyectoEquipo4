@@ -23,9 +23,9 @@ namespace Bot
             {"/datos - Gestionar los datos del Usuario.", Permission.Data},
             {"/modificardatos - Modifica los datos del Usuario.", Permission.Data},
             {"/publicar - Crear una nueva publicación con un material o varios.", Permission.Publish},
-            {"/crearinvitacion - Genera un nueva nueva invitación para una Empresa.", Permission.GenerateToken},
-            {"/emprender - Registrate como un Emprendedor", Permission.Undertake},
-            {"/agregarmaterial - Agregar un material a una publicación existente", Permission.AddMaterial}
+            {"/crearinvitacion - Genera una nueva invitación para una Empresa.", Permission.GenerateToken},
+            {"/emprender - Registrate como un Emprendedor.", Permission.Undertake},
+            {"/agregarmaterial - Agregar un material a una publicación existente.", Permission.AddMaterial}
         };
 
         /// <summary>
