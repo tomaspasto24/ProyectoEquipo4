@@ -5,7 +5,10 @@ namespace Bot
 {
     /// <summary>
     /// Clase contenedora de la información del usuario.
-    /// Esta cumple con el patron SRP y Expert.
+    /// Patrones y principios:
+    /// Esta cumple con el patron SRP, ya que la unica razon de cambio que podría tener la clase, sería cambiar la forma
+    /// de guardar la información del usuario.
+    /// Cumple con Expert ya que, es experta en el manejo de la información de un usuario.
     /// </summary>
     public class UserInfo
     {
@@ -86,7 +89,7 @@ namespace Bot
         public UserInfo() { }
 
         /// <summary>
-        /// Crea una nueva instancia de la clase UserInfo y asignando su nombre y el id.
+        /// Crea una nueva instancia de la clase UserInfo, asignando su nombre y el id.
         /// </summary>
         /// <param name="name">Nombre del usuario en cuestión</param>
         /// <param name="id">Id del usuario en cuestión</param>

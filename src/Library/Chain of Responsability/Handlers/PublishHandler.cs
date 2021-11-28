@@ -9,7 +9,12 @@ namespace Bot
     A su vez, cumple con el patrón Chain of Responsability.
     */
     /// <summary>
-    /// Handler que se encarga del registro de un usuario
+    /// Handler que se encarga de crear una publicación para una empresa
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+    /// A su vez, cumple con el patrón Chain of Responsability.
     /// </summary>
     public class PublishHandler : AbstractHandler
     {
@@ -31,14 +36,14 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            
-            
+
+
             if (!user.HasPermission(Permission.Publish))
             {
                 response = string.Empty;
                 return false;
             }
-            if (request.Text.Equals("/publicar") && (user.HandlerState == Bot.State.Start)) 
+            if (request.Text.Equals("/publicar") && (user.HandlerState == Bot.State.Start))
             {
                 response = "Envía el título de la nueva publicación \nEnvía \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingPublicationName;
@@ -64,7 +69,7 @@ namespace Bot
             else if (user.HandlerState == Bot.State.AskingCompanyLocation)
             {
                 PublishData pd = this.publishData[user];
-                pd.LocationCompany = new GeoLocation(request.Text, "Montevideo");    
+                pd.LocationCompany = new GeoLocation(request.Text, "Montevideo");
                 response = "Envía el nombre del material";
                 user.HandlerState = Bot.State.AskingMaterialName;
                 return true;
@@ -72,7 +77,7 @@ namespace Bot
             else if (user.HandlerState == Bot.State.AskingMaterialName)
             {
                 PublishData pd = this.publishData[user];
-                pd.MaterialName =request.Text;
+                pd.MaterialName = request.Text;
                 response = "Envía la cantidad del material";
                 user.HandlerState = Bot.State.AskingMaterialQuantity;
                 return true;

@@ -10,7 +10,6 @@ namespace BotTests
     /// </summary>
     public class UserInformationHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         String response;
@@ -20,8 +19,7 @@ namespace BotTests
         [Test]
         public void UserNoPermissionInformationHandlerTest()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             UserInformationHandler userInfoHandler = new UserInformationHandler(null);
@@ -34,8 +32,9 @@ namespace BotTests
         public void UserHasPermissionInformationHandlerTest()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("", PruebaLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneurInfo);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             UserInformationHandler userInfoHandler = new UserInformationHandler(null);
@@ -51,8 +50,9 @@ namespace BotTests
         public void UserInformationHandlerWrongMessageTest()
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            role = new RoleEntrepreneur("", PruebaLocation);
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("", PruebaLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneurInfo);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             UserInformationHandler userInfoHandler = new UserInformationHandler(null);

@@ -9,7 +9,6 @@ namespace BotTests
     /// </summary>
     public class TokenHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         TokenHandler tkhandler;
@@ -22,8 +21,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            role = new RoleAdmin();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             testMessage = new Message(5433261, "CompanyName");
             user1.HandlerState = Bot.State.ConfirmingCompanyName;
@@ -35,9 +33,8 @@ namespace BotTests
         [Test]
         public void TokenHandleNoPermissionTokenTest()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
-            Boolean result = user1.UserRole.HasPermission(Permission.GenerateToken);
+            user1 = new UserInfo("name1", 5433261);
+            Boolean result = user1.HasPermission(Permission.GenerateToken);
             Assert.False(result);
         }
         /// <summary>
@@ -46,10 +43,11 @@ namespace BotTests
         [Test]
         public void TokenHandlePermissionTokenTest()
         {
-            role = new RoleAdmin();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            AdminInfo adminInfo = new AdminInfo();
+            SessionRelated.Instance.DiccAdminInfo.Add(user1, adminInfo);
 
-            Boolean result = user1.UserRole.HasPermission(Permission.GenerateToken);
+            Boolean result = user1.HasPermission(Permission.GenerateToken);
             Assert.True(result);
         }
         /// <summary>

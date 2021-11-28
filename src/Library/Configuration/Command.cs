@@ -4,9 +4,11 @@ namespace Bot
 {
     /// <summary>
     /// Clase encargada de guardar todos los comandos existentes en el ChatBot y sus respectivos permisos necesarios para utilizar a cada uno de ellos.
-    ///     Patrones y principios:
-    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP.
-    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP. Éste motivo podría ser, cambiar la forma de
+    /// almacenar los comandos.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase, la cuál es el
+    /// almacenamiento de los comandos con sus respectivas descripciones y permisos.
     /// </summary>
     public class Command
     {
@@ -21,9 +23,9 @@ namespace Bot
             {"/datos - Gestionar los datos del Usuario.", Permission.Data},
             {"/modificardatos - Modifica los datos del Usuario.", Permission.Data},
             {"/publicar - Crear una nueva publicación con un material o varios.", Permission.Publish},
-            {"/crearinvitacion - Genera un nueva nueva invitación para una Empresa.", Permission.GenerateToken},
-            {"/emprender - Registrate como un Emprendedor", Permission.Undertake},
-            {"/agregarmaterial - Agregar un material a una publicación existente", Permission.AddMaterial}
+            {"/crearinvitacion - Genera una nueva invitación para una Empresa.", Permission.GenerateToken},
+            {"/emprender - Registrate como un Emprendedor.", Permission.Undertake},
+            {"/agregarmaterial - Agregar un material a una publicación existente.", Permission.AddMaterial}
         };
 
         /// <summary>
