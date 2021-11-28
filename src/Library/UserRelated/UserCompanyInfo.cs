@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -15,6 +14,9 @@ namespace Bot
         /// <value></value>
         public Company company { private set; get; }
 
+        [JsonConstructor]
+        public UserCompanyInfo() { }
+
         /// <summary>
         /// Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
         /// </summary>
@@ -23,6 +25,5 @@ namespace Bot
         {
             this.company = company;
         }
-
     }
 }

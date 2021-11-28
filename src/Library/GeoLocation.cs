@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 using Ucu.Poo.Locations.Client;
 
 namespace Bot
@@ -12,6 +13,12 @@ namespace Bot
         private string city;
         private string address;
         private Location location;
+
+        /// <summary>
+        /// Constructor sin implementación para la etiqueta JsonConstructor.
+        /// </summary>
+        [JsonConstructor]
+        public GeoLocation() { }
 
         /// <summary>
         /// Constructor de la clase Geolocation, llama a un método privado asincrono y después se valida la propiedad Found.
@@ -34,7 +41,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene ciudad ingresada como parámetro no obligatorio para crear instancia Location.
+        /// Obtiene o establece ciudad ingresada como parámetro no obligatorio para crear instancia Location.
         /// </summary>
         /// <value>String que representa ciudad.</value>
         public string City
@@ -43,6 +50,7 @@ namespace Bot
             {
                 return this.city;
             }
+
             set
             {
                 this.city = value;
@@ -50,7 +58,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
+        /// Obtiene o establece dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
         /// </summary>
         /// <value>Cadena de caracteres.</value>
         public string Address
@@ -59,6 +67,7 @@ namespace Bot
             {
                 return this.address;
             }
+
             set
             {
                 this.address = value;
