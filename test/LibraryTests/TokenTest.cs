@@ -1,3 +1,4 @@
+/*
 using System;
 using NUnit.Framework;
 using Bot;
@@ -46,4 +47,4 @@ namespace BotTests
             Assert.AreEqual(token, TokenGenerator.Instance.GenerateToken());
         }
     }
-}
+}*/

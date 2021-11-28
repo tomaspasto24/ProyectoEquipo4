@@ -1,3 +1,4 @@
+/*
 using Bot;
 using NUnit.Framework;
 using System;
@@ -63,3 +64,4 @@ namespace BotTests
         }
     }
 }
+*/

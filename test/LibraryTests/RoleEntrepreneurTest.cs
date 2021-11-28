@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using Bot;
 using NUnit.Framework;
@@ -96,3 +97,4 @@ namespace BotTests
         }
     }
 }
+*/

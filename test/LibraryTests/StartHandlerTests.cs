@@ -1,3 +1,4 @@
+
 using System;
 using NUnit.Framework;
 using Bot;
@@ -9,7 +10,6 @@ namespace BotTests
     /// </summary>
     public class StartHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         StartHandler stHandler;
@@ -22,8 +22,8 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.DefaultPermissions;
             SessionRelated.Instance.AddNewUser(user1);
             stHandler = new StartHandler(null);
         }
@@ -49,7 +49,7 @@ namespace BotTests
             result = stHandler.Handle(testMessage, out response);
 
             Assert.That(result, Is.Null);
-            // Assert.That(response, Does.Contain("¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?"));
+            //Assert.That(response, Does.Contain("¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?"));
             Assert.That(response, Is.EqualTo(""));
         }
     }
