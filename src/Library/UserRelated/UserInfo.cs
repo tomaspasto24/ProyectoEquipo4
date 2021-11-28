@@ -13,6 +13,7 @@ namespace Bot
         /// Lista de permisos que tiene un administrador
         /// </summary>
         /// <typeparam name="Permission">Permisos</typeparam>
+        [JsonInclude]
         public static List<Permission> AdminPermissions = new List<Permission>()
         {
             Permission.None,
@@ -23,6 +24,7 @@ namespace Bot
         /// Lista de permisos que tiene un usuario default
         /// </summary>
         /// <typeparam name="Permission">Permisos</typeparam>
+        [JsonInclude]
         public static List<Permission> DefaultPermissions = new List<Permission>()
         {
             Permission.None,
@@ -34,6 +36,7 @@ namespace Bot
         /// Lista de permisos que tiene un usuario de empresa
         /// </summary>
         /// <typeparam name="Permission">Permisos</typeparam>
+        [JsonInclude]
         public static List<Permission> UserCompanyPermissions = new List<Permission>()
         {
             Permission.None,
@@ -46,6 +49,7 @@ namespace Bot
         /// Lista de permisos que tiene un emprendedor
         /// </summary>
         /// <typeparam name="Permission">Permisos</typeparam>
+        [JsonInclude]
         public static List<Permission> EntrepreneurPermissions = new List<Permission>()
         {
             Permission.None,
@@ -59,6 +63,7 @@ namespace Bot
         /// Lista que contiene los permisos que tiene el usuario
         /// </summary>
         /// <typeparam name="Permission">Permisos</typeparam>
+        [JsonInclude]
         public List<Permission> Permissions { get; set; } = new List<Permission>();
         /// <summary>
         /// Nombre del usuario
@@ -76,6 +81,7 @@ namespace Bot
 
         [JsonConstructor]
         public UserInfo() { }
+
         /// <summary>
         /// Crea una nueva instancia de la clase UserInfo y asignando su nombre y el id.
         /// </summary>

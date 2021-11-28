@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 using System.Text;
 
 namespace Bot
@@ -37,6 +37,9 @@ namespace Bot
         /// <value>Obtiene el rubro.</value>
         public string Heading { get; set; }
 
+        [JsonConstructor]
+        public EntrepreneurInfo() { }
+
         /// <summary>
         /// Constructor de la clase Entrepreneur, setea los valores de los parámetros
         /// y suma un valor al contador de emprendedores estático.
@@ -51,14 +54,44 @@ namespace Bot
         }
 
         /// <summary>
-        /// Obtiene la lista de certificaciones del emprendedor.
+        /// Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
         /// </summary>
-        /// <returns>Lista de certificaciones.</returns>
-        public IReadOnlyCollection<string> ReturnCertification
+        /// <returns>Lista de publicaciones.</returns>
+        [JsonInclude]
+        public List<Publication> ListHistorialPublications
         {
             get
             {
-                return (this.certification as List<string>).AsReadOnly();
+                return this.listHistorialPublications;
+            }
+            set
+            {
+                if (!(value.Count == 0))
+                {
+                    this.listHistorialPublications.Clear();
+                    this.listHistorialPublications.AddRange(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la lista de certificaciones del emprendedor.
+        /// </summary>
+        /// <returns>Lista de certificaciones.</returns>
+        [JsonInclude]
+        public List<string> Certifications
+        {
+            get
+            {
+                return this.certification;
+            }
+            set
+            {
+                if (!(value.Count == 0))
+                {
+                    this.certification.Clear();
+                    this.certification.AddRange(value);
+                }
             }
         }
 
@@ -66,11 +99,20 @@ namespace Bot
         /// Obtiene la lista de especializaciones del emprendedor.
         /// </summary>
         /// <returns>Lista de especializaciones.</returns>
-        public IReadOnlyCollection<string> ReturnSpecialization
+        [JsonInclude]
+        public List<string> Specializations
         {
             get
             {
-                return (this.specializations as List<string>).AsReadOnly();
+                return this.specializations;
+            }
+            set
+            {
+                if (!(value.Count == 0))
+                {
+                    this.specializations.Clear();
+                    this.specializations.AddRange(value);
+                }
             }
         }
 
@@ -130,17 +172,6 @@ namespace Bot
         public void AddHistorialPublication(Publication publication)
         {
             this.listHistorialPublications.Add(publication);
-        }
-
-        /// <summary>
-        /// Devuelve la lista con las publicaciones que están en el historial de las adquiridas por el emprendedor.
-        /// </summary>
-        /// <returns>Lista de publicaciones.</returns>
-        public IReadOnlyCollection<Publication> ReturnListHistorialPublications()
-        {
-            {
-                return (this.listHistorialPublications as List<Publication>).AsReadOnly();
-            }
         }
 
         /// <summary>

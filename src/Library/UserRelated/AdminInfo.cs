@@ -1,4 +1,4 @@
-using System;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Bot
@@ -12,6 +12,10 @@ namespace Bot
         /// Se inicializa la lista globalQualificationList
         /// </summary>
         /// <returns></returns>
+        [JsonInclude]
         public static IList<string> globalQualificationList = new List<string>();
+
+        [JsonConstructor]
+        public AdminInfo() { }
     }
 }

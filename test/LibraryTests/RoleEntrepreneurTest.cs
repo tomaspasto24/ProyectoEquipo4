@@ -44,18 +44,19 @@ namespace BotTests
         /// <summary>
         /// Test del método que le agrega una especialización al emprendedor
         /// </summary>
-  /*      public void AddSpecializationTest()
+        [Test]
+        public void AddSpecializationTest()
         {
             specialization = "Quimica";
             emprendedor.AddSpecialization(specialization);
             // Assert.AreEqual("Quimica", emprendedor.ReturnSpecialization()[1]);
         }
-*/
+
         /// <summary>
         /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
         /// y se fija que la lista no esté vacía
         /// </summary>
-/*        [Test]
+        [Test]
         public void AddListHistorialPublicationsTest1()
         {
             RoleEntrepreneur emprendedor2 = new RoleEntrepreneur("Industria", ubicacionParaPruebas);
@@ -65,7 +66,7 @@ namespace BotTests
             emprendedor.AddHistorialPublication(publicacion);
             Assert.IsNotEmpty(emprendedor.ReturnListHistorialPublications());
         }
-*/
+
         /// <summary>
         /// Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
         /// y se fija la lista sea la correcta

@@ -20,7 +20,7 @@ namespace Bot
         {
             // TODO HACER LOS COMENTARIOS DE TODO
             // ConsoleBot.Instance.StartCommunication(); // iniciar comunicación por consola
-
+            SerializeManager.Instance.DeserializeObjects(); // Deserialización.
             TelegramBot botardo = TelegramBot.Instance;
 
             botardo.StartCommunication();
@@ -29,6 +29,10 @@ namespace Bot
 
             // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
             Console.ReadLine();
+
+            //Prueba Session Related.
+            SerializeManager.Instance.SerializeObjects(); // Serialización.
         }
     }
 }
+
