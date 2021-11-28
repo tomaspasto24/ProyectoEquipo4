@@ -1438,6 +1438,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bot.AdminInfo.#ctor">
+            <summary>
+            Constructor AdminInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
+            </summary>
+        </member>
         <member name="T:Bot.Permission">
             <summary>
             Indica los diferentes permisos que requiere un comando y a su vez, los permisos que tienen los diferentes usuarios
@@ -1707,6 +1712,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:Bot.UserCompanyInfo.#ctor">
+            <summary>
+            Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
+            </summary>
+        </member>
         <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">
             <summary>
             Constructor que hereda, asi como toda la clase, de la clase ancestro Role.
@@ -1763,6 +1773,11 @@
         <member name="P:Bot.UserInfo.HandlerState">
             <summary>
             Estado del usuario que cambia según los comandos que utilice
+            </summary>
+        </member>
+        <member name="M:Bot.UserInfo.#ctor">
+            <summary>
+            Constructor UserInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
             </summary>
         </member>
         <member name="M:Bot.UserInfo.#ctor(System.String,System.Int64)">
