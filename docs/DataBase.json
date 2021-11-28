@@ -1,0 +1,202 @@
+{
+  "$id": "1",
+  "ListPublicationsToSerialize": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "InterestedPerson": null,
+        "Location": {
+          "$id": "4",
+          "City": "Montevideo",
+          "Address": "montevideo"
+        },
+        "Title": "cart\u00F3n reciclado",
+        "Company": {
+          "$id": "5",
+          "Location": {
+            "$id": "6",
+            "City": "montevideo",
+            "Address": "av. 8 de octubre"
+          },
+          "Name": "recompute",
+          "Item": "productos ecol\u00F3gicos",
+          "Contact": "092253355",
+          "ListHistorialPublications": {
+            "$id": "7",
+            "$values": []
+          },
+          "ListOwnPublications": {
+            "$id": "8",
+            "$values": []
+          },
+          "ListUsers": {
+            "$id": "9",
+            "$values": []
+          }
+        },
+        "Date": "2021-11-28T20:29:19.1136792-03:00",
+        "ClosedDate": "0001-01-01T00:00:00",
+        "ListMaterials": {
+          "$id": "10",
+          "$values": [
+            {
+              "$id": "11",
+              "Name": "cart\u00F3n reciclado",
+              "KeyWords": {
+                "$id": "12",
+                "$values": []
+              },
+              "Quantity": 300,
+              "Price": 15
+            }
+          ]
+        },
+        "ListQualifications": {
+          "$id": "13",
+          "$values": []
+        },
+        "IsClosed": false
+      },
+      {
+        "$id": "14",
+        "InterestedPerson": null,
+        "Location": {
+          "$id": "15",
+          "City": "Montevideo",
+          "Address": "montevideo"
+        },
+        "Title": "componentes reutilizables",
+        "Company": {
+          "$id": "16",
+          "Location": {
+            "$id": "17",
+            "City": "montevideo",
+            "Address": "bv. artigas"
+          },
+          "Name": "apple (robotics)",
+          "Item": "desensamblador",
+          "Contact": "029393492",
+          "ListHistorialPublications": {
+            "$id": "18",
+            "$values": []
+          },
+          "ListOwnPublications": {
+            "$id": "19",
+            "$values": []
+          },
+          "ListUsers": {
+            "$id": "20",
+            "$values": []
+          }
+        },
+        "Date": "2021-11-28T20:32:37.2990931-03:00",
+        "ClosedDate": "0001-01-01T00:00:00",
+        "ListMaterials": {
+          "$id": "21",
+          "$values": [
+            {
+              "$id": "22",
+              "Name": "oro",
+              "KeyWords": {
+                "$id": "23",
+                "$values": []
+              },
+              "Quantity": 500,
+              "Price": 1000
+            }
+          ]
+        },
+        "ListQualifications": {
+          "$id": "24",
+          "$values": []
+        },
+        "IsClosed": false
+      }
+    ]
+  },
+  "SessionRelatedToSerialize": {
+    "$id": "25",
+    "DiccUserTokensToSerialize": {
+      "$id": "26",
+      "$values": [
+        {
+          "Key": "0",
+          "Value": {
+            "$ref": "5"
+          }
+        },
+        {
+          "Key": "1",
+          "Value": {
+            "$ref": "16"
+          }
+        }
+      ]
+    },
+    "DiccEntrepreneurInfoToSerialize": {
+      "$id": "27",
+      "$values": []
+    },
+    "DiccAdminInfoToSerialize": {
+      "$id": "28",
+      "$values": []
+    },
+    "DiccUserCompanyInfoToSerialize": {
+      "$id": "29",
+      "$values": [
+        {
+          "Key": {
+            "$id": "30",
+            "Permissions": {
+              "$id": "31",
+              "$values": [
+                0,
+                4,
+                7,
+                10
+              ]
+            },
+            "Name": "Tomas",
+            "Id": 1772641058,
+            "HandlerState": 0
+          },
+          "Value": {
+            "$id": "32",
+            "company": {
+              "$ref": "5"
+            }
+          }
+        },
+        {
+          "Key": {
+            "$id": "33",
+            "Permissions": {
+              "$ref": "31"
+            },
+            "Name": "Seba",
+            "Id": 1389963394,
+            "HandlerState": 0
+          },
+          "Value": {
+            "$id": "34",
+            "company": {
+              "$ref": "16"
+            }
+          }
+        }
+      ]
+    },
+    "AllUsers": {
+      "$id": "35",
+      "$values": [
+        {
+          "$ref": "30"
+        },
+        {
+          "$ref": "33"
+        }
+      ]
+    }
+  }
+}
