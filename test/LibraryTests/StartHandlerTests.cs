@@ -9,7 +9,6 @@ namespace BotTests
     /// </summary>
     public class StartHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         StartHandler stHandler;
@@ -22,8 +21,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             stHandler = new StartHandler(null);
         }

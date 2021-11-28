@@ -94,8 +94,12 @@ namespace BotTests
         public void UsersCompanyTest()
         {
             List<UserInfo> listUser = new List<UserInfo>();
-            UserInfo userTest1 = new UserInfo("Test1", 12, new RoleUserCompany(companyTest));
-            UserInfo userTest2 = new UserInfo("Test2", 22, new RoleUserCompany(companyTest));
+            UserInfo userTest1 = new UserInfo("Test1", 12);
+            UserInfo userTest2 = new UserInfo("Test2", 22);
+            userTest1.Permissions = UserInfo.UserCompanyPermissions;
+            userTest2.Permissions = UserInfo.UserCompanyPermissions;
+            SessionRelated.Instance.DiccUserCompanyInfo.Add(userTest1, new UserCompanyInfo(companyTest));
+            SessionRelated.Instance.DiccUserCompanyInfo.Add(userTest2, new UserCompanyInfo(companyTest));
             companyTest.AddUser(userTest1);
             companyTest.AddUser(userTest2);
 

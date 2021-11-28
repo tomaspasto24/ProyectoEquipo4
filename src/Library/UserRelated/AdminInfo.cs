@@ -8,8 +8,6 @@ namespace Bot
     /// </summary>
     public class AdminInfo
     {
-        // TODO Resolver donde guardar estas qualifications
-
         /// <summary>
         /// Se inicializa la lista globalQualificationList
         /// </summary>

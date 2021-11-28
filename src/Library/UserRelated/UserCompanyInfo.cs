@@ -9,8 +9,6 @@ namespace Bot
     /// /// </summary>
     public class UserCompanyInfo
     {
-        // TODO Resolver la relacion userCompany - Company
-
         /// <summary>
         /// Representa la clase Empresa a la cual es añadido.
         /// </summary>

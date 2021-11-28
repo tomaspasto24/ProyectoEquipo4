@@ -14,18 +14,19 @@ namespace Bot
     public class AddMaterialHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de la clase RegisterHandler
+        /// Crea una nueva instancia de éste handler y define su sucesor.
         /// </summary>
-        /// <param name="succesor">Condicion que se tiene que cumplir para que se ejecute el handler</param>
+        /// <param name="succesor">El siguiente handler a ser invocado en caso de que el actual no cumpla la condición.</param>
         public AddMaterialHandler(AbstractHandler succesor) : base(succesor)
         {
         }
 
         /// <summary>
-        /// Metodo que se encarga de atender el handler.
+        /// Intenta procesar el mensaje recibido y devuelve una respuesta.
         /// </summary>
-        /// <param name="request">Mensaje que contiene el texto y el id del usuario.</param>
+        /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
             //TODO Cambiar con un administrador de datos para el handler

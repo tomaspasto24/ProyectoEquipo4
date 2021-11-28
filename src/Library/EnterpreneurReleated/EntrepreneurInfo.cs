@@ -11,7 +11,6 @@ namespace Bot
     /// </summary>
     public class EntrepreneurInfo
     {
-        // TODO resolver donde guardar todo lo de entrepreneur
         /// <summary>
         /// Lista de las publiaciones adquiridas por el emprendedor.
         /// </summary>
@@ -22,9 +21,6 @@ namespace Bot
         private SearchByLocation searchByLocation = new SearchByLocation();
 
         private SearchByMaterial searchByMaterial = new SearchByMaterial();
-
-
-        // TODO puede ser una clase aparte
         private List<string> certification = new List<string>();
 
         private List<string> specializations = new List<string>();
