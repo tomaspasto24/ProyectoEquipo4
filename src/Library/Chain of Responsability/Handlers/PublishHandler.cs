@@ -98,7 +98,7 @@ namespace Bot
                 Publication publication = new Publication(pd.Title, pd.PublishingCompany, pd.LocationCompany, pd.Material);
                 PublicationSet.Instance.AddElement(publication);
                 (pd.PublishingCompany).AddOwnPublication(publication);
-                response = "Se ha creado la publicación con el material indicado. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"cancelar\" si quiere terminar la publicación.";
+                response = "Se ha creado la publicación con el material indicado. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"/cancelar\" si quiere terminar la publicación.";
                 user.HandlerState = Bot.State.Start;
                 return true;
             }
