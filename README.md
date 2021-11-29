@@ -9,12 +9,13 @@ Esta vez si utilizamos el Readme! :grin:
 - Un desafío muy grande para el grupo fue la implementación de la serialización de las clases porque UserInfo, clase que contiene la información del usuario
 y que interactúa con muchos objetos diferentes relacionados al usuario, contenía un atributo que era una interfaz de diferentes roles que el usuario podía tener.
 Aunque el planteo estaba bien y cumplía con el patrón OCP, se tuvo que rediseñar ese apartado para que el sistema de serialización pueda ser implementado.
+- Aprender a formar equipo entre desconocidos, como pasa en el ámbito laboral de la vida.
 
 **2. ¿Qué cosas aprendieron enfrentándose al proyecto que no aprendieron en clase como parte de la currícula?**
 - Mas que aprender, fue una buena oportunidad de poner en práctica todo lo que veniamos aprendiendo en la clase pero en un proyecto bastante serio. :books:
 - La idea del bot nos encantó, esperamos con ganas la próxima entrega para poder adaptarlo a una plataforma de mensajería como Telegram, para que la experiencia de uso sea mas atractiva. :sunglasses:
 
-- Pudimos aprender a manejar los comandos y opciones que ofrece Git y GitHub de forma más practica y constante, ya que casi todos los días teniamos que manejar
+- Pudimos aprender a manejar los comandos y opciones que ofrece Git y GitHub de forma más practica y constante, ya que casi todos los días teniamos que manejar.
 conflictos en ramas, subir reformas y aprender a convivir en un repositorio con otras personas que codean diferente.
 - Aprendimos la implementación real (en un programa más grande) de los patrones de diseño y el por qué de enfatizar en la refactorización de código.
 
@@ -34,6 +35,9 @@ ningún parecido con la entrega final, con tal fuimos aprendiendo y capacitando 
 
 **4. Notas generales:**
 
+Desde el planteo de la primera entrega nos pusimos de acuerdo con desarrollar a profundidad el concepto de simplicidad, cumpliendo con todos los userstories pero mostrando opciones simples al usuario. Esto porque pensamos que en un proyecto que se va a ver reflejado en 
+un chat, se tiene que ofrecer opciones simples y concretas para no sofocar al usuario con textos y opciones complejas.
+
 Las colecciones se declaran como abstracciones para que justamente no dependa de un tipo especifico (Ejemplo: List o Collections). Con esto se cumple
 con el patrón de diseño DIP (Dependency Inversion Principle): "Las clases de alto nivel no deben depender de clases de bajo nivel, ambas deben depender de abstracciones". Adicionalmente también se cumple con el patrón de diseño ISP (Interface Segregation Principle) porque por ejemplo al definir al objeto con una interfaz IList reduce las opciones que tiene el cliente de utilizar métodos que no son necesarios. Hay casos en los que no se puede declarar la colección de
 tipo abstracto porque interviene la etiqueta de serialización JsonInclude, que incluye la colección como item a serializar, el problema de esto es que no acepta
@@ -44,3 +48,5 @@ esta razón era inviable diseñar una forma de ingresar un path personalizado ya
 
 Las clases PublicationSet, SerializeManager, SessionRelated, ConsoleBot, TelegramBot, TokenGenerator como se puede ver implementan un constructor privado para que no sea posible crear más de una instancia de la clase, la única opción de utilizar las clases es accediendo a su propiedad estática Instance en donde su get público calcula si ya se ha creado una instancia de la clase, en este caso devuelve la misma y en caso de que no se haya creado todavía, la crea y la devuelve. Protegiendo
 así al atributo instance y cumpliendo con el patrón de creación Singleton.
+
+La implementación de Chain of Responsability, las clases Set (Ejemplo: PublicationSet), los searchs y los reportes cumplen con OCP porque en caso de querer añadir un miembro más a las implementaciones anteriormente mencionadas, solo se debería crear una nueva clase dependiendo de las abstracciones correspondientes, no se debería modificar ninguna implementación ya hecha.
