@@ -35,9 +35,9 @@ namespace Bot
         /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
         public Company(string name, string header, GeoLocation location, string contact)
         {
-            if (location != null && header != null && name != null && contact != null)
+            if (location == null && header == null && name == null && contact == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Ubicación no encontrada.");
             }
             this.name = name;
             this.header = header;
