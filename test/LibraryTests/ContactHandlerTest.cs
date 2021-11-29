@@ -1,10 +1,9 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
-
     /// <summary>
     /// Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
     /// </summary>
@@ -16,81 +15,98 @@ namespace BotTests
         IHandler result;
         Company company;
 
-
+        /// <summary>
+        /// Se prueba el mensaje y que se cancele la operación cuando no se tiene un permiso.
+        /// </summary>
         [Test]
         public void ContactHandlerNoHasPermissionTest()
         {
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
             ContactHandler contactHandler = new ContactHandler(null);
-            testMessage = new Message(5433261, "");
+            this.testMessage = new Message(5433261, "");
 
-            result = contactHandler.Handle(testMessage, out response);
-            //Assert.That(response, Is.EqualTo("Operación cancelada."));
-            Assert.That(result, Is.Null);
+            this.result = contactHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Operación cancelada."));
+            Assert.That(this.result, Is.Null);
         }
+
+        /// <summary>
+        /// Se prueba el mensaje y que se cancele la operación cuando se tiene un permiso.
+        /// </summary>
         [Test]
         public void ContactHandlerHasPermissionTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", PruebaLocation));
-            SessionRelated.Instance.AddNewUser(user1);
+            GeoLocation pruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));
+            SessionRelated.Instance.AddNewUser(this.user1);
             ContactHandler contactHandler = new ContactHandler(null);
-            testMessage = new Message(5433261, "/contacto");
+            this.testMessage = new Message(5433261, "/contacto");
 
-            result = contactHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Por favor dinos con que empresa te quieres contactar. \nEnvia \"/cancelar\" para cancelar la operación."));
-            Assert.That(result, Is.Not.Null);
+            this.result = contactHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Por favor dinos con que empresa te quieres contactar. \nEnvia \"/cancelar\" para cancelar la operación."));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Se prueba que se devuelva al contacto de la empresa.
+        /// </summary>
         [Test]
         public void ContactHandlerContactCompanyTest()
         {
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
+            this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", entrepreneurLocation));
-            SessionRelated.Instance.AddNewUser(user1);
-            SessionRelated.Instance.DiccUserTokens.Add("5433261", company);
-            user1.HandlerState = Bot.State.AskingCompanyName;
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", entrepreneurLocation));
+            SessionRelated.Instance.AddNewUser(this.user1);
+            SessionRelated.Instance.DiccUserTokens.Add("5433261", this.company);
+            this.user1.HandlerState = Bot.State.AskingCompanyName;
             ContactHandler contactHandler = new ContactHandler(null);
-            testMessage = new Message(5433261, "Las Acacias");
+            this.testMessage = new Message(5433261, "Las Acacias");
 
-            result = contactHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo(company.ReturnContact()));
+            this.result = contactHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo(this.company.ReturnContact()));
         }
+
+        /// <summary>
+        /// Se prueba cuando no se encuentra el contacto.
+        /// </summary>
         [Test]
         public void ContactHandlerCompanyNoFoundTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", PruebaLocation));
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.HandlerState = Bot.State.AskingCompanyName;
+            GeoLocation pruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));
+            SessionRelated.Instance.AddNewUser(this.user1);
+            this.user1.HandlerState = Bot.State.AskingCompanyName;
             ContactHandler contactHandler = new ContactHandler(null);
-            testMessage = new Message(5433261, "NoCompany");
+            this.testMessage = new Message(5433261, "NoCompany");
 
-            result = contactHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Disculpa, no encontramos esa Empresa"));
-            Assert.That(result, Is.Not.Null);
+            this.result = contactHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Disculpa, no encontramos esa Empresa"));
+            Assert.That(this.result, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Se prueba si se tiene un estado equivocado.
+        /// </summary>
         [Test]
         public void ContactHandlerCompanyWrongHandlerState()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("", PruebaLocation));
-            SessionRelated.Instance.AddNewUser(user1);
+            GeoLocation pruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));
+            SessionRelated.Instance.AddNewUser(this.user1);
             //user1.HandlerState = Bot.State.AskingCompanyName;
-            user1.HandlerState = Bot.State.AskingDataNumber;
+            this.user1.HandlerState = Bot.State.AskingDataNumber;
             ContactHandler contactHandler = new ContactHandler(null);
-            testMessage = new Message(5433261, "NoCompany");
+            this.testMessage = new Message(5433261, "NoCompany");
 
-            result = contactHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.Empty);
+            this.result = contactHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.Empty);
         }
     }
 }

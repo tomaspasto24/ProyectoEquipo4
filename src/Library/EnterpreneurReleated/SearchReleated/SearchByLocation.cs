@@ -14,18 +14,37 @@ namespace Bot
     /// </summary>
     public class SearchByLocation : ISearch<Publication>
     {
+        private static SearchByLocation instance; 
+
+                /// <summary>
+        /// Obtiene una única instancia de esta clase.
+        /// </summary>
+        /// <value>La única instancia de esta clase.</value>
+        public static SearchByLocation Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SearchByLocation();
+                }
+                
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Método que búsca todas las publicaciones que contienen la ubicación pasada por parámetro. Recorre todas las
         /// publicaciones y se fija si tiene la misma ubicación recibida. Si es igual, se agrega la publicación a la lista que 
         /// va a devolver y se va a fijar a la siguiente.
         /// </summary>
-        /// <param name="addresToSearch">Dirección para buscar.</param>
+        /// <param name="wordToSearch">Dirección para buscar.</param>
         /// <returns>Lista de Publicaciones.</returns>
-        public string Search(string addresToSearch)
+        public string Search(string wordToSearch)
         {
             string publications = string.Empty;
             double distance = 0;
-            GeoLocation location = new GeoLocation(addresToSearch, "Montevideo");
+            GeoLocation location = new GeoLocation(wordToSearch, "Montevideo");
             List<Publication> result = new List<Publication>();
             IReadOnlyCollection<Publication> listPublications = PublicationSet.Instance.ListPublications;
 
@@ -39,23 +58,6 @@ namespace Bot
             }
 
             return publications;
-        }
-
-        private static SearchByLocation instance;
-        /// <summary>
-        /// Obtiene una única instancia de esta clase
-        /// </summary>
-        /// <value>La única instancia de esta clase.</value>
-        public static SearchByLocation Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new SearchByLocation();
-                }
-                return instance;
-            }
         }
     }
 }
