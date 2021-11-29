@@ -7,7 +7,6 @@ namespace BotTests
 
     public class SalesReportHandlerTest
     {
-        IRole role;
         UserInfo user1;
         Message testMessage;
         String response;
@@ -21,8 +20,7 @@ namespace BotTests
         [Test]
         public void SearchHandlerNoHasPermissionTest()
         {
-            role = new RoleDefault();
-            user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             SalesReportHandler salesreportHandler = new SalesReportHandler(null);
             testMessage = new Message(5433261, "");
@@ -43,7 +41,7 @@ namespace BotTests
             location = new GeoLocation("Av. Italia", "Montevideo");
             material = new Material("Alambre", 800, 200);
             Company empresa = new Company("Ferretería Mdeo", "herramientas", location, "091234567");
-            RoleUserCompany role = new RoleUserCompany(empresa);
+            UserCompanyInfo role = new UserCompanyInfo(empresa);
             publication = new Publication("Publicacion especial", empresa, location, material);
             // RoleUserCompany.ContactCompany(publication);
             publication.ClosePublication();

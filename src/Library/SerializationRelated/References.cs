@@ -19,9 +19,9 @@ namespace Bot
     {
         private static MyReferenceHandler instance;
         /// <summary>
-        /// 
+        /// Obtiene una única instancia de esta clase
         /// </summary>
-        /// <value></value>
+        /// <value>La única instancia de esta clase.</value>
         public static MyReferenceHandler Instance
         {
             get

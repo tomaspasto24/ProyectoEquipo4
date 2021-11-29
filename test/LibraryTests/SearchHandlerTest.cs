@@ -29,6 +29,9 @@ namespace BotTests
             Assert.That(response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
             Assert.That(result, Is.Null);
         }
+        /// <summary>
+        /// Se testea que el mensaje de salida para que se elija por qué se quiere buscar.
+        /// </summary>
         [Test]
         public void SearchHandlerCommandTest()
         {
