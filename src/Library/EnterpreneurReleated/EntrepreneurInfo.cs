@@ -15,6 +15,7 @@ namespace Bot
 
         private List<string> certifications = new List<string>();
         private List<string> specializations = new List<string>();
+        
         /// <summary>
         /// Crea una nueva instancia de la clase EntrepreneurInfo, asignando el rubro y la localización del emprendedor.
         /// </summary>
