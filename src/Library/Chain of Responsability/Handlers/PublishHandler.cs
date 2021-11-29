@@ -36,7 +36,8 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-
+            // TODO No tiene que pedir nombre ni ubicacion
+            // TODO poner /Cancelar
 
             if (!user.HasPermission(Permission.Publish))
             {
