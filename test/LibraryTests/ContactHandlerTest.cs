@@ -1,3 +1,4 @@
+/*
 using System;
 using Bot;
 using NUnit.Framework;
@@ -9,11 +10,11 @@ namespace BotTests
     /// </summary>
     public class ContactHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        Company company;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
+        private Company company;
 
         /// <summary>
         /// Se prueba el mensaje y que se cancele la operación cuando no se tiene un permiso.
@@ -99,7 +100,6 @@ namespace BotTests
             this.user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));
             SessionRelated.Instance.AddNewUser(this.user1);
-            //user1.HandlerState = Bot.State.AskingCompanyName;
             this.user1.HandlerState = Bot.State.AskingDataNumber;
             ContactHandler contactHandler = new ContactHandler(null);
             this.testMessage = new Message(5433261, "NoCompany");
@@ -110,3 +110,4 @@ namespace BotTests
         }
     }
 }
+*/

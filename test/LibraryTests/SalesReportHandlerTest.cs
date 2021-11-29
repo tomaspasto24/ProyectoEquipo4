@@ -21,6 +21,7 @@ namespace BotTests
         public void SearchHandlerNoHasPermissionTest()
         {
             user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.DefaultPermissions;
             SessionRelated.Instance.AddNewUser(user1);
             SalesReportHandler salesreportHandler = new SalesReportHandler(null);
             testMessage = new Message(5433261, "");
@@ -32,7 +33,8 @@ namespace BotTests
         public void SearchHandlerHasPermissionTest()
         {
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            // user1 = new UserInfo("name1", 5433261, role);
+            user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.EntrepreneurPermissions;
             SessionRelated.Instance.AddNewUser(user1);
             SalesReportHandler salesReportHandler = new SalesReportHandler(null);
             user1.HandlerState = Bot.State.Start;
@@ -41,7 +43,6 @@ namespace BotTests
             location = new GeoLocation("Av. Italia", "Montevideo");
             material = new Material("Alambre", 800, 200);
             Company empresa = new Company("Ferretería Mdeo", "herramientas", location, "091234567");
-            UserCompanyInfo role = new UserCompanyInfo(empresa);
             publication = new Publication("Publicacion especial", empresa, location, material);
             // RoleUserCompany.ContactCompany(publication);
             publication.ClosePublication();

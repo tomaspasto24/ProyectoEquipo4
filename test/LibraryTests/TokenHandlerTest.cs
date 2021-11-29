@@ -22,36 +22,37 @@ namespace BotTests
         public void Setup()
         {
             user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.EntrepreneurPermissions;
             SessionRelated.Instance.AddNewUser(user1);
             testMessage = new Message(5433261, "CompanyName");
             user1.HandlerState = Bot.State.ConfirmingCompanyName;
             tkhandler = new TokenHandler(null);
         }
         /// <summary>
-        /// Se testea que el RoleDefault no tenga el permiso de generar el token a través del handler.
+        /// Test que se encarga de verificar que el handler retorne "false" en caso de intentar generar el token y no tener el permiso "GenerateToken".
         /// </summary>
         [Test]
         public void TokenHandleNoPermissionTokenTest()
         {
             user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.DefaultPermissions;
             Boolean result = user1.HasPermission(Permission.GenerateToken);
             Assert.False(result);
         }
         /// <summary>
-        /// Se testea que el RoleAdmin tenga el permiso para generar el token a través del handler.
+        /// Test que se encarga de verificar que el handler devuelva True en caso de que se intente generar el token y se tenga el permiso necesario.
         /// </summary>
         [Test]
         public void TokenHandlePermissionTokenTest()
         {
             user1 = new UserInfo("name1", 5433261);
-            AdminInfo adminInfo = new AdminInfo();
-            SessionRelated.Instance.DiccAdminInfo.Add(user1, adminInfo);
+            user1.Permissions = UserInfo.AdminPermissions;
 
             Boolean result = user1.HasPermission(Permission.GenerateToken);
             Assert.True(result);
         }
         /// <summary>
-        /// Se testea que el TokenHandler pueda crear la invitacion para una empresa 
+        /// Test que se encarga de verificar que el handler responda correctamente y devuelva true en cas de enviar el comando "/crearinvitacion"
         /// </summary>
         [Test]
         public void TokenHandleInvitationTest()
