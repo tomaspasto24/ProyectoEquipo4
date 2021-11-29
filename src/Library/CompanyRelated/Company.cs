@@ -35,6 +35,10 @@ namespace Bot
         /// <param name="contact">Contacto (Teléfono) de la Empresa.</param>
         public Company(string name, string header, GeoLocation location, string contact)
         {
+            if (location != null && header != null && name != null && contact != null)
+            {
+                throw new ArgumentNullException();
+            }
             this.name = name;
             this.header = header;
             this.Location = location;
@@ -268,7 +272,7 @@ namespace Bot
         /// <param name="publicationTitle">Titulo de la publicación en cuestión</param>
         /// <returns>True si la contiene, false en caso contrario</returns>
         public bool ContainsPublication(string publicationTitle)
-        {
+        {      
             foreach (Publication publication in this.ListOwnPublications)
             {
                 if (publication.Title.Equals(publicationTitle))

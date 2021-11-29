@@ -4,7 +4,7 @@ using System.Text;
 namespace Bot
 {
     /// <summary>
-    /// clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. tambien esta clase implementa la interfaz IReport y cumple con el patron ISP.
+    /// Clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte a la empresa. tambien esta clase implementa la interfaz IReport y cumple con el patron ISP.
     /// </summary>
     public class CompanyReport : IReport
     {

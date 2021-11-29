@@ -42,6 +42,11 @@ namespace Bot
         /// <returns>Lista de Publicaciones.</returns>
         public string Search(string wordToSearch)
         {
+            bool precondition = wordToSearch != string.Empty;
+            if (!precondition)
+            {
+                throw new ArgumentNullException("La palabra ingresada es null.");
+            }
             string publications = string.Empty;
             double distance = 0;
             GeoLocation location = new GeoLocation(wordToSearch, "Montevideo");
@@ -56,7 +61,11 @@ namespace Bot
                     publications = publications + publication.ReturnPublication();
                 }
             }
-
+            bool postcondition = listPublications != null;
+            if (!postcondition)
+            {
+                throw new NullReferenceException("Lista de publicaciones null.");
+            }
             return publications;
         }
     }
