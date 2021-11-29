@@ -257,5 +257,16 @@ namespace Bot
             }
             return null;
         }
+        public UserInfo GetUserInfoByEntrepreneurInfo(EntrepreneurInfo entrepreneurInfo)
+        {
+            foreach (UserInfo userInfo in DiccEntrepreneurInfo)
+            {
+                if (DiccEntrepreneurInfo[userInfo].Equals(entrepreneurInfo))
+                {
+                    return userInfo;
+                }
+            }
+            return null;
+        }
     }
 }

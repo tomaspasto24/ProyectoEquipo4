@@ -36,7 +36,7 @@ namespace Bot
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-
+            UserCompanyInfo userCompanyInfo = SessionRelated.Instance.GetUserCompanyByUserInfo(user);
 
             if (!user.HasPermission(Permission.Publish))
             {
@@ -53,27 +53,27 @@ namespace Bot
             {
                 this.publishData.Remove(user);
                 this.publishData.Add(user, new PublishData(request.Text));
-                response = "Envía el nombre empresa \nEnvía \"/cancelar\" para cancelar la operación";
-                user.HandlerState = Bot.State.AskingCompanyName;
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.AskingCompanyName)
-            {
-                PublishData pd = this.publishData[user];
-                string companyName = request.Text;
-                pd.PublishingCompany = SessionRelated.Instance.GetCompanyByName(request.Text);
-                response = "Envía la ubicación de la empresa \nEnvía \"/cancelar\" para cancelar la operación";
-                user.HandlerState = Bot.State.AskingCompanyLocation;
-                return true;
-            }
-            else if (user.HandlerState == Bot.State.AskingCompanyLocation)
-            {
-                PublishData pd = this.publishData[user];
-                pd.LocationCompany = new GeoLocation(request.Text, "Montevideo");
-                response = "Envía el nombre del material";
+                response = "Envía el nombre del material que quieres agregar \nEnvía \"/cancelar\" para cancelar la operación";
                 user.HandlerState = Bot.State.AskingMaterialName;
                 return true;
             }
+            // else if (user.HandlerState == Bot.State.AskingCompanyName)
+            // {
+            //     PublishData pd = this.publishData[user];
+            //     string companyName = request.Text;
+            //     pd.PublishingCompany = SessionRelated.Instance.GetCompanyByName(request.Text);
+            //     response = "Envía la ubicación de la empresa \nEnvía \"/cancelar\" para cancelar la operación";
+            //     user.HandlerState = Bot.State.AskingCompanyLocation;
+            //     return true;
+            // }
+            // else if (user.HandlerState == Bot.State.AskingCompanyLocation)
+            // {
+            //     PublishData pd = this.publishData[user];
+            //     pd.LocationCompany = new GeoLocation(request.Text, "Montevideo");
+            //     response = "Envía el nombre del material";
+            //     user.HandlerState = Bot.State.AskingMaterialName;
+            //     return true;
+            // }
             else if (user.HandlerState == Bot.State.AskingMaterialName)
             {
                 PublishData pd = this.publishData[user];
@@ -95,9 +95,9 @@ namespace Bot
                 PublishData pd = this.publishData[user];
                 pd.MaterialPrice = Int32.Parse(request.Text);
                 pd.Material = new Material(pd.MaterialName, pd.MaterialQuantity, pd.MaterialPrice);
-                Publication publication = new Publication(pd.Title, pd.PublishingCompany, pd.LocationCompany, pd.Material);
+                Publication publication = new Publication(pd.Title, userCompanyInfo.company, userCompanyInfo.company.Location, pd.Material);
                 PublicationSet.Instance.AddElement(publication);
-                (pd.PublishingCompany).AddOwnPublication(publication);
+                userCompanyInfo.company.AddOwnPublication(publication);
                 response = "Se ha creado la publicación con el material indicado. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"cancelar\" si quiere terminar la publicación.";
                 user.HandlerState = Bot.State.Start;
                 return true;
@@ -111,8 +111,6 @@ namespace Bot
             public int MaterialQuantity { get; set; }
             public int MaterialPrice { get; set; }
             public string Title { get; set; }
-            public Company PublishingCompany { get; set; }
-            public GeoLocation LocationCompany { get; set; }
             public Material Material { get; set; }
 
             public PublishData(string title)

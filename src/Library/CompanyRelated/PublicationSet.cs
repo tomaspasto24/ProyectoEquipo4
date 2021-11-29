@@ -16,7 +16,7 @@ namespace Bot
     {
         private static PublicationSet instance;
         [JsonInclude]
-        private List<Publication> listPublications;
+        private List<Publication> listPublications = new List<Publication>();
         [JsonConstructor]
         private PublicationSet()
         {

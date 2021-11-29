@@ -1,0 +1,182 @@
+{
+  "$id": "1",
+  "ListPublicationsToSerialize": {
+    "$id": "2",
+    "$values": []
+  },
+  "SessionRelatedToSerialize": {
+    "$id": "3",
+    "DiccUserTokensToSerialize": {
+      "$id": "4",
+      "$values": [
+        {
+          "Key": "0",
+          "Value": {
+            "$id": "5",
+            "Location": {
+              "$id": "6",
+              "City": "montevideo",
+              "Address": "av. rivera 2221"
+            },
+            "Name": "recompute",
+            "Item": "fabricaci\u00F3n de computadoras ecol\u00F3gicas",
+            "Contact": "091234567",
+            "ListHistorialPublications": {
+              "$id": "7",
+              "$values": [
+                {
+                  "$id": "8",
+                  "InterestedPerson": {
+                    "$id": "9",
+                    "Location": {
+                      "$id": "10",
+                      "City": "montevideo",
+                      "Address": "av 8 de octubre"
+                    },
+                    "Heading": "rubro de prueba",
+                    "ListHistorialPublications": {
+                      "$id": "11",
+                      "$values": [
+                        {
+                          "$ref": "8"
+                        }
+                      ]
+                    },
+                    "Certifications": {
+                      "$id": "12",
+                      "$values": []
+                    },
+                    "Specializations": {
+                      "$id": "13",
+                      "$values": []
+                    }
+                  },
+                  "Location": {
+                    "$ref": "6"
+                  },
+                  "Title": "publicacion de prueba 1",
+                  "Company": {
+                    "$ref": "5"
+                  },
+                  "Date": "2021-11-28T23:37:50.4629162-03:00",
+                  "ClosedDate": "2021-11-29T02:04:08.5163512-03:00",
+                  "ListMaterials": {
+                    "$id": "14",
+                    "$values": [
+                      {
+                        "$id": "15",
+                        "Name": "cart\u00F3n reciclado",
+                        "KeyWords": {
+                          "$id": "16",
+                          "$values": []
+                        },
+                        "Quantity": 100,
+                        "Price": 30
+                      }
+                    ]
+                  },
+                  "ListQualifications": {
+                    "$id": "17",
+                    "$values": []
+                  },
+                  "IsClosed": true
+                }
+              ]
+            },
+            "ListOwnPublications": {
+              "$id": "18",
+              "$values": [
+                {
+                  "$ref": "8"
+                }
+              ]
+            },
+            "ListUsers": {
+              "$id": "19",
+              "$values": []
+            }
+          }
+        },
+        {
+          "Key": "1",
+          "Value": {
+            "$id": "20",
+            "Location": {
+              "$id": "21",
+              "City": "montevideo",
+              "Address": "durazno 1967"
+            },
+            "Name": "apple (robotics)",
+            "Item": "desmantelado de celulares",
+            "Contact": "097654321",
+            "ListHistorialPublications": {
+              "$id": "22",
+              "$values": []
+            },
+            "ListOwnPublications": {
+              "$id": "23",
+              "$values": []
+            },
+            "ListUsers": {
+              "$id": "24",
+              "$values": []
+            }
+          }
+        }
+      ]
+    },
+    "DiccEntrepreneurInfoToSerialize": {
+      "$id": "25",
+      "$values": [
+        {
+          "Key": {
+            "$id": "26",
+            "Permissions": {
+              "$id": "27",
+              "$values": [
+                0,
+                4,
+                7,
+                10
+              ]
+            },
+            "Name": "Seba",
+            "Id": 1389963394,
+            "HandlerState": 0
+          },
+          "Value": {
+            "$ref": "9"
+          }
+        }
+      ]
+    },
+    "DiccAdminInfoToSerialize": {
+      "$id": "28",
+      "$values": []
+    },
+    "DiccUserCompanyInfoToSerialize": {
+      "$id": "29",
+      "$values": [
+        {
+          "Key": {
+            "$ref": "26"
+          },
+          "Value": {
+            "$id": "30",
+            "company": {
+              "$ref": "5"
+            }
+          }
+        }
+      ]
+    },
+    "AllUsers": {
+      "$id": "31",
+      "$values": [
+        {
+          "$ref": "26"
+        }
+      ]
+    }
+  }
+}

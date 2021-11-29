@@ -50,7 +50,7 @@ namespace Bot
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
         /// <value>Rol Emprendedor.</value>
-        public EntrepreneurInfo InterestedPerson { get; private set; }
+        public EntrepreneurInfo InterestedPerson { get; set; }
 
         /// <summary>
         /// Obtiene o establece ubicación dada de la clase Publicación.

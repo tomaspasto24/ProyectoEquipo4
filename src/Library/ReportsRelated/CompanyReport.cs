@@ -37,7 +37,8 @@ namespace Bot
                 if (publication.ClosedDate >= DateTime.Now.AddDays(-30)
                 && publication.IsClosed)
                 {
-                    report.Append($"{++contador}- {publication.Title} - {publication.ClosedDate} \n");
+                    UserInfo interestedUser = SessionRelated.Instance.GetUserInfoByEntrepreneurInfo(publication.InterestedPerson);
+                    report.Append($"{++contador} - {interestedUser.Name} - {publication.Title} - {publication.ClosedDate} \n");
                 }
             }
 
