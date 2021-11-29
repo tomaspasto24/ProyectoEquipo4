@@ -2,123 +2,226 @@
   "$id": "1",
   "ListPublicationsToSerialize": {
     "$id": "2",
-    "$values": []
+    "$values": [
+      {
+        "$id": "3",
+        "InterestedPerson": null,
+        "Location": {
+          "$id": "4",
+          "City": "montevideo",
+          "Address": "av. 8 de octubre"
+        },
+        "Title": "publicacion de prueba",
+        "Company": {
+          "$id": "5",
+          "Location": {
+            "$ref": "4"
+          },
+          "Name": "empresa de prueba 1",
+          "Item": "rubro de la empresa de prueba",
+          "Contact": "123456789",
+          "ListHistorialPublications": {
+            "$id": "6",
+            "$values": [
+              {
+                "$id": "7",
+                "InterestedPerson": {
+                  "$id": "8",
+                  "Location": {
+                    "$id": "9",
+                    "City": "montevideo",
+                    "Address": "av. 8 octubre"
+                  },
+                  "Heading": "carpinteria",
+                  "ListHistorialPublications": {
+                    "$id": "10",
+                    "$values": [
+                      {
+                        "$ref": "7"
+                      }
+                    ]
+                  },
+                  "Certifications": {
+                    "$id": "11",
+                    "$values": []
+                  },
+                  "Specializations": {
+                    "$id": "12",
+                    "$values": []
+                  }
+                },
+                "Location": {
+                  "$ref": "4"
+                },
+                "Title": "publicacion de prueba 3",
+                "Company": {
+                  "$ref": "5"
+                },
+                "Date": "2021-11-29T08:56:59.0647256-03:00",
+                "ClosedDate": "2021-11-29T08:58:45.6305741-03:00",
+                "ListMaterials": {
+                  "$id": "13",
+                  "$values": [
+                    {
+                      "$id": "14",
+                      "Name": "plastico",
+                      "KeyWords": {
+                        "$id": "15",
+                        "$values": []
+                      },
+                      "Quantity": 30,
+                      "Price": 400
+                    },
+                    {
+                      "$id": "16",
+                      "Name": "madera",
+                      "KeyWords": {
+                        "$id": "17",
+                        "$values": []
+                      },
+                      "Quantity": 50,
+                      "Price": 500
+                    }
+                  ]
+                },
+                "ListQualifications": {
+                  "$id": "18",
+                  "$values": []
+                },
+                "IsClosed": true
+              }
+            ]
+          },
+          "ListOwnPublications": {
+            "$id": "19",
+            "$values": [
+              {
+                "$ref": "3"
+              },
+              {
+                "$id": "20",
+                "InterestedPerson": null,
+                "Location": {
+                  "$ref": "4"
+                },
+                "Title": "nueva publicacion 2",
+                "Company": {
+                  "$ref": "5"
+                },
+                "Date": "2021-11-29T08:09:14.2893095-03:00",
+                "ClosedDate": "0001-01-01T00:00:00",
+                "ListMaterials": {
+                  "$id": "21",
+                  "$values": [
+                    {
+                      "$id": "22",
+                      "Name": "componentes electr\u00F3nicos",
+                      "KeyWords": {
+                        "$id": "23",
+                        "$values": []
+                      },
+                      "Quantity": 10,
+                      "Price": 50
+                    },
+                    {
+                      "$id": "24",
+                      "Name": "plastico",
+                      "KeyWords": {
+                        "$id": "25",
+                        "$values": []
+                      },
+                      "Quantity": 150,
+                      "Price": 45
+                    }
+                  ]
+                },
+                "ListQualifications": {
+                  "$id": "26",
+                  "$values": []
+                },
+                "IsClosed": false
+              },
+              {
+                "$ref": "7"
+              }
+            ]
+          },
+          "ListUsers": {
+            "$id": "27",
+            "$values": []
+          }
+        },
+        "Date": "2021-11-29T04:46:24.4330487-03:00",
+        "ClosedDate": "0001-01-01T00:00:00",
+        "ListMaterials": {
+          "$id": "28",
+          "$values": [
+            {
+              "$id": "29",
+              "Name": "cart\u00F3n",
+              "KeyWords": {
+                "$id": "30",
+                "$values": []
+              },
+              "Quantity": 100,
+              "Price": 30
+            },
+            {
+              "$id": "31",
+              "Name": "componentes electr\u00F3nicos",
+              "KeyWords": {
+                "$id": "32",
+                "$values": []
+              },
+              "Quantity": 50,
+              "Price": 10
+            }
+          ]
+        },
+        "ListQualifications": {
+          "$id": "33",
+          "$values": []
+        },
+        "IsClosed": false
+      },
+      {
+        "$ref": "20"
+      }
+    ]
   },
   "SessionRelatedToSerialize": {
-    "$id": "3",
+    "$id": "34",
     "DiccUserTokensToSerialize": {
-      "$id": "4",
+      "$id": "35",
       "$values": [
         {
           "Key": "0",
           "Value": {
-            "$id": "5",
-            "Location": {
-              "$id": "6",
-              "City": "montevideo",
-              "Address": "av. rivera 2221"
-            },
-            "Name": "recompute",
-            "Item": "fabricaci\u00F3n de computadoras ecol\u00F3gicas",
-            "Contact": "091234567",
-            "ListHistorialPublications": {
-              "$id": "7",
-              "$values": [
-                {
-                  "$id": "8",
-                  "InterestedPerson": {
-                    "$id": "9",
-                    "Location": {
-                      "$id": "10",
-                      "City": "montevideo",
-                      "Address": "av 8 de octubre"
-                    },
-                    "Heading": "rubro de prueba",
-                    "ListHistorialPublications": {
-                      "$id": "11",
-                      "$values": [
-                        {
-                          "$ref": "8"
-                        }
-                      ]
-                    },
-                    "Certifications": {
-                      "$id": "12",
-                      "$values": []
-                    },
-                    "Specializations": {
-                      "$id": "13",
-                      "$values": []
-                    }
-                  },
-                  "Location": {
-                    "$ref": "6"
-                  },
-                  "Title": "publicacion de prueba 1",
-                  "Company": {
-                    "$ref": "5"
-                  },
-                  "Date": "2021-11-28T23:37:50.4629162-03:00",
-                  "ClosedDate": "2021-11-29T02:04:08.5163512-03:00",
-                  "ListMaterials": {
-                    "$id": "14",
-                    "$values": [
-                      {
-                        "$id": "15",
-                        "Name": "cart\u00F3n reciclado",
-                        "KeyWords": {
-                          "$id": "16",
-                          "$values": []
-                        },
-                        "Quantity": 100,
-                        "Price": 30
-                      }
-                    ]
-                  },
-                  "ListQualifications": {
-                    "$id": "17",
-                    "$values": []
-                  },
-                  "IsClosed": true
-                }
-              ]
-            },
-            "ListOwnPublications": {
-              "$id": "18",
-              "$values": [
-                {
-                  "$ref": "8"
-                }
-              ]
-            },
-            "ListUsers": {
-              "$id": "19",
-              "$values": []
-            }
+            "$ref": "5"
           }
         },
         {
           "Key": "1",
           "Value": {
-            "$id": "20",
+            "$id": "36",
             "Location": {
-              "$id": "21",
+              "$id": "37",
               "City": "montevideo",
-              "Address": "durazno 1967"
+              "Address": "av. rivera 2221"
             },
-            "Name": "apple (robotics)",
-            "Item": "desmantelado de celulares",
-            "Contact": "097654321",
+            "Name": "empresa de prueba 2",
+            "Item": "rubro de la empresa de prueba 2",
+            "Contact": "123123123",
             "ListHistorialPublications": {
-              "$id": "22",
+              "$id": "38",
               "$values": []
             },
             "ListOwnPublications": {
-              "$id": "23",
+              "$id": "39",
               "$values": []
             },
             "ListUsers": {
-              "$id": "24",
+              "$id": "40",
               "$values": []
             }
           }
@@ -126,13 +229,13 @@
       ]
     },
     "DiccEntrepreneurInfoToSerialize": {
-      "$id": "25",
+      "$id": "41",
       "$values": [
         {
           "Key": {
-            "$id": "26",
+            "$id": "42",
             "Permissions": {
-              "$id": "27",
+              "$id": "43",
               "$values": [
                 0,
                 4,
@@ -145,24 +248,63 @@
             "HandlerState": 0
           },
           "Value": {
-            "$ref": "9"
+            "$id": "44",
+            "Location": {
+              "$id": "45",
+              "City": "montevideo",
+              "Address": "durazno 1967"
+            },
+            "Heading": "carpintero",
+            "ListHistorialPublications": {
+              "$id": "46",
+              "$values": []
+            },
+            "Certifications": {
+              "$id": "47",
+              "$values": []
+            },
+            "Specializations": {
+              "$id": "48",
+              "$values": []
+            }
+          }
+        },
+        {
+          "Key": {
+            "$id": "49",
+            "Permissions": {
+              "$id": "50",
+              "$values": [
+                0,
+                2,
+                3,
+                5,
+                6
+              ]
+            },
+            "Name": "Tomas",
+            "Id": 1772641058,
+            "HandlerState": 0
+          },
+          "Value": {
+            "$ref": "8"
           }
         }
       ]
     },
     "DiccAdminInfoToSerialize": {
-      "$id": "28",
+      "$id": "51",
       "$values": []
     },
     "DiccUserCompanyInfoToSerialize": {
-      "$id": "29",
+      "$id": "52",
       "$values": [
         {
           "Key": {
-            "$ref": "26"
+            "$ref": "42"
           },
           "Value": {
-            "$id": "30",
+            "$id": "53",
             "company": {
               "$ref": "5"
             }
@@ -171,10 +313,13 @@
       ]
     },
     "AllUsers": {
-      "$id": "31",
+      "$id": "54",
       "$values": [
         {
-          "$ref": "26"
+          "$ref": "42"
+        },
+        {
+          "$ref": "49"
         }
       ]
     }

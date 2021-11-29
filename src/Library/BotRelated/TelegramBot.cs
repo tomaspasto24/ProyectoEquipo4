@@ -121,10 +121,10 @@ namespace Library
             {
                 result = handler.Handle(msg, out response);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 SendMessage(chatId, $"Ha sucedido un error: {e.Message}");
-                System.Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e.ToString());
                 return;
             }
 

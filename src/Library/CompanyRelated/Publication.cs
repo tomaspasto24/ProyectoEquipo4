@@ -313,10 +313,10 @@ namespace Bot
         /// <returns>String publication.</returns>
         public string ReturnPublication()
         {
-            string publication = this.title +"\n"+ this.Company.Name+ "\n" + "Materiales:\n";
+            string publication = "Titulo: " + this.title +"\n"+ "Compañía: " + this.Company.Name+ "\n" + "Materiales:\n";
             foreach (Material material in this.listMaterials)
             {
-                publication = publication + material.Name +" - "+ material.Quantity +" - " + material.Price;
+                publication = publication + material.Name +" - "+ material.Quantity +" - " + material.Price + "\n";
             }
             return publication;
         }

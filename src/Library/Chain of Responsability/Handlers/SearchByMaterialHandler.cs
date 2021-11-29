@@ -47,7 +47,7 @@ namespace Bot
                 }
                 else
                 {
-                    response = $"Estas son las publicaciones que contienen {request.Text}\n" + SearchByMaterial.Instance.Search(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario \"/cancelar\"";
+                    response = $"Estas son las publicaciones que contienen \"{request.Text}\"\n" + SearchByMaterial.Instance.Search(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario \"/cancelar\"";
                     user.HandlerState = Bot.State.InterestedInPublication;
                     return true;
                 }

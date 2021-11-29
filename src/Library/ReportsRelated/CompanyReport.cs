@@ -38,13 +38,13 @@ namespace Bot
                 && publication.IsClosed)
                 {
                     UserInfo interestedUser = SessionRelated.Instance.GetUserInfoByEntrepreneurInfo(publication.InterestedPerson);
-                    report.Append($"{++contador} - {interestedUser.Name} - {publication.Title} - {publication.ClosedDate} \n");
+                    report.Append($"{++contador} - {interestedUser.Name} - {publication.Title} - {publication.ClosedDate}\n");
                 }
             }
 
             if (report.Length > 0)
             {
-                result = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {this.company.Name} \n  {report.ToString()}";
+                result = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {this.company.Name}\n{report.ToString()}";
             }
             else
             {

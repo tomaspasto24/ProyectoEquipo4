@@ -257,11 +257,13 @@ namespace Bot
             }
             return null;
         }
+
+        //TODO: comentar
         public UserInfo GetUserInfoByEntrepreneurInfo(EntrepreneurInfo entrepreneurInfo)
         {
-            foreach (UserInfo userInfo in DiccEntrepreneurInfo)
+            foreach (UserInfo userInfo in DiccEntrepreneurInfo.Keys)
             {
-                if (DiccEntrepreneurInfo[userInfo].Equals(entrepreneurInfo))
+                if (DiccEntrepreneurInfo[userInfo].Equals(entrepreneurInfo)) 
                 {
                     return userInfo;
                 }
