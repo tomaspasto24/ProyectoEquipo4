@@ -12,24 +12,23 @@ namespace BotTests
         String response;
         IHandler result;
         Company company;
+        EntrepreneurInfo entrepreneur;
 
         [SetUp]
         public void Setup()
         {
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
-        }
-        /// <summary>
-        /// Arreglar
-        /// </summary>
-        [Test]
-        public void ModifyUseraddCertificationHanlderTest()
-        {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
 
+        }
+
+        [Test]
+        public void ModifyUseraddCertificationHanlderTest()
+        {
+            user1.Permissions = UserInfo.EntrepreneurPermissions;
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.ChangingUserCertifications;
             testMessage = new Message(5433261, "1");
@@ -41,10 +40,6 @@ namespace BotTests
         public void ModifyUserdelateCertificationHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.ChangingUserCertifications;
             testMessage = new Message(5433261, "2");
@@ -56,10 +51,6 @@ namespace BotTests
         public void ModifyUserCertificationWrongTextHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.ChangingUserCertifications;
             testMessage = new Message(5433261, "5");
@@ -71,15 +62,10 @@ namespace BotTests
         public void ModifyUserHasCertificationHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             entrepreneur.AddCertification("certification");
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.AddingUserCertification;
             testMessage = new Message(5433261, "certification");
-
             result = modifyUserCertificationsHandler.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Esta certificacion ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
@@ -89,15 +75,11 @@ namespace BotTests
         public void ModifyUserAddCertificationHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             entrepreneur.AddCertification("certification");
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
 
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.AddingUserCertification;
             testMessage = new Message(5433261, "NewCertification");
-
             result = modifyUserCertificationsHandler.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Certificacion agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
@@ -107,15 +89,10 @@ namespace BotTests
         public void ModifyUserDelateCertificationHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             entrepreneur.AddCertification("certification");
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.DeletingUserCertification;
             testMessage = new Message(5433261, "certification");
-
             result = modifyUserCertificationsHandler.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Certificacion eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
@@ -125,15 +102,10 @@ namespace BotTests
         public void ModifyUserNoFindCertificationHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             entrepreneur.AddCertification("certification");
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.DeletingUserCertification;
             testMessage = new Message(5433261, "WrongText");
-
             result = modifyUserCertificationsHandler.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Esta Certificacion no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
@@ -143,11 +115,7 @@ namespace BotTests
         public void ModifyUserCertificationEmptyTextHanlderTest()
         {
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             entrepreneur.AddCertification("certification");
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
             user1.HandlerState = Bot.State.DeletingUserCertification;
             testMessage = new Message(5433261, "");
