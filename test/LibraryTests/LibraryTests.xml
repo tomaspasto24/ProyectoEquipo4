@@ -19,14 +19,93 @@
             Test para probar los comandos que tiene un admin
             </summary>
         </member>
-        <member name="M:BotTests.CommandHandlerTest.TestRoleUserCompanyCommandHandler">
+        <member name="M:BotTests.CommandHandlerTest.TestUserCompanyCommandHandler">
             <summary>
             Test para probar los comandos que tiene un UserCompany
             </summary>
         </member>
-        <member name="M:BotTests.CommandHandlerTest.TestRoleEntrepreneurCommandHandler">
+        <member name="M:BotTests.CommandHandlerTest.TestEntrepreneurCommandHandler">
             <summary>
             Test para probar los comandos que tiene un Emprendedor
+            </summary>
+        </member>
+        <member name="M:BotTests.CommandHandlerTest.TestDefaultCommandHandler">
+            <summary>
+            Test para probar los comandos que tiene un usuario Default
+            </summary>
+        </member>
+        <member name="T:BotTests.CompanyTest">
+            <summary>
+            Clase para testear la clase Company.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.SetUp">
+            <summary>
+            SetUp, asigna valores a las variables location, companyTest, initialMaterial.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.InstanceTest">
+            <summary>
+            Test que se encarga de verificar que la instancia de la clase Empresa y sus atributos
+            internos esten correctamente definidos.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.HistorialPublicationsTest">
+            <summary>
+            Test que se encarga de comprobar el correcto funcionamiento de la lista historial de publicaciones.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.OwnPublicationsTest">
+            <summary>
+            Test que se encarga de verificar que funcionen bien los métodos que involucran la lista
+            de publicaciones propias de la empresa.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.UsersCompanyTest">
+            <summary>
+            Test que se encarga de validar que los usuarios puedan añadirse a una clase Empresa y también
+            puedan ser eliminados.
+            </summary>
+        </member>
+        <member name="M:BotTests.CompanyTest.ReturnContactTest">
+            <summary>
+            Testea que el método ReturnContactTest retorne la cadena de carácteres con la información correcta.
+            </summary>
+        </member>
+        <member name="T:BotTests.ContactHandlerTest">
+            <summary>
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="T:BotTests.RoleEntrepreneurTests">
+            <summary>
+            Tests de los métodos de la clase RoleEntrepreneur.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.Setup">
+            <summary>
+            Se crea una instancia de emprendedor que será usada para los tests de cada método.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddCertificationTest">
+            <summary>
+            Test del método que le agrega una certificación al emprendedor.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddSpecializationTest">
+            <summary>
+            Test del método que le agrega una especialización al emprendedor.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.AddListHistorialPublicationsTest1">
+            <summary>
+            Test del método que guarda las publicaciónes adquiridas por el emprendedor, se le agrega la publicación 
+            y se fija que la lista no esté vacía.
+            </summary>
+        </member>
+        <member name="M:BotTests.RoleEntrepreneurTests.ContactCompanyTest">
+            <summary>
+            Verifica que la ubicación que se le devuelve al emprendedor sea la correcta.
             </summary>
         </member>
         <member name="T:BotTests.GeoLocationTests">
@@ -127,27 +206,88 @@
         </member>
         <member name="M:BotTests.RegisterHandlerTest.RegisterHandlerTokenNoFndTest">
             <summary>
-            Arreglar
+            Metodo SetUp para los tests
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestRegisterHandled">
+            <summary>
+            Test para probar que el RegisterHandler actua
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestNoTokenFound">
+            <summary>
+            Test para probar que pasa cuando no se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestTokenFound">
+            <summary>
+            Test para probar que pasa cuando se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestCancel">
+            <summary>
+            Test para probar el Cancel del handler
+            </summary>
+        </member>
+        <member name="T:BotTests.ReportTest">
+            <summary>
+            Clase ReportTest la cual se encarga de testear las funcionalidades de la clase EntrepreneurReport y CompanyReport.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.Setup">
+            <summary>
+            Método que crea y asgina las instancias a los atributos que seran utilizados para ejecutar los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.CompanyReportClosedPublicationTest">
+            <summary>
+            Test de reporte empresa cuando la publicacion esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.CompanyReportPublicationNotClosedTest">
+            <summary>
+            Test de reporte empresa cuando la publicacion no esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.EntrepreneurReportClosedPublicationTest">
+            <summary>
+            Test del reporte emprendedor cuando la publicacion esta cerrada.
+            </summary>
+        </member>
+        <member name="M:BotTests.ReportTest.EntrepreneurReportPublicationNotClosedTest">
+            <summary>
+            Test del reporte emprendedor en caso de que la publicacion no este cerrada.
             </summary>
         </member>
         <member name="T:BotTests.SearchHandlerTest">
             <summary>
-            Clase SearchHandlerTest la cual se encarga de testear las funcionalidades de la clase SearchHandler, se declaran las variables globales que se van a utilizar.
-            </summary>
-        </member>
-        <member name="M:BotTests.SearchHandlerTest.SearchHandlerNoHasPermissionTest">
-            <summary>
-            Test que se encarga de verificar si devuelve false en caso de un usario no tener el permiso de "Search". 
+            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
             </summary>
         </member>
         <member name="M:BotTests.SearchHandlerTest.SearchHandlerCommandTest">
             <summary>
-            Test que se encarga de verificar si el handler responde correctamente al comando enviádo.
+            Se testea que el mensaje de salida para que se elija por qué se quiere buscar.
+            </summary>
+        </member>
+        <member name="T:BotTests.SearchTests">
+            <summary>
+            Tests del método Search de las clases SearchByMaterial y SearchByLocation
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchHandlerTest.SearchHandlerNoHasPermissionTest">
+            <summary>
+            Se crean dos instancias de Material y una de Company para poder crear una de Publication y usarlas en los dos test.
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchHandlerTest.SearchHandlerCommandTest">
+            <summary>
+            El resultado de la búsqueda es una publicación como string y esta contiene al material con la palabra clave buscada,
+            cada material tiene una lista de palabras claves.
             </summary>
         </member>
         <member name="M:BotTests.SearchHandlerTest.SearchHandlerWrongCommandTest">
             <summary>
-            Test que se encarga de verificar si retorna falso en caso de que se envíe un comando incorrecto.
+            El resultado de la búsqueda es la publicación que se encuentra a partir de la ubicación ingresada.
             </summary>
         </member>
         <member name="T:BotTests.StartHandlerTest">

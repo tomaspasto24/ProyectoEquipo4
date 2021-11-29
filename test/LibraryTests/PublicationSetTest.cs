@@ -1,11 +1,11 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
     /// <summary>
-    /// Clase para testear la clase PublicationSet
+    /// Clase para testear la clase PublicationSet.
     /// </summary>
     public class PublicationSetTest
     {

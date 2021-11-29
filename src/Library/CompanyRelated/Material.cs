@@ -110,6 +110,7 @@ namespace Bot
         /// <param name="keyWord">Palabra clave.</param>
         public void AddKeyWord(string keyWord) // Agregar palabras clave
         {
+            // TODO revisar que en el handler se agreguen KeyWords
             this.keyWords.Add(keyWord);
         }
 

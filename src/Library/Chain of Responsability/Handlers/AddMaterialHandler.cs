@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
-    A su vez, cumple con el patrón Chain of Responsability.
-    */
     /// <summary>
-    /// Handler que se encarga del registro de un usuario
+    /// Handler que se encarga de agregar un material a una publicación
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+    /// A su vez, cumple con el patrón Chain of Responsability.
     /// </summary>
     public class AddMaterialHandler : AbstractHandler
     {
         private Dictionary<UserInfo, MaterialData> materialData = new Dictionary<UserInfo, MaterialData>();
-        
+
         /// <summary>
         /// Crea una nueva instancia de éste handler y define su sucesor.
         /// </summary>
@@ -31,22 +31,26 @@ namespace Bot
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
-            //TODO Cambiar con un administrador de datos para el handler
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
-            
+            UserCompanyInfo userCompanyInfo = SessionRelated.Instance.GetUserCompanyByUserInfo(user);
+
             if (!user.HasPermission(Permission.AddMaterial))
             {
                 response = string.Empty;
                 return false;
             }
-            if (request.Text.Equals("/agregarmaterial") && (user.HandlerState == Bot.State.Start)) 
+            if (request.Text.Equals("/agregarmaterial") && (user.HandlerState == Bot.State.Start))
             {
                 response = "Envía el título de la publicación en la que quieres agregar el material";
                 user.HandlerState = Bot.State.AddingMaterial;
-                return true; 
+                return true;
             }
             else if (user.HandlerState == Bot.State.AddingMaterial)
             {
+                if (!userCompanyInfo.company.ContainsPublication(request.Text))
+                {
+                    throw new ArgumentException("No existe una publicación con ese nombre");
+                }
                 this.materialData.Remove(user);
                 this.materialData.Add(user, new MaterialData(request.Text));
                 response = "Envía el nombre del material";
@@ -73,7 +77,7 @@ namespace Bot
             {
                 MaterialData md = this.materialData[user];
                 md.MaterialPrice = Int32.Parse(request.Text);
-                
+
                 md.Material = new Material(md.MaterialName, md.MaterialQuantity, md.MaterialPrice);
                 foreach (Publication publication in PublicationSet.Instance.ListPublications)
                 {
@@ -95,7 +99,7 @@ namespace Bot
             public int MaterialQuantity { get; set; }
             public int MaterialPrice { get; set; }
             public Material Material { get; set; }
-            public string PublicationTitle { get; set; } 
+            public string PublicationTitle { get; set; }
             public MaterialData(string publicationTitle)
             {
                 this.PublicationTitle = publicationTitle;

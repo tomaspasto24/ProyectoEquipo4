@@ -3,14 +3,13 @@ using System;
 
 namespace Bot
 {
-    /*
-    Patrones y principios:
-    Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
-    A su vez, cumple con el patrón Chain of Responsability.
-    */
     /// <summary>
-    /// Handler para mostrar los comandos que el usuario tiene acceso
+    /// Handler que se encarga de modificar la lista de certificaciones de un emprendedor
+    /// Patrones y principios:
+    /// Debido a que se indentifica una sola razón de cambio, esta clase cumple con SRP, este motivo de cambio podría ser, cambiar el método InternalHandle.
+    /// También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.
+    /// Cumple con Polymorphism porque usa el método polimórfico InternalHandle. 
+    /// A su vez, cumple con el patrón Chain of Responsability.
     /// </summary>
     public class ModifyUserCertificationsHandler : AbstractHandler
     {

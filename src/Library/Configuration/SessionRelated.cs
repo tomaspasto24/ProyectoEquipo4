@@ -18,23 +18,44 @@ namespace Bot
     /// </summary>
     public class SessionRelated
     {
-        [JsonInclude]
         /// <summary>
         /// Lista de todos los usuarios
         /// </summary>
+        [JsonInclude]
         public IList<UserInfo> AllUsers = new List<UserInfo>();
 
         /// <summary>
-        /// Diccionario que contiene el token que se relaciona con la empresa
+        /// Diccionario que contiene el token que se relacion con la compañía
         /// </summary>
+        /// <typeparam name="string">El token en cuestión</typeparam>
+        /// <typeparam name="Company">La compañía en cuestión</typeparam>
         public IDictionary<string, Company> DiccUserTokens = new Dictionary<string, Company>();
 
+        /// <summary>
+        /// Diccionario que contiene la UserInfo que se relaciona con la EntrepreneurInfo
+        /// </summary>
+        /// <typeparam name="UserInfo">El UserInfo</typeparam>
+        /// <typeparam name="EntrepreneurInfo">La EntrepreneurInfo</typeparam>
         public Dictionary<UserInfo, EntrepreneurInfo> DiccEntrepreneurInfo = new Dictionary<UserInfo, EntrepreneurInfo>();
+        /// <summary>
+        /// Diccionario que contiene la UserInfo que se relaciona con la AdminInfo
+        /// </summary>
+        /// <typeparam name="UserInfo">La UserInfo</typeparam>
+        /// <typeparam name="AdminInfo">La AdminInfo</typeparam>
         public IDictionary<UserInfo, AdminInfo> DiccAdminInfo = new Dictionary<UserInfo, AdminInfo>();
+        /// <summary>
+        /// Diccionario que contiene la UserInfo que se relaciona con la UserCompanyInfo
+        /// </summary>
+        /// <typeparam name="UserInfo">La UserInfo</typeparam>
+        /// <typeparam name="UserCompanyInfo">La UserCompanyInfo</typeparam>
+        /// <returns></returns>
         public IDictionary<UserInfo, UserCompanyInfo> DiccUserCompanyInfo = new Dictionary<UserInfo, UserCompanyInfo>();
 
         private static SessionRelated instance;
 
+        /// <summary>
+        /// Obtiene DiccUserTokens como una lista
+        /// </summary>
         [JsonInclude]
         public List<KeyValuePair<string, Company>> DiccUserTokensToSerialize
         {
@@ -42,18 +63,27 @@ namespace Bot
             set { this.DiccUserTokens = value.ToDictionary(x => x.Key, x => x.Value); }
         }
 
+        /// <summary>
+        /// Obtiene DiccEntrepreneurInfo como una lista
+        /// </summary>
         [JsonInclude]
         public List<KeyValuePair<UserInfo, EntrepreneurInfo>> DiccEntrepreneurInfoToSerialize
         {
             get { return this.DiccEntrepreneurInfo.ToList(); }
             set { this.DiccEntrepreneurInfo = value.ToDictionary(x => x.Key, x => x.Value); }
         }
+        /// <summary>
+        /// Obtiene DiccAdminInfo como una lista
+        /// </summary>
         [JsonInclude]
         public List<KeyValuePair<UserInfo, AdminInfo>> DiccAdminInfoToSerialize
         {
             get { return this.DiccAdminInfo.ToList(); }
             set { this.DiccAdminInfo = value.ToDictionary(x => x.Key, x => x.Value); }
         }
+        /// <summary>
+        /// Obtiene DiccUserCompanyInfo como una lista
+        /// </summary>
         [JsonInclude]
         public List<KeyValuePair<UserInfo, UserCompanyInfo>> DiccUserCompanyInfoToSerialize
         {
@@ -61,9 +91,9 @@ namespace Bot
             set { this.DiccUserCompanyInfo = value.ToDictionary(x => x.Key, x => x.Value); }
         }
         /// <summary>
-        /// Metodo getter para instanciar instance en caso de que sea null para tener una unica instancia de la clase y que sea de acceso global.
+        /// Obtiene una única instancia de esta clase
         /// </summary>
-        /// <value>La instancia inicializada</value>
+        /// <value>La única instancia de esta clase.</value>
         public static SessionRelated Instance
         {
             get
@@ -88,11 +118,9 @@ namespace Bot
         public SessionRelated() { }
 
         /// <summary>
-        /// Metodo para agregar un nuevo usuario
+        /// Agrega un nuevo usuario en caso de que no exista
         /// </summary>
-        /// <param name="name">Nombre del usuario</param>
-        /// <param name="id">Id del usuario</param>
-        /// <param name="role">Role del usuariro</param>
+        /// <param name="user">El usuario en cuestión</param>
         public void AddNewUser(UserInfo user)
         {
             if (UsernameExists(user.Id))
@@ -103,7 +131,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Metodo para borrar un usuario
+        /// Elimina un usuario
         /// </summary>
         /// <param name="user">Usuaurio a borrar</param>
         public void DeleteUser(UserInfo user)
@@ -112,10 +140,10 @@ namespace Bot
         }
 
         /// <summary>
-        /// Metodo para verificar si existe un usuario
+        /// Verifica si existe un usuario
         /// </summary>
         /// <param name="id">Id del usuario a verificar</param>
-        /// <returns>true o false</returns>
+        /// <returns>True si existe el usuario, false en caso contrario</returns>
         public bool UsernameExists(long id)
         {
             foreach (UserInfo user in AllUsers)
@@ -129,7 +157,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Metodo para obtener el usuario relacionado al id.
+        /// Obtiene el usuario a partir de un id
         /// </summary>
         /// <param name="id">Id del usuario</param>
         /// <returns>El usuario</returns>
@@ -142,7 +170,7 @@ namespace Bot
         /// Metodo para retornar la Company asociada al token generado
         /// </summary>
         /// <param name="token">Token que el usuario inserta</param>
-        /// <returns></returns>
+        /// <returns>La compañía relacionada al token o nulo en caso de que no haya una compañía con ese token</returns>
         public Company GetCompanyByToken(string token)
         {
             Company company;
@@ -153,6 +181,11 @@ namespace Bot
             return null;
         }
 
+        /// <summary>
+        /// Obtiene la compañía a partir del nombre
+        /// </summary>
+        /// <param name="companyName">El nombre de la compañía</param>
+        /// <returns>Si existe, la compañía. Nulo en caso contrario</returns>
         public Company GetCompanyByName(string companyName)
         {
             foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
@@ -165,6 +198,11 @@ namespace Bot
             return null;
         }
 
+        /// <summary>
+        /// Obtiene un token a partir de la compañía
+        /// </summary>
+        /// <param name="company">La compañía en cuestión</param>
+        /// <returns>Si existe, el token. Nulo en caso contrario</returns>
         public string GetTokenByCompany(Company company)
         {
             foreach (string token in SessionRelated.Instance.DiccUserTokens.Keys)
@@ -177,6 +215,11 @@ namespace Bot
             return null;
         }
 
+        /// <summary>
+        /// Obtiene una EntrepreneurInfo a partir de un UserInfo
+        /// </summary>
+        /// <param name="user">El UserInfo en cuestión</param>
+        /// <returns>En caso de que exista, la EntrepreneurInfo asociada a la UserInfo. Nulo en caso contrario</returns>
         public EntrepreneurInfo GetEntrepreneurInfoByUserInfo(UserInfo user)
         {
             EntrepreneurInfo entrepreneur;
@@ -186,7 +229,11 @@ namespace Bot
             }
             return null;
         }
-
+        /// <summary>
+        /// Obtiene una AdminInfo a partir de un UserInfo
+        /// </summary>
+        /// <param name="user">El UserInfo en cuestión</param>
+        /// <returns>En caso de que exista, la AdminInfo asociada a la UserInfo. Nulo en caso contrario</returns>
         public AdminInfo GetAdminInfoByUserInfo(UserInfo user)
         {
             AdminInfo admin;
@@ -196,7 +243,11 @@ namespace Bot
             }
             return null;
         }
-
+        /// <summary>
+        /// Obtiene una UserCompanyInfo a partir de un UserInfo
+        /// </summary>
+        /// <param name="user">El UserInfo en cuestión</param>
+        /// <returns>En caso de que exista, la UserCompanyInfo asociada a la UserInfo. Nulo en caso contrario</returns>
         public UserCompanyInfo GetUserCompanyByUserInfo(UserInfo user)
         {
             UserCompanyInfo userCompany;
@@ -206,14 +257,5 @@ namespace Bot
             }
             return null;
         }
-        // public (string, string) ConvertObjectToSaveToJson()
-        // {
-        //     JsonSerializerOptions options = new()
-        //     {
-        //         ReferenceHandler = MyReferenceHandler.Instance,
-        //         WriteIndented = true,
-        //     };
-        //     return (JsonSerializer.Serialize(this.AllUsers, options), JsonSerializer.Serialize(this.DiccUserTokens, options));
-        // }
     }
 }
