@@ -7,54 +7,68 @@ namespace BotTests
 
     public class ModifyUserSpecializationsHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        EntrepreneurInfo entrepreneur;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
+        private EntrepreneurInfo entrepreneur;
 
+        /// <summary>
+        /// Se inicializan las variables que se van a utilizar en los tests.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             SessionRelated.Instance = null;
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            GeoLocation entrepreneurLocation = new("Camino Maldonado 2415", "Montevideo");
+            this.entrepreneur = new("carpintero", entrepreneurLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, this.entrepreneur);
 
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar la funcionalidad del handler en caso que se le quiera añadir una "specialization".
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerAddSpecializationTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            user1.HandlerState = Bot.State.ChangingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.user1.HandlerState = Bot.State.ChangingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "1");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Que especialidad quieres agregar?\nEnvia \"/cancelar\" para cancelar la operación"));
             Assert.That(result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el handler en caso que se quiera borrar una "specialization".
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerDelateSpecializationTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            user1.HandlerState = Bot.State.ChangingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.user1.HandlerState = Bot.State.ChangingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "2");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Que especialidad quieres eliminar?\nEnvia \"/cancelar\" para cancelar la operación"));
             Assert.That(result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el handler en caso que se ingrese un comando incorrecto.
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerWrongCommandTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            user1.HandlerState = Bot.State.ChangingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.user1.HandlerState = Bot.State.ChangingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "WrongCommand");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
@@ -63,15 +77,15 @@ namespace BotTests
         }
 
         /// <summary>
-        /// Test que verifica si la specialization ya fue agregada anteriormente.
+        /// Test que verifica si la "specialization" ya fue agregada anteriormente.
         /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerAlreadyAddSpecializationTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddSpecialization("Specialization");
-            user1.HandlerState = Bot.State.AddingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddSpecialization("Specialization");
+            this.user1.HandlerState = Bot.State.AddingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "Specialization");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
@@ -80,13 +94,16 @@ namespace BotTests
             Assert.That(result, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar sel handler en caso de agregar la "specialization"
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldleraddSpecializationTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddSpecialization("Specialization");
-            user1.HandlerState = Bot.State.AddingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddSpecialization("Specialization");
+            this.user1.HandlerState = Bot.State.AddingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "NewSpecialization");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
@@ -95,14 +112,17 @@ namespace BotTests
             Assert.That(result, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar si se elimina la "Specialization" correctamente.
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerdelateSpecializationTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddSpecialization("Specialization");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddSpecialization("Specialization");
 
-            user1.HandlerState = Bot.State.DeletingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.HandlerState = Bot.State.DeletingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "Specialization");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
@@ -110,14 +130,18 @@ namespace BotTests
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
             Assert.That(result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar 
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerWrongSpecializationTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddSpecialization("Specialization");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddSpecialization("Specialization");
 
-            user1.HandlerState = Bot.State.DeletingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.HandlerState = Bot.State.DeletingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "WrongSpecialization");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
@@ -128,11 +152,11 @@ namespace BotTests
         [Test]
         public void ModifyEntrepreneurInformationHandldlerEmptyTextTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddSpecialization("Specialization");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddSpecialization("Specialization");
 
-            user1.HandlerState = Bot.State.DeletingUserSpecializations;
-            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new ModifyUserSpecializationsHandler(null);
+            this.user1.HandlerState = Bot.State.DeletingUserSpecializations;
+            ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
             testMessage = new Message(5433261, "");
 
             result = modifyUserSpecializationsHandler.Handle(testMessage, out response);

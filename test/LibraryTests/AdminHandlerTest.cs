@@ -6,7 +6,7 @@ using Bot;
 namespace BotTests
 {
     /// <summary>
-    /// Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
+    /// Clase AdminHandlerTest la cual se encarga de testear las funcionalidades de la clase AdminHandler, se declaran las variables globales que se van a utilizar.
     /// </summary>
     public class AdminHandlerTest
     {
@@ -15,6 +15,9 @@ namespace BotTests
         String response;
         IHandler result;
 
+        /// <summary>
+        /// Se inicializan las variables que se van a utilizar en los test
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -23,6 +26,9 @@ namespace BotTests
             user1.Permissions = UserInfo.AdminPermissions;
         }
 
+        /// <summary>
+        /// Test que se encarga de testear el AdminHandler y verificar que se le asigne los permisos de admin al usuario al mandar el comando /admin
+        /// </summary>
         [Test]
         public void AdminHandlerAdminTest()
         {
@@ -33,6 +39,9 @@ namespace BotTests
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Does.Contain("Ahora eres admin"));
         }
+        /// <summary>
+        /// Test que se encarga de verificar que el AdminHandler devuelva false (null), y un string vacio al momento de enviar un comando incorrecto.
+        /// </summary>
         [Test]
         public void AdminHandlerWrongCommandTest()
         {

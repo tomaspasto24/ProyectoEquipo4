@@ -6,7 +6,22 @@
     <members>
         <member name="T:BotTests.AdminHandlerTest">
             <summary>
-            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
+            Clase AdminHandlerTest la cual se encarga de testear las funcionalidades de la clase AdminHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.AdminHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test
+            </summary>
+        </member>
+        <member name="M:BotTests.AdminHandlerTest.AdminHandlerAdminTest">
+            <summary>
+            Test que se encarga de testear el AdminHandler y verificar que se le asigne los permisos de admin al usuario al mandar el comando /admin
+            </summary>
+        </member>
+        <member name="M:BotTests.AdminHandlerTest.AdminHandlerWrongCommandTest">
+            <summary>
+            Test que se encarga de verificar que el AdminHandler devuelva false (null), y un string vacio al momento de enviar un comando incorrecto.
             </summary>
         </member>
         <member name="T:BotTests.CommandHandlerTest">
@@ -37,36 +52,6 @@
         <member name="M:BotTests.CommandHandlerTest.TestDefaultCommandHandler">
             <summary>
             Test para probar los comandos que tiene un usuario Default
-            </summary>
-        </member>
-        <member name="T:BotTests.ContactHandlerTest">
-            <summary>
-            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerNoHasPermissionTest">
-            <summary>
-            Se prueba el mensaje y que se cancele la operación cuando no se tiene un permiso.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerHasPermissionTest">
-            <summary>
-            Se prueba el mensaje y que se cancele la operación cuando se tiene un permiso.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerContactCompanyTest">
-            <summary>
-            Se prueba que se devuelva al contacto de la empresa.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerCompanyNoFoundTest">
-            <summary>
-            Se prueba cuando no se encuentra el contacto.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerCompanyWrongHandlerState">
-            <summary>
-            Se prueba si se tiene un estado equivocado.
             </summary>
         </member>
         <member name="T:BotTests.RoleEntrepreneurTests">
@@ -147,9 +132,119 @@
             palabras clave anidadas a la clase Material.
             </summary>
         </member>
+        <member name="T:BotTests.ModifyEntrepreneurInformationHandlerTest">
+            <summary>
+            Clase ModifyEntrepreneurInformationHandlerTest la cual se encarga de testear las funcionalidades de la clase ModifyEntrepreneurInformationHandlder, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderNoHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar la clase ModifyEntrepreneurInformationHandlder en caso de no tener el permiso necesario.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderStartPermissionTest">
+            <summary>
+            Test que se encarga de verificar la clase ModifyEntrepreneurInformationHandlder al enviar el comando "/modificardatos".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviarle el comando "1".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeHeaderTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar el comando "2".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeSpecializationTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar el comando "23.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeCertificationTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar el comando "4".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderWrongCommandTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar un comando incorrecto.
+            </summary>
+        </member>
+        <member name="T:BotTests.ModifyUserCertificationsHandlerTest">
+            <summary>
+            Clase ModifyUserCertificationsHandlerTest que se encarga de testear todas las funcionalidades del handler "ModifyUserCertificationsHandlerTest".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserAddNewCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar ModifyUseraddCertificationHanlder en caso de enviar el comando "1".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserdelateCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese el comando "2".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserCertificationWrongTextHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese un comando incorrecto.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserHasCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación ya agregada anteriormente.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserAddCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una nueva certificación.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserDelateCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación para eliminarla ya agregada anteriormente.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserNoFindCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación que no existe para eliminarla.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserCertificationEmptyTextHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una string vacía.
+            </summary>
+        </member>
+        <member name="T:BotTests.ModifyUserHeaderHanlderTest">
+            <summary>
+            Clase ModifyUserHeaderHanlderTest se encarga de testear las funcionalidades de la clase ModifyUserHeaderHanlder.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserHeaderHanlderTest.Setup">
+            <summary>
+            Se inicializan todas las  variables que se van a utilizar en los test.
+            </summary>
+        </member>
         <member name="M:BotTests.ModifyUserHeaderHanlderTest.ModifyUseraddCertificationHanlderTest">
             <summary>
-            Arreglar
+            Test que se encarga de verificar la funcionalidad de actualizar la certificacion del emprendedor.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserHeaderHanlderTest.ModifyUserCertificationEmptyTextHanlderTest">
+            <summary>
+            Test que se encarga de verificar el handler en caso que se le envíe un string vacío.
             </summary>
         </member>
         <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerAlreadyAddSpecializationTest">
