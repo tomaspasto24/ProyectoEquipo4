@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="8N9IxCA1fJN8erkE_-Jc" name="Página-1">
-        <mxGraphModel dx="1508" dy="1706" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1308" dy="1679" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -168,6 +168,48 @@
                 </mxCell>
                 <mxCell id="84" value="+ SerializeObjects() : void&#10;+ DeserializeObjects() : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="81" vertex="1">
                     <mxGeometry y="150" width="300" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" value="&lt;&lt;Interface&gt;&gt; ISearch &lt;Publication&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="-620" y="700" width="360" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" value="+ Search (string) : string&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="85">
+                    <mxGeometry y="26" width="360" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" value="SearchByMaterial" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="-580" y="790" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" value="&lt;div&gt;&lt;span&gt;- instance: static SearchByMaterial&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="93">
+                    <mxGeometry y="26" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="93">
+                    <mxGeometry y="56" width="300" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="96" value="+ Search(string) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="93">
+                    <mxGeometry y="72" width="300" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" value="SearchByLocation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="-250" y="790" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" value="&lt;div&gt;&lt;span&gt;- instance: static SearchByMaterial&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="97">
+                    <mxGeometry y="26" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="97">
+                    <mxGeometry y="56" width="300" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="+ Search(string) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="97">
+                    <mxGeometry y="72" width="300" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="EntrepreneurInfo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="-200" y="940" width="300" height="306" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="&lt;div&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;- listHistorialPublication: List&amp;lt;Publication&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- certifications: List&amp;lt;string&amp;gt;&lt;/div&gt;&lt;div&gt;- specializations: List&amp;lt;string&amp;gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;- location: GeoLocation&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="103">
+                    <mxGeometry y="26" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="103">
+                    <mxGeometry y="96" width="300" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="+ AddCertification(string) : void&#10;+ AddSpecialization(string) : void&#10;+ AddHistorialPublication(Publication) : void&#10;+ ContactCompany(Publication) : string&#10;+ GetCertifications() : string&#10;+ GetSpecializations() : string&#10;+ ContainsSpecialization(string) : bool&#10;+ DeleteSpecialization(string) : void&#10;+ ContainsCertification(string) : bool&#10;+ DeleteCertificationation(string) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="103">
+                    <mxGeometry y="140" width="300" height="166" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

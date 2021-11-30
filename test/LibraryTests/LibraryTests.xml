@@ -39,36 +39,6 @@
             Test para probar los comandos que tiene un usuario Default
             </summary>
         </member>
-        <member name="T:BotTests.ContactHandlerTest">
-            <summary>
-            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerNoHasPermissionTest">
-            <summary>
-            Se prueba el mensaje y que se cancele la operación cuando no se tiene un permiso.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerHasPermissionTest">
-            <summary>
-            Se prueba el mensaje y que se cancele la operación cuando se tiene un permiso.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerContactCompanyTest">
-            <summary>
-            Se prueba que se devuelva al contacto de la empresa.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerCompanyNoFoundTest">
-            <summary>
-            Se prueba cuando no se encuentra el contacto.
-            </summary>
-        </member>
-        <member name="M:BotTests.ContactHandlerTest.ContactHandlerCompanyWrongHandlerState">
-            <summary>
-            Se prueba si se tiene un estado equivocado.
-            </summary>
-        </member>
         <member name="T:BotTests.RoleEntrepreneurTests">
             <summary>
             Tests de los métodos de la clase RoleEntrepreneur.
