@@ -1,47 +1,59 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
+    /// <summary>
+    /// clase DefaultHandlerTest la cual se encarga de testear las funcionalidades del handler DefaultHandler
+    /// </summary>
 
     public class DefaultHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testmessage;
+        private String response;
+        private IHandler result;
 
-
+        /// <summary>
+        /// Se inicializan las variables que se van a utilizar en los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             SessionRelated.Instance = null;
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar la respuesta del handler al enviar el comando "/Command".
+        /// </summary>
         [Test]
         public void DefaultHandlerSlashTest()
         {
-            user1.Permissions = UserInfo.UserCompanyPermissions;
-            DefaultHandler defaultHandler = new DefaultHandler(null);
-            testMessage = new Message(5433261, "/Command");
+            this.user1.Permissions = UserInfo.UserCompanyPermissions;
+            DefaultHandler defaultHandler = new(null);
+            this.testmessage = new Message(5433261, "/Command");
 
-            result = defaultHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
+            this.result = defaultHandler.Handle(this.testmessage, out this.response);
+            Assert.That(this.result, Is.Not.Null);
+            Assert.That(this.response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler al enviar un comando incorrecto.
+        /// </summary>
         [Test]
         public void DefaultHandlerWithOutSlashTest()
         {
-            user1.Permissions = UserInfo.UserCompanyPermissions;
-            DefaultHandler defaultHandler = new DefaultHandler(null);
-            testMessage = new Message(5433261, "Command");
+            this.user1.Permissions = UserInfo.UserCompanyPermissions;
+            DefaultHandler defaultHandler = new(null);
+            this.testmessage = new Message(5433261, "Command");
 
-            result = defaultHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Disculpa, no te entiendo"));
+            this.result = defaultHandler.Handle(this.testmessage, out this.response);
+            Assert.That(this.result, Is.Not.Null);
+            Assert.That(this.response, Is.EqualTo("Disculpa, no te entiendo"));
         }
     }
 }

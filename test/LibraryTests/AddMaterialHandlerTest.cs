@@ -7,10 +7,10 @@ namespace BotTests
 
     public class AddMaterialHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
 
         [Test]

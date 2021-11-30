@@ -1,6 +1,6 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
@@ -25,7 +25,6 @@ namespace BotTests
             GeoLocation entrepreneurLocation = new("Camino Maldonado 2415", "Montevideo");
             this.entrepreneur = new("carpintero", entrepreneurLocation);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, this.entrepreneur);
-
         }
 
         /// <summary>
@@ -37,11 +36,11 @@ namespace BotTests
             this.user1.Permissions = UserInfo.EntrepreneurPermissions;
             this.user1.HandlerState = Bot.State.ChangingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "1");
+            this.testMessage = new Message(5433261, "1");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Que especialidad quieres agregar?\nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Que especialidad quieres agregar?\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
 
         /// <summary>
@@ -53,11 +52,11 @@ namespace BotTests
             this.user1.Permissions = UserInfo.EntrepreneurPermissions;
             this.user1.HandlerState = Bot.State.ChangingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "2");
+            this.testMessage = new Message(5433261, "2");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Que especialidad quieres eliminar?\nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Que especialidad quieres eliminar?\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
 
         /// <summary>
@@ -69,11 +68,11 @@ namespace BotTests
             this.user1.Permissions = UserInfo.EntrepreneurPermissions;
             this.user1.HandlerState = Bot.State.ChangingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "WrongCommand");
+            this.testMessage = new Message(5433261, "WrongCommand");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta opcion no esta disponible. \nPor favor, dinos una opcion del 1 al 2.\nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta opcion no esta disponible. \nPor favor, dinos una opcion del 1 al 2.\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
 
         /// <summary>
@@ -86,12 +85,12 @@ namespace BotTests
             this.entrepreneur.AddSpecialization("Specialization");
             this.user1.HandlerState = Bot.State.AddingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "Specialization");
+            this.testMessage = new Message(5433261, "Specialization");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta especialidad ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta especialidad ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
 
         /// <summary>
@@ -104,12 +103,12 @@ namespace BotTests
             this.entrepreneur.AddSpecialization("Specialization");
             this.user1.HandlerState = Bot.State.AddingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "NewSpecialization");
+            this.testMessage = new Message(5433261, "NewSpecialization");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Especialidad agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Especialidad agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
 
         /// <summary>
@@ -123,12 +122,12 @@ namespace BotTests
 
             this.user1.HandlerState = Bot.State.DeletingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "Specialization");
+            this.testMessage = new Message(5433261, "Specialization");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Especialidad eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Especialidad eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
 
         /// <summary>
@@ -142,13 +141,17 @@ namespace BotTests
 
             this.user1.HandlerState = Bot.State.DeletingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "WrongSpecialization");
+            this.testMessage = new Message(5433261, "WrongSpecialization");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta especialidad no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta especialidad no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar la respuesta del handler en caso que se le ingrese un string vacio a la hora de modificar la "Specialization".
+        /// </summary>
         [Test]
         public void ModifyEntrepreneurInformationHandldlerEmptyTextTest()
         {
@@ -157,12 +160,12 @@ namespace BotTests
 
             this.user1.HandlerState = Bot.State.DeletingUserSpecializations;
             ModifyUserSpecializationsHandler modifyUserSpecializationsHandler = new(null);
-            testMessage = new Message(5433261, "");
+            this.testMessage = new(5433261, "");
 
-            result = modifyUserSpecializationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta especialidad no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.result = modifyUserSpecializationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta especialidad no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                     + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
     }
 }

@@ -4,15 +4,19 @@ using Bot;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Clase PublishHandlerTest que se encarga de testear las funcionalidades de PublishHandler.
+    /// </summary>
     public class PublishHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        Company company;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
+        /// <summary>
+        /// Se declaran las variables que se van a utilizar en los test
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -22,7 +26,7 @@ namespace BotTests
             SessionRelated.Instance.AddNewUser(user1);
         }
         /// <summary>
-        /// Arreglar
+        /// test que se encarga de verificar el comportamiento del hanlder al enviar el comando "/publicar" y no tener el permiso.
         /// </summary>
         [Test]
         public void PublishHandlerNoHasPermissionTest()
@@ -37,6 +41,9 @@ namespace BotTests
             Assert.That(result, Is.Null);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler al enviar el comando "/publicar" y tener el permiso.
+        /// </summary>
         [Test]
         public void PublishHandlerHasPermissionTest()
         {
@@ -48,6 +55,10 @@ namespace BotTests
             Assert.That(response, Is.EqualTo("Envía el título de la nueva publicación \nEnvía \"/cancelar\" para cancelar la operación"));
             Assert.That(result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler al ingresar el nombre de la publicación".
+        /// </summary>
         [Test]
         public void PublishHandlerPublicationNameTest()
         {
