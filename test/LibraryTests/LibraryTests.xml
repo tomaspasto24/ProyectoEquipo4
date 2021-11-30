@@ -64,7 +64,6 @@
             Test para probar los comandos que tiene un usuario Default.
             </summary>
         </member>
-<<<<<<< HEAD
         <member name="T:BotTests.DefaultHandlerTest">
             <summary>
             clase DefaultHandlerTest la cual se encarga de testear las funcionalidades del handler DefaultHandler
@@ -105,8 +104,6 @@
             Test que se encarga de verificar el comportamiento del handler al enviar un comando incorrecto.
             </summary>
         </member>
-=======
->>>>>>> master
         <member name="T:BotTests.RoleEntrepreneurTests">
             <summary>
             Tests de los métodos de la clase RoleEntrepreneur.
