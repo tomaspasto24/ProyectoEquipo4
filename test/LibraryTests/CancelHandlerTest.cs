@@ -7,39 +7,44 @@ namespace BotTests
 
     public class CancelHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testmessage;
+        private String response;
+        private IHandler result;
 
-
+        /// <summary>
+        /// Test que verifica el funcionamiento del handler al enviar el comando "/cancelar".
+        /// </summary>
         [Test]
         public void CancelHandlerMessageTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            SessionRelated.Instance.AddNewUser(user1);
-            CancelHandler cancelHandler = new CancelHandler(null);
-            testMessage = new Message(5433261, "/cancelar");
+            this.user1 = new("name1", 5433261);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            SessionRelated.Instance.AddNewUser(this.user1);
+            CancelHandler cancelHandler = new(null);
+            this.testmessage = new Message(5433261, "/cancelar");
 
-            result = cancelHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Operación cancelada."));
-            Assert.That(result, Is.Not.Null);
+            this.result = cancelHandler.Handle(this.testmessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Operación cancelada."));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que verifica el funcionamiento del handler al enviar un comando incorrecto.
+        /// </summary>
+
         [Test]
         public void CancelHandlerWrongTextTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            SessionRelated.Instance.AddNewUser(user1);
-            CancelHandler cancelHandler = new CancelHandler(null);
-            testMessage = new Message(5433261, "/WrongText");
+            this.user1 = new("name1", 5433261);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            SessionRelated.Instance.AddNewUser(this.user1);
+            CancelHandler cancelHandler = new(null);
+            this.testmessage = new Message(5433261, "/WrongText");
 
-            result = cancelHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.EqualTo(String.Empty)); //verifico que la respuesta sea un string vacio
+            this.result = cancelHandler.Handle(this.testmessage, out this.response);
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.EqualTo(String.Empty)); //verifico que la respuesta sea un string vacio
         }
     }
 }

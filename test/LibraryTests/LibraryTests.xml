@@ -6,39 +6,107 @@
     <members>
         <member name="T:BotTests.AdminHandlerTest">
             <summary>
-            Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
+            Clase AdminHandlerTest la cual se encarga de testear las funcionalidades de la clase AdminHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.AdminHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.AdminHandlerTest.AdminHandlerAdminTest">
+            <summary>
+            Test que se encarga de testear el AdminHandler y verificar que se le asigne los permisos de admin al usuario al mandar el comando /admin
+            </summary>
+        </member>
+        <member name="M:BotTests.AdminHandlerTest.AdminHandlerWrongCommandTest">
+            <summary>
+            Test que se encarga de verificar que el AdminHandler devuelva false (null), y un string vacio al momento de enviar un comando incorrecto.
+            </summary>
+        </member>
+        <member name="M:BotTests.CancelHandlerTest.CancelHandlerMessageTest">
+            <summary>
+            Test que verifica el funcionamiento del handler al enviar el comando "/cancelar".
+            </summary>
+        </member>
+        <member name="M:BotTests.CancelHandlerTest.CancelHandlerWrongTextTest">
+            <summary>
+            Test que verifica el funcionamiento del handler al enviar un comando incorrecto.
             </summary>
         </member>
         <member name="T:BotTests.CommandHandlerTest">
             <summary>
-            Clase para testear el CommandHandler
+            Clase para testear el CommandHandler.
             </summary>
         </member>
         <member name="M:BotTests.CommandHandlerTest.SetUp">
             <summary>
-            Metodo SetUp de los tests
+            Metodo SetUp de los tests en el cual inicializo las variables que voy a utilizar.
             </summary>
         </member>
         <member name="M:BotTests.CommandHandlerTest.TestAdminCommandHandler">
             <summary>
-            Test para probar los comandos que tiene un admin
+            Test para probar los comandos que tiene un admin.
             </summary>
         </member>
         <member name="M:BotTests.CommandHandlerTest.TestUserCompanyCommandHandler">
             <summary>
-            Test para probar los comandos que tiene un UserCompany
+            Test para probar los comandos que tiene un this.UserCompany.
             </summary>
         </member>
         <member name="M:BotTests.CommandHandlerTest.TestEntrepreneurCommandHandler">
             <summary>
-            Test para probar los comandos que tiene un Emprendedor
+            Test para probar los comandos que tiene un Emprendedor.
             </summary>
         </member>
         <member name="M:BotTests.CommandHandlerTest.TestDefaultCommandHandler">
             <summary>
-            Test para probar los comandos que tiene un usuario Default
+            Test para probar los comandos que tiene un usuario Default.
             </summary>
         </member>
+<<<<<<< HEAD
+        <member name="T:BotTests.DefaultHandlerTest">
+            <summary>
+            clase DefaultHandlerTest la cual se encarga de testear las funcionalidades del handler DefaultHandler
+            </summary>
+        </member>
+        <member name="M:BotTests.DefaultHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.DefaultHandlerTest.DefaultHandlerSlashTest">
+            <summary>
+            Test que se encarga de verificar la respuesta del handler al enviar el comando "/Command".
+            </summary>
+        </member>
+        <member name="M:BotTests.DefaultHandlerTest.DefaultHandlerWithOutSlashTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al enviar un comando incorrecto.
+            </summary>
+        </member>
+        <member name="T:BotTests.DefaultRoleHandlerTest">
+            <summary>
+            Clase DefaultRoleHandlerTest que se encarga de testear las funcionalidades del handler DefaultRoleHandler.
+            </summary>
+        </member>
+        <member name="M:BotTests.DefaultRoleHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se usan en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.DefaultRoleHandlerTest.DefaultRoleHandlerDefaultTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al enviar el comando "/default".
+            </summary>
+        </member>
+        <member name="M:BotTests.DefaultRoleHandlerTest.DefaultRoleHandlerWrongCommandTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al enviar un comando incorrecto.
+            </summary>
+        </member>
+=======
+>>>>>>> master
         <member name="T:BotTests.RoleEntrepreneurTests">
             <summary>
             Tests de los métodos de la clase RoleEntrepreneur.
@@ -117,19 +185,204 @@
             palabras clave anidadas a la clase Material.
             </summary>
         </member>
+        <member name="T:BotTests.ModifyEntrepreneurInformationHandlerTest">
+            <summary>
+            Clase ModifyEntrepreneurInformationHandlerTest la cual se encarga de testear las funcionalidades de la clase ModifyEntrepreneurInformationHandlder, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderNoHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar la clase ModifyEntrepreneurInformationHandlder en caso de no tener el permiso necesario.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderStartPermissionTest">
+            <summary>
+            Test que se encarga de verificar la clase ModifyEntrepreneurInformationHandlder al enviar el comando "/modificardatos".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviarle el comando "1".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeHeaderTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar el comando "2".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeSpecializationTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar el comando "23.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderChangeCertificationTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar el comando "4".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyEntrepreneurInformationHandlerTest.ModifyEntrepreneurInformationHandlderWrongCommandTest">
+            <summary>
+            Test que encarga de verificar la clase ModifyEntrepreneurInformationHandler en caso de enviar un comando incorrecto.
+            </summary>
+        </member>
+        <member name="T:BotTests.ModifyUserCertificationsHandlerTest">
+            <summary>
+            Clase ModifyUserCertificationsHandlerTest que se encarga de testear todas las funcionalidades del handler "ModifyUserCertificationsHandlerTest".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserAddNewCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar ModifyUseraddCertificationHanlder en caso de enviar el comando "1".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserdelateCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese el comando "2".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserCertificationWrongTextHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese un comando incorrecto.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserHasCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación ya agregada anteriormente.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserAddCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una nueva certificación.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserDelateCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación para eliminarla ya agregada anteriormente.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserNoFindCertificationHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación que no existe para eliminarla.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserCertificationsHandlerTest.ModifyUserCertificationEmptyTextHanlderTest">
+            <summary>
+            Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una string vacía.
+            </summary>
+        </member>
+        <member name="T:BotTests.ModifyUserHeaderHanlderTest">
+            <summary>
+            Clase ModifyUserHeaderHanlderTest se encarga de testear las funcionalidades de la clase ModifyUserHeaderHanlder.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserHeaderHanlderTest.Setup">
+            <summary>
+            Se inicializan todas las  variables que se van a utilizar en los test.
+            </summary>
+        </member>
         <member name="M:BotTests.ModifyUserHeaderHanlderTest.ModifyUseraddCertificationHanlderTest">
             <summary>
-            Arreglar
+            Test que se encarga de verificar la funcionalidad de actualizar la certificacion del emprendedor.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserHeaderHanlderTest.ModifyUserCertificationEmptyTextHanlderTest">
+            <summary>
+            Test que se encarga de verificar el handler en caso que se le envíe un string vacío.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los tests.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerAddSpecializationTest">
+            <summary>
+            Test que se encarga de verificar la funcionalidad del handler en caso que se le quiera añadir una "specialization".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerDelateSpecializationTest">
+            <summary>
+            Test que se encarga de verificar el handler en caso que se quiera borrar una "specialization".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerWrongCommandTest">
+            <summary>
+            Test que se encarga de verificar el handler en caso que se ingrese un comando incorrecto.
             </summary>
         </member>
         <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerAlreadyAddSpecializationTest">
             <summary>
-            Test que verifica si la specialization ya fue agregada anteriormente.
+            Test que verifica si la "specialization" ya fue agregada anteriormente.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldleraddSpecializationTest">
+            <summary>
+            Test que se encarga de verificar sel handler en caso de agregar la "specialization"
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerdelateSpecializationTest">
+            <summary>
+            Test que se encarga de verificar si se elimina la "Specialization" correctamente.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerWrongSpecializationTest">
+            <summary>
+            Test que se encarga de verificar 
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.ModifyEntrepreneurInformationHandldlerEmptyTextTest">
+            <summary>
+            Test que se encarga de verificar la respuesta del handler en caso que se le ingrese un string vacio a la hora de modificar la "Specialization".
+            </summary>
+        </member>
+        <member name="T:BotTests.ModifyUserUbicationHanlderTest">
+            <summary>
+            Clase ModifyUserUbicationHanlderTest que se encarga de testear las funcionalidades del handler ModifyUserUbicationHanlder.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserUbicationHanlderTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a utilizar en los test.
             </summary>
         </member>
         <member name="M:BotTests.ModifyUserUbicationHanlderTest.ModifyUserChangeCityHanlderTest">
             <summary>
-            Arreglar
+            Test que verifica el comportamiento del handler al intentar cambiar la ciudad en la que vive el "entrepreneur".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserUbicationHanlderTest.ModifyUserChangeAdressHanlderTest">
+            <summary>
+            Test que verifica el comportamiento del handler al intentar cambiar la dirección en la que vive el "entrepreneur".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserUbicationHanlderTest.ModifyUserCorrectChangeAdressHanlderTest">
+            <summary>
+            Test que verifica el comportamiento del handler al cambiar la ciudad en la que vive el "entrepreneur".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserUbicationHanlderTest.ModifyUserCorrectChangeCityHanlderTest">
+            <summary>
+            Test que verifica el comportamiento del handler al cambiar la ciudad en la que vive el "entrepreneur".
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserUbicationHanlderTest.ModifyUserChangeWrongTextHanlderTest">
+            <summary>
+            Test que verifica el comportamiento del handler al ingresar un comando incorrecto.
+            </summary>
+        </member>
+        <member name="M:BotTests.ModifyUserUbicationHanlderTest.ModifyUserChangeEmptyTextHanlderTest">
+            <summary>
+            Test que verifica el comportamiento del handler al ingresar una string vacía"
             </summary>
         </member>
         <member name="T:BotTests.PublicationSetTest">
@@ -171,9 +424,89 @@
             si las clases Publicación se encuentran en el sistema con la condición del nombre de la Publicación.
             </summary>
         </member>
+        <member name="T:BotTests.PublishHandlerTest">
+            <summary>
+            Clase PublishHandlerTest que se encarga de testear las funcionalidades de PublishHandler.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishHandlerTest.Setup">
+            <summary>
+            Se declaran las variables que se van a utilizar en los test
+            </summary>
+        </member>
         <member name="M:BotTests.PublishHandlerTest.PublishHandlerNoHasPermissionTest">
             <summary>
-            Arreglar
+            test que se encarga de verificar el comportamiento del hanlder al enviar el comando "/publicar" y no tener el permiso.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishHandlerTest.PublishHandlerHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al enviar el comando "/publicar" y tener el permiso.
+            </summary>
+        </member>
+        <member name="M:BotTests.PublishHandlerTest.PublishHandlerPublicationNameTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al ingresar el nombre de la publicación".
+            </summary>
+        </member>
+        <member name="T:BotTests.RegisterCompanyUserHandlerTest">
+            <summary>
+            Clase para testear el RegisterCompanyUserHandler.
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.SetUp">
+            <summary>
+            Metodo SetUp para los tests
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestRegisterHandled">
+            <summary>
+            Test para probar que el RegisterHandler actua
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestNoTokenFound">
+            <summary>
+            Test para probar que pasa cuando no se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestTokenFound">
+            <summary>
+            Test para probar que pasa cuando se encuentra un token
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestCancel">
+            <summary>
+            Test para probar el Cancel del handler
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterHandlerTest.SetUp">
+            <summary>
+            Se setea el sessionRelated.Instance en null para que no queden todas las variables anteriores cargadas en el mismo debido a que este es un singleton.
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterHandlerTest.RegisterHandlerNoPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al no tener el permiso necesario.
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterHandlerTest.RegisterHandlerHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al intentar registrarse y tener el permiso necesario.
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterHandlerTest.RegisterHandlerConfirmTokenTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler  al validar el token.
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterHandlerTest.RegisterHandlerTokenNoFndTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al no encontrar el token.
+            </summary>
+        </member>
+        <member name="M:BotTests.RegisterHandlerTest.RegisterHandlerWrongTextTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al ingresar un comando incorrecto.
             </summary>
         </member>
         <member name="T:BotTests.ReportTest">
@@ -186,7 +519,7 @@
             Método que crea y asgina las instancias a los atributos que seran utilizados para ejecutar los test.
             </summary>
         </member>
-        <member name="M:BotTests.ReportTest.CompanyReportClosedPublicationTest">
+        <member name="M:BotTests.ReportTest.CompanyReportClosedpublicationTest">
             <summary>
             Test de reporte empresa cuando la publicacion esta cerrada.
             </summary>
@@ -204,6 +537,21 @@
         <member name="M:BotTests.ReportTest.EntrepreneurReportPublicationNotClosedTest">
             <summary>
             Test del reporte emprendedor en caso de que la publicacion no este cerrada.
+            </summary>
+        </member>
+        <member name="T:BotTests.SalesReportHandlerTest">
+            <summary>
+            Clase SalesReportHandlerTest que se encarga de testear el comportamiento del hanlder.
+            </summary>
+        </member>
+        <member name="M:BotTests.SalesReportHandlerTest.SalesReportHandlerNoHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al enviar un mensaje y no tener el permiso necesario.
+            </summary>
+        </member>
+        <member name="M:BotTests.SalesReportHandlerTest.SalesReportHandlerHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al enviar el comando "/reporte".
             </summary>
         </member>
         <member name="T:BotTests.SearchHandlerTest">
@@ -311,6 +659,11 @@
             Se testea que se le asigne correctamente la direccion de la empresa.
             </summary>
         </member>
+        <member name="M:BotTests.TokenHandlerTest.TokenHandleEmptyCompanyAddressTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler al recibir un string vacío.
+            </summary>
+        </member>
         <member name="M:BotTests.TokenHandlerTest.TokenHandleCompanyContactTest">
             <summary>
             Se testea que se le asigne el contacto de la empresa y para llegar a este punto debe pasar por las condiciones anteriores.
@@ -336,9 +689,59 @@
             Test del token para ver si lo que retorna es de tipo int.
             </summary>
         </member>
+        <member name="T:BotTests.UnderTakeHanlderTest">
+            <summary>
+            Clase UnderTakeHanlderTest que se encarga de verificar las funcionalidades del handler UnderTakeHanlder
+            </summary>
+        </member>
+        <member name="M:BotTests.UnderTakeHanlderTest.Setup">
+            <summary>
+            Se inicializan las variables que se van a usar en los test.
+            </summary>
+        </member>
+        <member name="M:BotTests.UnderTakeHanlderTest.UnderTakeHandlerNoPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler en caso que el usuario no tenga el permiso.
+            </summary>
+        </member>
+        <member name="M:BotTests.UnderTakeHanlderTest.UnderTakeHandlerHasPermissionTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler en caso que el usuario tenga el permiso.
+            </summary>
+        </member>
+        <member name="M:BotTests.UnderTakeHanlderTest.UnderTakeHandlerConfimingHeadingTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler en caso de intentar registrar un rubro.
+            </summary>
+        </member>
+        <member name="M:BotTests.UnderTakeHanlderTest.UnderTakeHandlerConfirmingCityTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler en caso de intentar registrar la ciudad.
+            </summary>
+        </member>
+        <member name="M:BotTests.UnderTakeHanlderTest.UnderTakeHandlerConfirmingAdressTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del handler en caso de intentar verificar la direccion.
+            </summary>
+        </member>
         <member name="T:BotTests.UserInformationHandlerTest">
             <summary>
-            Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+            Clase UserInformationHandlerTest la cual se encarga de testear las funcionalidades de la clase UserInformationHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.UserInformationHandlerTest.UserNoPermissionInformationHandlerTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del hanlder al momento de un usuario enviar un mensaje y no tener el permiso necesario.
+            </summary>
+        </member>
+        <member name="M:BotTests.UserInformationHandlerTest.UserHasPermissionInformationHandlerTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del hanlder en caso de un usuario enviar el comando "/datos".
+            </summary>
+        </member>
+        <member name="M:BotTests.UserInformationHandlerTest.UserInformationHandlerWrongMessageTest">
+            <summary>
+            Test que se encarga de verificar el comportamiento del hanlder en caso que se le envie un mensaje incorrecto.
             </summary>
         </member>
     </members>

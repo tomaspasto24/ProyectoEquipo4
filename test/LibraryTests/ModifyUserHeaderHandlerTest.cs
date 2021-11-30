@@ -1,60 +1,69 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Clase ModifyUserHeaderHanlderTest se encarga de testear las funcionalidades de la clase ModifyUserHeaderHanlder.
+    /// </summary>
     public class ModifyUserHeaderHanlderTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        Company company;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
+        /// <summary>
+        /// Se inicializan todas las  variables que se van a utilizar en los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             SessionRelated.Instance = null;
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
         }
+
         /// <summary>
-        /// Arreglar
+        /// Test que se encarga de verificar la funcionalidad de actualizar la certificacion del emprendedor.
         /// </summary>
         [Test]
         public void ModifyUseraddCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            GeoLocation entrepreneurLocation = new("Camino Maldonado 2415", "Montevideo");
+            EntrepreneurInfo entrepreneur = new("carpintero", entrepreneurLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, entrepreneur);
 
-            ModifyUserHeaderHandler modifyUserHeaderHandler = new ModifyUserHeaderHandler(null);
-            user1.HandlerState = Bot.State.ChangingUserHeader;
-            testMessage = new Message(5433261, "Herrero");
-            result = modifyUserHeaderHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            ModifyUserHeaderHandler modifyUserHeaderHandler = new(null);
+            this.user1.HandlerState = Bot.State.ChangingUserHeader;
+            this.testMessage = new Message(5433261, "Herrero");
+            this.result = modifyUserHeaderHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Informacion actualizada. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el handler en caso que se le envíe un string vacío.
+        /// </summary>
         [Test]
         public void ModifyUserCertificationEmptyTextHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            GeoLocation entrepreneurLocation = new("Camino Maldonado 2415", "Montevideo");
+            EntrepreneurInfo entrepreneur = new("carpintero", entrepreneurLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, entrepreneur);
 
-            ModifyUserHeaderHandler modifyUserHeaderHandler = new ModifyUserHeaderHandler(null);
+            ModifyUserHeaderHandler modifyUserHeaderHandler = new(null);
 
-            //Cambio de estado
-            user1.HandlerState = Bot.State.DeletingUserCertification;
+            // Cambio de estado
+            this.user1.HandlerState = Bot.State.DeletingUserCertification;
 
-            testMessage = new Message(5433261, "");
-            result = modifyUserHeaderHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
+            this.testMessage = new Message(5433261, "");
+            this.result = modifyUserHeaderHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Null);
         }
     }
 }

@@ -1,4 +1,4 @@
-/*
+
 using System;
 using Bot;
 using NUnit.Framework;
@@ -88,8 +88,6 @@ namespace BotTests
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo("Token verificado, ahora eres un usuario empresa! :)"));
-            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
-            // Chequear si quedan los roles cambiados
         }
 
         /// <summary>
@@ -105,4 +103,3 @@ namespace BotTests
         }
     }
 }
-*/

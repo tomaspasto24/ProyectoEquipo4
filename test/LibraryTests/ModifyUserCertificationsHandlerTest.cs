@@ -1,131 +1,166 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
-
-    public class ModifyUserCertificationsHanlderTest
+    /// <summary>
+    /// Clase ModifyUserCertificationsHandlerTest que se encarga de testear todas las funcionalidades del handler "ModifyUserCertificationsHandlerTest".
+    /// </summary>
+    public class ModifyUserCertificationsHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        EntrepreneurInfo entrepreneur;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
+        private EntrepreneurInfo entrepreneur;
 
+        /// <summary>
+        /// Se inicializan las variables que se van a utilizar en los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             SessionRelated.Instance = null;
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
-
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            GeoLocation entrepreneurLocation = new("Camino Maldonado 2415", "Montevideo");
+            this.entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, this.entrepreneur);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar ModifyUseraddCertificationHanlder en caso de enviar el comando "1".
+        /// </summary>
         [Test]
-        public void ModifyUseraddCertificationHanlderTest()
+        public void ModifyUserAddNewCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.ChangingUserCertifications;
-            testMessage = new Message(5433261, "1");
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Que certificacion quieres agregar?\nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.user1.HandlerState = Bot.State.ChangingUserCertifications;
+            this.testMessage = new Message(5433261, "1");
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Que certificacion quieres agregar?\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese el comando "2".
+        /// </summary>
         [Test]
         public void ModifyUserdelateCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.ChangingUserCertifications;
-            testMessage = new Message(5433261, "2");
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Que certificacion quieres eliminar?\nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.user1.HandlerState = Bot.State.ChangingUserCertifications;
+            this.testMessage = new Message(5433261, "2");
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Que certificacion quieres eliminar?\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese un comando incorrecto.
+        /// </summary>
         [Test]
         public void ModifyUserCertificationWrongTextHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.ChangingUserCertifications;
-            testMessage = new Message(5433261, "5");
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta opcion no esta disponible. \nPor favor, dinos una opcion del 1 al 2.\nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.user1.HandlerState = Bot.State.ChangingUserCertifications;
+            this.testMessage = new Message(5433261, "5");
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta opcion no esta disponible. \nPor favor, dinos una opcion del 1 al 2.\nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación ya agregada anteriormente.
+        /// </summary>
         [Test]
         public void ModifyUserHasCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddCertification("certification");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddCertification("certification");
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.AddingUserCertification;
-            testMessage = new Message(5433261, "certification");
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta certificacion ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.user1.HandlerState = Bot.State.AddingUserCertification;
+            this.testMessage = new Message(5433261, "certification");
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta certificacion ya fue agregada anteriormente.\nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una nueva certificación.
+        /// </summary>
         [Test]
         public void ModifyUserAddCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddCertification("certification");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddCertification("certification");
 
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.AddingUserCertification;
-            testMessage = new Message(5433261, "NewCertification");
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Certificacion agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.user1.HandlerState = Bot.State.AddingUserCertification;
+            this.testMessage = new Message(5433261, "NewCertification");
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Certificacion agregada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación para eliminarla ya agregada anteriormente.
+        /// </summary>
         [Test]
         public void ModifyUserDelateCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddCertification("certification");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddCertification("certification");
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.DeletingUserCertification;
-            testMessage = new Message(5433261, "certification");
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Certificacion eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.user1.HandlerState = Bot.State.DeletingUserCertification;
+            this.testMessage = new Message(5433261, "certification");
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Certificacion eliminada correctamente. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una certificación que no existe para eliminarla.
+        /// </summary>
         [Test]
         public void ModifyUserNoFindCertificationHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddCertification("certification");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddCertification("certification");
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
 
-            testMessage = new Message(5433261, "2");
-            user1.HandlerState = Bot.State.ChangingUserCertifications;
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
+            this.testMessage = new Message(5433261, "2");
+            this.user1.HandlerState = Bot.State.ChangingUserCertifications;
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
 
-            testMessage = new Message(5433261, "WrongText");
-            result = result.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Esta Certificacion no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
+            this.testMessage = new Message(5433261, "WrongText");
+            this.result = this.result.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Esta Certificacion no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el ModifyUseraddCertificationHanlder en caso que se le ingrese una string vacía.
+        /// </summary>
         [Test]
         public void ModifyUserCertificationEmptyTextHanlderTest()
         {
-            user1.Permissions = UserInfo.EntrepreneurPermissions;
-            entrepreneur.AddCertification("certification");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            this.entrepreneur.AddCertification("certification");
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.DeletingUserCertification;
-            testMessage = new Message(5433261, "");
+            this.user1.HandlerState = Bot.State.DeletingUserCertification;
+            this.testMessage = new Message(5433261, "");
 
-            result = modifyUserCertificationsHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Not.Null);
+            this.result = modifyUserCertificationsHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Not.Null);
         }
     }
 }

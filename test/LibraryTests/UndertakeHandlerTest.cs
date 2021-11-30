@@ -1,92 +1,114 @@
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Clase UnderTakeHanlderTest que se encarga de verificar las funcionalidades del handler UnderTakeHanlder
+    /// </summary>
     public class UnderTakeHanlderTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        Company company;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
+        /// <summary>
+        /// Se inicializan las variables que se van a usar en los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             SessionRelated.Instance = null;
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler en caso que el usuario no tenga el permiso.
+        /// </summary>
         [Test]
         public void UnderTakeHandlerNoPermissionTest()
         {
-            user1.Permissions = UserInfo.UserCompanyPermissions;
+            this.user1.Permissions = UserInfo.UserCompanyPermissions;
             SearchHandler searchHandler = new SearchHandler(null);
-            testMessage = new Message(5433261, "/busqueda");
+            this.testMessage = new Message(5433261, "/busqueda");
 
-            result = searchHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
+            this.result = searchHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler en caso que el usuario tenga el permiso.
+        /// </summary>
         [Test]
         public void UnderTakeHandlerHasPermissionTest()
         {
-            user1.Permissions = UserInfo.DefaultPermissions;
+            this.user1.Permissions = UserInfo.DefaultPermissions;
             UndertakeHandler undertakeHandler = new UndertakeHandler(null);
-            user1.HandlerState = Bot.State.Start;
-            testMessage = new Message(5433261, "/emprender");
+            this.user1.HandlerState = Bot.State.Start;
+            this.testMessage = new Message(5433261, "/emprender");
 
-            result = undertakeHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Por favor, dinos tu rubro. \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = undertakeHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Por favor, dinos tu rubro. \nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler en caso de intentar registrar un rubro.
+        /// </summary>
         [Test]
         public void UnderTakeHandlerConfimingHeadingTest()
         {
-            user1.Permissions = UserInfo.DefaultPermissions;
+            this.user1.Permissions = UserInfo.DefaultPermissions;
             UndertakeHandler undertakeHandler = new UndertakeHandler(null);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            testMessage = new Message(5433261, "Carpintero");
+            this.user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            this.testMessage = new Message(5433261, "Carpintero");
 
-            result = undertakeHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Rubro registrado. Ahora dinos en que ciudad vives. \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = undertakeHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Rubro registrado. Ahora dinos en que ciudad vives. \nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler en caso de intentar registrar la ciudad.
+        /// </summary>
         [Test]
         public void UnderTakeHandlerConfirmingCityTest()
         {
-            user1.Permissions = UserInfo.DefaultPermissions;
+            this.user1.Permissions = UserInfo.DefaultPermissions;
             UndertakeHandler undertakeHandler = new UndertakeHandler(null);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            testMessage = new Message(5433261, "Carpintero");
-            result = undertakeHandler.Handle(testMessage, out response);
+            this.user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            this.testMessage = new Message(5433261, "Carpintero");
+            this.result = undertakeHandler.Handle(this.testMessage, out this.response);
 
-            user1.HandlerState = Bot.State.ConfirmingCityEntrepreneur;
-            testMessage = new Message(5433261, "Montevideo");
+            this.user1.HandlerState = Bot.State.ConfirmingCityEntrepreneur;
+            this.testMessage = new Message(5433261, "Montevideo");
 
-            result = result.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Ciudad registrada. Ahora dinos tu direccion. \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = this.result.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Ciudad registrada. Ahora dinos tu direccion. \nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del handler en caso de intentar verificar la direccion.
+        /// </summary>
         [Test]
         public void UnderTakeHandlerConfirmingAdressTest()
         {
-            user1.Permissions = UserInfo.DefaultPermissions;
+            this.user1.Permissions = UserInfo.DefaultPermissions;
             UndertakeHandler undertakeHandler = new UndertakeHandler(null);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            testMessage = new Message(5433261, "Carpintero");
-            result = undertakeHandler.Handle(testMessage, out response);
+            this.user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            this.testMessage = new Message(5433261, "Carpintero");
+            this.result = undertakeHandler.Handle(this.testMessage, out this.response);
 
-            user1.HandlerState = Bot.State.ConfirmingAdressEntrepreneur;
-            testMessage = new Message(5433261, "8 de octubre");
+            this.user1.HandlerState = Bot.State.ConfirmingAdressEntrepreneur;
+            this.testMessage = new Message(5433261, "8 de octubre");
 
-            result = result.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Direccion registrada. \nAhora eres un emprendedor!"));
-            Assert.That(result, Is.Not.Null);
+            this.result = this.result.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Direccion registrada. \nAhora eres un emprendedor!"));
+            Assert.That(this.result, Is.Not.Null);
         }
     }
 }
