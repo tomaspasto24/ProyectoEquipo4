@@ -1639,11 +1639,7 @@
         </member>
         <member name="T:Bot.IReport">
             <summary>
-<<<<<<< HEAD
-            interfaz con la firma del metodo que devuelve un reporte.
-=======
             Interfaz con la firma del metodo que devuelve un reporte
->>>>>>> 582b3438407e3fbea128da1877c3059a5b89163a
             </summary>
         </member>
         <member name="M:Bot.IReport.GiveReport">
