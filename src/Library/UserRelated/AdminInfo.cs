@@ -12,7 +12,6 @@ namespace Bot
     /// </summary>
     public class AdminInfo
     {
-        //TODO Arreglar el tema de qualifications -> certifications :)
         /// <summary>
         /// Lista de certifaciones para los usuarios y las publicaciones.
         /// </summary>
