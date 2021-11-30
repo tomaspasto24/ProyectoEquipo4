@@ -4,7 +4,9 @@ using NUnit.Framework;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Test para modificar las especificaciones del Emprendedor desde el handler.
+    /// </summary>
     public class ModifyUserSpecializationsHandlerTest
     {
         private UserInfo user1;

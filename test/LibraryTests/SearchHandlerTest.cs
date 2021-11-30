@@ -16,6 +16,9 @@ namespace BotTests
         private String response;
         private IHandler result;
 
+        /// <summary>
+        /// Setup.
+        /// </summary>
         [SetUp]
         public void Setup()
         {

@@ -4,7 +4,9 @@ using Bot;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Test de cancelar Handler.
+    /// </summary>
     public class CancelHandlerTest
     {
         private UserInfo user1;

@@ -4,7 +4,9 @@ using NUnit.Framework;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Test de handler de registro.
+    /// </summary>
     public class RegisterHandlerTest
     {
         private UserInfo user1;

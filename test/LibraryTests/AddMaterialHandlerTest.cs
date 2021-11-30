@@ -4,7 +4,9 @@ using Bot;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Test de agregar materiales desde el handler.
+    /// </summary>
     public class AddMaterialHandlerTest
     {
         private UserInfo user1;
@@ -12,7 +14,9 @@ namespace BotTests
         private String response;
         private IHandler result;
 
-
+        /// <summary>
+        /// Test para empezar a agregar materiales desde el handler.
+        /// </summary>
         [Test]
         public void AddMaterialHandlerStartTest()
         {
@@ -29,6 +33,10 @@ namespace BotTests
             Assert.That(response, Is.EqualTo("Envía el título de la publicación en la que quieres agregar el material"));
             Assert.That(result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test para no validar la operación.
+        /// </summary>
         [Test]
         public void CancelHandlerMessageTest()
         {

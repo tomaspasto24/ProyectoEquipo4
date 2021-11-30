@@ -4,7 +4,9 @@ using Bot;
 
 namespace BotTests
 {
-
+    /// <summary>
+    /// Test del funcionamiento del handler de reporte de compras.
+    /// </summary>
     public class PurchasesReportHandler
     {
         UserInfo user1;
@@ -13,6 +15,9 @@ namespace BotTests
         IHandler result;
         Company company;
 
+        /// <summary>
+        /// Setup.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
