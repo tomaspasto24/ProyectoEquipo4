@@ -1,7 +1,7 @@
 
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
@@ -10,11 +10,11 @@ namespace BotTests
     /// </summary>
     public class StartHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        StartHandler stHandler;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testmessage;
+        private StartHandler stHandler;
+        private String response;
+        private IHandler result;
 
         /// <summary>
         /// Se inicializan las variables.
@@ -22,34 +22,36 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.Permissions = UserInfo.DefaultPermissions;
-            stHandler = new StartHandler(null);
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            this.user1.Permissions = UserInfo.DefaultPermissions;
+            this.stHandler = new StartHandler(null);
         }
+
         /// <summary>
         /// Se testea que el StartHandler responda al comando /hola.
         /// </summary>
         [Test]
         public void StartHandlerHelloTest()
         {
-            testMessage = new Message(5433261, "/hola");
-            result = stHandler.Handle(testMessage, out response);
+            this.testmessage = new Message(5433261, "/hola");
+            this.result = this.stHandler.Handle(this.testmessage, out this.response);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response, Does.Contain("¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?"));
+            Assert.That(this.result, Is.Not.Null);
+            Assert.That(this.response, Does.Contain("¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?"));
         }
+
         /// <summary>
         /// Se testea que el StartHandler no envie el mensaje dado en caso de que el comando que se ingresa sea diferente al esperado.
         /// </summary>
         [Test]
         public void StartHandlerWrongTextTest()
         {
-            testMessage = new Message(5433261, "/hello");
-            result = stHandler.Handle(testMessage, out response);
+            this.testmessage = new Message(5433261, "/hello");
+            this.result = this.stHandler.Handle(this.testmessage, out this.response);
 
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.EqualTo(""));
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.EqualTo(""));
         }
     }
 }

@@ -5,7 +5,6 @@
 //-------------------------------------------------------------------------------
 
 // Tomado de https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-preserve-references?pivots=dotnet-5-0
-
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,7 +15,7 @@ namespace Bot
     {
         private static MyReferenceHandler instance;
         /// <summary>
-        /// Obtiene una única instancia de esta clase
+        /// Obtiene una única instancia de esta clase.
         /// </summary>
         /// <value>La única instancia de esta clase.</value>
         public static MyReferenceHandler Instance
@@ -32,17 +31,22 @@ namespace Bot
         }
 
         public MyReferenceHandler() => Reset();
+
         private ReferenceResolver _rootedResolver;
+        
         public override ReferenceResolver CreateResolver() => _rootedResolver;
+        
         public void Reset() => _rootedResolver = new MyReferenceResolver();
     }
 
     class MyReferenceResolver : ReferenceResolver
     {
-        private uint _referenceCount;
         private readonly Dictionary<string, object> _referenceIdToObjectMap = new();
+        
         private readonly Dictionary<object, string> _objectToReferenceIdMap = new(ReferenceEqualityComparer.Instance);
 
+        private uint _referenceCount;
+        
         public override void AddReference(string referenceId, object value)
         {
             if (!_referenceIdToObjectMap.TryAdd(referenceId, value))
@@ -59,9 +63,9 @@ namespace Bot
             }
             else
             {
-                _referenceCount++;
-                referenceId = _referenceCount.ToString();
-                _objectToReferenceIdMap.Add(value, referenceId);
+                this._referenceCount++;
+                referenceId = this._referenceCount.ToString();
+                this._objectToReferenceIdMap.Add(value, referenceId);
                 alreadyExists = false;
             }
 

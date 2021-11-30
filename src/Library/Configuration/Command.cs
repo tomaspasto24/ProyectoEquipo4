@@ -12,27 +12,28 @@ namespace Bot
     /// </summary>
     public class Command
     {
-        private static Dictionary<string, Permission> commands = new Dictionary<string, Permission>(){
-            {"/comandos - Muestra la lista de comandos.", Permission.None},
-            {"/hola - Saluda al bot.", Permission.None},
-            {"/registro - Registrate como usuario de una empresa.", Permission.Register},
-            {"/busqueda - Buscar.", Permission.Search},
-            {"/reporte - Obtener un reporte de las compras realizadas en los últimos 30 días.", Permission.PurchasesReport},
-            {"/reporte - Obtener un reporte de las entregas realizadas en los últimos 30 días.", Permission.SalesReport},
-            {"/contacto - Obtener el contacto de una Empresa.", Permission.ContactCompany},
-            {"/datos - Gestionar los datos del Usuario.", Permission.Data},
-            {"/modificardatos - Modifica los datos del Usuario.", Permission.Data},
-            {"/publicar - Crear una nueva publicación con un material o varios.", Permission.Publish},
-            {"/crearinvitacion - Genera una nueva invitación para una Empresa.", Permission.GenerateToken},
-            {"/emprender - Registrate como un Emprendedor.", Permission.Undertake},
-            {"/agregarmaterial - Agregar un material a una publicación existente.", Permission.AddMaterial}
+        private static Dictionary<string, Permission> commands = new Dictionary<string, Permission>() 
+        {
+            { "/comandos - Muestra la lista de comandos.", Permission.None },
+            { "/hola - Saluda al bot.", Permission.None },
+            { "/registro - Registrate como usuario de una empresa.", Permission.Register },
+            { "/busqueda - Buscar.", Permission.Search },
+            { "/reporte - Obtener un reporte de las compras realizadas en los últimos 30 días.", Permission.PurchasesReport },
+            { "/reporte - Obtener un reporte de las entregas realizadas en los últimos 30 días.", Permission.SalesReport },
+            { "/contacto - Obtener el contacto de una Empresa.", Permission.ContactCompany },
+            { "/datos - Gestionar los datos del Usuario.", Permission.Data },
+            { "/modificardatos - Modifica los datos del Usuario.", Permission.Data },
+            { "/publicar - Crear una nueva publicación con un material o varios.", Permission.Publish },
+            { "/crearinvitacion - Genera una nueva invitación para una Empresa.", Permission.GenerateToken },
+            { "/emprender - Registrate como un Emprendedor.", Permission.Undertake },
+            { "/agregarmaterial - Agregar un material a una publicación existente.", Permission.AddMaterial }
         };
 
         /// <summary>
-        /// Obtiene la lista de comandos visibles para un usuario dado
+        /// Obtiene la lista de comandos visibles para un usuario dado.
         /// </summary>
-        /// <param name="userId">Id del usuario en cuestión</param>
-        /// <returns>Lista de comandos que este usuario puede utilizar</returns>
+        /// <param name="userId">Id del usuario en cuestión.</param>
+        /// <returns>Lista de comandos que este usuario puede utilizar.</returns>
         public static string GetCommands(long userId)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(userId);

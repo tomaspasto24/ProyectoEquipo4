@@ -1,7 +1,5 @@
-
-using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
@@ -13,8 +11,8 @@ namespace BotTests
         /// <summary>
         /// Defino la variable afuera para que sea global y adentro del metodo la instancio.
         /// </summary>
-        UserInfo user1;
-        TokenGenerator tk;
+        private UserInfo user1;
+        private TokenGenerator tk;
 
         /// <summary>
         /// Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
@@ -22,8 +20,8 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            tk = new TokenGenerator();
-            user1 = new UserInfo("name1", 5433261);
+            this.tk = new TokenGenerator();
+            this.user1 = new UserInfo("name1", 5433261);
         }
 
         /// <summary>
@@ -32,8 +30,8 @@ namespace BotTests
         [Test]
         public void TokenType()
         {
-            user1.Permissions = UserInfo.AdminPermissions;
-            Assert.That(typeof(int), Is.EqualTo(tk.GenerateToken().GetType()));
+            this.user1.Permissions = UserInfo.AdminPermissions;
+            Assert.That(typeof(int), Is.EqualTo(this.tk.GenerateToken().GetType()));
         }
     }
 }

@@ -16,6 +16,21 @@ namespace Bot
         private static ConsoleBot instance;
 
         /// <summary>
+        /// Constructor por defecto, privado para facilitar la implementación del patron Singleton.
+        /// </summary>
+        private ConsoleBot() : base() { }
+
+        /// <summary>
+        /// Envia un mensaje al usuario con el bot como emisor.
+        /// </summary>
+        /// <param name="id">Id del usuario destinatario.</param>
+        /// <param name="text">Mensaje a enviar.</param>
+        public override void SendMessage(long id, string text)
+        {
+            System.Console.WriteLine(text);
+        }
+
+        /// <summary>
         /// Obtiene la única instancia de esta clase.
         /// </summary>
         /// <value>La única instancia de esta clase.</value>
@@ -27,22 +42,9 @@ namespace Bot
                 {
                     instance = new ConsoleBot();
                 }
+
                 return instance;
             }
-        }
-        /// <summary>
-        /// Constructor por defecto, privado para facilitar la implementación del patron Singleton.
-        /// </summary>
-        private ConsoleBot() : base() { }
-
-        /// <summary>
-        /// Envia un mensaje al usuario con el bot como emisor.
-        /// </summary>
-        /// <param name="id">Id del usuario destinatario</param>
-        /// <param name="text">Mensaje a enviar</param>
-        public override void SendMessage(long id, string text)
-        {
-            System.Console.WriteLine(text);
         }
 
         /// <summary>
@@ -60,16 +62,7 @@ namespace Bot
                                         new SearchHandler(
                                             new StartHandler(
                                                 new TokenHandler(
-                                                    new UserInformationHandler(null)
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                );
+                                                    new UserInformationHandler(null))))))))));
 
             Message message = new Message(1111, string.Empty);
             string response;

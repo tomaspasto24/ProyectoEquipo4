@@ -9,13 +9,13 @@ namespace BotTests
     /// </summary>
     public class RoleEntrepreneurTests
     {
-        EntrepreneurInfo entrepreneur;
-        GeoLocation locationForTests;
-        string name;
-        int id;
-        string heading;
-        string certification;
-        string specialization;
+        private EntrepreneurInfo entrepreneur;
+        readonly GeoLocation locationForTests;
+        private string name;
+        private int id;
+        private string heading;
+        private string certification;
+        private string specialization;
         /// <summary>
         /// Se crea una instancia de emprendedor que será usada para los tests de cada método.
         /// </summary>

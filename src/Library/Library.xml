@@ -21,8 +21,8 @@
             <summary>
             Envia un mensaje al usuario con el bot como emisor.
             </summary>
-            <param name="id">Id del usuario destinatario</param>
-            <param name="text">Mensaje a enviar</param>
+            <param name="id">Id del usuario destinatario.</param>
+            <param name="text">Mensaje a enviar.</param>
         </member>
         <member name="T:Bot.ConsoleBot">
             <summary>
@@ -35,12 +35,6 @@
             un acceso global a esta instancia.
             </summary>
         </member>
-        <member name="P:Bot.ConsoleBot.Instance">
-            <summary>
-            Obtiene la única instancia de esta clase.
-            </summary>
-            <value>La única instancia de esta clase.</value>
-        </member>
         <member name="M:Bot.ConsoleBot.#ctor">
             <summary>
             Constructor por defecto, privado para facilitar la implementación del patron Singleton.
@@ -50,8 +44,14 @@
             <summary>
             Envia un mensaje al usuario con el bot como emisor.
             </summary>
-            <param name="id">Id del usuario destinatario</param>
-            <param name="text">Mensaje a enviar</param>
+            <param name="id">Id del usuario destinatario.</param>
+            <param name="text">Mensaje a enviar.</param>
+        </member>
+        <member name="P:Bot.ConsoleBot.Instance">
+            <summary>
+            Obtiene la única instancia de esta clase.
+            </summary>
+            <value>La única instancia de esta clase.</value>
         </member>
         <member name="M:Bot.ConsoleBot.StartCommunication">
             <summary>
@@ -77,21 +77,7 @@
             <summary>
             El siguiente handler en caso de que el actual no cumpla la condicion.
             </summary>
-            <value>Siguiente handler</value>
-        </member>
-        <member name="M:Bot.AbstractHandler.InternalHandle(Bot.Message,System.String@)">
-            <summary>
-            Intenta procesar el mensaje recibido y devuelve una respuesta.
-            </summary>
-            <param name="request">El mensaje a procesar.</param>
-            <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        </member>
-        <member name="M:Bot.AbstractHandler.InternalCancel">
-            <summary>
-            Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
-            entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
-            </summary>
+            <value>Siguiente handler.</value>
         </member>
         <member name="M:Bot.AbstractHandler.Handle(Bot.Message,System.String@)">
             <summary>
@@ -99,13 +85,27 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje.</param>
-            <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor</returns>
+            <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor.</returns>
         </member>
         <member name="M:Bot.AbstractHandler.Cancel">
             <summary>
             Retorna este handler al estado inicial y cancela el próximo handler si existe. 
             Utilizado para que los handlers que procesan varios mensajes cambiando de estado 
             entre mensajes puedan volver al estado inicial en caso de error por ejemplo.
+            </summary>
+        </member>
+        <member name="M:Bot.AbstractHandler.InternalHandle(Bot.Message,System.String@)">
+            <summary>
+            Intenta procesar el mensaje recibido y devuelve una respuesta.
+            </summary>
+            <param name="request">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:Bot.AbstractHandler.InternalCancel">
+            <summary>
+            Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
+            entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
             </summary>
         </member>
         <member name="T:Bot.AddMaterialHandler">
@@ -130,7 +130,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.AdminHandler">
             <summary>
@@ -154,7 +154,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.CancelHandler">
             <summary>
@@ -178,7 +178,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.CommandHandler">
             <summary>
@@ -202,7 +202,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.ContactHandler">
             <summary>
@@ -226,7 +226,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.DefaultHandler">
             <summary>
@@ -250,7 +250,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.DefaultRoleHandler">
             <summary>
@@ -274,7 +274,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.IHandler">
             <summary>
@@ -285,7 +285,7 @@
             <summary>
             El siguiente handler en caso de que el actual no cumpla la condicion.
             </summary>
-            <value>Siguiente handler</value>
+            <value>Siguiente handler.</value>
         </member>
         <member name="M:Bot.IHandler.Handle(Bot.Message,System.String@)">
             <summary>
@@ -293,7 +293,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje.</param>
-            <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor</returns>
+            <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor.</returns>
         </member>
         <member name="M:Bot.IHandler.Cancel">
             <summary>
@@ -324,7 +324,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.ModifyUserCertificationsHandler">
             <summary>
@@ -348,7 +348,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.ModifyUserHeaderHandler">
             <summary>
@@ -372,7 +372,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.ModifyUserSpecializationsHandler">
             <summary>
@@ -396,7 +396,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.ModifyUserUbicationHandler">
             <summary>
@@ -420,7 +420,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.PublishHandler">
             <summary>
@@ -444,7 +444,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.PurchasesReportHandler">
             <summary>
@@ -468,7 +468,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.RegisterHandler">
             <summary>
@@ -492,7 +492,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.SalesReportHandler">
             <summary>
@@ -516,7 +516,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.SearchByLocationHandler">
             <summary>
@@ -540,7 +540,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.SearchByMaterialHandler">
             <summary>
@@ -564,7 +564,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.SearchHandler">
             <summary>
@@ -588,7 +588,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.StartHandler">
             <summary>
@@ -612,7 +612,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.TextNullHandler">
             <summary>
@@ -636,7 +636,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.TokenHandler">
             <summary>
@@ -660,7 +660,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.UndertakeHandler">
             <summary>
@@ -676,8 +676,8 @@
             <summary>
             Diccionario que contiene cada usuario intentando emprender con su respectiva información.
             </summary>
-            <typeparam name="UserInfo">El usuario que intenta emprender</typeparam>
-            <typeparam name="EntrepeneurData">La información del usuario</typeparam>
+            <typeparam name="UserInfo">El usuario que intenta emprender.</typeparam>
+            <typeparam name="EntrepeneurData">La información del usuario.</typeparam>
         </member>
         <member name="M:Bot.UndertakeHandler.#ctor(Bot.AbstractHandler)">
             <summary>
@@ -691,28 +691,28 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.UndertakeHandler.EntrepeneurData">
             <summary>
             Clase interna encargada de alamacenar información de emprendedores.
             </summary>
         </member>
-        <member name="P:Bot.UndertakeHandler.EntrepeneurData.Heading">
-            <summary>
-            Rubro del usuario
-            </summary>
-        </member>
-        <member name="P:Bot.UndertakeHandler.EntrepeneurData.City">
-            <summary>
-            Ciudad del usuario
-            </summary>
-        </member>
         <member name="M:Bot.UndertakeHandler.EntrepeneurData.#ctor(System.String)">
             <summary>
             Crea una nueva instancia de este contenedor de información y define el rubro.
             </summary>
-            <param name="heading">El rubro del usuario</param>
+            <param name="heading">El rubro del usuario.</param>
+        </member>
+        <member name="P:Bot.UndertakeHandler.EntrepeneurData.Heading">
+            <summary>
+            Rubro del usuario.
+            </summary>
+        </member>
+        <member name="P:Bot.UndertakeHandler.EntrepeneurData.City">
+            <summary>
+            Ciudad del usuario.
+            </summary>
         </member>
         <member name="T:Bot.UserInformationHandler">
             <summary>
@@ -736,7 +736,7 @@
             </summary>
             <param name="request">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
-            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="T:Bot.Company">
             <summary>
@@ -860,10 +860,10 @@
         </member>
         <member name="M:Bot.Company.ContainsPublication(System.String)">
             <summary>
-            Verifica si la compañía contiene la publicación ingresada por parametro
+            Verifica si la compañía contiene la publicación ingresada por parametro.
             </summary>
-            <param name="publicationTitle">Titulo de la publicación en cuestión</param>
-            <returns>True si la contiene, false en caso contrario</returns>
+            <param name="publicationTitle">Titulo de la publicación en cuestión.</param>
+            <returns>True si la contiene, false en caso contrario.</returns>
         </member>
         <member name="T:Bot.ISetOfElement`1">
             <summary>
@@ -1194,10 +1194,10 @@
         </member>
         <member name="M:Bot.Command.GetCommands(System.Int64)">
             <summary>
-            Obtiene la lista de comandos visibles para un usuario dado
+            Obtiene la lista de comandos visibles para un usuario dado.
             </summary>
-            <param name="userId">Id del usuario en cuestión</param>
-            <returns>Lista de comandos que este usuario puede utilizar</returns>
+            <param name="userId">Id del usuario en cuestión.</param>
+            <returns>Lista de comandos que este usuario puede utilizar.</returns>
         </member>
         <member name="T:Bot.SessionRelated">
             <summary>
@@ -1206,61 +1206,61 @@
         </member>
         <member name="F:Bot.SessionRelated.AllUsers">
             <summary>
-            Lista de todos los usuarios
+            Lista de todos los usuarios.
             </summary>
         </member>
         <member name="F:Bot.SessionRelated.DiccUserTokens">
             <summary>
-            Diccionario que contiene el token que se relacion con la compañía
+            Diccionario que contiene el token que se relacion con la compañía.
             </summary>
-            <typeparam name="string">El token en cuestión</typeparam>
-            <typeparam name="Company">La compañía en cuestión</typeparam>
+            <typeparam name="string">El token en cuestión.</typeparam>
+            <typeparam name="Company">La compañía en cuestión.</typeparam>
         </member>
         <member name="F:Bot.SessionRelated.DiccEntrepreneurInfo">
             <summary>
-            Diccionario que contiene la UserInfo que se relaciona con la EntrepreneurInfo
+            Diccionario que contiene la UserInfo que se relaciona con la EntrepreneurInfo.
             </summary>
-            <typeparam name="UserInfo">El UserInfo</typeparam>
-            <typeparam name="EntrepreneurInfo">La EntrepreneurInfo</typeparam>
+            <typeparam name="UserInfo">El UserInfo.</typeparam>
+            <typeparam name="EntrepreneurInfo">La EntrepreneurInfo.</typeparam>
         </member>
         <member name="F:Bot.SessionRelated.DiccAdminInfo">
             <summary>
-            Diccionario que contiene la UserInfo que se relaciona con la AdminInfo
+            Diccionario que contiene la UserInfo que se relaciona con la AdminInfo.
             </summary>
-            <typeparam name="UserInfo">La UserInfo</typeparam>
-            <typeparam name="AdminInfo">La AdminInfo</typeparam>
+            <typeparam name="UserInfo">La UserInfo.</typeparam>
+            <typeparam name="AdminInfo">La AdminInfo.</typeparam>
         </member>
         <member name="F:Bot.SessionRelated.DiccUserCompanyInfo">
             <summary>
-            Diccionario que contiene la UserInfo que se relaciona con la UserCompanyInfo
+            Diccionario que contiene la UserInfo que se relaciona con la UserCompanyInfo.
             </summary>
-            <typeparam name="UserInfo">La UserInfo</typeparam>
-            <typeparam name="UserCompanyInfo">La UserCompanyInfo</typeparam>
+            <typeparam name="UserInfo">La UserInfo.</typeparam>
+            <typeparam name="UserCompanyInfo">La UserCompanyInfo.</typeparam>
             <returns></returns>
         </member>
         <member name="P:Bot.SessionRelated.DiccUserTokensToSerialize">
             <summary>
-            Obtiene DiccUserTokens como una lista
+            Obtiene DiccUserTokens como una lista.
             </summary>
         </member>
         <member name="P:Bot.SessionRelated.DiccEntrepreneurInfoToSerialize">
             <summary>
-            Obtiene DiccEntrepreneurInfo como una lista
+            Obtiene DiccEntrepreneurInfo como una lista.
             </summary>
         </member>
         <member name="P:Bot.SessionRelated.DiccAdminInfoToSerialize">
             <summary>
-            Obtiene DiccAdminInfo como una lista
+            Obtiene DiccAdminInfo como una lista.
             </summary>
         </member>
         <member name="P:Bot.SessionRelated.DiccUserCompanyInfoToSerialize">
             <summary>
-            Obtiene DiccUserCompanyInfo como una lista
+            Obtiene DiccUserCompanyInfo como una lista.
             </summary>
         </member>
         <member name="P:Bot.SessionRelated.Instance">
             <summary>
-            Obtiene una única instancia de esta clase
+            Obtiene una única instancia de esta clase.
             </summary>
             <value>La única instancia de esta clase.</value>
         </member>
@@ -1272,71 +1272,71 @@
         </member>
         <member name="M:Bot.SessionRelated.AddNewUser(Bot.UserInfo)">
             <summary>
-            Agrega un nuevo usuario en caso de que no exista
+            Agrega un nuevo usuario en caso de que no exista.
             </summary>
-            <param name="user">El usuario en cuestión</param>
+            <param name="user">El usuario en cuestión.</param>
         </member>
         <member name="M:Bot.SessionRelated.DeleteUser(Bot.UserInfo)">
             <summary>
-            Elimina un usuario
+            Elimina un usuario.
             </summary>
-            <param name="user">Usuaurio a borrar</param>
+            <param name="user">Usuaurio a borrar.</param>
         </member>
         <member name="M:Bot.SessionRelated.UsernameExists(System.Int64)">
             <summary>
-            Verifica si existe un usuario
+            Verifica si existe un usuario.
             </summary>
-            <param name="id">Id del usuario a verificar</param>
-            <returns>True si existe el usuario, false en caso contrario</returns>
+            <param name="id">Id del usuario a verificar.</param>
+            <returns>True si existe el usuario, false en caso contrario.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetUserById(System.Int64)">
             <summary>
-            Obtiene el usuario a partir de un id
+            Obtiene el usuario a partir de un id.
             </summary>
-            <param name="id">Id del usuario</param>
-            <returns>El usuario</returns>
+            <param name="id">Id del usuario.</param>
+            <returns>El usuario.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetCompanyByToken(System.String)">
             <summary>
-            Metodo para retornar la Company asociada al token generado
+            Metodo para retornar la Company asociada al token generado.
             </summary>
-            <param name="token">Token que el usuario inserta</param>
-            <returns>La compañía relacionada al token o nulo en caso de que no haya una compañía con ese token</returns>
+            <param name="token">Token que el usuario inserta.</param>
+            <returns>La compañía relacionada al token o nulo en caso de que no haya una compañía con ese token.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetCompanyByName(System.String)">
             <summary>
-            Obtiene la compañía a partir del nombre
+            Obtiene la compañía a partir del nombre.
             </summary>
-            <param name="companyName">El nombre de la compañía</param>
-            <returns>Si existe, la compañía. Nulo en caso contrario</returns>
+            <param name="companyName">El nombre de la compañía.</param>
+            <returns>Si existe, la compañía. Nulo en caso contrario.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetTokenByCompany(Bot.Company)">
             <summary>
-            Obtiene un token a partir de la compañía
+            Obtiene un token a partir de la compañía.
             </summary>
-            <param name="company">La compañía en cuestión</param>
-            <returns>Si existe, el token. Nulo en caso contrario</returns>
+            <param name="company">La compañía en cuestión.</param>
+            <returns>Si existe, el token. Nulo en caso contrario.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetEntrepreneurInfoByUserInfo(Bot.UserInfo)">
             <summary>
-            Obtiene una EntrepreneurInfo a partir de un UserInfo
+            Obtiene una EntrepreneurInfo a partir de un UserInfo.
             </summary>
-            <param name="user">El UserInfo en cuestión</param>
-            <returns>En caso de que exista, la EntrepreneurInfo asociada a la UserInfo. Nulo en caso contrario</returns>
+            <param name="user">El UserInfo en cuestión.</param>
+            <returns>En caso de que exista, la EntrepreneurInfo asociada a la UserInfo. Nulo en caso contrario.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetAdminInfoByUserInfo(Bot.UserInfo)">
             <summary>
-            Obtiene una AdminInfo a partir de un UserInfo
+            Obtiene una AdminInfo a partir de un UserInfo.
             </summary>
-            <param name="user">El UserInfo en cuestión</param>
-            <returns>En caso de que exista, la AdminInfo asociada a la UserInfo. Nulo en caso contrario</returns>
+            <param name="user">El UserInfo en cuestión.</param>
+            <returns>En caso de que exista, la AdminInfo asociada a la UserInfo. Nulo en caso contrario.</returns>
         </member>
         <member name="M:Bot.SessionRelated.GetUserCompanyByUserInfo(Bot.UserInfo)">
             <summary>
-            Obtiene una UserCompanyInfo a partir de un UserInfo
+            Obtiene una UserCompanyInfo a partir de un UserInfo.
             </summary>
-            <param name="user">El UserInfo en cuestión</param>
-            <returns>En caso de que exista, la UserCompanyInfo asociada a la UserInfo. Nulo en caso contrario</returns>
+            <param name="user">El UserInfo en cuestión.</param>
+            <returns>En caso de que exista, la UserCompanyInfo asociada a la UserInfo. Nulo en caso contrario.</returns>
         </member>
         <member name="T:Bot.EntrepreneurInfo">
             <summary>
@@ -1583,19 +1583,19 @@
         </member>
         <member name="M:Bot.Message.#ctor(System.Int64,System.String)">
             <summary>
-            Crea una nueva instancia de la clase Message, asignando el mensaje y el id del usuario
+            Crea una nueva instancia de la clase Message, asignando el mensaje y el id del usuario.
             </summary>
-            <param name="id">Id del usuario en cuestión</param>
-            <param name="message">Mensaje del usuario en cuestión</param>
+            <param name="id">Id del usuario en cuestión.</param>
+            <param name="message">Mensaje del usuario en cuestión.</param>
         </member>
         <member name="P:Bot.Message.UserId">
             <summary>
-            Id del usuario
+            Id del usuario.
             </summary>
         </member>
         <member name="P:Bot.Message.Text">
             <summary>
-            Mensaje del usuario
+            Mensaje del usuario.
             </summary>
         </member>
         <member name="T:Bot.CompanyReport">
@@ -1639,18 +1639,18 @@
         </member>
         <member name="T:Bot.IReport">
             <summary>
-            interfaz con la firma del metodo que devuelve un reporte
+            interfaz con la firma del metodo que devuelve un reporte.
             </summary>
         </member>
         <member name="M:Bot.IReport.GiveReport">
             <summary>
-            firma del metodo GiveReport
+            firma del metodo GiveReport.
             </summary>
-            <returns></returns>
+            <returns>Devuelve un reporte como string.</returns>
         </member>
         <member name="P:Bot.MyReferenceHandler.Instance">
             <summary>
-            Obtiene una única instancia de esta clase
+            Obtiene una única instancia de esta clase.
             </summary>
             <value>La única instancia de esta clase.</value>
         </member>
@@ -1777,182 +1777,182 @@
         </member>
         <member name="T:Bot.State">
             <summary>
-            Indica los diferentes estados que puede tener un usuario
+            Indica los diferentes estados que puede tener un usuario.
             </summary>
         </member>
         <member name="F:Bot.State.Start">
             <summary>
-             Estado por defecto de un usuario
+            Estado por defecto de un usuario.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingToken">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un token para confirmar
+            Estado en el que se encuentra un usuario al enviar un token para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingHeadingEntrepreneur">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un rubro para confirmar
+            Estado en el que se encuentra un usuario al enviar un rubro para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingCityEntrepreneur">
             <summary>
-             Estado en el que se encuentra un usuario al enviar una ciudad para confirmar
+            Estado en el que se encuentra un usuario al enviar una ciudad para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingAdressEntrepreneur">
             <summary>
-             Estado en el que se encuentra un usuario al enviar una dirección para confirmar
+            Estado en el que se encuentra un usuario al enviar una dirección para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingCompanyName">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un nombre de una empresa para confirmar
+            Estado en el que se encuentra un usuario al enviar un nombre de una empresa para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingCompanyHeader">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un rubro de una empresa para confirmar
+            Estado en el que se encuentra un usuario al enviar un rubro de una empresa para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingCompanyAddress">
             <summary>
-             Estado en el que se encuentra un usuario al enviar una dirección de una empresa para confirmar
+            Estado en el que se encuentra un usuario al enviar una dirección de una empresa para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingCompanyCity">
             <summary>
-             Estado en el que se encuentra un usuario al enviar una ciudad de una empresa para confirmar
+            Estado en el que se encuentra un usuario al enviar una ciudad de una empresa para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.ConfirmingCompanyContact">
             <summary>
-             Estado en el que se encuentra un usuario al enviar el contacto de una empresa para confirmar
+            Estado en el que se encuentra un usuario al enviar el contacto de una empresa para confirmar.
             </summary>
         </member>
         <member name="F:Bot.State.AskingCompanyName">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un nombre de una empresa para continuar con un proceso
+            Estado en el que se encuentra un usuario al enviar un nombre de una empresa para continuar con un proceso.
             </summary>
         </member>
         <member name="F:Bot.State.AskingDataNumber">
             <summary>
-             Estado en el que se encuentra un usuario mientras edita la información de él mismo
+            Estado en el que se encuentra un usuario mientras edita la información de él mismo.
             </summary>
         </member>
         <member name="F:Bot.State.ChangingUserUbication">
             <summary>
-             Estado en el que se encuentra un usuario al estar cambiando su ubicación
+            Estado en el que se encuentra un usuario al estar cambiando su ubicación.
             </summary>
         </member>
         <member name="F:Bot.State.ChangingUserHeader">
             <summary>
-             Estado en el que se encuentra un usuario al estar cambiando su rubro
+            Estado en el que se encuentra un usuario al estar cambiando su rubro.
             </summary>
         </member>
         <member name="F:Bot.State.ChangingUserSpecializations">
             <summary>
-             Estado en el que se encuentra un usuario al estar modificando su lista de especializaciones
+            Estado en el que se encuentra un usuario al estar modificando su lista de especializaciones.
             </summary>
         </member>
         <member name="F:Bot.State.ChangingUserCertifications">
             <summary>
-             Estado en el que se encuentra un usuario al estar modificando su lista de certificaciones
+            Estado en el que se encuentra un usuario al estar modificando su lista de certificaciones.
             </summary>
         </member>
         <member name="F:Bot.State.ChangingUserAddress">
             <summary>
-             Estado en el que se encuentra un usuario al estar cambiando su dirección
+            Estado en el que se encuentra un usuario al estar cambiando su dirección.
             </summary>
         </member>
         <member name="F:Bot.State.ChangingUserCity">
             <summary>
-             Estado en el que se encuentra un usuario al estar cambiando su ciudad
+            Estado en el que se encuentra un usuario al estar cambiando su ciudad.
             </summary>
         </member>
         <member name="F:Bot.State.AddingUserSpecializations">
             <summary>
-             Estado en el que se encuentra un usuario al estar agregando especializaciones
+            Estado en el que se encuentra un usuario al estar agregando especializaciones.
             </summary>
         </member>
         <member name="F:Bot.State.DeletingUserSpecializations">
             <summary>
-             Estado en el que se encuentra un usuario al estar eliminando especializaciones
+            Estado en el que se encuentra un usuario al estar eliminando especializaciones.
             </summary>
         </member>
         <member name="F:Bot.State.AddingUserCertification">
             <summary>
-             Estado en el que se encuentra un usuario al estar agregando certificaciones
+            Estado en el que se encuentra un usuario al estar agregando certificaciones.
             </summary>
         </member>
         <member name="F:Bot.State.DeletingUserCertification">
             <summary>
-             Estado en el que se encuentra un usuario al estar eliminando certificaciones
+            Estado en el que se encuentra un usuario al estar eliminando certificaciones.
             </summary>
         </member>
         <member name="F:Bot.State.Searching">
             <summary>
-             Estado en el que se encuentra un usuario al estar realizando una búsqueda de materiales
+            Estado en el que se encuentra un usuario al estar realizando una búsqueda de materiales.
             </summary>
         </member>
         <member name="F:Bot.State.SearchingByMaterial">
             <summary>
-             Estado en el que se encuentra un usuario al estar realizando una búsqueda con el filtro de materiales
+            Estado en el que se encuentra un usuario al estar realizando una búsqueda con el filtro de materiales.
             </summary>
         </member>
         <member name="F:Bot.State.SearchingByLocation">
             <summary>
-             Estado en el que se encuentra un usuario al estar realizando una búsqueda con el filtro de localización
+            Estado en el que se encuentra un usuario al estar realizando una búsqueda con el filtro de localización.
             </summary>
         </member>
         <member name="F:Bot.State.InterestedInPublication">
             <summary>
-             Estado en el que se encuentra un usuario al estar confirmando si está o no interesado en una publicación
+            Estado en el que se encuentra un usuario al estar confirmando si está o no interesado en una publicación.
             </summary>
         </member>
         <member name="F:Bot.State.AskingPublicationName">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un nombre para la publicación que está creando
+            Estado en el que se encuentra un usuario al enviar un nombre para la publicación que está creando.
             </summary>
         </member>
         <member name="F:Bot.State.AskingCompanyLocation">
             <summary>
-             Estado en el que se encuentra un usuario al enviar una localización para la publicación que está creando
+            Estado en el que se encuentra un usuario al enviar una localización para la publicación que está creando.
             </summary>
         </member>
         <member name="F:Bot.State.AskingMaterialName">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un nombre para el material de la publicación que está creando
+            Estado en el que se encuentra un usuario al enviar un nombre para el material de la publicación que está creando.
             </summary>
         </member>
         <member name="F:Bot.State.AskingMaterialQuantity">
             <summary>
-             Estado en el que se encuentra un usuario al enviar una cantidad para el material de la publicación que está creando
+            Estado en el que se encuentra un usuario al enviar una cantidad para el material de la publicación que está creando.
             </summary>
         </member>
         <member name="F:Bot.State.AskingMaterialPrice">
             <summary>
-             Estado en el que se encuentra un usuario al enviar un precio para el material de la publicación que está creando
+            Estado en el que se encuentra un usuario al enviar un precio para el material de la publicación que está creando.
             </summary>
         </member>
         <member name="F:Bot.State.AskingMaterialNameToAdd">
             <summary>
-             Estado en el que se encuentra un usuario al enviar el nombre de un material para agregar a una publicación
+            Estado en el que se encuentra un usuario al enviar el nombre de un material para agregar a una publicación.
             </summary>
         </member>
         <member name="F:Bot.State.AskingMaterialQuantityToAdd">
             <summary>
-             Estado en el que se encuentra un usuario al enviar la cantidad de un material para agregar a una publicación
+            Estado en el que se encuentra un usuario al enviar la cantidad de un material para agregar a una publicación.
             </summary>
         </member>
         <member name="F:Bot.State.AskingMaterialPriceToAdd">
             <summary>
-             Estado en el que se encuentra un usuario al enviar el precio de un material para agregar a una publicación
+            Estado en el que se encuentra un usuario al enviar el precio de un material para agregar a una publicación.
             </summary>
         </member>
         <member name="F:Bot.State.AddingMaterial">
             <summary>
-             Estado en el que se encuentra un usuario al enviar el nombre de la publicación a la que se le quiere agregar un material
+            Estado en el que se encuentra un usuario al enviar el nombre de la publicación a la que se le quiere agregar un material.
             </summary>
         </member>
         <member name="T:Bot.TokenGenerator">
@@ -1964,11 +1964,11 @@
             la cuál es la generación de tokens.
             Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
             un acceso global a esta instancia.
-            /// </summary>
+            </summary>
         </member>
         <member name="P:Bot.TokenGenerator.Instance">
             <summary>
-            Obtiene una única instancia de esta clase
+            Obtiene una única instancia de esta clase.
             </summary>
             <value>La única instancia de esta clase.</value>
         </member>
@@ -1987,21 +1987,21 @@
             Cumple con Expert ya que, es experta en el manejo de la información de un usuario de una compañía.
             </summary>
         </member>
-        <member name="P:Bot.UserCompanyInfo.company">
-            <summary>
-            Compañía a la cuál pertenece el usuario
-            </summary>
-        </member>
         <member name="M:Bot.UserCompanyInfo.#ctor">
             <summary>
             Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
             </summary>
         </member>
+        <member name="P:Bot.UserCompanyInfo.company">
+            <summary>
+            Compañía a la cuál pertenece el usuario.
+            </summary>
+        </member>
         <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">
             <summary>
-            Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario
+            Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario.
             </summary>
-            <param name="company">Compañía en cuestión</param>
+            <param name="company">Compañía en cuestión.</param>
         </member>
         <member name="T:Bot.UserInfo">
             <summary>
@@ -2014,48 +2014,43 @@
         </member>
         <member name="F:Bot.UserInfo.AdminPermissions">
             <summary>
-            Lista de permisos que tiene un administrador
+            Lista de permisos que tiene un administrador.
             </summary>
-            <typeparam name="Permission">Permisos</typeparam>
+            <typeparam name="Permission">Permisos.</typeparam>
         </member>
         <member name="F:Bot.UserInfo.DefaultPermissions">
             <summary>
-            Lista de permisos que tiene un usuario default
+            Lista de permisos que tiene un usuario default.
             </summary>
-            <typeparam name="Permission">Permisos</typeparam>
+            <typeparam name="Permission">Permisos.</typeparam>
         </member>
         <member name="F:Bot.UserInfo.UserCompanyPermissions">
             <summary>
-            Lista de permisos que tiene un usuario de empresa
+            Lista de permisos que tiene un usuario de empresa.
             </summary>
-            <typeparam name="Permission">Permisos</typeparam>
+            <typeparam name="Permission">Permisos.</typeparam>
         </member>
         <member name="F:Bot.UserInfo.EntrepreneurPermissions">
             <summary>
-            Lista de permisos que tiene un emprendedor
+            Lista de permisos que tiene un emprendedor.
             </summary>
-            <typeparam name="Permission">Permisos</typeparam>
+            <typeparam name="Permission">Permisos.</typeparam>
         </member>
         <member name="P:Bot.UserInfo.Permissions">
             <summary>
-            Lista que contiene los permisos que tiene el usuario
+            Lista que contiene los permisos que tiene el usuario.
             </summary>
-            <typeparam name="Permission">Permisos</typeparam>
+            <typeparam name="Permission">Permisos.</typeparam>
         </member>
         <member name="P:Bot.UserInfo.Name">
             <summary>
-            Nombre del usuario
+            Nombre del usuario.
             </summary>
-            <value></value>
+            <value>Nombre.</value>
         </member>
         <member name="P:Bot.UserInfo.Id">
             <summary>
-            Id del usuario
-            </summary>
-        </member>
-        <member name="P:Bot.UserInfo.HandlerState">
-            <summary>
-            Estado del usuario que cambia según los comandos que utilice
+            Id del usuario.
             </summary>
         </member>
         <member name="M:Bot.UserInfo.#ctor">
@@ -2067,15 +2062,20 @@
             <summary>
             Crea una nueva instancia de la clase UserInfo, asignando su nombre y el id.
             </summary>
-            <param name="name">Nombre del usuario en cuestión</param>
-            <param name="id">Id del usuario en cuestión</param>
+            <param name="name">Nombre del usuario en cuestión.</param>
+            <param name="id">Id del usuario en cuestión.</param>
+        </member>
+        <member name="P:Bot.UserInfo.HandlerState">
+            <summary>
+            Estado del usuario que cambia según los comandos que utilice.
+            </summary>
         </member>
         <member name="M:Bot.UserInfo.HasPermission(Bot.Permission)">
             <summary>
-            Verifica si un usuario tiene o no cierto permiso
+            Verifica si un usuario tiene o no cierto permiso.
             </summary>
-            <param name="permission">El permiso en cuestión</param>
-            <returns>true si tiene el permiso, falso en caso contrario</returns>
+            <param name="permission">El permiso en cuestión.</param>
+            <returns>true si tiene el permiso, falso en caso contrario.</returns>
         </member>
         <member name="T:Library.TelegramBot">
             <summary>
@@ -2109,8 +2109,8 @@
             <summary>
             Envia un mensaje al usuario con el bot como emisor.
             </summary>
-            <param name="id">Id del usuario destinatario</param>
-            <param name="text">Mensaje a enviar</param>
+            <param name="id">Id del usuario destinatario.</param>
+            <param name="text">Mensaje a enviar.</param>
         </member>
     </members>
 </doc>

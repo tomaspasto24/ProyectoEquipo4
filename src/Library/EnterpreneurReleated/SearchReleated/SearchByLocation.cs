@@ -16,7 +16,7 @@ namespace Bot
     {
         private static SearchByLocation instance; 
 
-                /// <summary>
+        /// <summary>
         /// Obtiene una única instancia de esta clase.
         /// </summary>
         /// <value>La única instancia de esta clase.</value>

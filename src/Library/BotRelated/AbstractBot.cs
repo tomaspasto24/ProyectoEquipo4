@@ -16,8 +16,8 @@ namespace Bot
         /// <summary>
         /// Envia un mensaje al usuario con el bot como emisor.
         /// </summary>
-        /// <param name="id">Id del usuario destinatario</param>
-        /// <param name="text">Mensaje a enviar</param>
+        /// <param name="id">Id del usuario destinatario.</param>
+        /// <param name="text">Mensaje a enviar.</param>
         public abstract void SendMessage(long id, string text);
     }
 }

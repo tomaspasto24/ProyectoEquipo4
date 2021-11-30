@@ -19,7 +19,8 @@ namespace Bot
         /// Crea una nueva instancia de éste handler y define su sucesor.
         /// </summary>
         /// <param name="succesor">El siguiente handler a ser invocado en caso de que el actual no cumpla la condición.</param>
-        public AddMaterialHandler(AbstractHandler succesor) : base(succesor)
+        public AddMaterialHandler(AbstractHandler succesor) 
+        : base(succesor)
         {
         }
 
@@ -28,7 +29,7 @@ namespace Bot
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
-        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
@@ -39,6 +40,7 @@ namespace Bot
                 response = string.Empty;
                 return false;
             }
+
             if (request.Text.Equals("/agregarmaterial") && (user.HandlerState == Bot.State.Start))
             {
                 response = "Envía el título de la publicación en la que quieres agregar el material";
@@ -51,6 +53,7 @@ namespace Bot
                 {
                     throw new ArgumentException("No existe una publicación con ese nombre");
                 }
+
                 this.materialData.Remove(user);
                 this.materialData.Add(user, new MaterialData(request.Text));
                 response = "Envía el nombre del material";
@@ -65,7 +68,7 @@ namespace Bot
                 user.HandlerState = Bot.State.AskingMaterialQuantityToAdd;
                 return true;
             }
-            else if ((user.HandlerState == Bot.State.AskingMaterialQuantityToAdd))
+            else if (user.HandlerState == Bot.State.AskingMaterialQuantityToAdd)
             {
                 MaterialData md = this.materialData[user];
                 md.MaterialQuantity = Int32.Parse(request.Text);
@@ -86,24 +89,32 @@ namespace Bot
                         publication.AddMaterial(md.Material);
                     }
                 }
+
                 response = "Se ha agregado el material a la publicación. Si quieres agregar otro material envía \"/agregarmaterial\".\nEnvía \"/cancelar\" para cancelar la operación.";
                 user.HandlerState = Bot.State.Start;
                 return true;
             }
+
             response = string.Empty;
             return false;
         }
+
         class MaterialData
         {
-            public string MaterialName { get; set; }
-            public int MaterialQuantity { get; set; }
-            public int MaterialPrice { get; set; }
-            public Material Material { get; set; }
-            public string PublicationTitle { get; set; }
             public MaterialData(string publicationTitle)
             {
                 this.PublicationTitle = publicationTitle;
             }
+
+            public string MaterialName { get; set; }
+
+            public int MaterialQuantity { get; set; }
+            
+            public int MaterialPrice { get; set; }
+            
+            public Material Material { get; set; }
+            
+            public string PublicationTitle { get; set; }
         }
     }
 }

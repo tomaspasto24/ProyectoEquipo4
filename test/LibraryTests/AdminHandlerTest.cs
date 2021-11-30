@@ -1,47 +1,56 @@
-
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
     /// <summary>
-    /// Clase TokenHandlerTest la cual se encarga de testear las funcionalidades de la clase tokenHandler, se declaran las variables globales que se van a utilizar.
+    /// Clase AdminHandlerTest la cual se encarga de testear las funcionalidades de la clase AdminHandler, se declaran las variables globales que se van a utilizar.
     /// </summary>
     public class AdminHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
+        /// <summary>
+        /// Se inicializan las variables que se van a utilizar en los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.Permissions = UserInfo.AdminPermissions;
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            this.user1.Permissions = UserInfo.AdminPermissions;
         }
 
+        /// <summary>
+        /// Test que se encarga de testear el AdminHandler y verificar que se le asigne los permisos de admin al usuario al mandar el comando /admin
+        /// </summary>
         [Test]
         public void AdminHandlerAdminTest()
         {
-            testMessage = new Message(5433261, "/admin");
-            AdminHandler adminHandler = new AdminHandler(null);
-            result = adminHandler.Handle(testMessage, out response);
+            this.testMessage = new Message(5433261, "/admin");
+            AdminHandler adminHandler = new(null);
+            this.result = adminHandler.Handle(this.testMessage, out this.response);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response, Does.Contain("Ahora eres admin"));
+            Assert.That(this.result, Is.Not.Null);
+            Assert.That(this.response, Does.Contain("Ahora eres admin"));
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar que el AdminHandler devuelva false (null), y un string vacio al momento de enviar un comando incorrecto.
+        /// </summary>
         [Test]
         public void AdminHandlerWrongCommandTest()
         {
-            testMessage = new Message(5433261, "/WrongCommand");
-            AdminHandler adminHandler = new AdminHandler(null);
-            result = adminHandler.Handle(testMessage, out response);
+            this.testMessage = new Message(5433261, "/WrongCommand");
+            AdminHandler adminHandler = new(null);
+            this.result = adminHandler.Handle(this.testMessage, out this.response);
 
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.Empty);
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.Empty);
         }
     }
 }
