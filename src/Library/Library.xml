@@ -1338,6 +1338,13 @@
             <param name="user">El UserInfo en cuestión</param>
             <returns>En caso de que exista, la UserCompanyInfo asociada a la UserInfo. Nulo en caso contrario</returns>
         </member>
+        <member name="M:Bot.SessionRelated.GetUserInfoByEntrepreneurInfo(Bot.EntrepreneurInfo)">
+            <summary>
+            Obtiene una UserInfo a partiri de un EntrepreneurInfo
+            </summary>
+            <param name="entrepreneurInfo">El EntrepreneurInfo en cuestión</param>
+            <returns>En caso de que exista, la UserInfo asociada asociada con el EntrepreneurInfo. Nulo en caso contrario</returns>
+        </member>
         <member name="T:Bot.EntrepreneurInfo">
             <summary>
             En esta clase se aplica el patrón Expert porque se necesita que sea experta en toda la información referente al emprendedor y a su lógica, es capáz de modificar
