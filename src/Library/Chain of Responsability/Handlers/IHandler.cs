@@ -8,7 +8,7 @@ namespace Bot
         /// <summary>
         /// El siguiente handler en caso de que el actual no cumpla la condicion.
         /// </summary>
-        /// <value>Siguiente handler</value>
+        /// <value>Siguiente handler.</value>
         IHandler Succesor { get; set; }
 
         /// <summary>
@@ -16,7 +16,7 @@ namespace Bot
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje.</param>
-        /// <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor</returns>
+        /// <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor.</returns>
         IHandler Handle(Message request, out string response);
 
         /// <summary>
@@ -25,6 +25,5 @@ namespace Bot
         /// entre mensajes puedan volver al estado inicial en caso de error por ejemplo.
         /// </summary>
         void Cancel();
-
     }
 }
