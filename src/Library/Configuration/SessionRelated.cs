@@ -276,5 +276,22 @@ namespace Bot
 
             return null;
         }
+
+        /// <summary>
+        /// Obtiene una UserInfo a partiri de un EntrepreneurInfo
+        /// </summary>
+        /// <param name="entrepreneurInfo">El EntrepreneurInfo en cuestión</param>
+        /// <returns>En caso de que exista, la UserInfo asociada asociada con el EntrepreneurInfo. Nulo en caso contrario</returns>
+        public UserInfo GetUserInfoByEntrepreneurInfo(EntrepreneurInfo entrepreneurInfo)
+        {
+            foreach (UserInfo userInfo in DiccEntrepreneurInfo.Keys)
+            {
+                if (DiccEntrepreneurInfo[userInfo].Equals(entrepreneurInfo)) 
+                {
+                    return userInfo;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace Bot
             string publications = string.Empty;
             foreach (Publication publication in PublicationSet.Instance.ListPublications)
             {
-                foreach (Material mat in publication.ListMaterials as List<Material>)
+                foreach (Material mat in publication.ListMaterials)
                 {
                     if (mat.Name == wordToSearch)
                     {
