@@ -16,15 +16,16 @@ namespace Bot
         /// <summary>
         /// Diccionario que contiene cada usuario intentando emprender con su respectiva información.
         /// </summary>
-        /// <typeparam name="UserInfo">El usuario que intenta emprender</typeparam>
-        /// <typeparam name="EntrepeneurData">La información del usuario</typeparam>
+        /// <typeparam name="UserInfo">El usuario que intenta emprender.</typeparam>
+        /// <typeparam name="EntrepeneurData">La información del usuario.</typeparam>
         private Dictionary<UserInfo, EntrepeneurData> entrepreneurData = new Dictionary<UserInfo, EntrepeneurData>();
 
         /// <summary>
         /// Crea una nueva instancia de éste handler y define su sucesor.
         /// </summary>
         /// <param name="succesor">El siguiente handler a ser invocado en caso de que el actual no cumpla la condición.</param>
-        public UndertakeHandler(AbstractHandler succesor) : base(succesor)
+        public UndertakeHandler(AbstractHandler succesor) 
+        : base(succesor)
         {
         }
 
@@ -33,7 +34,7 @@ namespace Bot
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
-        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
@@ -80,27 +81,30 @@ namespace Bot
             response = string.Empty;
             return false;
         }
+        
         /// <summary>
         /// Clase interna encargada de alamacenar información de emprendedores.
         /// </summary>
         class EntrepeneurData
         {
             /// <summary>
-            /// Rubro del usuario
-            /// </summary>
-            public string Heading { get; set; }
-            /// <summary>
-            /// Ciudad del usuario
-            /// </summary>
-            public string City { get; set; }
-            /// <summary>
             /// Crea una nueva instancia de este contenedor de información y define el rubro.
             /// </summary>
-            /// <param name="heading">El rubro del usuario</param>
+            /// <param name="heading">El rubro del usuario.</param>
             public EntrepeneurData(string heading)
             {
                 this.Heading = heading;
             }
+            
+            /// <summary>
+            /// Rubro del usuario.
+            /// </summary>
+            public string Heading { get; set; }
+
+            /// <summary>
+            /// Ciudad del usuario.
+            /// </summary>
+            public string City { get; set; }
         }
     }
 }

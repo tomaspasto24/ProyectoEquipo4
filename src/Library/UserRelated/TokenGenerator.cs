@@ -11,13 +11,13 @@ namespace Bot
     /// la cuál es la generación de tokens.
     /// Cumple con el patrón Singleton, esto lo que hace es que, garantiza que haya una única instancia de la clase y de esta forma se obtiene
     /// un acceso global a esta instancia.
-    /// /// </summary>
+    /// </summary>
     public class TokenGenerator
     {
         private static TokenGenerator instance;
 
         /// <summary>
-        /// Obtiene una única instancia de esta clase
+        /// Obtiene una única instancia de esta clase.
         /// </summary>
         /// <value>La única instancia de esta clase.</value>
         public static TokenGenerator Instance

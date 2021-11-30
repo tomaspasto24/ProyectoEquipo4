@@ -263,10 +263,10 @@ namespace Bot
         }
 
         /// <summary>
-        /// Verifica si la compañía contiene la publicación ingresada por parametro
+        /// Verifica si la compañía contiene la publicación ingresada por parametro.
         /// </summary>
-        /// <param name="publicationTitle">Titulo de la publicación en cuestión</param>
-        /// <returns>True si la contiene, false en caso contrario</returns>
+        /// <param name="publicationTitle">Titulo de la publicación en cuestión.</param>
+        /// <returns>True si la contiene, false en caso contrario.</returns>
         public bool ContainsPublication(string publicationTitle)
         {
             foreach (Publication publication in this.ListOwnPublications)
@@ -276,6 +276,7 @@ namespace Bot
                     return true;
                 }
             }
+            
             return false;
         }
     }

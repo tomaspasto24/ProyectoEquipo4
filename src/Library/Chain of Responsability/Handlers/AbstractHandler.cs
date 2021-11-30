@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace Bot
 {
-
     /// <summary>
     /// Clase abstracta que debe implementar cualquiera de los handlers utilizados en la Chain of Responsability.
     /// Patrones y principios: 
@@ -25,32 +24,15 @@ namespace Bot
         /// <summary>
         /// El siguiente handler en caso de que el actual no cumpla la condicion.
         /// </summary>
-        /// <value>Siguiente handler</value>
+        /// <value>Siguiente handler.</value>
         public IHandler Succesor { get; set; }
-
-        /// <summary>
-        /// Intenta procesar el mensaje recibido y devuelve una respuesta.
-        /// </summary>
-        /// <param name="request">El mensaje a procesar.</param>
-        /// <param name="response">La respuesta al mensaje procesado.</param>
-        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected abstract bool InternalHandle(Message request, out string response);
-
-        /// <summary>
-        /// Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
-        /// entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
-        /// </summary>
-        protected virtual void InternalCancel()
-        {
-            // Intencionalmente en blanco.
-        }
 
         /// <summary>
         /// Procesa el mensaje o la pasa al siguiente handler si está definido o no es nulo.
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje.</param>
-        /// <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor</returns>
+        /// <returns>Este handler si fue capaz de procesar el mensaje, en caso contrario el Succesor.</returns>
         public IHandler Handle(Message request, out string response)
         {
             if (this.InternalHandle(request, out response))
@@ -79,6 +61,23 @@ namespace Bot
             {
                 this.Succesor.Cancel();
             }
+        }
+
+        /// <summary>
+        /// Intenta procesar el mensaje recibido y devuelve una respuesta.
+        /// </summary>
+        /// <param name="request">El mensaje a procesar.</param>
+        /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        protected abstract bool InternalHandle(Message request, out string response);
+
+        /// <summary>
+        /// Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
+        /// entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
+        /// </summary>
+        protected virtual void InternalCancel()
+        {
+            // Intencionalmente en blanco.
         }
     }
 }
