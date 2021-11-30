@@ -56,7 +56,7 @@ namespace Bot
             foreach (Publication publication in listPublications)
             {
                 distance = location.CalculateDistance(publication.Location);
-                if (distance < 10000)
+                if (distance < 3)
                 {
                     publications = publications + publication.ReturnPublication();
                 }

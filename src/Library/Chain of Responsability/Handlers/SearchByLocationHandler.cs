@@ -61,7 +61,7 @@ namespace Bot
                     {
                         publication.SetInterestedPerson(entrepreneurInfo);
                         publication.ClosePublication();
-                        response = "Si se quiere contactar con la empresa envíe \"/contacto\" \nEnvia \"/cancelar\" para cancelar la operación";
+                        response = "Si se quiere contactar con la empresa envíe su nombre. \nEnvia \"/cancelar\" para cancelar la operación";
                         user.HandlerState = Bot.State.AskingCompanyName;
                         return true;
                     }

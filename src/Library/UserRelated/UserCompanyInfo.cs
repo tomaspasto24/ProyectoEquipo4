@@ -12,15 +12,15 @@ namespace Bot
     public class UserCompanyInfo
     {
         /// <summary>
+        /// Compañía a la cuál pertenece el usuario
+        /// </summary>
+        public Company company { set; get; }
+
+        /// <summary>
         /// Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
         /// </summary>
         [JsonConstructor]
         public UserCompanyInfo() { }
-
-        /// <summary>
-        /// Compañía a la cuál pertenece el usuario.
-        /// </summary>
-        public Company company { get; private set; }
 
         /// <summary>
         /// Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario.

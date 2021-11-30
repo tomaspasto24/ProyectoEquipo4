@@ -57,6 +57,19 @@ namespace Bot
             }
         }
 
+        public Location Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.location = value;
+            }
+        }
+
         /// <summary>
         /// Obtiene o establece dirección (calle, número de puerta, etc. o ruta, kilómetro, etc) ingresado como parámetro obligatorio para instancia Location.
         /// </summary>
