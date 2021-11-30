@@ -2016,14 +2016,14 @@
             Cumple con Expert ya que, es experta en el manejo de la información de un usuario de una compañía.
             </summary>
         </member>
+        <member name="P:Bot.UserCompanyInfo.company">
+            <summary>
+            Compañía a la cuál pertenece el usuario
+            </summary>
+        </member>
         <member name="M:Bot.UserCompanyInfo.#ctor">
             <summary>
             Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
-            </summary>
-        </member>
-        <member name="P:Bot.UserCompanyInfo.company">
-            <summary>
-            Compañía a la cuál pertenece el usuario.
             </summary>
         </member>
         <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">

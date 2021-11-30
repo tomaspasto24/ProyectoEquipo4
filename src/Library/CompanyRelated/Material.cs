@@ -1,5 +1,6 @@
 /* Encabezado
 */
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
@@ -110,8 +111,18 @@ namespace Bot
         /// <param name="keyWord">Palabra clave.</param>
         public void AddKeyWord(string keyWord) // Agregar palabras clave
         {
-            // TODO revisar que en el handler se agreguen KeyWords
+            bool precondition = string.IsNullOrEmpty(keyWord);
+            if (precondition)
+            {
+                throw new ArgumentNullException(nameof(keyWord));
+            }
+            int countKeyWords = this.keyWords.Count;
             this.keyWords.Add(keyWord);
+            bool postcondition = this.keyWords.Count != (countKeyWords + 1);
+            if (!postcondition)
+            {
+                throw new Exception("No se ha podido agregar la palabra clave.");
+            }
         }
 
         /// <summary>
@@ -122,7 +133,21 @@ namespace Bot
         /// <returns><c>True</c> en caso de que se pueda eliminar, <c>False</c> en caso contrario.</returns>
         public bool DeleteKeyWord(string keyWord)
         {
-            return this.keyWords.Remove(keyWord);
+            bool precondition = string.IsNullOrEmpty(keyWord);
+            if (precondition)
+            {
+                throw new ArgumentNullException(nameof(keyWord));
+            }
+            int countKeyWords = this.keyWords.Count;
+            bool postcondition = this.keyWords.Remove(keyWord);
+            if (!postcondition)
+            {
+                throw new Exception("No se ha podido eliminar la palabra clave.");
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
