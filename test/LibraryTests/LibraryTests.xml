@@ -4,6 +4,21 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:BotTests.AddMaterialHandlerTest">
+            <summary>
+            Test de agregar materiales desde el handler.
+            </summary>
+        </member>
+        <member name="M:BotTests.AddMaterialHandlerTest.AddMaterialHandlerStartTest">
+            <summary>
+            Test para empezar a agregar materiales desde el handler.
+            </summary>
+        </member>
+        <member name="M:BotTests.AddMaterialHandlerTest.CancelHandlerMessageTest">
+            <summary>
+            Test para no validar la operación.
+            </summary>
+        </member>
         <member name="T:BotTests.AdminHandlerTest">
             <summary>
             Clase AdminHandlerTest la cual se encarga de testear las funcionalidades de la clase AdminHandler, se declaran las variables globales que se van a utilizar.
@@ -22,6 +37,11 @@
         <member name="M:BotTests.AdminHandlerTest.AdminHandlerWrongCommandTest">
             <summary>
             Test que se encarga de verificar que el AdminHandler devuelva false (null), y un string vacio al momento de enviar un comando incorrecto.
+            </summary>
+        </member>
+        <member name="T:BotTests.CancelHandlerTest">
+            <summary>
+            Test de cancelar Handler.
             </summary>
         </member>
         <member name="M:BotTests.CancelHandlerTest.CancelHandlerMessageTest">
@@ -297,6 +317,11 @@
             Test que se encarga de verificar el handler en caso que se le envíe un string vacío.
             </summary>
         </member>
+        <member name="T:BotTests.ModifyUserSpecializationsHandlerTest">
+            <summary>
+            Test para modificar las especificaciones del Emprendedor desde el handler.
+            </summary>
+        </member>
         <member name="M:BotTests.ModifyUserSpecializationsHandlerTest.Setup">
             <summary>
             Se inicializan las variables que se van a utilizar en los tests.
@@ -446,6 +471,16 @@
             Test que se encarga de verificar el comportamiento del handler al ingresar el nombre de la publicación".
             </summary>
         </member>
+        <member name="T:BotTests.PurchasesReportHandler">
+            <summary>
+            Test del funcionamiento del handler de reporte de compras.
+            </summary>
+        </member>
+        <member name="M:BotTests.PurchasesReportHandler.Setup">
+            <summary>
+            Setup.
+            </summary>
+        </member>
         <member name="T:BotTests.RegisterCompanyUserHandlerTest">
             <summary>
             Clase para testear el RegisterCompanyUserHandler.
@@ -474,6 +509,11 @@
         <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestCancel">
             <summary>
             Test para probar el Cancel del handler
+            </summary>
+        </member>
+        <member name="T:BotTests.RegisterHandlerTest">
+            <summary>
+            Test de handler de registro.
             </summary>
         </member>
         <member name="M:BotTests.RegisterHandlerTest.SetUp">
@@ -554,6 +594,11 @@
         <member name="T:BotTests.SearchHandlerTest">
             <summary>
             Clase SearchHandlerTest la cual se encarga de testear las funcionalidades de la clase SearchHandler, se declaran las variables globales que se van a utilizar.
+            </summary>
+        </member>
+        <member name="M:BotTests.SearchHandlerTest.Setup">
+            <summary>
+            Setup.
             </summary>
         </member>
         <member name="M:BotTests.SearchHandlerTest.SearchHandlerNoHasPermissionTest">
