@@ -24,7 +24,7 @@ namespace BotTests
         {
             companyTest = new Company("Prueba1", "Prueba", location, "0922877272");
             initialMaterial = new Material("MaterialTest", 12, 0);
-            
+
             publicationTest1 = new Publication("Prueba1", companyTest, location, initialMaterial);
             publicationTest2 = new Publication("Prueba1", companyTest, location, initialMaterial);
             publicationTest3 = new Publication("Prueba2", companyTest, location, initialMaterial);

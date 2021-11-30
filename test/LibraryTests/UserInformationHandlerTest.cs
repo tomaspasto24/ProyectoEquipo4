@@ -20,6 +20,7 @@ namespace BotTests
         [Test]
         public void UserNoPermissionInformationHandlerTest()
         {
+            SessionRelated.Instance = null;
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
@@ -32,6 +33,7 @@ namespace BotTests
         [Test]
         public void UserHasPermissionInformationHandlerTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             user1 = new UserInfo("user1", 5433261);
             user1.Permissions = UserInfo.EntrepreneurPermissions;
@@ -53,6 +55,7 @@ namespace BotTests
         [Test]
         public void UserInformationHandlerWrongMessageTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             EntrepreneurInfo entrepreneur = new EntrepreneurInfo("", PruebaLocation);
             user1 = new UserInfo("name1", 5433261);

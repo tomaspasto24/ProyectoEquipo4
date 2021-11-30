@@ -11,16 +11,16 @@ namespace BotTests
         Message testMessage;
         String response;
         IHandler result;
-        Company company;
         EntrepreneurInfo entrepreneur;
 
         [SetUp]
         public void Setup()
         {
+            SessionRelated.Instance = null;
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
+            entrepreneur = new EntrepreneurInfo("carpintero", entrepreneurLocation);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
 
         }
@@ -104,9 +104,13 @@ namespace BotTests
             user1.Permissions = UserInfo.EntrepreneurPermissions;
             entrepreneur.AddCertification("certification");
             ModifyUserCertificationsHandler modifyUserCertificationsHandler = new ModifyUserCertificationsHandler(null);
-            user1.HandlerState = Bot.State.DeletingUserCertification;
-            testMessage = new Message(5433261, "WrongText");
+
+            testMessage = new Message(5433261, "2");
+            user1.HandlerState = Bot.State.ChangingUserCertifications;
             result = modifyUserCertificationsHandler.Handle(testMessage, out response);
+
+            testMessage = new Message(5433261, "WrongText");
+            result = result.Handle(testMessage, out response);
             Assert.That(response, Is.EqualTo("Esta Certificacion no existe. \nQuieres modificar algo mas?\n1 - Ubicacion \n2 - Rubro"
                                 + "\n 3 - Especialidades \n 4 - Certificaciones \nEnvia \"/cancelar\" para cancelar la operación"));
             Assert.That(result, Is.Not.Null);

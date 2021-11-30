@@ -22,6 +22,7 @@ namespace BotTests
         [Test]
         public void ContactHandlerNoHasPermissionTest()
         {
+            SessionRelated.Instance = null;
             this.user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(this.user1);
             ContactHandler contactHandler = new ContactHandler(null);
@@ -38,6 +39,7 @@ namespace BotTests
         [Test]
         public void ContactHandlerHasPermissionTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation pruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             this.user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));
@@ -56,6 +58,7 @@ namespace BotTests
         [Test]
         public void ContactHandlerContactCompanyTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
             GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
@@ -77,6 +80,7 @@ namespace BotTests
         [Test]
         public void ContactHandlerCompanyNoFoundTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation pruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             this.user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));
@@ -96,6 +100,7 @@ namespace BotTests
         [Test]
         public void ContactHandlerCompanyWrongHandlerState()
         {
+            SessionRelated.Instance = null;
             GeoLocation pruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             this.user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, new EntrepreneurInfo("", pruebaLocation));

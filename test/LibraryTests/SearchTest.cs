@@ -1,3 +1,4 @@
+/*
 using Bot;
 using NUnit.Framework;
 using System;
@@ -12,7 +13,7 @@ namespace BotTests
     /// </summary>
     public class SearchTests
     {
-        EntrepreneurInfo entrepreneur;    
+        EntrepreneurInfo entrepreneur;
         Material material;
         Material material2;
         Publication publication;
@@ -44,10 +45,10 @@ namespace BotTests
             string keyWord = "wire";
             material2.AddKeyWord(keyWord);
             SearchByMaterial sM = new SearchByMaterial();
-            expectedResult = publication.Title + "\n"+  publication.Company.Name+ "\n" + "Materiales:\n" + material2.Name +" - "+ material2.Quantity +" - " + material2.Price;
+            expectedResult = publication.Title + "\n" + publication.Company.Name + "\n" + "Materiales:\n" + material2.Name + " - " + material2.Quantity + " - " + material2.Price;
             Assert.AreEqual(expectedResult, sM.Search("wire"));
             Assert.AreEqual(publication.ReturnPublication(), sM.Search("wire"));
-            List<Material> materialList = (List<Bot.Material>) publication.ListMaterials;
+            List<Material> materialList = (List<Bot.Material>)publication.ListMaterials;
             Assert.IsTrue(materialList.Contains(material2));
         }
 
@@ -65,3 +66,4 @@ namespace BotTests
         }
     }
 }
+*/

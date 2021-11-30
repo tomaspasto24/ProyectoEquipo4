@@ -16,6 +16,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
+            SessionRelated.Instance = null;
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
         }
