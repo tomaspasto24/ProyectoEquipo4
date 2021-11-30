@@ -21,18 +21,20 @@ namespace BotTests
             user1.Permissions = UserInfo.EntrepreneurPermissions;
             SessionRelated.Instance.AddNewUser(user1);
         }
+        /*
+                [Test]
 
-        [Test]
-        public void PurchasesReportNoHasPermissionHandler()
-        {
-            user1.Permissions = UserInfo.DefaultPermissions;
-            // IHandler PurchasesReportHandler = new PurchasesReportHandler(null);
-            user1.HandlerState = Bot.State.Start;
-            testMessage = new Message(5433261, "/reporte");
-            // result = purchasesReportHandler.Handle(testMessage, out response);
+                public void PurchasesReportNoHasPermissionHandler()
+                {
+                    user1.Permissions = UserInfo.DefaultPermissions;
+                    // IHandler PurchasesReportHandler = new PurchasesReportHandler(null);
+                    user1.HandlerState = Bot.State.Start;
+                    testMessage = new Message(5433261, "/reporte");
+                    // result = purchasesReportHandler.Handle(testMessage, out response);
 
-            Assert.That(response, Is.Empty);
-            Assert.That(result, Is.Null);
-        }
+                    Assert.That(response, Is.Empty);
+                    Assert.That(result, Is.Null);
+                }
+                */
     }
 }
