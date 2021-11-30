@@ -11,6 +11,9 @@ using System.Text.Json.Serialization;
 
 namespace Bot
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MyReferenceHandler : ReferenceHandler
     {
         private static MyReferenceHandler instance;
@@ -29,13 +32,21 @@ namespace Bot
                 return instance;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public MyReferenceHandler() => Reset();
 
         private ReferenceResolver _rootedResolver;
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override ReferenceResolver CreateResolver() => _rootedResolver;
-        
+        /// <summary>
+        /// 
+        /// </summary>
         public void Reset() => _rootedResolver = new MyReferenceResolver();
     }
 
