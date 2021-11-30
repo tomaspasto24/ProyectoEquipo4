@@ -1,3 +1,4 @@
+
 using System;
 using NUnit.Framework;
 using Bot;
@@ -23,6 +24,7 @@ namespace BotTests
         {
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
+            user1.Permissions = UserInfo.DefaultPermissions;
             stHandler = new StartHandler(null);
         }
         /// <summary>
@@ -47,7 +49,6 @@ namespace BotTests
             result = stHandler.Handle(testMessage, out response);
 
             Assert.That(result, Is.Null);
-            // Assert.That(response, Does.Contain("¡Bienvenido al bot del equipo 4! \n ¿Qué desea hacer?"));
             Assert.That(response, Is.EqualTo(""));
         }
     }

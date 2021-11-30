@@ -21,41 +21,41 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
+            SessionRelated.Instance = null;
             user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.AdminPermissions;
             SessionRelated.Instance.AddNewUser(user1);
-            testMessage = new Message(5433261, "CompanyName");
-            user1.HandlerState = Bot.State.ConfirmingCompanyName;
             tkhandler = new TokenHandler(null);
         }
         /// <summary>
-        /// Se testea que el RoleDefault no tenga el permiso de generar el token a través del handler.
+        /// Test que se encarga de verificar que el handler retorne "false" en caso de intentar generar el token y no tener el permiso "GenerateToken".
         /// </summary>
         [Test]
         public void TokenHandleNoPermissionTokenTest()
         {
             user1 = new UserInfo("name1", 5433261);
+            user1.Permissions = UserInfo.DefaultPermissions;
             Boolean result = user1.HasPermission(Permission.GenerateToken);
             Assert.False(result);
         }
         /// <summary>
-        /// Se testea que el RoleAdmin tenga el permiso para generar el token a través del handler.
+        /// Test que se encarga de verificar que el handler devuelva True en caso de que se intente generar el token y se tenga el permiso necesario.
         /// </summary>
         [Test]
         public void TokenHandlePermissionTokenTest()
         {
             user1 = new UserInfo("name1", 5433261);
-            AdminInfo adminInfo = new AdminInfo();
-            SessionRelated.Instance.DiccAdminInfo.Add(user1, adminInfo);
-
+            user1.Permissions = UserInfo.AdminPermissions;
             Boolean result = user1.HasPermission(Permission.GenerateToken);
             Assert.True(result);
         }
         /// <summary>
-        /// Se testea que el TokenHandler pueda crear la invitacion para una empresa 
+        /// Test que se encarga de verificar que el handler responda correctamente y devuelva true en cas de enviar el comando "/crearinvitacion"
         /// </summary>
         [Test]
         public void TokenHandleInvitationTest()
         {
+
             testMessage = new Message(5433261, "/crearinvitacion");
             user1.HandlerState = Bot.State.Start;
             TokenHandler tkhandler = new TokenHandler(null);
@@ -73,10 +73,10 @@ namespace BotTests
         {
             GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             Company company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
-
-            testMessage = new Message(5433261, "Las Acacias");
-            String response;
             SessionRelated.Instance.DiccUserTokens.Add("5433261", company);
+
+            user1.HandlerState = Bot.State.ConfirmingCompanyName;
+            testMessage = new Message(5433261, "Las Acacias");
             result = tkhandler.Handle(testMessage, out response);
 
             Assert.That(result, Is.Not.Null);
@@ -88,7 +88,11 @@ namespace BotTests
         [Test]
         public void TokenHandleCompanyTest()
         {
-            String response;
+
+            testMessage = new Message(5433261, "Company Name");
+            user1.HandlerState = Bot.State.ConfirmingCompanyName;
+            result = tkhandler.Handle(testMessage, out response);
+
             testMessage = new Message(5433261, "CompanyName");
             user1.HandlerState = Bot.State.ConfirmingCompanyName;
             result = tkhandler.Handle(testMessage, out response);
@@ -102,11 +106,14 @@ namespace BotTests
         [Test]
         public void TokenHandleCompanyHeadingTest()
         {
+
+            testMessage = new Message(5433261, "Company Name");
+            user1.HandlerState = Bot.State.ConfirmingCompanyName;
             result = tkhandler.Handle(testMessage, out response);
 
             testMessage = new Message(5433261, "Company heading");
             user1.HandlerState = Bot.State.ConfirmingCompanyHeader;
-            result = tkhandler.Handle(testMessage, out response);
+            result = result.Handle(testMessage, out response);
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Does.Contain("Genial, tenemos el rubro de la empresa. \nAhora dinos la ciudad donde se ubica la empresa.\nEnvia \"/cancelar\" para cancelar la operación"));
@@ -117,11 +124,14 @@ namespace BotTests
         [Test]
         public void TokenHandleCompanyCityTest()
         {
+
+            testMessage = new Message(5433261, "Company Name");
+            user1.HandlerState = Bot.State.ConfirmingCompanyName;
             result = tkhandler.Handle(testMessage, out response);
 
             testMessage = new Message(5433261, "Company City");
             user1.HandlerState = Bot.State.ConfirmingCompanyCity;
-            result = tkhandler.Handle(testMessage, out response);
+            result = result.Handle(testMessage, out response);
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Does.Contain("Genial, tenemos la ciudad de la empresa. \nAhora dinos la direccion de la empresa.\nEnvia \"/cancelar\" para cancelar la operación"));
@@ -133,43 +143,31 @@ namespace BotTests
         public void TokenHandleCompanyAddressTest()
         {
 
+            testMessage = new Message(5433261, "Company Name");
+            user1.HandlerState = Bot.State.ConfirmingCompanyName;
             result = tkhandler.Handle(testMessage, out response);
 
             testMessage = new Message(5433261, "Company address");
             user1.HandlerState = Bot.State.ConfirmingCompanyAddress;
-            result = tkhandler.Handle(testMessage, out response);
+            result = result.Handle(testMessage, out response);
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Does.Contain("Genial, tenemos la direccion de la empresa. \nAhora dinos el contacto de la empresa (e-mail o telefono).\nEnvia \"/cancelar\" para cancelar la operación"));
         }
-        [Test]
-        /// <summary>
-        /// 
-        /// </summary>
-        public void TokenHandleNullCompanyAddressTest()
-        {
 
-            result = tkhandler.Handle(testMessage, out response);
-
-            testMessage = new Message(5433261, null); //nulo se chequea en el primer handler
-            user1.HandlerState = Bot.State.ConfirmingCompanyAddress;
-            result = tkhandler.Handle(testMessage, out response);
-
-            Assert.That(result, Is.Null);
-            //Assert.That(response, Does.Contain("falta adress de la empresa"));
-        }
         [Test]
         public void TokenHandleEmptyCompanyAddressTest()
         {
 
+            testMessage = new Message(5433261, "Company Name");
+            user1.HandlerState = Bot.State.ConfirmingCompanyName;
             result = tkhandler.Handle(testMessage, out response);
 
             testMessage = new Message(5433261, "");  //string vacio
             user1.HandlerState = Bot.State.ConfirmingCompanyAddress;
-            result = tkhandler.Handle(testMessage, out response);
-
-            Assert.That(result, Is.Null);
-            //Assert.That(response, Does.Contain("falta adress de la empresa"));
+            result = result.Handle(testMessage, out response);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(response, Does.Contain("Genial, tenemos la direccion de la empresa. \nAhora dinos el contacto de la empresa (e-mail o telefono).\nEnvia \"/cancelar\" para cancelar la operación"));
         }
         /// <summary>
         /// Se testea que se le asigne el contacto de la empresa y para llegar a este punto debe pasar por las condiciones anteriores.
@@ -177,7 +175,6 @@ namespace BotTests
         [Test]
         public void TokenHandleCompanyContactTest()
         {
-
             testMessage = new Message(5433261, "CompanyName");
             user1.HandlerState = Bot.State.ConfirmingCompanyName;
             result = tkhandler.Handle(testMessage, out response);

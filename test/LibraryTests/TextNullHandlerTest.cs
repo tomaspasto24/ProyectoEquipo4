@@ -1,3 +1,4 @@
+
 using System;
 using NUnit.Framework;
 using Bot;
@@ -16,13 +17,13 @@ namespace BotTests
         IHandler result;
 
         /// <summary>
-        /// Se encarga de testear la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
+        /// Test que se encarga de verificar la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
         /// </summary>
         [Test]
         public void TextNullHandlerTest1()
         {
             user1 = new UserInfo("name1", 5433261);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            user1.Permissions = UserInfo.DefaultPermissions;
             TextNullHandler textNullHandler = new TextNullHandler(null);
             testMessage = new Message(5433261, null);
 
@@ -31,11 +32,14 @@ namespace BotTests
 
             //Assert.That(result, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
         }
+        /// <summary>
+        /// Test que se encarga de verificar si el handler convierte el string ingresado en el formato deseadocy no sea null.
+        /// </summary>
         [Test]
         public void TextNoNullHandlerTest()
         {
             user1 = new UserInfo("name1", 5433261);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            user1.Permissions = UserInfo.DefaultPermissions;
             TextNullHandler textNullHandler = new TextNullHandler(null);
             testMessage = new Message(5433261, "PrueBa ");
 

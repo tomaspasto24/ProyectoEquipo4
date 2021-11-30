@@ -1,3 +1,4 @@
+
 using System;
 using NUnit.Framework;
 using Bot;
@@ -19,6 +20,7 @@ namespace BotTests
         [Test]
         public void UserNoPermissionInformationHandlerTest()
         {
+            SessionRelated.Instance = null;
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
@@ -31,10 +33,12 @@ namespace BotTests
         [Test]
         public void UserHasPermissionInformationHandlerTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("", PruebaLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneurInfo);
+            user1 = new UserInfo("user1", 5433261);
+            user1.Permissions = UserInfo.EntrepreneurPermissions;
+            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("Carpintero", PruebaLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneur);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             UserInformationHandler userInfoHandler = new UserInformationHandler(null);
@@ -42,17 +46,19 @@ namespace BotTests
 
             result = userInfoHandler.Handle(testMessage, out response);
             Assert.That(result, Is.Not.Null);
-            Assert.That(response.Contains($"Estos son tus datos: \nNombre: name1"
-               + $"\nRole: Emprendedor"
-               + "\nUbicacion: Camino Maldonado 2415, Montevideo"));
+            Assert.That(response, Is.EqualTo("Estos son tus datos: \nNombre: user1"
+                            + "\nUbicacion: Camino Maldonado 2415, Montevideo"
+                            + "\nRubro: Carpintero"
+                            + "\nEspecialidades: Ninguna"
+                            + "\nCertificaciones: Ninguna"));
         }
         [Test]
         public void UserInformationHandlerWrongMessageTest()
         {
+            SessionRelated.Instance = null;
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
+            EntrepreneurInfo entrepreneur = new EntrepreneurInfo("", PruebaLocation);
             user1 = new UserInfo("name1", 5433261);
-            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("", PruebaLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneurInfo);
             SessionRelated.Instance.AddNewUser(user1);
             user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
             UserInformationHandler userInfoHandler = new UserInformationHandler(null);
