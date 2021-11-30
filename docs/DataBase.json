@@ -9,233 +9,150 @@
         "Location": {
           "$id": "4",
           "City": "montevideo",
-          "Address": "av. 8 de octubre"
+          "Location": {
+            "$id": "5",
+            "Found": true,
+            "AddresLine": "Avenida General Fructuoso Rivera 2221",
+            "CountryRegion": "Uruguay",
+            "FormattedAddress": "Avenida General Fructuoso Rivera 2221, Montevideo, 11200",
+            "Locality": "Montevideo",
+            "PostalCode": "11200",
+            "Latitude": -34.90202,
+            "Longitude": -56.16736
+          },
+          "Address": "avenida rivera 2221"
         },
-        "Title": "publicacion de prueba",
+        "Title": "publicacion test location",
         "Company": {
-          "$id": "5",
+          "$id": "6",
           "Location": {
             "$ref": "4"
           },
-          "Name": "empresa de prueba 1",
-          "Item": "rubro de la empresa de prueba",
+          "Name": "xd",
+          "Item": "rubro",
           "Contact": "123456789",
           "ListHistorialPublications": {
-            "$id": "6",
-            "$values": [
-              {
-                "$id": "7",
-                "InterestedPerson": {
-                  "$id": "8",
-                  "Location": {
-                    "$id": "9",
-                    "City": "montevideo",
-                    "Address": "av. 8 octubre"
-                  },
-                  "Heading": "carpinteria",
-                  "ListHistorialPublications": {
-                    "$id": "10",
-                    "$values": [
-                      {
-                        "$ref": "7"
-                      }
-                    ]
-                  },
-                  "Certifications": {
-                    "$id": "11",
-                    "$values": []
-                  },
-                  "Specializations": {
-                    "$id": "12",
-                    "$values": []
-                  }
-                },
-                "Location": {
-                  "$ref": "4"
-                },
-                "Title": "publicacion de prueba 3",
-                "Company": {
-                  "$ref": "5"
-                },
-                "Date": "2021-11-29T08:56:59.0647256-03:00",
-                "ClosedDate": "2021-11-29T08:58:45.6305741-03:00",
-                "ListMaterials": {
-                  "$id": "13",
-                  "$values": [
-                    {
-                      "$id": "14",
-                      "Name": "plastico",
-                      "KeyWords": {
-                        "$id": "15",
-                        "$values": []
-                      },
-                      "Quantity": 30,
-                      "Price": 400
-                    },
-                    {
-                      "$id": "16",
-                      "Name": "madera",
-                      "KeyWords": {
-                        "$id": "17",
-                        "$values": []
-                      },
-                      "Quantity": 50,
-                      "Price": 500
-                    }
-                  ]
-                },
-                "ListQualifications": {
-                  "$id": "18",
-                  "$values": []
-                },
-                "IsClosed": true
-              }
-            ]
+            "$id": "7",
+            "$values": []
           },
           "ListOwnPublications": {
-            "$id": "19",
+            "$id": "8",
             "$values": [
               {
                 "$ref": "3"
-              },
-              {
-                "$id": "20",
-                "InterestedPerson": null,
-                "Location": {
-                  "$ref": "4"
-                },
-                "Title": "nueva publicacion 2",
-                "Company": {
-                  "$ref": "5"
-                },
-                "Date": "2021-11-29T08:09:14.2893095-03:00",
-                "ClosedDate": "0001-01-01T00:00:00",
-                "ListMaterials": {
-                  "$id": "21",
-                  "$values": [
-                    {
-                      "$id": "22",
-                      "Name": "componentes electr\u00F3nicos",
-                      "KeyWords": {
-                        "$id": "23",
-                        "$values": []
-                      },
-                      "Quantity": 10,
-                      "Price": 50
-                    },
-                    {
-                      "$id": "24",
-                      "Name": "plastico",
-                      "KeyWords": {
-                        "$id": "25",
-                        "$values": []
-                      },
-                      "Quantity": 150,
-                      "Price": 45
-                    }
-                  ]
-                },
-                "ListQualifications": {
-                  "$id": "26",
-                  "$values": []
-                },
-                "IsClosed": false
-              },
-              {
-                "$ref": "7"
               }
             ]
           },
           "ListUsers": {
-            "$id": "27",
+            "$id": "9",
             "$values": []
           }
         },
-        "Date": "2021-11-29T04:46:24.4330487-03:00",
+        "Date": "2021-11-29T10:43:10.6602584-03:00",
         "ClosedDate": "0001-01-01T00:00:00",
         "ListMaterials": {
-          "$id": "28",
+          "$id": "10",
           "$values": [
             {
-              "$id": "29",
-              "Name": "cart\u00F3n",
+              "$id": "11",
+              "Name": "plastico",
               "KeyWords": {
-                "$id": "30",
+                "$id": "12",
                 "$values": []
               },
               "Quantity": 100,
-              "Price": 30
-            },
-            {
-              "$id": "31",
-              "Name": "componentes electr\u00F3nicos",
-              "KeyWords": {
-                "$id": "32",
-                "$values": []
-              },
-              "Quantity": 50,
-              "Price": 10
+              "Price": 50
             }
           ]
         },
         "ListQualifications": {
-          "$id": "33",
+          "$id": "13",
           "$values": []
         },
         "IsClosed": false
-      },
-      {
-        "$ref": "20"
       }
     ]
   },
   "SessionRelatedToSerialize": {
-    "$id": "34",
+    "$id": "14",
     "DiccUserTokensToSerialize": {
-      "$id": "35",
+      "$id": "15",
       "$values": [
         {
           "Key": "0",
           "Value": {
-            "$ref": "5"
+            "$ref": "6"
           }
-        },
+        }
+      ]
+    },
+    "DiccEntrepreneurInfoToSerialize": {
+      "$id": "16",
+      "$values": [
         {
-          "Key": "1",
+          "Key": {
+            "$id": "17",
+            "Permissions": {
+              "$id": "18",
+              "$values": [
+                0,
+                2,
+                3,
+                5,
+                6
+              ]
+            },
+            "Name": "Tomas",
+            "Id": 1772641058,
+            "HandlerState": 24
+          },
           "Value": {
-            "$id": "36",
+            "$id": "19",
             "Location": {
-              "$id": "37",
+              "$id": "20",
               "City": "montevideo",
-              "Address": "av. rivera 2221"
+              "Location": {
+                "$id": "21",
+                "Found": true,
+                "AddresLine": "Avenida 8 de Octubre",
+                "CountryRegion": "Uruguay",
+                "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+                "Locality": "Montevideo",
+                "PostalCode": null,
+                "Latitude": -34.87959,
+                "Longitude": -56.14838
+              },
+              "Address": "av 8 de octubre"
             },
-            "Name": "empresa de prueba 2",
-            "Item": "rubro de la empresa de prueba 2",
-            "Contact": "123123123",
+            "Heading": "carpitero cheto",
             "ListHistorialPublications": {
-              "$id": "38",
+              "$id": "22",
               "$values": []
             },
-            "ListOwnPublications": {
-              "$id": "39",
+            "Certifications": {
+              "$id": "23",
               "$values": []
             },
-            "ListUsers": {
-              "$id": "40",
+            "Specializations": {
+              "$id": "24",
               "$values": []
             }
           }
         }
       ]
     },
-    "DiccEntrepreneurInfoToSerialize": {
-      "$id": "41",
+    "DiccAdminInfoToSerialize": {
+      "$id": "25",
+      "$values": []
+    },
+    "DiccUserCompanyInfoToSerialize": {
+      "$id": "26",
       "$values": [
         {
           "Key": {
-            "$id": "42",
+            "$id": "27",
             "Permissions": {
-              "$id": "43",
+              "$id": "28",
               "$values": [
                 0,
                 4,
@@ -248,78 +165,22 @@
             "HandlerState": 0
           },
           "Value": {
-            "$id": "44",
-            "Location": {
-              "$id": "45",
-              "City": "montevideo",
-              "Address": "durazno 1967"
-            },
-            "Heading": "carpintero",
-            "ListHistorialPublications": {
-              "$id": "46",
-              "$values": []
-            },
-            "Certifications": {
-              "$id": "47",
-              "$values": []
-            },
-            "Specializations": {
-              "$id": "48",
-              "$values": []
-            }
-          }
-        },
-        {
-          "Key": {
-            "$id": "49",
-            "Permissions": {
-              "$id": "50",
-              "$values": [
-                0,
-                2,
-                3,
-                5,
-                6
-              ]
-            },
-            "Name": "Tomas",
-            "Id": 1772641058,
-            "HandlerState": 0
-          },
-          "Value": {
-            "$ref": "8"
-          }
-        }
-      ]
-    },
-    "DiccAdminInfoToSerialize": {
-      "$id": "51",
-      "$values": []
-    },
-    "DiccUserCompanyInfoToSerialize": {
-      "$id": "52",
-      "$values": [
-        {
-          "Key": {
-            "$ref": "42"
-          },
-          "Value": {
-            "$id": "53",
+            "$id": "29",
             "company": {
-              "$ref": "5"
+              "$ref": "6"
             }
           }
         }
       ]
     },
     "AllUsers": {
-      "$id": "54",
+      "$id": "30",
       "$values": [
         {
-          "$ref": "42"
+          "$ref": "17"
         },
         {
-          "$ref": "49"
+          "$ref": "27"
         }
       ]
     }
