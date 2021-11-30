@@ -1600,7 +1600,7 @@
         </member>
         <member name="T:Bot.CompanyReport">
             <summary>
-            clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte emprendedor. tambien esta clase implementa la interfaz IReport y cumple con el patron ISP.
+            Clase reporte emprendedor que cumple con el patron SRP, debido a que tiene una responsabilidad unica que es dar el reporte a la empresa. tambien esta clase implementa la interfaz IReport y cumple con el patron ISP.
             </summary>
         </member>
         <member name="F:Bot.CompanyReport.company">
@@ -1639,20 +1639,46 @@
         </member>
         <member name="T:Bot.IReport">
             <summary>
+<<<<<<< HEAD
             interfaz con la firma del metodo que devuelve un reporte.
+=======
+            Interfaz con la firma del metodo que devuelve un reporte
+>>>>>>> 582b3438407e3fbea128da1877c3059a5b89163a
             </summary>
         </member>
         <member name="M:Bot.IReport.GiveReport">
             <summary>
-            firma del metodo GiveReport.
+            Firma del metodo GiveReport
             </summary>
             <returns>Devuelve un reporte como string.</returns>
+        </member>
+        <member name="T:Bot.MyReferenceHandler">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:Bot.MyReferenceHandler.Instance">
             <summary>
             Obtiene una única instancia de esta clase.
             </summary>
             <value>La única instancia de esta clase.</value>
+        </member>
+        <member name="M:Bot.MyReferenceHandler.#ctor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.MyReferenceHandler.CreateResolver">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.MyReferenceHandler.Reset">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Bot.SerializeManager">
             <summary>

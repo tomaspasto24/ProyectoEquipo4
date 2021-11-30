@@ -112,6 +112,12 @@ namespace Bot
         /// </summary>
         public void DeserializeObjects()
         {
+            bool precondition = File.Exists(Path);
+            if(!precondition)
+            {
+                throw new Exception("No se encuentra el archivo DataBase.json dentro de Docs/.");
+            }
+
             string json = File.ReadAllText(Path);
             if (string.IsNullOrEmpty(json))
             {
@@ -125,6 +131,12 @@ namespace Bot
                     SerializeManager manager = JsonSerializer.Deserialize<SerializeManager>(json, options);
                     PublicationSet.Instance.ListPublications = manager.listPublicationsToSerialize;
                     SessionRelated.Instance = manager.sessionRelatedToSerialize;
+
+                    bool postcondition = this.listPublicationsToSerialize != null && this.sessionRelatedToSerialize != null;
+                    if(!postcondition)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 catch (ArgumentNullException e)
                 {

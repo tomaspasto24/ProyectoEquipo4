@@ -48,7 +48,7 @@ namespace Bot
                 }
                 else
                 {
-                    response = $"Estas son todas las publicaciones cerca de {request.Text}\n" + SearchByLocation.Instance.Search(request.Text) + "\nSi te interesa alguna publicación: envía el \"Título\" ";
+                    response = $"Estas son todas las publicaciones cerca de {request.Text} a una distancia de 7 kilometros\n" + SearchByLocation.Instance.Search(request.Text) + "\nSi te interesa alguna publicación: envía el \"Título\" ";
                     user.HandlerState = Bot.State.InterestedInPublication;
                     return true;
                 }

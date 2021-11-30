@@ -43,6 +43,11 @@ namespace Bot
         /// <returns>Lista de publicaciones.</returns>
         public string Search(string wordToSearch)
         {
+            bool precondition = wordToSearch != string.Empty;
+            if (!precondition)
+            {
+                throw new ArgumentNullException("La palabra ingresada es null.");
+            }
             string publications = string.Empty;
             foreach (Publication publication in PublicationSet.Instance.ListPublications)
             {
@@ -54,7 +59,11 @@ namespace Bot
                     }
                 }
             }
-
+            bool postcondition = publications != null;
+            if (!postcondition)
+            {
+                throw new NullReferenceException("Lista de publicaciones es nula.");
+            }
             return publications;
         }
     }

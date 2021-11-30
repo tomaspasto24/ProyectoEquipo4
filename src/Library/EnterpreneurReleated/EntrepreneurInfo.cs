@@ -145,8 +145,18 @@ namespace Bot
         /// <returns>Contacto de la empresa de la publicación como un string.</returns>
         public string ContactCompany(Publication publication)
         {
+            bool precondition = publication != null;
+            if (!precondition)
+            {
+                throw new ArgumentNullException("Publicación es null.");
+            }
             this.AddHistorialPublication(publication);
             publication.SetInterestedPerson(this);
+            bool postcondition = publication.Company.ReturnContact() != string.Empty;
+            if (!postcondition)
+            {
+                throw new NullReferenceException("El contacto de la publicación esta vacío.");
+            }
             return publication.Company.ReturnContact();
         }
 
