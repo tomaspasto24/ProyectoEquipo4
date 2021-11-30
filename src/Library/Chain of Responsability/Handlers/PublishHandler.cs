@@ -4,10 +4,11 @@ using System.Collections.Generic;
 namespace Bot
 {
     /*
-    Patrones y principios:
-    También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
-    A su vez, cumple con el patrón Chain of Responsability.
+        Patrones y principios:
+        También cumple con Expert, ya que posee todo lo necesario para cumplir la responsabilidad otorgada a la clase.    
+        A su vez, cumple con el patrón Chain of Responsability.
     */
+
     /// <summary>
     /// Handler que se encarga de crear una publicación para una empresa
     /// Patrones y principios:
@@ -19,11 +20,13 @@ namespace Bot
     public class PublishHandler : AbstractHandler
     {
         private Dictionary<UserInfo, PublishData> publishData = new Dictionary<UserInfo, PublishData>();
+        
         /// <summary>
         /// Crea una nueva instancia de éste handler y define su sucesor.
         /// </summary>
         /// <param name="succesor">El siguiente handler a ser invocado en caso de que el actual no cumpla la condición.</param>
-        public PublishHandler(AbstractHandler succesor) : base(succesor)
+        public PublishHandler(AbstractHandler succesor) 
+        : base(succesor)
         {
         }
 
@@ -32,7 +35,7 @@ namespace Bot
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
-        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
@@ -43,6 +46,7 @@ namespace Bot
                 response = string.Empty;
                 return false;
             }
+
             if (request.Text.Equals("/publicar") && (user.HandlerState == Bot.State.Start))
             {
                 response = "Envía el título de la nueva publicación \nEnvía \"/cancelar\" para cancelar la operación";
@@ -98,25 +102,30 @@ namespace Bot
                 Publication publication = new Publication(pd.Title, userCompanyInfo.company, userCompanyInfo.company.Location, pd.Material);
                 PublicationSet.Instance.AddElement(publication);
                 userCompanyInfo.company.AddOwnPublication(publication);
-                response = "Se ha creado la publicación con el material indicado. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"cancelar\" si quiere terminar la publicación.";
+                response = "Se ha creado la publicación con el material indicado. Si quieres agregar otro material envía \"/agregarmaterial\". \n Envíe \"/cancelar\" si quiere terminar la publicación.";
                 user.HandlerState = Bot.State.Start;
                 return true;
             }
+
             response = string.Empty;
             return false;
         }
+
         class PublishData
         {
-            public string MaterialName { get; set; }
-            public int MaterialQuantity { get; set; }
-            public int MaterialPrice { get; set; }
-            public string Title { get; set; }
-            public Material Material { get; set; }
-
             public PublishData(string title)
             {
                 this.Title = title;
             }
+            
+            public string MaterialName { get; set; }
+
+            public int MaterialQuantity { get; set; }
+
+            public int MaterialPrice { get; set; }
+
+            public string Title { get; set; }
+            public Material Material { get; set; }
         }
     }
 }

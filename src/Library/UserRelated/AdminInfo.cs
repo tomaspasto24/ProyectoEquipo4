@@ -1,5 +1,5 @@
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Bot
 {
@@ -12,9 +12,8 @@ namespace Bot
     /// </summary>
     public class AdminInfo
     {
-        //TODO Arreglar el tema de qualifications -> certifications :)
         /// <summary>
-        /// Lista de certifaciones para los usuarios y las publicaciones
+        /// Lista de certifaciones para los usuarios y las publicaciones.
         /// </summary>
         [JsonInclude]
         public static IList<string> globalQualificationList = new List<string>();

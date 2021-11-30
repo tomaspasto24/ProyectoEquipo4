@@ -1,3 +1,4 @@
+
 using System;
 using NUnit.Framework;
 using Bot;
@@ -6,61 +7,70 @@ namespace BotTests
 {
 
     /// <summary>
-    /// Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+    /// Clase SearchHandlerTest la cual se encarga de testear las funcionalidades de la clase SearchHandler, se declaran las variables globales que se van a utilizar.
     /// </summary>
     public class SearchHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
-        Company company;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
+        [SetUp]
+        public void Setup()
+        {
+            SessionRelated.Instance = null;
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+        }
 
+        /// <summary>
+        /// Test que se encarga de verificar si devuelve false en caso de un usario no tener el permiso de "Search". 
+        /// </summary>
         [Test]
         public void SearchHandlerNoHasPermissionTest()
         {
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
-            SearchHandler searchHandler = new SearchHandler(null);
-            testMessage = new Message(5433261, "/busqueda");
+            this.user1.Permissions = UserInfo.DefaultPermissions;
+            SearchHandler searchHandler = new(null);
+            this.testMessage = new Message(5433261, "/busqueda");
 
-            result = searchHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
-            Assert.That(result, Is.Null);
+            this.result = searchHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.Empty);
+            Assert.That(this.result, Is.Null);
         }
+
         /// <summary>
-        /// Se testea que el mensaje de salida para que se elija por qué se quiere buscar.
+        /// Test que se encarga de verificar si el handler responde correctamente al comando enviádo.
         /// </summary>
         [Test]
         public void SearchHandlerCommandTest()
         {
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("heading", entrepreneurLocation));
-            SessionRelated.Instance.AddNewUser(user1);
-            SearchHandler searchHandler = new SearchHandler(null);
-            user1.HandlerState = Bot.State.Start;
-            testMessage = new Message(5433261, "/busqueda");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            SearchHandler searchHandler = new(null);
+            this.user1.HandlerState = Bot.State.Start;
+            this.testMessage = new Message(5433261, "/busqueda");
 
-            result = searchHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Por favor dinos por qué quieres buscar. \n Envía \"/pormaterial\" para buscar por material. \nEnvia \"/porubicacion\" para buscar por ubicación. \nEnvia \"/cancelar\" para cancelar la operación"));
-            Assert.That(result, Is.Not.Null);
+            this.result = searchHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.response, Is.EqualTo("Por favor dinos el metodo de busqueda que quieres usar. \nEnvía \"/pormaterial\" para buscar por material. \nEnvia \"/porubicacion\" para buscar por ubicación. \nEnvia \"/cancelar\" para cancelar la operación"));
+            Assert.That(this.result, Is.Not.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar si retorna falso en caso de que se envíe un comando incorrecto.
+        /// </summary>
         [Test]
         public void SearchHandlerWrongCommandTest()
         {
-            GeoLocation entrepreneurLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, new EntrepreneurInfo("heading", entrepreneurLocation));
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.HandlerState = Bot.State.Start;
-            SearchHandler searchHandler = new SearchHandler(null);
-            testMessage = new Message(5433261, "NoCompany");
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            SearchHandler searchHandler = new(null);
 
-            result = searchHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.Empty);
+            this.testMessage = new Message(5433261, "WrongCommand");
+            this.user1.HandlerState = Bot.State.Start;
+            this.result = searchHandler.Handle(this.testMessage, out this.response);
+
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.Empty);
         }
     }
 }
+

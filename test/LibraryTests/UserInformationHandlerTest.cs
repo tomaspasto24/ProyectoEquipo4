@@ -1,66 +1,79 @@
+
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
-
     /// <summary>
-    /// Clase TextNullHandlerTest la cual se encarga de testear las funcionalidades de la clase TextNullHandler, se declaran las variables globales que se van a utilizar.
+    /// Clase UserInformationHandlerTest la cual se encarga de testear las funcionalidades de la clase UserInformationHandler, se declaran las variables globales que se van a utilizar.
     /// </summary>
     public class UserInformationHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
-
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del hanlder al momento de un usuario enviar un mensaje y no tener el permiso necesario.
+        /// </summary>
         [Test]
         public void UserNoPermissionInformationHandlerTest()
         {
-            user1 = new UserInfo("name1", 5433261);
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            UserInformationHandler userInfoHandler = new UserInformationHandler(null);
-            testMessage = new Message(5433261, "prueba");
+            SessionRelated.Instance = null;
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            this.user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            UserInformationHandler userInfoHandler = new(null);
+            this.testMessage = new Message(5433261, "prueba");
 
-            result = userInfoHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
+            this.result = userInfoHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Null);
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del hanlder en caso de un usuario enviar el comando "/datos".
+        /// </summary>
         [Test]
         public void UserHasPermissionInformationHandlerTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("", PruebaLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneurInfo);
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            UserInformationHandler userInfoHandler = new UserInformationHandler(null);
-            testMessage = new Message(5433261, "/datos");
+            SessionRelated.Instance = null;
+            GeoLocation PruebaLocation = new("Camino Maldonado 2415", "Montevideo");
+            this.user1 = new("this.user1", 5433261);
+            this.user1.Permissions = UserInfo.EntrepreneurPermissions;
+            EntrepreneurInfo entrepreneur = new("Carpintero", PruebaLocation);
+            SessionRelated.Instance.DiccEntrepreneurInfo.Add(this.user1, entrepreneur);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            this.user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            UserInformationHandler userInfoHandler = new(null);
+            this.testMessage = new Message(5433261, "/datos");
 
-            result = userInfoHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response.Contains($"Estos son tus datos: \nNombre: name1"
-               + $"\nRole: Emprendedor"
-               + "\nUbicacion: Camino Maldonado 2415, Montevideo"));
+            this.result = userInfoHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Not.Null);
+            Assert.That(this.response, Is.EqualTo("Estos son tus datos: \nNombre: this.user1"
+                            + "\nUbicacion: Camino Maldonado 2415, Montevideo"
+                            + "\nRubro: Carpintero"
+                            + "\nEspecialidades: Ninguna"
+                            + "\nCertificaciones: Ninguna"));
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar el comportamiento del hanlder en caso que se le envie un mensaje incorrecto.
+        /// </summary>
         [Test]
         public void UserInformationHandlerWrongMessageTest()
         {
-            GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
-            user1 = new UserInfo("name1", 5433261);
-            EntrepreneurInfo entrepreneurInfo = new EntrepreneurInfo("", PruebaLocation);
-            SessionRelated.Instance.DiccEntrepreneurInfo.Add(user1, entrepreneurInfo);
-            SessionRelated.Instance.AddNewUser(user1);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            UserInformationHandler userInfoHandler = new UserInformationHandler(null);
-            testMessage = new Message(5433261, "/WrongMessage");
+            SessionRelated.Instance = null;
+            this.user1 = new UserInfo("name1", 5433261);
+            SessionRelated.Instance.AddNewUser(this.user1);
+            this.user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
+            UserInformationHandler userInfoHandler = new(null);
+            this.testMessage = new Message(5433261, "/WrongMessage");
 
-            result = userInfoHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.EqualTo(String.Empty));
+            this.result = userInfoHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.EqualTo(String.Empty));
         }
     }
 }

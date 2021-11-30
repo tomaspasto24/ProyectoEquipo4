@@ -1,6 +1,5 @@
-using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
@@ -12,7 +11,8 @@ namespace BotTests
         /// <summary>
         /// Defino la variable afuera para que sea global y adentro del metodo la instancio.
         /// </summary>
-        Company company;
+        private UserInfo user1;
+        private TokenGenerator tk;
 
         /// <summary>
         /// Método que crea y asgina las instancias a los atributos que seran utilizados en los test.
@@ -20,8 +20,8 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
-            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
+            this.tk = new TokenGenerator();
+            this.user1 = new UserInfo("name1", 5433261);
         }
 
         /// <summary>
@@ -30,19 +30,8 @@ namespace BotTests
         [Test]
         public void TokenType()
         {
-            TokenGenerator.Instance.GenerateToken();
-            String token = TokenGenerator.Instance.GenerateToken().ToString();
-            Assert.AreEqual(8, token.GetType());
-        }
-
-        /// <summary>
-        /// Test para agregar el token generado a la lista de globalRatingsList.
-        /// </summary>
-        [Test]
-        public void TokenAddedTest()
-        {
-            String token = TokenGenerator.Instance.GenerateToken().ToString();
-            Assert.AreEqual(token, TokenGenerator.Instance.GenerateToken());
+            this.user1.Permissions = UserInfo.AdminPermissions;
+            Assert.That(typeof(int), Is.EqualTo(this.tk.GenerateToken().GetType()));
         }
     }
 }

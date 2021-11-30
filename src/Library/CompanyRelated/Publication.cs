@@ -307,6 +307,7 @@ namespace Bot
         {
             this.InterestedPerson = interestedPerson;
         }
+        
         /// <summary>
         /// Método que devuelve una publicación como tipo string.
         /// </summary>
@@ -318,6 +319,7 @@ namespace Bot
             {
                 publication = publication + "Nombre material: " + material.Name +"\n"+ "Cantidad: "+ material.Quantity +" Kg" +"\n" +"Precio: $"+ material.Price + "\n\n";
             }
+
             return publication;
         }
     }

@@ -1,12 +1,11 @@
 using System;
+using Bot;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
-using Bot;
 
 namespace Library
 {
-
     /// <summary>
     /// Implementacion de AbstractBot que utiliza Telegram como interfaz de comunicacion
     /// Patrones y principios:
@@ -44,8 +43,7 @@ namespace Library
                 new TokenHandler(
                 new UndertakeHandler(
                 new UserInformationHandler(
-                new DefaultHandler(null)
-)))))))))))))))))))))));
+                new DefaultHandler(null))))))))))))))))))))))));
 
         /// <summary>
         /// Constructor por defecto, privado para facilitar la implementación del patron Singleton.
@@ -78,6 +76,7 @@ namespace Library
                 {
                     instance = new TelegramBot();
                 }
+
                 return instance;
             }
         }
@@ -87,18 +86,18 @@ namespace Library
         /// </summary>
         public override void StartCommunication()
         {
-            Client.OnMessage += OnMessage;
-            Client.StartReceiving();
+            this.Client.OnMessage += OnMessage;
+            this.Client.StartReceiving();
         }
 
         /// <summary>
         /// Envia un mensaje al usuario con el bot como emisor.
         /// </summary>
-        /// <param name="id">Id del usuario destinatario</param>
-        /// <param name="text">Mensaje a enviar</param>
+        /// <param name="id">Id del usuario destinatario.</param>
+        /// <param name="text">Mensaje a enviar.</param>
         public override void SendMessage(long id, string text)
         {
-            Client.SendTextMessageAsync(id, text);
+            this.Client.SendTextMessageAsync(id, text);
         }
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
@@ -106,10 +105,7 @@ namespace Library
             Telegram.Bot.Types.Message message = messageEventArgs.Message;
             long chatId = message.Chat.Id;
             Bot.Message msg = new Bot.Message(chatId, message.Text);
-
-
             UserInfo userInfo = SessionRelated.Instance.GetUserById(chatId);
-
             if (userInfo == null)
             {
                 SessionRelated.Instance.AddNewUser(new UserInfo(message.Chat.FirstName, chatId));
@@ -119,7 +115,7 @@ namespace Library
             IHandler result;
             try
             {
-                result = handler.Handle(msg, out response);
+                result = this.handler.Handle(msg, out response);
             }
             catch (Exception e)
             {

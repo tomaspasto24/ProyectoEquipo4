@@ -1,6 +1,7 @@
+
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
@@ -10,40 +11,42 @@ namespace BotTests
     /// </summary>
     public class TextNullHandlerTest
     {
-        UserInfo user1;
-        Message testMessage;
-        String response;
-        IHandler result;
+        private UserInfo user1;
+        private Message testMessage;
+        private String response;
+        private IHandler result;
 
         /// <summary>
-        /// Se encarga de testear la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
+        /// Test que se encarga de verificar la respuesta del handler en caso de que el mensaje que se ingrea sea null. 
         /// </summary>
         [Test]
         public void TextNullHandlerTest1()
         {
-            user1 = new UserInfo("name1", 5433261);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            TextNullHandler textNullHandler = new TextNullHandler(null);
-            testMessage = new Message(5433261, null);
+            this.user1 = new("name1", 5433261);
+            this.user1.Permissions = UserInfo.DefaultPermissions;
+            TextNullHandler textNullHandler = new(null);
+            this.testMessage = new Message(5433261, null);
 
-            NullReferenceException ex = Assert.Throws<NullReferenceException>(() => textNullHandler.Handle(testMessage, out response));
+            NullReferenceException ex = Assert.Throws<NullReferenceException>(() => textNullHandler.Handle(this.testMessage, out this.response));
             Assert.That(ex.Message, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
 
-            //Assert.That(result, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
         }
+
+        /// <summary>
+        /// Test que se encarga de verificar si el handler convierte el string ingresado en el formato deseadocy no sea null.
+        /// </summary>
         [Test]
         public void TextNoNullHandlerTest()
         {
-            user1 = new UserInfo("name1", 5433261);
-            user1.HandlerState = Bot.State.ConfirmingHeadingEntrepreneur;
-            TextNullHandler textNullHandler = new TextNullHandler(null);
-            testMessage = new Message(5433261, "PrueBa ");
+            this.user1 = new UserInfo("name1", 5433261);
+            this.user1.Permissions = UserInfo.DefaultPermissions;
+            TextNullHandler textNullHandler = new(null);
+            this.testMessage = new Message(5433261, "PrueBa ");
 
-            result = textNullHandler.Handle(testMessage, out response);
-            Assert.That(result, Is.Null);
-            Assert.That(response, Is.EqualTo(String.Empty));
-            Assert.That(testMessage.Text, Is.EqualTo("prueba"));
-            //Assert.That(result, Is.EqualTo("El mensaje no puede estar vacio, ni ser una imagen o video"));
+            this.result = textNullHandler.Handle(this.testMessage, out this.response);
+            Assert.That(this.result, Is.Null);
+            Assert.That(this.response, Is.EqualTo(String.Empty));
+            Assert.That(this.testMessage.Text, Is.EqualTo("prueba"));
         }
     }
 }

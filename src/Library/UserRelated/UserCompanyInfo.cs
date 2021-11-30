@@ -23,9 +23,9 @@ namespace Bot
         public UserCompanyInfo() { }
 
         /// <summary>
-        /// Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario
+        /// Crea una nueva instancia de la clase UserCompanyInfo, asignando la compañía a la cual pertenece el usuario.
         /// </summary>
-        /// <param name="company">Compañía en cuestión</param>
+        /// <param name="company">Compañía en cuestión.</param>
         public UserCompanyInfo(Company company)
         {
             this.company = company;

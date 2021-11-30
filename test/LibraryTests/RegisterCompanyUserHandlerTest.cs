@@ -1,11 +1,12 @@
+
 using System;
-using NUnit.Framework;
 using Bot;
+using NUnit.Framework;
 
 namespace BotTests
 {
     /// <summary>
-    /// Clase para testear el RegisterCompanyUserHandler
+    /// Clase para testear el RegisterCompanyUserHandler.
     /// </summary>
     public class RegisterCompanyUserHandlerTest
     {
@@ -76,7 +77,7 @@ namespace BotTests
         [Test]
         public void TestTokenFound()
         {
-            SessionRelated.Instance.DiccUserTokens.Add("ThisIsAToken", new Company("TestCompany", "TestHeader", new GeoLocation("TestAdress", "TestCity"),"TestContact"));
+            SessionRelated.Instance.DiccUserTokens.Add("ThisIsAToken", new Company("TestCompany", "TestHeader", new GeoLocation("TestAdress", "TestCity"), "TestContact"));
 
             message.Text = "/registro";
             string response;
@@ -87,8 +88,6 @@ namespace BotTests
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo("Token verificado, ahora eres un usuario empresa! :)"));
-            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
-            // Chequear si quedan los roles cambiados
         }
 
         /// <summary>
@@ -97,7 +96,7 @@ namespace BotTests
         [Test]
         public void TestCancel()
         {
-            handler.Cancel();
+            this.handler.Cancel();
 
             // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
             // Assert.That(handler.Data.Token, Is.EqualTo(default(string)));

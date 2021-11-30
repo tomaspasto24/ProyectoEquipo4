@@ -17,7 +17,8 @@ namespace Bot
         /// Crea una nueva instancia de éste handler y define su sucesor.
         /// </summary>
         /// <param name="succesor">El siguiente handler a ser invocado en caso de que el actual no cumpla la condición.</param>
-        public SearchByMaterialHandler(AbstractHandler succesor) : base(succesor)
+        public SearchByMaterialHandler(AbstractHandler succesor) 
+        : base(succesor)
         {
         }
 
@@ -26,7 +27,7 @@ namespace Bot
         /// </summary>
         /// <param name="request">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
-        /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(Message request, out string response)
         {
             UserInfo user = SessionRelated.Instance.GetUserById(request.UserId);
@@ -52,9 +53,8 @@ namespace Bot
                     return true;
                 }
             }
-            else if ((user.HandlerState == Bot.State.InterestedInPublication))
+            else if (user.HandlerState == Bot.State.InterestedInPublication)
             {
-
                 foreach (Publication publication in PublicationSet.Instance.ListPublications)
                 {
                     if (publication.Title == request.Text)
@@ -66,6 +66,7 @@ namespace Bot
                         return true;
                     }
                 }
+                
                 response = "No existe una publicación con el título que ingresó, intente nuevamente";
                 return true;
             }
