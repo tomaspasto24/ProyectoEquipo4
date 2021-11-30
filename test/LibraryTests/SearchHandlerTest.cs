@@ -20,6 +20,7 @@ namespace BotTests
         [SetUp]
         public void Setup()
         {
+            SessionRelated.Instance = null;
             user1 = new UserInfo("name1", 5433261);
             SessionRelated.Instance.AddNewUser(user1);
 
@@ -36,7 +37,7 @@ namespace BotTests
             testMessage = new Message(5433261, "/busqueda");
 
             result = searchHandler.Handle(testMessage, out response);
-            Assert.That(response, Is.EqualTo("Tu comando no fue encontrado o no tienes el rango necesario para utilizarlo."));
+            Assert.That(response, Is.Empty);
             Assert.That(result, Is.Null);
         }
         /// <summary>
@@ -63,11 +64,12 @@ namespace BotTests
         {
             GeoLocation PruebaLocation = new GeoLocation("Camino Maldonado 2415", "Montevideo");
             user1.Permissions = UserInfo.EntrepreneurPermissions;
-            user1.HandlerState = Bot.State.Start;
             SearchHandler searchHandler = new SearchHandler(null);
-            testMessage = new Message(5433261, "WrongCommand");
 
+            testMessage = new Message(5433261, "WrongCommand");
+            user1.HandlerState = Bot.State.Start;
             result = searchHandler.Handle(testMessage, out response);
+
             Assert.That(result, Is.Null);
             Assert.That(response, Is.Empty);
         }

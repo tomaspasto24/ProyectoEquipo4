@@ -13,6 +13,11 @@ namespace BotTests
         IHandler result;
         Company company;
 
+        [SetUp]
+        public void SetUp()
+        {
+            SessionRelated.Instance = null;
+        }
 
         [Test]
         public void RegisterHandlerNoPermissionTest()
@@ -62,9 +67,7 @@ namespace BotTests
             Assert.That(response, Is.EqualTo("Token verificado, ahora eres un usuario empresa! :)"));
             Assert.That(result, Is.Not.Null);
         }
-        /// <summary>
-        /// Arreglar
-        /// </summary>
+
         [Test]
         public void RegisterHandlerTokenNoFndTest()
         {

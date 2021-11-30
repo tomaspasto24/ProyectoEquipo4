@@ -1,4 +1,4 @@
-/*
+
 using System;
 using NUnit.Framework;
 using Bot;
@@ -69,7 +69,7 @@ namespace BotTests
             entrepreneurInfo.ContactCompany(publicationTest);
             publicationTest.ClosePublication();
             EntrepreneurReport reporte = new EntrepreneurReport(entrepreneurInfo);
-            String expected = "Materiales consumidos en los ultimos 30 dias por el emprendedor: emprendedor1 #1 - Madera de pino";
+            String expected = "Materiales consumidos en los ultimos 30 dias por el emprendedor #1 - Madera de Pino";
             StringAssert.Contains(expected, reporte.GiveReport());
             //Assert.AreEqual(expected, reporte.GiveReport());
         }
@@ -81,11 +81,9 @@ namespace BotTests
         public void EntrepreneurReportPublicationNotClosedTest()
         {
             EntrepreneurReport reporte = new EntrepreneurReport(entrepreneurInfo);
-            String expected = $"El emprendedor: emprendedor1, no tiene publicaciones asignadas en los ultimos 30 dias";
-            // StringAssert.Contains(expected, reporte.GiveReport());
+            String expected = $"El emprendedor no tiene publicaciones asignadas en los ultimos 30 dias";
             Assert.AreEqual(expected, reporte.GiveReport());
         }
 
     }
 }
-*/

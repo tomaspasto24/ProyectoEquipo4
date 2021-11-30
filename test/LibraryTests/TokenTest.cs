@@ -13,7 +13,6 @@ namespace BotTests
         /// <summary>
         /// Defino la variable afuera para que sea global y adentro del metodo la instancio.
         /// </summary>
-        Company company;
         UserInfo user1;
         TokenGenerator tk;
 
@@ -24,8 +23,7 @@ namespace BotTests
         public void Setup()
         {
             tk = new TokenGenerator();
-            GeoLocation companyLocation = new GeoLocation("Camino Maldonado 2416", "Montevideo");
-            this.company = new Company("Las Acacias", "carpinteria", companyLocation, "094654315");
+            user1 = new UserInfo("name1", 5433261);
         }
 
         /// <summary>
