@@ -19,5 +19,7 @@
     <Rule Id="SA1502" Action="None" />
     <Rule Id="CA1822" Action="None" /> <!-- Obliga a usar un método estático si este no usa datos de instancia.--> 
     <Rule Id="CA2227" Action="None" />
+    <Rule Id="SA1623" Action="None" />
+    <Rule Id="CA1305" Action="None" />
   </Rules>
 </RuleSet>
