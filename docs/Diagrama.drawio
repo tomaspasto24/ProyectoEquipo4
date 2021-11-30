@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="8N9IxCA1fJN8erkE_-Jc" name="Página-1">
-        <mxGraphModel dx="2485" dy="3418" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="4220" dy="4378" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="Company" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
+                <mxCell id="2" value="Company" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;" parent="1" vertex="1">
                     <mxGeometry x="130" y="180" width="370" height="280" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="&lt;div&gt;&lt;span&gt;- name: string&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- item : string&lt;/div&gt;&lt;div&gt;- location : GeoLocation&lt;/div&gt;&lt;div&gt;- contact : string&lt;/div&gt;&lt;div&gt;- listUsers : List&amp;lt;User&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- ListOwnPublications: List&amp;lt;Publication&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- ListHistorialPublications: List&amp;lt;Publication&amp;gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="2" vertex="1">
@@ -16,7 +16,7 @@
                 <mxCell id="5" value="+ ReturnContact() : string&#10;+ AddUser(UserInfo) : void&#10;+ AddUser(IReadOnlyList&lt;UserInfo&gt;) : void&#10;+ DeleteUser(UserInfo) : bool&#10;+ AddOwnPublication(Publication) : void&#10;+ AddOwnPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;+ DeleteOwnPublication(Publication) : bool&#10;+ AddListHistorialPublication(Publication) : void&#10;+ AddListHistorialPublication(IReadOnlyList&lt;Publication&gt;) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
                     <mxGeometry y="140" width="370" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Material" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
+                <mxCell id="6" value="Material" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;" parent="1" vertex="1">
                     <mxGeometry x="170" y="950" width="180" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="&lt;div&gt;&lt;span&gt;- name: string&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- quantity : int&lt;/div&gt;&lt;div&gt;- price : double&lt;/div&gt;&lt;div&gt;- keyWords: List&amp;lt;string&amp;gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="6" vertex="1">
@@ -28,7 +28,7 @@
                 <mxCell id="9" value="+ AddKeyWord(string) : void&#10;+ DeleteKeyWord(string) : bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="6" vertex="1">
                     <mxGeometry y="100" width="180" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="Publication" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
+                <mxCell id="10" value="Publication" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;" parent="1" vertex="1">
                     <mxGeometry x="150" y="585" width="300" height="300" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="&lt;div&gt;&lt;span&gt;- title: string&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- date : DateTime&lt;/div&gt;&lt;div&gt;- closedDate : DateTime&lt;/div&gt;&lt;div&gt;&lt;span&gt;- location: GeoLocation&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- company: Company&lt;br&gt;&lt;/div&gt;&lt;div&gt;- listMaterials : List&amp;lt;Material&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- listQualifications : List&amp;lt;string&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- isClosed : bool&lt;/div&gt;&lt;div&gt;+interestedPerson : RoleEntrepreneur&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="10" vertex="1">
@@ -40,7 +40,7 @@
                 <mxCell id="13" value="+ AddMaterial(Material) : void&#10;+ AddMaterial(IReadOnlyList&lt;Material&gt;) : void&#10;+ DeleteMaterial(Material) : bool&#10;+ ClosePublication() : RoleEntrepreneur&#10;+ AddQualification(string) : void&#10;+ AddQualification(IReadOnlyList&lt;string&gt;) : void&#10;+ DeleteQualification(string) : bool&#10;+ SetInterestedPerson(RoleEntrepreneur) : void&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="10" vertex="1">
                     <mxGeometry y="170" width="300" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="GeoLocation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
+                <mxCell id="14" value="GeoLocation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;" parent="1" vertex="1">
                     <mxGeometry x="540" y="890" width="280" height="220" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="&lt;div&gt;&lt;span&gt;- client: LocationApi&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- city : string&lt;/div&gt;&lt;div&gt;- address : GeoLocation&lt;/div&gt;&lt;div&gt;- location: string&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="14" vertex="1">
@@ -58,7 +58,7 @@
                 <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="13" target="14" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" value="PublicationSet" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;" parent="1" vertex="1">
+                <mxCell id="34" value="PublicationSet" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;" parent="1" vertex="1">
                     <mxGeometry x="-370" y="460" width="360" height="200" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="&lt;div&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;u&gt;+ instance : PublicationSet&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;+ listPublications : List&amp;lt;Publication&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="34" vertex="1">
@@ -87,7 +87,7 @@
                         <mxPoint x="400" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="56" value="EntrepreneurReport  : IReport" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0050ef;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
+                <mxCell id="56" value="EntrepreneurReport  : IReport" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="-820" y="310" width="310" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="57" value="entrepreneur: RoleEntrepreneur" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="56" vertex="1">
@@ -99,7 +99,7 @@
                 <mxCell id="59" value="+ GiveReport: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="56" vertex="1">
                     <mxGeometry y="64" width="310" height="46" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="CompanyReport : IReport" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0050ef;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
+                <mxCell id="60" value="CompanyReport : IReport" style="swimlane;fontStyle=5;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;whiteSpace=wrap;strokeColor=#001DBC;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="790" y="240" width="310" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="66" value="company: Company" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="60" vertex="1">
@@ -123,7 +123,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="67" value="&lt;&lt;Interface&gt;&gt;&#10;ISet&lt;T&gt;&#10;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;whiteSpace=wrap;" parent="1" vertex="1">
+                <mxCell id="67" value="&lt;&lt;Interface&gt;&gt;&#10;ISet&lt;T&gt;&#10;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;whiteSpace=wrap;" parent="1" vertex="1">
                     <mxGeometry x="-790" y="530" width="340" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="70" value="&#10;+ AddElement(T) : bool&#10;+ DeleteElement(T) : bool&#10;+ ReturnListElements() : string&#10;+ ContainsElementInListElements(T) : bool&#10;+ ContainsElementInListElements(string) : bool&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="67" vertex="1">
@@ -138,13 +138,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="79" value="&lt;&lt;Interface&gt;&gt;&#10;IJsonConvertible&#10;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;whiteSpace=wrap;" parent="1" vertex="1">
+                <mxCell id="79" value="&lt;&lt;Interface&gt;&gt;&#10;IJsonConvertible&#10;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;whiteSpace=wrap;" parent="1" vertex="1">
                     <mxGeometry x="-780" y="90" width="340" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="80" value="&#10;+ ConvertObjectToSave(T) : bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="79" vertex="1">
                     <mxGeometry y="40" width="340" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="SerializeManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#99FF33;whiteSpace=wrap;" parent="1" vertex="1">
+                <mxCell id="81" value="SerializeManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFEFA;whiteSpace=wrap;" parent="1" vertex="1">
                     <mxGeometry x="-640" y="-550" width="300" height="236" as="geometry"/>
                 </mxCell>
                 <mxCell id="82" value="&lt;div&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;u&gt;-Path : string&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;-Options : JsonSerializerOptions&lt;/u&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;+ instance : SerializeManager&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;+listPublicationsToSerialize : List&amp;lt;Publication&amp;gt;&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;+SessionRelatedToSerialize : SessionRelated&lt;/u&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="81" vertex="1">
