@@ -48,7 +48,7 @@ namespace Bot
                 }
                 else
                 {
-                    response = $"Estas son todas las publicaciones cerca de {request.Text}\n" + SearchByLocation.Instance.Search(request.Text) + "\nSi te interesa alguna publicación: envía el \"Título\" ";
+                    response = $"Estas son todas las publicaciones cerca de {request.Text}\n" + SearchByLocation.Instance.Search(request.Text) + "\nSi te interesa alguna publicación envia el titulo, en caso contrario: /cancelar";
                     user.HandlerState = Bot.State.InterestedInPublication;
                     return true;
                 }
@@ -61,7 +61,7 @@ namespace Bot
                     {
                         publication.SetInterestedPerson(entrepreneurInfo);
                         publication.ClosePublication();
-                        response = "Si se quiere contactar con la empresa envíe \"/contacto\" \nEnvia \"/cancelar\" para cancelar la operación";
+                        response = "Si se quiere contactar con la empresa envíe su nombre. \nEnvia \"/cancelar\" para cancelar la operación";
                         user.HandlerState = Bot.State.AskingCompanyName;
                         return true;
                     }

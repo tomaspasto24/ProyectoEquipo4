@@ -47,7 +47,7 @@ namespace Bot
 
                 if (report.Length > 0)
                 {
-                    response = $"Publicaciones cerradas de los ultimos 30 dias de la empresa: {userCompanyInfo.company.Name} \n  {report}";
+                    response = $"{report}";
                     return true;
                 }
                 else

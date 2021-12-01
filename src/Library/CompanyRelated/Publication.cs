@@ -50,7 +50,7 @@ namespace Bot
         /// Obtiene una instancia de RoleEntrepreneur que referencia al emprendedor interesado.
         /// </summary>
         /// <value>Rol Emprendedor.</value>
-        public EntrepreneurInfo InterestedPerson { get; private set; }
+        public EntrepreneurInfo InterestedPerson { get; set; }
 
         /// <summary>
         /// Obtiene o establece ubicación dada de la clase Publicación.
@@ -314,10 +314,10 @@ namespace Bot
         /// <returns>String publication.</returns>
         public string ReturnPublication()
         {
-            string publication = this.title + "\n" + this.Company.Name + "\n" + "Materiales:\n";
+            string publication = "Titulo: " + this.title +"\n"+ "Compañía: " + this.Company.Name+ "\n" + "Materiales:\n";
             foreach (Material material in this.listMaterials)
             {
-                publication = publication + material.Name + " - " + material.Quantity + " - " + material.Price;
+                publication = publication + "Nombre material: " + material.Name +"\n"+ "Cantidad: "+ material.Quantity +" Kg" +"\n" +"Precio: $"+ material.Price + "\n\n";
             }
 
             return publication;
