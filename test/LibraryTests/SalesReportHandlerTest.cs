@@ -60,7 +60,7 @@ namespace BotTests
             this.user1.HandlerState = Bot.State.Start;
             this.result = salesReportHandler.Handle(this.testMessage, out this.response);
 
-            Assert.That(this.response.Contains("Publicaciones cerradas de los ultimos 30 dias de la empresa: Ferretería Mdeo"));
+            Assert.That(this.response.Contains("Ferretería Mdeo"));
             Assert.That(this.result, Is.Not.Null);
         }
     }

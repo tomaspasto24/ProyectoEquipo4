@@ -67,7 +67,7 @@ namespace BotTests
             testMessage = new Message(5433261, "Madera De Pino");
             result = publishHandler.Handle(testMessage, out response);
 
-            Assert.That(response, Is.EqualTo("Envía el nombre empresa \nEnvía \"/cancelar\" para cancelar la operación"));
+            Assert.That(response, Is.EqualTo("Envía el nombre del material que quieres agregar \nEnvía \"/cancelar\" para cancelar la operación"));
             Assert.That(result, Is.Not.Null);
         }
 

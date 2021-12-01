@@ -1655,11 +1655,33 @@
             </summary>
             <returns>Devuelve un reporte como string.</returns>
         </member>
+        <member name="T:Bot.MyReferenceHandler">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Bot.MyReferenceHandler.Instance">
             <summary>
             Obtiene una única instancia de esta clase.
             </summary>
             <value>La única instancia de esta clase.</value>
+        </member>
+        <member name="M:Bot.MyReferenceHandler.#ctor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.MyReferenceHandler.CreateResolver">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bot.MyReferenceHandler.Reset">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Bot.SerializeManager">
             <summary>
@@ -1994,14 +2016,14 @@
             Cumple con Expert ya que, es experta en el manejo de la información de un usuario de una compañía.
             </summary>
         </member>
+        <member name="P:Bot.UserCompanyInfo.company">
+            <summary>
+            Compañía a la cuál pertenece el usuario
+            </summary>
+        </member>
         <member name="M:Bot.UserCompanyInfo.#ctor">
             <summary>
             Constructor UserCompanyInfo sin implementación para poder ser utilizado por la etiqueta JsonConstructor.
-            </summary>
-        </member>
-        <member name="P:Bot.UserCompanyInfo.company">
-            <summary>
-            Compañía a la cuál pertenece el usuario.
             </summary>
         </member>
         <member name="M:Bot.UserCompanyInfo.#ctor(Bot.Company)">
