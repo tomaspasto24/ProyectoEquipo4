@@ -75,7 +75,7 @@ namespace BotTests
 
             Assert.IsTrue(test4);
             Assert.IsTrue(test5);
-            Assert.IsEmpty(PublicationSet.Instance.ListPublications);
+
             Assert.IsFalse(PublicationSet.Instance.ContainsElementInListElements(publicationTest1));
             Assert.IsFalse(PublicationSet.Instance.ContainsElementInListElements(publicationTest3));
         }

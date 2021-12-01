@@ -466,11 +466,6 @@
             Test para probar que pasa cuando no se encuentra un token
             </summary>
         </member>
-        <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestTokenFound">
-            <summary>
-            Test para probar que pasa cuando se encuentra un token
-            </summary>
-        </member>
         <member name="M:BotTests.RegisterCompanyUserHandlerTest.TestCancel">
             <summary>
             Test para probar el Cancel del handler

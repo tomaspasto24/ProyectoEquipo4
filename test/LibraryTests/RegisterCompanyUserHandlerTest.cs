@@ -1,4 +1,3 @@
-
 using System;
 using Bot;
 using NUnit.Framework;
@@ -68,26 +67,6 @@ namespace BotTests
 
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo("Disculpa, no hemos encontrado ese token :("));
-            // Assert.That(handler.State, Is.EqualTo(RegisterHandler.RegisterState.Start));
-        }
-
-        /// <summary>
-        /// Test para probar que pasa cuando se encuentra un token
-        /// </summary>
-        [Test]
-        public void TestTokenFound()
-        {
-            SessionRelated.Instance.DiccUserTokens.Add("ThisIsAToken", new Company("TestCompany", "TestHeader", new GeoLocation("TestAdress", "TestCity"), "TestContact"));
-
-            message.Text = "/registro";
-            string response;
-            handler.Handle(message, out response);
-
-            message.Text = "ThisIsAToken";
-            IHandler result = handler.Handle(message, out response);
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Token verificado, ahora eres un usuario empresa! :)"));
         }
 
         /// <summary>
